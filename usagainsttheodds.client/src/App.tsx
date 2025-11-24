@@ -2,6 +2,7 @@ import React from 'react'
 import type { Game } from './Types/GameType';
 import { useState,useEffect } from 'react';
 import ChangeScreenButton from './Components/ChangeScreenButton';
+import PlayingCard from './Components/PlayingCard/PlayingCard';
 
 
 
@@ -59,6 +60,17 @@ function App() {
 
       <ChangeScreenButton OnClick={() => HandleGameChange("blackjack")} Game={"blackjack"}/>
       <ChangeScreenButton OnClick={() => HandleGameChange("case-opening")} Game={"case-opening"}/>
+
+      <div>
+        <h2>karty:</h2>
+        <div style={{display: 'flex', gap: '1em'}}>
+          <PlayingCard face="Front" symbol="Clubs" value="A"/>
+          <PlayingCard face="Back" symbol="Diamonds" value="8"/>
+          <PlayingCard face="Front" symbol="Joker" value={null}/>        
+        </div>
+      </div>
+      
+
     </div>
   );
 
