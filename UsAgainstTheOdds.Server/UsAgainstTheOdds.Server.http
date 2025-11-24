@@ -1,0 +1,6 @@
+@UsAgainstTheOdds.Server_HostAddress = http://localhost:5071
+
+GET {{UsAgainstTheOdds.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

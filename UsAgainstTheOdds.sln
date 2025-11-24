@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "usagainsttheodds.client", "usagainsttheodds.client\usagainsttheodds.client.esproj", "{4243F674-D7BB-C53F-E160-9092A24D6B00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsAgainstTheOdds.Server", "UsAgainstTheOdds.Server\UsAgainstTheOdds.Server.csproj", "{29AF5254-9617-4B63-B7BF-9F5E98C5C657}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4243F674-D7BB-C53F-E160-9092A24D6B00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4243F674-D7BB-C53F-E160-9092A24D6B00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4243F674-D7BB-C53F-E160-9092A24D6B00}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4243F674-D7BB-C53F-E160-9092A24D6B00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4243F674-D7BB-C53F-E160-9092A24D6B00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4243F674-D7BB-C53F-E160-9092A24D6B00}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{29AF5254-9617-4B63-B7BF-9F5E98C5C657}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29AF5254-9617-4B63-B7BF-9F5E98C5C657}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29AF5254-9617-4B63-B7BF-9F5E98C5C657}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29AF5254-9617-4B63-B7BF-9F5E98C5C657}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0E8F6B74-B7F3-47EB-8B3F-553F2F4DBF43}
+	EndGlobalSection
+EndGlobal
