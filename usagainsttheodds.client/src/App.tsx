@@ -1,35 +1,67 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react'
+import type { Game } from './Types/GameType';
+import { useState,useEffect } from 'react';
+import ChangeScreenButton from './Components/ChangeScreenButton';
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
+  const [currentGame, setCurrentGame] = useState<Game>(null);
+  const [tickets, setTickets] = useState<Number>(50);
+
+
+
+  const renderGameComponent = (game: string | null) => {
+
+  switch (game) {
+
+    case "roulette":
+      // Render roulette component
+      return <div>Roulette Component</div>;
+
+    case "blackjack":
+      // Render blackjack component
+      return <div>Blackjack Component</div>;
+
+    case "slots":
+      // Render slots component
+      return <div>Slots Component</div>;
+
+    case "wheel of fate":
+      // Render wheel of fate component
+      return <div>Wheel of Fate Component</div>;
+
+    case "case opening":
+      // Render case opening component
+      return <div>Case Opening Component</div>;
+
+    case "dice roll":
+      // Render dice roll component
+      return <div>Dice Roll Component</div>;
+
+
+    default:
+      // Render default or home component
+      return <div>Select a game to play</div>;
+  }
+  };
+    
+
+  const HandleGameChange = (gam:Game) => {
+    setCurrentGame(gam)
+  }
+
+  
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      {renderGameComponent(currentGame)}
+
+      <ChangeScreenButton OnClick={() => HandleGameChange("blackjack")} Game={"blackjack"}/>
+      <ChangeScreenButton OnClick={() => HandleGameChange("case-opening")} Game={"case-opening"}/>
+    </div>
+  );
+
 }
 
 export default App
