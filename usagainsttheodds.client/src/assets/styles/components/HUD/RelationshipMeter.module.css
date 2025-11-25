@@ -1,9 +1,15 @@
-.relationshipMeterContainer {
-    width: 200px;
-    height: 30px;
+.container {
+    aspect-ratio: 14/2;
+    width: auto;
+    height: 2.5em;
     border: 3px solid #000;
+    margin: 1em;
+
+    position: absolute;
+    top: 0%;
+    left : 0%;
 }
-.relationshipMeterFill {
+.fill {
     display: block;
     height: 100%;
 }

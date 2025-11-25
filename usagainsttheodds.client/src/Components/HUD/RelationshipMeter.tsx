@@ -16,8 +16,8 @@ const RelationShipMeter:React.FC<RelationShipMeterProps> = ({relationshipValue})
     }
 
   return (
-    <div className={styles.relationshipMeterContainer}>
-      <span className={styles.relationshipMeterFill} style={{ width: `${clampedValue}%`, backgroundColor: makeColor() }}></span>
+    <div className={styles.container}>
+      <span className={styles.fill} style={{ width: `${clampedValue}%`, backgroundColor: makeColor() }}></span>
     </div>
   )
 }

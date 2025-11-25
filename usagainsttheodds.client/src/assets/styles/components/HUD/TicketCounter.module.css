@@ -2,6 +2,8 @@
     display: flex;
     align-items: center;
     width: fit-content;
+    margin: 1em;
+
     position: absolute;
     top: 0%;
     right: 0%;
@@ -12,7 +14,7 @@
 .icon{
     display: block;
     aspect-ratio: 3/2;
-    height: 2.5em;
+    height: 3em;
     width: auto;
     background-image: url(../../../images/ticket.png);
     background-size: cover;
