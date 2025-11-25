@@ -1,12 +1,12 @@
 import React from "react"
-import type { Game } from "../Types/GameType"
+import type { Screen } from "../Types/GameType"
 type ChangeScreenButtonProps = {
-    Game: Game,
-    OnClick: (x:Game) => void 
+    Screen: Screen,
+    OnClick: (x:Screen) => void 
 }
 
-const ChangeScreenButton:React.FC<ChangeScreenButtonProps> = ({Game, OnClick}) => {
+const ChangeScreenButton:React.FC<ChangeScreenButtonProps> = ({Screen, OnClick}) => {
 
-    return <button id={Game?.toString()} onClick={() => OnClick(Game)}>Change to {Game}</button>
+    return <button id={Screen?.toString()} onClick={() => OnClick(Screen)}>Change to {Screen}</button>
 }
 export default ChangeScreenButton;

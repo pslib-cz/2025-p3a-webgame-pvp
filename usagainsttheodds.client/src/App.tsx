@@ -1,65 +1,65 @@
-import React from 'react'
-import type { Game } from './Types/GameType';
+import type { Screen } from './Types/GameType';
 import { useState,useEffect } from 'react';
-import ChangeScreenButton from './Components/ChangeScreenButton';
+import Gameboard from './Components/Gameboard'
 import PlayingCard from './Components/PlayingCard/PlayingCard';
 
 
 
 function App() {
 
-  const [currentGame, setCurrentGame] = useState<Game>(null);
+  const [currentScreen, setCurrentScreen] = useState<Screen>(null);
   const [tickets, setTickets] = useState<Number>(50);
 
 
 
-  const renderGameComponent = (game: string | null) => {
+  const renderScreen = (scr: Screen) => {
 
-  switch (game) {
+    switch (scr) {
 
-    case "roulette":
-      // Render roulette component
-      return <div>Roulette Component</div>;
+      case "roulette":
+        // Render roulette component
+        return <div>Roulette Component</div>;
 
-    case "blackjack":
-      // Render blackjack component
-      return <div>Blackjack Component</div>;
+      case "blackjack":
+        // Render blackjack component
+        return <div>Blackjack Component</div>;
 
-    case "slots":
-      // Render slots component
-      return <div>Slots Component</div>;
+      case "slots":
+        // Render slots component
+        return <div>Slots Component</div>;
 
-    case "wheel of fate":
-      // Render wheel of fate component
-      return <div>Wheel of Fate Component</div>;
+      case "wheel-of-fate":
+        // Render wheel of fate component
+        return <div>Wheel of Fate Component</div>;
 
-    case "case opening":
-      // Render case opening component
-      return <div>Case Opening Component</div>;
+      case "case-opening":
+        // Render case opening component
+        return <div>Case Opening Component</div>;
 
-    case "dice roll":
-      // Render dice roll component
-      return <div>Dice Roll Component</div>;
+      case "dice-roll":
+        // Render dice roll component
+        return <div>Dice Roll Component</div>;
 
 
-    default:
-      // Render default or home component
-      return <div>Select a game to play</div>;
-  }
+      default:
+        // Render default or home component
+        return <div>Select a game to play</div>;
+    }
   };
     
 
-  const HandleGameChange = (gam:Game) => {
-    setCurrentGame(gam)
-  }
+
 
   
+
+
+
+
   return (
     <div>
-      {renderGameComponent(currentGame)}
-
-      <ChangeScreenButton OnClick={() => HandleGameChange("blackjack")} Game={"blackjack"}/>
-      <ChangeScreenButton OnClick={() => HandleGameChange("case-opening")} Game={"case-opening"}/>
+      
+      {renderScreen(currentScreen)}
+      <Gameboard buttons={["blackjack","dice-roll"]} setCurrent={setCurrentScreen}/>
 
       <div>
         <h2>karty:</h2>
