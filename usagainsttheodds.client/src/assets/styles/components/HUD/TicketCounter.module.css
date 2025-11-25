@@ -11,8 +11,9 @@
 }
 .icon{
     display: block;
-    width: 4.5em;
-    height: 3em;
+    aspect-ratio: 3/2;
+    height: 2.5em;
+    width: auto;
     background-image: url(../../../images/ticket.png);
     background-size: cover;
 }

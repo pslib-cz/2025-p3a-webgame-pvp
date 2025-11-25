@@ -1,8 +1,9 @@
 .card {
     display: block;
-    height: 136px;
-    width: 100px;
-    background-size: contain;
+    aspect-ratio: 100/136;
+    height: 10em;
+    width: auto;
+    background-size: cover;
 }
 
 .Back{
