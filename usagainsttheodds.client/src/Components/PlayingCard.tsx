@@ -7,9 +7,10 @@ type PlayingCardProps = {
     symbol: PlayingCardSymbol
     value: PlayingCardValue | null
     face: PlayingCardFace
+    clickable?: boolean
 }
 
-const PlayingCard: React.FC<PlayingCardProps> = ({ face, symbol, value }) => {
+const PlayingCard: React.FC<PlayingCardProps> = ({ face, symbol, value, clickable = true }) => {
 
     const [currentFace, setCurrentFace] = useState<PlayingCardFace>(face);
 
@@ -26,7 +27,13 @@ const PlayingCard: React.FC<PlayingCardProps> = ({ face, symbol, value }) => {
 
     return (
         <>
-            <span onClick={handleClick} className={`${styles.card} ${(currentFace === "Front") ? styles[`${symbol}${(symbol !== "Joker") ? value : ""}`] : styles.Back}`} />
+            <span onClick={(clickable ? handleClick : undefined)} 
+                className={`
+                    ${styles.card}
+                    ${(currentFace === "Front") ? styles[`${symbol}${(symbol !== "Joker") ? value : ""}`] : styles.Back}
+                    ${clickable && styles.clickable}
+                    `}
+            />
         </>
     )
 }

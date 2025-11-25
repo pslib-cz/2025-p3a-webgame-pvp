@@ -5,6 +5,9 @@
     width: auto;
     background-size: cover;
 }
+.clickable{
+    cursor: pointer;
+}
 
 .Back{
     background-image: url(../../images/Cards/cardBack.png);
