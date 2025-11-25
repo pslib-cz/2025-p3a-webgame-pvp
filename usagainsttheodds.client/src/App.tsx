@@ -1,15 +1,16 @@
 import type { Screen } from './Types/GameType';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Gameboard from './Components/Gameboard'
 import PlayingCard from './Components/PlayingCard';
 import RelationShipMeter from './Components/HUD/RelationshipMeter';
+import TicketCounter from './Components/HUD/TicketCounter';
 
 
 
 function App() {
 
   const [currentScreen, setCurrentScreen] = useState<Screen>(null);
-  const [tickets, setTickets] = useState<Number>(50);
+  const [tickets, setTickets] = useState<number>(50);
 
 
 
@@ -69,6 +70,7 @@ function App() {
       <RelationShipMeter relationshipValue={inputvalue} />
       relationshipValue:
       <input type="range" max={100} onChange={e => setInputvalue(Number(e.target.value))} />
+      <TicketCounter value={tickets} />
       
     </div>
   );

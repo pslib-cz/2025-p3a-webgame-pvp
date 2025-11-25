@@ -1,0 +1,18 @@
+.container{
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+}
+.value{
+    font-size: 3em;
+}
+.icon{
+    display: block;
+    width: 4.5em;
+    height: 3em;
+    background-image: url(../../../images/ticket.png);
+    background-size: cover;
+}
