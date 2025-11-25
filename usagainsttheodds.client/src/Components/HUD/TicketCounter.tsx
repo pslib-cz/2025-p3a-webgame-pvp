@@ -7,9 +7,13 @@ type TicketCounterProps = {
 
 const TicketCounter: React.FC<TicketCounterProps> = ({ value }) => {
 
+    const formatNumber = (num: number): string => {
+        return num.toLocaleString();
+    }
+
     return (
         <div className={styles.container}>
-            <span className={styles.value}>{value}</span>
+            <span className={styles.value}>{formatNumber(value)}</span>
             <span className={styles.icon}></span>
         </div>
     )

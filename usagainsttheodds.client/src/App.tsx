@@ -2,8 +2,6 @@ import type { Screen } from './Types/GameType';
 import { useState } from 'react';
 import Gameboard from './Components/Gameboard'
 import PlayingCard from './Components/PlayingCard';
-import RelationShipMeter from './Components/HUD/RelationshipMeter';
-import TicketCounter from './Components/HUD/TicketCounter';
 import HUD from './Components/HUD/HUD';
 
 
@@ -70,8 +68,16 @@ function App() {
 
       <HUD tickets={tickets} relationship={relationshipValue} />
 
-      relationshipValue:
-      <input type="range" max={100} onChange={e => setRelationshipValue(Number(e.target.value))} />
+      <div>
+        <div>
+          relationshipValue:
+          <input type="range" max={100} onChange={e => setRelationshipValue(Number(e.target.value))} />
+        </div>
+        <div>
+          tickets:
+          <input type="number" value={tickets} onChange={e => setTickets(Number(e.target.value))} />
+        </div>
+      </div>
       
     </div>
   );
