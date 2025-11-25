@@ -14,15 +14,15 @@ const Gameboard:React.FC<GameboardProps> = ({setCurrent, buttons}) =>{
     }
 
 
-    const buttonsList = buttons.map(btn => <ChangeScreenButton Screen={btn} OnClick={() => HandleGameChange(btn)}/>)
+    const buttonsList = buttons.map(btn => <ChangeScreenButton Text={btn} Screen={btn} OnClick={() => HandleGameChange(btn)}/>)
 
 
 
     return (
 
-       <>
+        <>
             {buttonsList}
-      </> 
+        </> 
     )
 }
 export default Gameboard
