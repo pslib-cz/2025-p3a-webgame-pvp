@@ -4,6 +4,7 @@ import Gameboard from './Components/Gameboard'
 import PlayingCard from './Components/PlayingCard';
 import RelationShipMeter from './Components/HUD/RelationshipMeter';
 import TicketCounter from './Components/HUD/TicketCounter';
+import HUD from './Components/HUD/HUD';
 
 
 
@@ -50,7 +51,7 @@ function App() {
   };
 
   // For testing RelationshipMeter
-  const [inputvalue, setInputvalue] = useState(50);
+  const [relationshipValue, setRelationshipValue] = useState(50);
 
   return (
     <div>
@@ -67,10 +68,10 @@ function App() {
         </div>
       </div>
 
-      <RelationShipMeter relationshipValue={inputvalue} />
+      <HUD tickets={tickets} relationship={relationshipValue} />
+
       relationshipValue:
-      <input type="range" max={100} onChange={e => setInputvalue(Number(e.target.value))} />
-      <TicketCounter value={tickets} />
+      <input type="range" max={100} onChange={e => setRelationshipValue(Number(e.target.value))} />
       
     </div>
   );
