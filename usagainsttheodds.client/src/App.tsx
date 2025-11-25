@@ -1,7 +1,7 @@
 import type { Screen } from './Types/GameType';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Gameboard from './Components/Gameboard'
-import PlayingCard from './Components/PlayingCard/PlayingCard';
+import PlayingCard from './Components/PlayingCard';
 
 
 
@@ -46,30 +46,30 @@ function App() {
         return <div>Select a game to play</div>;
     }
   };
-    
 
 
 
-  
+
+
 
 
 
 
   return (
     <div>
-      
+
       {renderScreen(currentScreen)}
-      <Gameboard buttons={["blackjack","dice-roll"]} setCurrent={setCurrentScreen}/>
+      <Gameboard buttons={["blackjack", "dice-roll"]} setCurrent={setCurrentScreen} />
 
       <div>
         <h2>karty:</h2>
-        <div style={{display: 'flex', gap: '1em'}}>
-          <PlayingCard face="Front" symbol="Clubs" value="A"/>
-          <PlayingCard face="Back" symbol="Diamonds" value="8"/>
-          <PlayingCard face="Front" symbol="Joker" value={null}/>        
+        <div style={{ display: 'flex', gap: '1em' }}>
+          <PlayingCard face="Front" symbol="Clubs" value="A" />
+          <PlayingCard face="Back" symbol="Diamonds" value="8" />
+          <PlayingCard face="Front" symbol="Joker" value={null} />
         </div>
       </div>
-      
+
 
     </div>
   );

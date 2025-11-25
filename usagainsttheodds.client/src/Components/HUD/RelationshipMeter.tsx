@@ -8,7 +8,7 @@ type RelationShipMeterProps = {
 
 const RelationShipMeter:React.FC<RelationShipMeterProps> = ({relationshipValue}) => {
 
-    //doslo mi ze se mi to nechce delat tak kdybyste nekdo meli naladu tak pls
+    
     
 
   return (

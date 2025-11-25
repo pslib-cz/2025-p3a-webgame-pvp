@@ -1,6 +1,6 @@
 import { useState } from "react"
-import type { PlayingCardFace, PlayingCardSymbol, PlayingCardValue } from "../../Types/PlayingCardType"
-import styles from "./PlayingCard.module.css"
+import type { PlayingCardFace, PlayingCardSymbol, PlayingCardValue } from "../Types/PlayingCardType"
+import styles from "../assets/styles/components/PlayingCard.module.css"
 
 
 type PlayingCardProps = {
@@ -9,16 +9,16 @@ type PlayingCardProps = {
     face: PlayingCardFace
 }
 
-const PlayingCard: React.FC<PlayingCardProps> = ({face, symbol, value}) => {
+const PlayingCard: React.FC<PlayingCardProps> = ({ face, symbol, value }) => {
 
     const [currentFace, setCurrentFace] = useState<PlayingCardFace>(face);
-    
+
     const handleClick = () => {
-        if(currentFace === "Front"){
+        if (currentFace === "Front") {
             setCurrentFace("Back")
             console.log(`Clicked on card ${symbol} ${value}, flipping to back.`)
-        } 
-        if(currentFace === "Back"){
+        }
+        if (currentFace === "Back") {
             setCurrentFace("Front")
             console.log(`Clicked on card ${symbol} ${value}, flipping to front.`)
         }
@@ -26,7 +26,7 @@ const PlayingCard: React.FC<PlayingCardProps> = ({face, symbol, value}) => {
 
     return (
         <>
-            <span onClick={handleClick} className={`${styles.card} ${(currentFace==="Front") ? styles[`${symbol}${(symbol!=="Joker") ? value : ""}`] : styles.Back}`}/>
+            <span onClick={handleClick} className={`${styles.card} ${(currentFace === "Front") ? styles[`${symbol}${(symbol !== "Joker") ? value : ""}`] : styles.Back}`} />
         </>
     )
 }
