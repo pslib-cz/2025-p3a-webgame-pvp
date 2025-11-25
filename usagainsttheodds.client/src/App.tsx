@@ -2,6 +2,7 @@ import type { Screen } from './Types/GameType';
 import { useState, useEffect } from 'react';
 import Gameboard from './Components/Gameboard'
 import PlayingCard from './Components/PlayingCard';
+import RelationShipMeter from './Components/HUD/RelationshipMeter';
 
 
 
@@ -47,13 +48,8 @@ function App() {
     }
   };
 
-
-
-
-
-
-
-
+  // For testing RelationshipMeter
+  const [inputvalue, setInputvalue] = useState(50);
 
   return (
     <div>
@@ -70,7 +66,10 @@ function App() {
         </div>
       </div>
 
-
+      <RelationShipMeter relationshipValue={inputvalue} />
+      relationshipValue:
+      <input type="range" max={100} onChange={e => setInputvalue(Number(e.target.value))} />
+      
     </div>
   );
 
