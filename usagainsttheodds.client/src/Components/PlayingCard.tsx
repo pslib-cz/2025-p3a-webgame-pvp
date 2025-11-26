@@ -6,23 +6,27 @@ import styles from "../assets/styles/components/PlayingCard.module.css"
 type PlayingCardProps = {
     symbol: PlayingCardSymbol
     value: PlayingCardValue | null
-    face: PlayingCardFace
+    face?: PlayingCardFace
     clickable?: boolean
 }
 
-const PlayingCard: React.FC<PlayingCardProps> = ({ face, symbol, value, clickable = true }) => {
+const PlayingCard: React.FC<PlayingCardProps> = ({ face = "Front", symbol, value, clickable = true }) => {
 
     const [currentFace, setCurrentFace] = useState<PlayingCardFace>(face);
 
+
+    const turnCard = () => {
+        setCurrentFace(prev => prev === "Front" ? "Back" : "Front")
+        // if (currentFace === "Front") {
+        //     setCurrentFace("Back")
+        // }
+        // if (currentFace === "Back") {
+        //     setCurrentFace("Front")
+        // }
+    }
+
     const handleClick = () => {
-        if (currentFace === "Front") {
-            setCurrentFace("Back")
-            console.log(`Clicked on card ${symbol} ${value}, flipping to back.`)
-        }
-        if (currentFace === "Back") {
-            setCurrentFace("Front")
-            console.log(`Clicked on card ${symbol} ${value}, flipping to front.`)
-        }
+        turnCard()
     }
 
     return (
@@ -30,10 +34,15 @@ const PlayingCard: React.FC<PlayingCardProps> = ({ face, symbol, value, clickabl
             <span onClick={(clickable ? handleClick : undefined)} 
                 className={`
                     ${styles.card}
-                    ${(currentFace === "Front") ? styles[`${symbol}${(symbol !== "Joker") ? value : ""}`] : styles.Back}
+                    ${currentFace === "Back" ? styles.hidden : ""}
                     ${clickable && styles.clickable}
                     `}
-            />
+            >
+                {/* přední strana s konkrétním obrázkem */}
+                <span className={`${styles.face} ${styles.Front} ${styles[`${symbol}${value ? value : ""}`]}`} />
+                {/* zadní strana (společný obrázek rubu) */}
+                <span className={`${styles.face} ${styles.Back}`} />
+            </span>
         </>
     )
 }
