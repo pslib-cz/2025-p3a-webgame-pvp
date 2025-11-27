@@ -62,7 +62,7 @@ function App() {
         <div style={{ display: 'flex', gap: '1em' }}>
           <PlayingCard card={{symbol:"Clubs", value:"J"}} clickable={false} />
           <PlayingCard card={{symbol:"Diamonds", value:"8"}} face="Back"/>
-          <PlayingCard card={{symbol:"Joker", value:null}} />
+          <PlayingCard card={{symbol:"Spades", value:"K"}} />
         </div>
       </div>
 

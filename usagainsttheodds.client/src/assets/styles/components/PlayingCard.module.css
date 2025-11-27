@@ -35,9 +35,6 @@
     transform: rotateY(0deg);
 }
 
-.Joker{
-    background-image: url(../../images/Cards/cardJoker.png);
-}
 
 .Clubs2 {
     background-image: url(../../images/Cards/cardClubs2.png);

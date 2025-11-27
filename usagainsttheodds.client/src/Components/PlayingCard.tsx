@@ -38,7 +38,7 @@ const PlayingCard: React.FC<PlayingCardProps> = ({ card, face="Front", clickable
                     `}
             >
                 {/* přední strana karty */}
-                <span className={`${styles.face} ${styles.Front} ${styles[`${card.symbol}${card.value ? card.value : ""}`]}`} />
+                <span className={`${styles.face} ${styles.Front} ${styles[`${card.symbol}${card.value}`]}`} />
                 {/* zadní strana karty */}
                 <span className={`${styles.face} ${styles.Back}`} />
             </span>
