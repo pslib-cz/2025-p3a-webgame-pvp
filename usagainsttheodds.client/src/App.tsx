@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Gameboard from './Components/Gameboard'
 import PlayingCard from './Components/PlayingCard';
 import HUD from './Components/HUD/HUD';
+import RussianRulette from './Pages/RussianRulette/RussianRulette';
 
 
 
@@ -10,18 +11,24 @@ function App() {
 
   const [currentScreen, setCurrentScreen] = useState<Screen>(null);
   const [tickets, setTickets] = useState<number>(50);
+  // For testing RelationshipMeter
+  const [relationshipValue, setRelationshipValue] = useState(10);
 
 
-
-  const renderScreen = (scr: Screen) => {
-
-    switch (scr) {
+    switch (currentScreen) {
 
       case "roulette":
         // Render roulette component
-        return <div>Roulette Component</div>;
+        return <div></div>
+
+      case "russian-rulette":
+        return <div><RussianRulette setCurrentScreen={setCurrentScreen}/></div>
+
+
 
       case "blackjack":
+
+
         // Render blackjack component
         return <div>Blackjack Component</div>;
 
@@ -44,44 +51,40 @@ function App() {
 
       default:
         // Render default or home component
-        return <div>Select a game to play</div>;
-    }
-  };
+        return (
+            <div>
+            <Gameboard buttons={["blackjack", "dice-roll", "russian-rulette"]} setCurrent={setCurrentScreen} />
 
-  // For testing RelationshipMeter
-  const [relationshipValue, setRelationshipValue] = useState(50);
+            <div>
+              <h2>karty:</h2>
+              <div style={{ display: 'flex', gap: '1em' }}>
 
-  return (
-    <div>
+                <PlayingCard clickable={false} symbol="Clubs" value="A" />
+                <PlayingCard face="Back" symbol="Diamonds" value="8" />
+                <PlayingCard symbol="Joker" value={null} />
 
-      {renderScreen(currentScreen)}
-      <Gameboard buttons={["blackjack", "dice-roll"]} setCurrent={setCurrentScreen} />
+              </div>
+            </div>
 
-      <div>
-        <h2>karty:</h2>
-        <div style={{ display: 'flex', gap: '1em' }}>
-          <PlayingCard clickable={false} symbol="Clubs" value="A" />
-          <PlayingCard face="Back" symbol="Diamonds" value="8" />
-          <PlayingCard symbol="Joker" value={null} />
-        </div>
-      </div>
+            <HUD tickets={tickets} relationship={relationshipValue} />
 
-      <HUD tickets={tickets} relationship={relationshipValue} />
+            <div>
+              <div>
+                relationshipValue:
+                <input type="range" max={100} onChange={e => setRelationshipValue(Number(e.target.value))} />
+              </div>
+              <div>
+                tickets:
+                <input type="number" value={tickets} onChange={e => setTickets(Number(e.target.value))} />
+              </div>
+            </div>
+            
+          </div>
+        );
 
-      <div>
-        <div>
-          relationshipValue:
-          <input type="range" max={100} onChange={e => setRelationshipValue(Number(e.target.value))} />
-        </div>
-        <div>
-          tickets:
-          <input type="number" value={tickets} onChange={e => setTickets(Number(e.target.value))} />
-        </div>
-      </div>
-      
-    </div>
-  );
 
+
+  }
 }
 
 export default App
