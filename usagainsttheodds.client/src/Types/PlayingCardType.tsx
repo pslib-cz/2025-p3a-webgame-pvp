@@ -6,3 +6,5 @@ export type Card = {
     symbol: PlayingCardSymbol;
     value: PlayingCardValue;
 }
+
+export type Deck = Card[];
