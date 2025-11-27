@@ -1,5 +1,8 @@
 import type { Screen } from "../Types/GameType"
 import ChangeScreenButton from "./ChangeScreenButton"
+
+
+
 type MinigameInfoProps = {
     Info: string,
     GameName: string,
@@ -10,7 +13,7 @@ type MinigameInfoProps = {
 
 const MinigameInfo:React.FC<MinigameInfoProps> = ({Info, GameName, onContinue, onExit}) => {
 
-    const handleExit = (screen: Screen) => {
+    const handleExit = () => {
         onExit?.(null);
     }
 

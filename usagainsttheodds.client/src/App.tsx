@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Gameboard from './Components/Gameboard'
 import PlayingCard from './Components/PlayingCard';
 import HUD from './Components/HUD/HUD';
-import RussianRulette from './Pages/RussianRulette/RussianRulette';
+import RussianRulette from './Pages/RussianRulette';
 
 
 
