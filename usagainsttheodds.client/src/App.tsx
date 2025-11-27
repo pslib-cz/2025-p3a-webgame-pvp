@@ -60,9 +60,9 @@ function App() {
       <div>
         <h2>karty:</h2>
         <div style={{ display: 'flex', gap: '1em' }}>
-          <PlayingCard clickable={false} symbol="Clubs" value="A" />
-          <PlayingCard face="Back" symbol="Diamonds" value="8" />
-          <PlayingCard symbol="Joker" value={null} />
+          <PlayingCard card={{symbol:"Clubs", value:"J"}} clickable={false} />
+          <PlayingCard card={{symbol:"Diamonds", value:"8"}} face="Back" />
+          <PlayingCard card={{symbol:"Joker", value:null}} />
         </div>
       </div>
 
