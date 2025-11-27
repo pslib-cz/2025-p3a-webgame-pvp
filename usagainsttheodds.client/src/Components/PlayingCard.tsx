@@ -1,16 +1,17 @@
 import { useState } from "react"
-import type { Card } from "../Types/PlayingCardType"
+import type { Card, PlayingCardFace } from "../Types/PlayingCardType"
 import styles from "../assets/styles/components/PlayingCard.module.css"
 
 
 type PlayingCardProps = {
     card: Card
+    face?: PlayingCardFace
     clickable?: boolean
 }
 
-const PlayingCard: React.FC<PlayingCardProps> = ({ card, clickable = true }) => {
+const PlayingCard: React.FC<PlayingCardProps> = ({ card, face="Front", clickable = true }) => {
 
-    const [currentFace, setCurrentFace] = useState<Card["face"]>(card.face ?? "Front");
+    const [currentFace, setCurrentFace] = useState<PlayingCardFace>(face);
 
 
     const turnCard = () => {

@@ -5,6 +5,5 @@ export type PlayingCardFace = "Front" | "Back";
 export type Card = {
     symbol: PlayingCardSymbol;
     value: PlayingCardValue | null;
-    face?: PlayingCardFace;
 }
 
