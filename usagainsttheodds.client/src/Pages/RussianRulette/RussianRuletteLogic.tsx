@@ -1,6 +1,11 @@
+import type { GameResult } from "../../Types/GameType";
+import { useState } from "react";
 
 const RussianRuletteLogic = ()  => {
-    // Logic for Russian Rulette minigame will go here
+
+
+
+
     return (
         <div>
             <h2>Russian Rulette Game Started!</h2>
