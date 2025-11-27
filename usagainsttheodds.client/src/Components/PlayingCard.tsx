@@ -1,18 +1,16 @@
 import { useState } from "react"
-import type { PlayingCardFace, PlayingCardSymbol, PlayingCardValue } from "../Types/PlayingCardType"
+import type { Card } from "../Types/PlayingCardType"
 import styles from "../assets/styles/components/PlayingCard.module.css"
 
 
 type PlayingCardProps = {
-    symbol: PlayingCardSymbol
-    value: PlayingCardValue | null
-    face?: PlayingCardFace
+    card: Card
     clickable?: boolean
 }
 
-const PlayingCard: React.FC<PlayingCardProps> = ({ face = "Front", symbol, value, clickable = true }) => {
+const PlayingCard: React.FC<PlayingCardProps> = ({ card, clickable = true }) => {
 
-    const [currentFace, setCurrentFace] = useState<PlayingCardFace>(face);
+    const [currentFace, setCurrentFace] = useState<Card["face"]>(card.face ?? "Front");
 
 
     const turnCard = () => {
@@ -38,9 +36,9 @@ const PlayingCard: React.FC<PlayingCardProps> = ({ face = "Front", symbol, value
                     ${clickable && styles.clickable}
                     `}
             >
-                {/* přední strana s konkrétním obrázkem */}
-                <span className={`${styles.face} ${styles.Front} ${styles[`${symbol}${value ? value : ""}`]}`} />
-                {/* zadní strana (společný obrázek rubu) */}
+                {/* přední strana karty */}
+                <span className={`${styles.face} ${styles.Front} ${styles[`${card.symbol}${card.value ? card.value : ""}`]}`} />
+                {/* zadní strana karty */}
                 <span className={`${styles.face} ${styles.Back}`} />
             </span>
         </>

@@ -10,22 +10,10 @@
     transition: transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 300ms;
     transform-origin: center center;
     will-change: transform;
-
-    
 }
 .clickable{
     cursor: pointer;
 }
-
-.Back{
-    background-image: url(../../images/Cards/cardBack.png);
-    transform: rotateY(180deg);
-}
-.Front{
-    transform: rotateY(0deg);
-}
-
-
 .face {
     position: absolute;
     inset: 0;
@@ -35,6 +23,16 @@
 }
 .hidden {
     transform: rotateY(180deg);
+}
+
+
+
+.Back{
+    background-image: url(../../images/Cards/cardBack.png);
+    transform: rotateY(180deg);
+}
+.Front{
+    transform: rotateY(0deg);
 }
 
 .Joker{

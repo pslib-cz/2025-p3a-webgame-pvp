@@ -55,16 +55,14 @@ function App() {
             <div>
             <Gameboard buttons={["blackjack", "dice-roll", "russian-rulette"]} setCurrent={setCurrentScreen} />
 
-            <div>
-              <h2>karty:</h2>
-              <div style={{ display: 'flex', gap: '1em' }}>
-
-                <PlayingCard clickable={false} symbol="Clubs" value="A" />
-                <PlayingCard face="Back" symbol="Diamonds" value="8" />
-                <PlayingCard symbol="Joker" value={null} />
-
-              </div>
-            </div>
+      <div>
+        <h2>karty:</h2>
+        <div style={{ display: 'flex', gap: '1em' }}>
+          <PlayingCard clickable={false} symbol="Clubs" value="A" />
+          <PlayingCard face="Back" symbol="Diamonds" value="8" />
+          <PlayingCard symbol="Joker" value={null} />
+        </div>
+      </div>
 
             <HUD tickets={tickets} relationship={relationshipValue} />
 
