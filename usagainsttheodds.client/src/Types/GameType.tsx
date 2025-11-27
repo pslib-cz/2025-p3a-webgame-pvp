@@ -2,3 +2,5 @@ type Screen = IntroScreens | "gameboard" | "russian-rulette" | "roulette" | "bla
 type IntroScreens = "first" | "second"
 
 export type { Screen };
+
+export type GameResult = "win" | "lose" | "draw";
