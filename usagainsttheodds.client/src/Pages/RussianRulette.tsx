@@ -18,7 +18,13 @@ const RussianRulette = ({ setCurrentScreen }: RussianRuletteProps) => {
 
     return (
         <MiniGamePreset setCurrentScreen={setCurrentScreen} GameName="Russian Rulette" GameInfo="A dangerous game of chance.">
-            <div>mgsregsdregrsed</div>
+
+            {({ endGame }) => (
+                <div>
+                    <h1>Probíhá minihra…</h1>
+                    <button onClick={endGame}>Ukončit hru</button>
+                </div>
+            )}
         </MiniGamePreset>
     )
 }

@@ -8,7 +8,7 @@ type MinigamePresetProps = {
     setCurrentScreen: (screen: Screen) => void
     GameName: string;
     GameInfo: string;
-    children?: React.ReactNode;
+    children?: (actions: { endGame: () => void }) => React.ReactNode; 
 }
 
 
@@ -17,7 +17,11 @@ const MiniGamePreset:React.FC<MinigamePresetProps> = ({ setCurrentScreen, GameNa
 
 
     const [state,setState] = useState<"intro" | "started" | "ended">("intro");
+    const endGame = () => setState("ended");
+
     const { onExit } = useMinigameExit({ setCurrentScreen })
+
+
 
 
 
@@ -25,7 +29,7 @@ const MiniGamePreset:React.FC<MinigamePresetProps> = ({ setCurrentScreen, GameNa
     if (state === "started") {
 
         return (
-            <>{children}</>
+            <>{children && children({ endGame })}</>
         )
 
 
