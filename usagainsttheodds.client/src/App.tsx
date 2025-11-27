@@ -5,15 +5,15 @@ import PlayingCard from './Components/PlayingCard';
 import HUD from './Components/HUD/HUD';
 import RussianRulette from './Pages/Minigames/RussianRulette';
 import Blackjack from './Pages/Minigames/Blackjack';
-
+import random from './Services/randomService'
 
 
 function App() {
 
   const [currentScreen, setCurrentScreen] = useState<Screen>(null);
-  const [tickets, setTickets] = useState<number>(50);
+  const [tickets, setTickets] = useState<number>(random.generate(10,9999));
   // For testing RelationshipMeter
-  const [relationshipValue, setRelationshipValue] = useState(50);
+  const [relationshipValue, setRelationshipValue] = useState(random.generateNumber(1, 100));
 
 
     switch (currentScreen) {
