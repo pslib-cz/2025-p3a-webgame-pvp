@@ -8,3 +8,4 @@ export type Card = {
 }
 
 export type Deck = Card[];
+export type Hand = Deck;

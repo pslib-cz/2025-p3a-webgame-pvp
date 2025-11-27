@@ -1,4 +1,4 @@
-import type { Deck, PlayingCardSymbol, PlayingCardValue } from "../Types/PlayingCardType";
+import type { Card, Deck, PlayingCardSymbol, PlayingCardValue } from "../Types/PlayingCardType";
 
 export const createDeck = ():Deck => {
 
@@ -16,7 +16,7 @@ export const createDeck = ():Deck => {
     return deck;
 }
 
-export const shuffleDeck = (deck: Deck): Deck => {
+const shuffleDeck = (deck: Deck): Deck => {
     const shuffledDeck = [...deck];
 
     for (let i = shuffledDeck.length - 1; i > 0; i--) {
@@ -32,19 +32,24 @@ export const createShuffledDeck = ():Deck => {
     return shuffleDeck(createDeck());
 }
 
-export const drawCard = (deck: Deck): {card: Deck[0] | null, newDeck: Deck} => {
+export const drawCard = (deck: Deck): {card: Card | null, newDeck: Deck} => {
+
     if (deck.length === 0) {
         return {card: null, newDeck: deck};
     }
-    const [card, ...newDeck] = deck;
-    return {card, newDeck};
+
+    const [newCard, ...newDeck] = deck
+
+    return {card: newCard, newDeck}
 }
+
+
+
 
 
 export const deckService = {
     createDeck,
-    shuffleDeck,
     createShuffledDeck,
-    drawCard
+    drawCard,
 };
 export default deckService;

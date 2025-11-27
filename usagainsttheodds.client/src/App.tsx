@@ -4,6 +4,7 @@ import Gameboard from './Components/Gameboard'
 import PlayingCard from './Components/PlayingCard';
 import HUD from './Components/HUD/HUD';
 import RussianRulette from './Pages/RussianRulette/RussianRulette';
+import Blackjack from './Pages/Minigames/Blackjack';
 
 
 
@@ -12,7 +13,7 @@ function App() {
   const [currentScreen, setCurrentScreen] = useState<Screen>(null);
   const [tickets, setTickets] = useState<number>(50);
   // For testing RelationshipMeter
-  const [relationshipValue, setRelationshipValue] = useState(10);
+  const [relationshipValue, setRelationshipValue] = useState(50);
 
 
     switch (currentScreen) {
@@ -30,7 +31,7 @@ function App() {
 
 
         // Render blackjack component
-        return <div>Blackjack Component</div>;
+        return <Blackjack />;
 
       case "slots":
         // Render slots component
@@ -69,11 +70,11 @@ function App() {
             <div>
               <div>
                 relationshipValue:
-                <input type="range" max={100} onChange={e => setRelationshipValue(Number(e.target.value))} />
+                <input type="range" defaultValue={relationshipValue} max={100} onChange={e => setRelationshipValue(Number(e.target.value))} />
               </div>
               <div>
                 tickets:
-                <input type="number" value={tickets} onChange={e => setTickets(Number(e.target.value))} />
+                <input type="number" defaultValue={tickets} onChange={e => setTickets(Number(e.target.value))} />
               </div>
             </div>
             
