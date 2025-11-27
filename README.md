@@ -34,8 +34,10 @@ Určené pro vydělání ticketů, je ale možné, že pro vstup do nějaké min
 ---
 ## 📝 Team members (PVP)
 **V. Plátek**
-- struktura databáze a API: návrh a kód základní funkčnosti databáze; ukládání ID, jména a vlastností hráčů
+- struktura databáze a API: návrh a kód základní funkčnosti databáze;
 - minihry: Lucky 21
+- Karty
+- random generator service
 
 **L. Vedral**
 - struktura projektu: hlavní funčnost gameplaye, pohyb, získávání bodů...
