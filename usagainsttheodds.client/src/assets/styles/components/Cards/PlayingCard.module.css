@@ -1,0 +1,194 @@
+.card {
+    display: block;
+    aspect-ratio: 100/136;
+    height: 10em;
+    width: auto;
+    background-size: cover;
+
+    transform-style: preserve-3d;
+    transform: perspective(1000px) rotateY(0deg);
+    transition: transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 300ms;
+    transform-origin: center center;
+    will-change: transform;
+}
+.clickable{
+    cursor: pointer;
+}
+.face {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+.hidden {
+    transform: rotateY(180deg);
+}
+
+
+
+.Back{
+    background-image: url(../../../images/Cards/cardBack.png);
+    transform: rotateY(180deg);
+}
+.Front{
+    transform: rotateY(0deg);
+}
+
+
+.Clubs2 {
+    background-image: url(../../../images/Cards/cardClubs2.png);
+}
+.Clubs3 {
+    background-image: url(../../../images/Cards/cardClubs3.png);
+}
+.Clubs4 {
+    background-image: url(../../../images/Cards/cardClubs4.png);
+}
+.Clubs5 {
+    background-image: url(../../../images/Cards/cardClubs5.png);
+}
+.Clubs6 {
+    background-image: url(../../../images/Cards/cardClubs6.png);
+}
+.Clubs7 {
+    background-image: url(../../../images/Cards/cardClubs7.png);
+}
+.Clubs8 {
+    background-image: url(../../../images/Cards/cardClubs8.png);
+}
+.Clubs9 {
+    background-image: url(../../../images/Cards/cardClubs9.png);
+}
+.Clubs10 {
+    background-image: url(../../../images/Cards/cardClubs10.png);
+}
+.ClubsJ {
+    background-image: url(../../../images/Cards/cardClubsJ.png);
+}
+.ClubsQ {
+    background-image: url(../../../images/Cards/cardClubsQ.png);
+}
+.ClubsK {
+    background-image: url(../../../images/Cards/cardClubsK.png);
+}
+.ClubsA {
+    background-image: url(../../../images/Cards/cardClubsA.png);
+}
+.Diamonds2 {
+    background-image: url(../../../images/Cards/cardDiamonds2.png);
+}
+.Diamonds3 {
+    background-image: url(../../../images/Cards/cardDiamonds3.png);
+}
+.Diamonds4 {
+    background-image: url(../../../images/Cards/cardDiamonds4.png);
+}
+.Diamonds5 {
+    background-image: url(../../../images/Cards/cardDiamonds5.png);
+}
+.Diamonds6 {
+    background-image: url(../../../images/Cards/cardDiamonds6.png);
+}
+.Diamonds7 {
+    background-image: url(../../../images/Cards/cardDiamonds7.png);
+}
+.Diamonds8 {
+    background-image: url(../../../images/Cards/cardDiamonds8.png);
+}
+.Diamonds9 {
+    background-image: url(../../../images/Cards/cardDiamonds9.png);
+}
+.Diamonds10 {
+    background-image: url(../../../images/Cards/cardDiamonds10.png);
+}
+.DiamondsJ {
+    background-image: url(../../../images/Cards/cardDiamondsJ.png);
+}
+.DiamondsQ {
+    background-image: url(../../../images/Cards/cardDiamondsQ.png);
+}
+.DiamondsK {
+    background-image: url(../../../images/Cards/cardDiamondsK.png);
+}
+.DiamondsA {
+    background-image: url(../../../images/Cards/cardDiamondsA.png);
+}
+.Hearts2 {
+    background-image: url(../../../images/Cards/cardHearts2.png);
+}
+.Hearts3 {
+    background-image: url(../../../images/Cards/cardHearts3.png);
+}
+.Hearts4 {
+    background-image: url(../../../images/Cards/cardHearts4.png);
+}
+.Hearts5 {
+    background-image: url(../../../images/Cards/cardHearts5.png);
+}
+.Hearts6 {
+    background-image: url(../../../images/Cards/cardHearts6.png);
+}
+.Hearts7 {
+    background-image: url(../../../images/Cards/cardHearts7.png);
+}
+.Hearts8 {
+    background-image: url(../../../images/Cards/cardHearts8.png);
+}
+.Hearts9 {
+    background-image: url(../../../images/Cards/cardHearts9.png);
+}
+.Hearts10 {
+    background-image: url(../../../images/Cards/cardHearts10.png);
+}
+.HeartsJ {
+    background-image: url(../../../images/Cards/cardHeartsJ.png);
+}
+.HeartsQ {
+    background-image: url(../../../images/Cards/cardHeartsQ.png);
+}
+.HeartsK {
+    background-image: url(../../../images/Cards/cardHeartsK.png);
+}
+.HeartsA {
+    background-image: url(../../../images/Cards/cardHeartsA.png);
+}
+.Spades2 {
+    background-image: url(../../../images/Cards/cardSpades2.png);
+}
+.Spades3 {
+    background-image: url(../../../images/Cards/cardSpades3.png);
+}
+.Spades4 {
+    background-image: url(../../../images/Cards/cardSpades4.png);
+}
+.Spades5 {
+    background-image: url(../../../images/Cards/cardSpades5.png);
+}
+.Spades6 {
+    background-image: url(../../../images/Cards/cardSpades6.png);
+}
+.Spades7 {
+    background-image: url(../../../images/Cards/cardSpades7.png);
+}
+.Spades8 {
+    background-image: url(../../../images/Cards/cardSpades8.png);
+}
+.Spades9 {
+    background-image: url(../../../images/Cards/cardSpades9.png);
+}
+.Spades10 {
+    background-image: url(../../../images/Cards/cardSpades10.png);
+}
+.SpadesJ {
+    background-image: url(../../../images/Cards/cardSpadesJ.png);
+}
+.SpadesQ {
+    background-image: url(../../../images/Cards/cardSpadesQ.png);
+}
+.SpadesK {
+    background-image: url(../../../images/Cards/cardSpadesK.png);
+}
+.SpadesA {
+    background-image: url(../../../images/Cards/cardSpadesA.png);
+}

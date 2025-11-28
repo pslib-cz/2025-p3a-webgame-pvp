@@ -1,7 +1,7 @@
 import type { Screen } from './Types/GameType';
 import { useState } from 'react';
 import Gameboard from './Components/Gameboard'
-import PlayingCard from './Components/PlayingCard';
+import PlayingCard from './Components/Cards/PlayingCard';
 import HUD from './Components/HUD/HUD';
 import RussianRulette from './Pages/Minigames/RussianRulette';
 import Blackjack from './Pages/Minigames/Blackjack';
