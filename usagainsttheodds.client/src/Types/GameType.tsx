@@ -3,4 +3,4 @@ type IntroScreens = "first" | "second"
 
 export type { Screen };
 
-export type GameResult = "win" | "lose" | "draw";
+export type GameResult = "win" | "lose" | "draw" | null;
