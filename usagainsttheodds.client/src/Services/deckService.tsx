@@ -1,18 +1,21 @@
 import type { Card, Deck, PlayingCardSymbol, PlayingCardValue } from "../Types/PlayingCardType";
 
-export const createDeck = ():Deck => {
+export const createDeck = (deckCount: number = 1):Deck => {
 
     const symbols: PlayingCardSymbol[] = ["Clubs", "Diamonds", "Hearts", "Spades"]
     const values: PlayingCardValue[] = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
-    
+    const count: number = Math.floor(Math.abs(deckCount))
 
     const deck: Deck = []
 
-    for (const symbol of symbols) {
-        for (const value of values) {
-            deck.push({symbol, value})
+    for (let i = 0; i < count; i++) {
+        for (const symbol of symbols) {
+            for (const value of values) {
+                deck.push({symbol, value})
+            }
         }
     }
+    
     return deck;
 }
 
@@ -27,9 +30,9 @@ const shuffleDeck = (deck: Deck): Deck => {
     return shuffledDeck;
 }
 
-export const createShuffledDeck = ():Deck => {
+export const createShuffledDeck = (deckCount?: number):Deck => {
 
-    return shuffleDeck(createDeck());
+    return shuffleDeck(createDeck(deckCount));
 }
 
 export const drawCard = (deck: Deck): {card: Card | null, newDeck: Deck} => {
@@ -42,8 +45,6 @@ export const drawCard = (deck: Deck): {card: Card | null, newDeck: Deck} => {
 
     return {card: newCard, newDeck}
 }
-
-
 
 
 

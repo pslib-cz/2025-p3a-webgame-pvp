@@ -21,10 +21,7 @@ const CardHand: React.FC<CardHandProps> = ({hand, hiddenCards}) => {
     return (
         <div className={styles.handContainer}>
             {hand.map((card, index) =>
-                <div>
-                    <PlayingCard key={`${index}`} card={{symbol: card.symbol, value: card.value}} face={decideCardFace(index)} />
-                    <p>{index}</p>
-                </div>
+                <PlayingCard key={index} card={{symbol: card.symbol, value: card.value}} clickable={false} face={decideCardFace(index)} />
             )}
         </div>
     )
