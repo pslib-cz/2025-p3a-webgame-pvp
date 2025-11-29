@@ -16,6 +16,18 @@ function App() {
   const [relationshipValue, setRelationshipValue] = useState(random.generateNumber(1, 100));
 
 
+  const EnterGame = (entryCost: number, Component: React.ReactNode): React.ReactNode => {
+    if (tickets >= entryCost) {
+      setTickets(prev => prev - entryCost);
+      return Component;
+    }
+    alert("Not enough tickets to enter the game.");
+    return null;
+  }
+    
+
+
+
     switch (currentScreen) {
 
       case "roulette":
@@ -23,7 +35,8 @@ function App() {
         return <div></div>
 
       case "russian-rulette":
-        return <div><RussianRulette setCurrentScreen={setCurrentScreen}/></div>
+
+        EnterGame(50, <RussianRulette setCurrentScreen={setCurrentScreen}/>)
 
 
 
@@ -56,6 +69,7 @@ function App() {
             <div>
             <Gameboard buttons={["blackjack", "dice-roll", "russian-rulette"]} setCurrent={setCurrentScreen} />
 
+          
       <div>
         <h2>karty:</h2>
         <div style={{ display: 'flex', gap: '1em' }}>

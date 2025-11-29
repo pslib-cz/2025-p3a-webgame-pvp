@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MinigameInfo from "./MinigameInfo";
-import type { Screen } from "../Types/GameType";
+import type { Screen, GameResult } from "../Types/GameType";
 import { useMinigameExit } from "../hooks/useMinigameExit";
 import GameEnd from "./GameEnd";
 
@@ -9,10 +9,11 @@ type MinigamePresetProps = {
     GameName: string;
     GameInfo: string;
     children?: (actions: { endGame: () => void }) => React.ReactNode; 
+    Result: GameResult;
 }
 
 
-const MiniGamePreset:React.FC<MinigamePresetProps> = ({ setCurrentScreen, GameName, GameInfo, children}) => {
+const MiniGamePreset:React.FC<MinigamePresetProps> = ({ setCurrentScreen, GameName, GameInfo, children, Result}) => {
 
 
 
@@ -34,7 +35,7 @@ const MiniGamePreset:React.FC<MinigamePresetProps> = ({ setCurrentScreen, GameNa
 
 
     }else if (state === "ended") {
-        return <GameEnd result="win" setCurrentScreen={setCurrentScreen} />
+        return <GameEnd result={Result} setCurrentScreen={setCurrentScreen} />
     }
 
 
