@@ -5,7 +5,16 @@ import { useRef, useEffect } from "react";
 import CardHand from "../../Components/Cards/CardHand";
 import type { GameResult } from "../../Types/GameType";
 
+// kdyz mam 21 nebo pres na hit tak dealer nalize karty a nemel by, mel by jen otocit skrytou kartu a pak se vyhodnoti hra
+//kdyz jsem hitnul 22 a dealer dobral na 22 tak jsem vyhral, mel bych prohrat nejspise to prvni
+//9 3 a q = 23 dealer 18 a i tak jsem vyhral
+//kdyz mam 21 na startu tak bych mel mit automaticky vyhru ale ne kdyz ma dealer taky 24
+//kdyz mam a tak to nefunguje kdyz to prekrocim a hazi mi to win i kdyz bych mel prohrat
+//10 3 9 = 22 a dealer 18 a vyhral jsem
+//k 7 5 = 22 a dealer 8 9 a win ja
 
+
+//mozna kdyz prvni bod fixnu a dealervisiblevalue a dealer truevalue tak to pujde lip
 const Blackjack = () => {
 
     const [playerHand, setPlayerHand] = useState<Hand>([])
@@ -127,7 +136,7 @@ const Blackjack = () => {
         // pokud hráč dostal blackjack, vyřešíme to hned lokálně
         if (calculateHandValue(pHand) === 21) {
             console.log("Player has blackjack!");
-            handleStand();
+            handlePlayerTurnEnd();
         }
 
     }
@@ -138,10 +147,23 @@ const Blackjack = () => {
     }
 
     const handleHit = () => {
-        draw("player")
+        if (calculateHandValue([...playerHand, deckRef.current[0]]) > 21) {
+            draw("player")
+            // pokud hráč překročí 21, automaticky prohrává
+            dealerAction().then(dealerValue => {
+                decideGameResult(calculateHandValue([...playerHand, deckRef.current[0]]), dealerValue)
+            });
+        } else if (calculateHandValue([...playerHand, deckRef.current[0]]) === 21) {
+            draw("player")
+            dealerAction().then(dealerValue => {
+                decideGameResult(21, dealerValue) // taky nejspis taky mozna problem
+            });
+        } else {
+            draw("player")
+        }
     }
 
-    const handleStand = async () => {
+    const handlePlayerTurnEnd = async () => {
         const dealerValue = await dealerAction()
         decideGameResult(playerHandValue, dealerValue)
     }
@@ -168,6 +190,7 @@ const Blackjack = () => {
 
     const decideGameResult = (player: number, dealer: number): GameResult => {
         const result = (): GameResult => {
+            if (player === dealer) return "draw";
             if (player > 21) return "lose";            
             if (dealer > 21) return "win";
             if (player > dealer) return "win";            
@@ -189,8 +212,8 @@ const Blackjack = () => {
 
 
             <div>
-                {deck.length>0 && <img onClick={handleDeckClick} style={{height: "136px"}} src="src\assets\images\Cards\deckOfCards.png" alt="" />}
-                <p>{deck.length} cards left</p>
+                {/* {deck.length>0 && <img onClick={handleDeckClick} style={{height: "136px"}} src="src\assets\images\Cards\deckOfCards.png" alt="" />}
+                <p>{deck.length} cards left</p> */}
                 <h2>Dealer Hand: {dealerHandValue}</h2>
                 <CardHand hand={dealerHand} hiddenCards={dealerHiddenCards}/>
                 <h2>Player Hand: {playerHandValue}</h2>
@@ -199,7 +222,7 @@ const Blackjack = () => {
             {turn === "player" && (
                 <div>
                     <button onClick={handleHit}>Hit</button>
-                    <button onClick={handleStand}>Stand</button>
+                    <button onClick={handlePlayerTurnEnd}>Stand</button>
                 </div>
             )}
             {gameResult && (
