@@ -1,11 +1,17 @@
-import { use, useState } from "react";
+import React, { use, useState } from "react";
 import ds from "../../Services/deckService";
 import type { Deck, Hand } from "../../Types/PlayingCardType";
 import { useRef, useEffect } from "react";
 import CardHand from "../../Components/Cards/CardHand";
 import type { GameResult } from "../../Types/GameType";
+import MiniGamePreset from "../../Components/MinigamePreset";
+import type { Screen } from "../../Types/GameType";
 
-const Blackjack = () => {
+type BlackjackProps = {
+    setCurrentScreen: (screen: Screen) => void
+}
+
+const Blackjack:React.FC<BlackjackProps> = ({setCurrentScreen}) => {
 
     const [playerHand, setPlayerHand] = useState<Hand>([]) // playerHand, dealerHand - pole karet pro hráče a dealera
     const [dealerHand, setDealerHand] = useState<Hand>([])
@@ -221,32 +227,37 @@ const Blackjack = () => {
     }, []);
 
     return (
-        <>
-            <div>Blackjack Component</div>
-            <button onClick={handleStart}>Play again</button>
-
-
-            <div>
-                <h2>Dealer Hand: {dealerHandValue}</h2>
-                <CardHand hand={dealerHand} hiddenCards={dealerHiddenCards}/>
-                <h2>Player Hand: {playerHandValue}</h2>
-                <CardHand hand={playerHand} />
-            </div>
-            {buttonsVisible && (
-                <div>
-                    <button onClick={handleHit}>Hit</button>
-                    <button onClick={handleStand}>Stand</button>
-                </div>
-            )}
-            {gameResult && (
+        <MiniGamePreset Result={gameResult} setCurrentScreen={setCurrentScreen} GameName="Blackjack" GameInfo="card game where you try to get 21 without going over.">
+            {({ endGame }) => (
                 <>
-                    {gameResult === "win" ? <h2>You win!</h2> :
-                    gameResult === "lose" ? <h2>You lose!</h2> : 
-                    gameResult === "draw" ? <h2>It's a draw!</h2> : <h2>Error</h2>}
+
+                    <div>Blackjack Component</div>
+                    <button onClick={handleStart}>Play again</button>
+
+
+                    <div>
+                        <h2>Dealer Hand: {dealerHandValue}</h2>
+                        <CardHand hand={dealerHand} hiddenCards={dealerHiddenCards}/>
+                        <h2>Player Hand: {playerHandValue}</h2>
+                        <CardHand hand={playerHand} />
+                    </div>
+                    {buttonsVisible && (
+                        <div>
+                            <button onClick={handleHit}>Hit</button>
+                            <button onClick={handleStand}>Stand</button>
+                        </div>
+                    )}
+                    {/*gameResult && (
+                        <>
+                            {gameResult === "win" ? <h2>You win!</h2> :
+                            gameResult === "lose" ? <h2>You lose!</h2> : 
+                            gameResult === "draw" ? <h2>It's a draw!</h2> : <h2>Error</h2>}
+                        </>
+                    )*/}
                 </>
             )}
-        </>
+        </MiniGamePreset>
     );
-}
+}//kdybys to dosadil do toho game prestu jako je v rusky rulete bylo by to fajn, neco jsem tam dal ale nechci se ti do toho hrabat yk
 
 export default Blackjack;

@@ -7,7 +7,7 @@ type RussianRuletteProps = {
     setCurrentScreen: (screen: Screen) => void
 }
 
-const RussianRulette = ({ setCurrentScreen }: RussianRuletteProps) => {
+const RussianRulette:React.FC<RussianRuletteProps>= ({ setCurrentScreen }) => {
 
 
     const [gameState, setGameState] = useState<"idle" | "barrelOut" | "barrelIn" | "spun" | "shot" >("idle");
