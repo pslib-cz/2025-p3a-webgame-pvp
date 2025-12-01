@@ -2,7 +2,7 @@
 ***Plátek, Vedral, Prážáková***
 ---
 *
-Us Against the Odds je jednoduchá, ale atmosférická hra odehrávající se na městké pouti. Vaším cílem je získat ***dostatek ticketů*** plněním typických pouťových ***minihier***.
+Us Against the Odds je jednoduchá, ale atmosférická hra odehrávající se na městké pouti. Vaším cílem je získat ***dostatek ticketů*** plněním lehce netypických pouťových ***minihier***.
 Nejde však jen o samotné úkoly. Vaše přítelkyně si přeje plyšáka, ale neudělá vám to jednoduché. Během hraní se nebudete soustředit pouze na jednotlivá stanoviště, ale také na ***udržování vztahu***, pozornosti a spokojenosti vaší milované.
 Hra vás provede časem na pouti — proti všem překážkám.
 *
