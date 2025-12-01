@@ -1,14 +1,18 @@
 import { useState } from "react";
 import type { Screen, GameResult } from "../../Types/GameType"
 import MiniGamePreset from "../../Components/MinigamePreset";
+import rS from "../../Services/randomService";
 
 
 type RussianRuletteProps = {
-    setCurrentScreen: (screen: Screen) => void
+    setCurrentScreen: (screen: Screen) => void;
+    Tickets: (x:number) => void;
 }
 
-const RussianRulette:React.FC<RussianRuletteProps>= ({ setCurrentScreen }) => {
+const RussianRulette:React.FC<RussianRuletteProps>= ({ setCurrentScreen,Tickets  }) => {
 
+
+    const winTickets: number = 50; 
 
     const [gameState, setGameState] = useState<"idle" | "barrelOut" | "barrelIn" | "spun" | "shot" >("idle");
     const [barrelPosition, setBarrelPosition] = useState<number | null>(null);
@@ -18,13 +22,16 @@ const RussianRulette:React.FC<RussianRuletteProps>= ({ setCurrentScreen }) => {
 
 //roztoci barrel a da ho do nahodne pozice (pouze pro prehlednost)
     const handleSpin = () => {
-        setBarrelPosition(Math.floor(Math.random() * 6 + 1));
+        setBarrelPosition(rS.generate(1,6));
+        console.log(barrelPosition);//wtf picovina?
     }
 
 //zkontroluje jestli se shoduje pozice naboje a barellu
     const handleShoot = () => {
+        console.log(barrelPosition);
         if (barrelPosition === bulletPosition){
             setResult("win")
+            Tickets(winTickets);
         }else setResult("lose")
 
     }
@@ -84,7 +91,7 @@ const RussianRulette:React.FC<RussianRuletteProps>= ({ setCurrentScreen }) => {
 
 
     return (
-        <MiniGamePreset Result={result} setCurrentScreen={setCurrentScreen} GameName="Russian Rulette" GameInfo="A dangerous game of chance.">
+        <MiniGamePreset Tickets={Tickets} Result={result} setCurrentScreen={setCurrentScreen} GameName="Russian Rulette" GameInfo="A dangerous game of chance.">
 
             {({ endGame }) => (
                 <div>

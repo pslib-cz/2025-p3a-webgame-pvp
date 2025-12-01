@@ -36,7 +36,7 @@ function App() {
 
       case "russian-rulette":
 
-        EnterGame(50, <RussianRulette setCurrentScreen={setCurrentScreen}/>)
+        return <RussianRulette Tickets={setTickets(prev = prev +50)} setCurrentScreen={setCurrentScreen}/>
 
 
 

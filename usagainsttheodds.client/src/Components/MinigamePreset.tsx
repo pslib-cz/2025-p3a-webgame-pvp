@@ -10,10 +10,11 @@ type MinigamePresetProps = {
     GameInfo: string;
     children?: (actions: { endGame: () => void }) => React.ReactNode; 
     Result: GameResult;
+    Tickets: (x:number) => void;
 }
 
 
-const MiniGamePreset:React.FC<MinigamePresetProps> = ({ setCurrentScreen, GameName, GameInfo, children, Result}) => {
+const MiniGamePreset:React.FC<MinigamePresetProps> = ({ setCurrentScreen, GameName, GameInfo, children, Result, Tickets}) => {
 
 
 
