@@ -1,5 +1,5 @@
 import type { Screen } from './Types/GameType';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Gameboard from './Components/Gameboard'
 import PlayingCard from './Components/Cards/PlayingCard';
 import HUD from './Components/HUD/HUD';
@@ -14,19 +14,21 @@ function App() {
   const [tickets, setTickets] = useState<number>(random.generate(10,9999));
   // For testing RelationshipMeter
   const [relationshipValue, setRelationshipValue] = useState(random.generateNumber(1, 100));
+  const [showGame, setShowGame] = useState(false);
 
-
-  const EnterGame = (entryCost: number, Component: React.ReactNode): React.ReactNode => {
-    if (tickets >= entryCost) {
-      setTickets(prev => prev - entryCost);
-      return Component;
-    }
-    alert("Not enough tickets to enter the game.");
-    return null;
+//TODO: brat enter cost z db
+const handleEnter = () => {
+  if (tickets >= 10) {
+    setTickets(t => t - 10);
+    setShowGame(true);
+  } else {
+    alert("Not enough tickets");
   }
+};
     
-
-
+useEffect(() => {
+  setShowGame(false);
+}, [currentScreen])
 
     switch (currentScreen) {
 
@@ -35,9 +37,15 @@ function App() {
         return <div></div>
 
       case "russian-rulette":
-
-        return <RussianRulette Tickets={setTickets(prev = prev +50)} setCurrentScreen={setCurrentScreen}/>
-
+        return (
+          <>
+            {!showGame ? (
+              <button onClick={handleEnter}>Enter game Russian Rulette</button>
+            ) : (
+              <RussianRulette Tickets={setTickets} setCurrentScreen={setCurrentScreen}/>
+            )}
+          </>
+        );
 
 
       case "blackjack":
