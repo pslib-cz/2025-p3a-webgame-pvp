@@ -16,10 +16,11 @@ function App() {
   const [relationshipValue, setRelationshipValue] = useState(random.generateNumber(1, 100));
   const [showGame, setShowGame] = useState(false);
 
-//TODO: brat enter cost z db
+//TODO: brat enter cost z db, odecistpri tlacitku nejakym ne kdyz tam dojdes do infa
 const handleEnter = () => {
   if (tickets >= 10) {
     setTickets(t => t - 10);
+    setStamina()
     setShowGame(true);
   } else {
     alert("Not enough tickets");
