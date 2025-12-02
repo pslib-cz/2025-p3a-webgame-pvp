@@ -1,13 +1,13 @@
 import ChangeScreenButton from "./ChangeScreenButton"
-import type { Screen, GameResult} from "../Types/GameType"
-import { useMinigameExit } from "../hooks/useMinigameExit"
+import type { Screen, GameResult } from "../Types/GameType"
+import { useMinigameExit } from "../Hooks/useMinigameExit"
 
 type GameEndProps = {
     result: GameResult,
     setCurrentScreen: (screen: Screen) => void
 }
 
-const GameEnd:React.FC<GameEndProps> = ({result, setCurrentScreen}) => {
+const GameEnd: React.FC<GameEndProps> = ({ result, setCurrentScreen }) => {
     const { onExit } = useMinigameExit({ setCurrentScreen })
 
     return (

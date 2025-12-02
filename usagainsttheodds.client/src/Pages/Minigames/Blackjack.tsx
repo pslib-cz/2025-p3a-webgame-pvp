@@ -1,5 +1,5 @@
-import React, { use, useState } from "react";
-import ds from "../../Services/deckService";
+import React, { useState } from "react";
+import dH from "../../Helpers/deckHelper";
 import type { Deck, Hand } from "../../Types/PlayingCardType";
 import { useRef, useEffect } from "react";
 import CardHand from "../../Components/Cards/CardHand";
@@ -11,7 +11,7 @@ type BlackjackProps = {
     setCurrentScreen: (screen: Screen) => void
 }
 
-const Blackjack:React.FC<BlackjackProps> = ({setCurrentScreen}) => {
+const Blackjack: React.FC<BlackjackProps> = ({ setCurrentScreen }) => {
 
     const [playerHand, setPlayerHand] = useState<Hand>([]) // playerHand, dealerHand - pole karet pro hráče a dealera
     const [dealerHand, setDealerHand] = useState<Hand>([])
@@ -19,13 +19,13 @@ const Blackjack:React.FC<BlackjackProps> = ({setCurrentScreen}) => {
     const [dealerHandValue, setDealerHandValue] = useState<number>(0);
     const [dealerHiddenCards, setDealerHiddenCards] = useState<number[]>([1]); // dealerHiddenCards - indexy karet dealera které jsou skryté (při startu první karta)
     const deckCount: number = 1
-    const [deck, setDeck] = useState<Deck>(ds.createShuffledDeck(deckCount)); // deck - aktuální balíček (používá se i deckRef pro synchronní přístup)
+    const [deck, setDeck] = useState<Deck>(dH.createShuffledDeck(deckCount)); // deck - aktuální balíček (používá se i deckRef pro synchronní přístup)
     const [gameResult, setGameResult] = useState<GameResult | "chyba" | null>(null);
     const [buttonsVisible, setButtonsVisible] = useState<boolean>(false); // buttonsVisible - zda se zobrazují tlačítka Hit/Stand
 
     const deckRef = useRef<Deck>(deck); // Ref na balíček pro synchronní čtení mimo React state (řeší race condition)
     useEffect(() => {
-        deckRef.current = deck 
+        deckRef.current = deck
     }, [deck]);
 
 
@@ -41,7 +41,7 @@ const Blackjack:React.FC<BlackjackProps> = ({setCurrentScreen}) => {
             const cv = card.value
             if (cv === "A") {
                 As++
-            } else if (cv ==="J" || cv ==="Q" || cv === "K") {
+            } else if (cv === "J" || cv === "Q" || cv === "K") {
                 handValue += 10
             } else {
                 handValue += Number.parseInt(cv, 10)
@@ -75,7 +75,7 @@ const Blackjack:React.FC<BlackjackProps> = ({setCurrentScreen}) => {
         setDealerHand([])
         setPlayerHand([])
         setButtonsVisible(false);
-        const newDeck = ds.createShuffledDeck(deckCount);
+        const newDeck = dH.createShuffledDeck(deckCount);
         deckRef.current = newDeck;   // synchronně aktualizovat ref
         setDeck(newDeck)
         setDealerHiddenCards([1])
@@ -89,11 +89,11 @@ const Blackjack:React.FC<BlackjackProps> = ({setCurrentScreen}) => {
 
         // rozdá po jedné kartě hráči a dealerovi dvakrát
         for (let round = 0; round < 2; round++) {
-            const pDraw = ds.drawCard(local);
+            const pDraw = dH.drawCard(local);
             if (pDraw.card) pHand.push(pDraw.card);
             local = pDraw.newDeck;
 
-            const dDraw = ds.drawCard(local);
+            const dDraw = dH.drawCard(local);
             if (dDraw.card) dHand.push(dDraw.card);
             local = dDraw.newDeck;
         }
@@ -102,7 +102,7 @@ const Blackjack:React.FC<BlackjackProps> = ({setCurrentScreen}) => {
         setPlayerHand(pHand);
         setDealerHand(dHand);
         setDeck(local);
-        
+
         const playerValue = calculateHandValue(pHand);
         const dealerValue = calculateHandValue(dHand, [1]); // první karta dealera je skrytá a nepočítá se do hodnoty
 
@@ -114,12 +114,12 @@ const Blackjack:React.FC<BlackjackProps> = ({setCurrentScreen}) => {
         } else setButtonsVisible(true);
     }
 
-    
+
     const handleStart = () => {
         reset()
         dealInitialHands()
     }
-    
+
     const handleBlackjackOrBust = (pValue?: number, dValue?: number) => {
         const playerValue = pValue !== undefined ? pValue : calculateHandValue(playerHand);
         const dealerValue = dValue !== undefined ? dValue : calculateHandValue(dealerHand);
@@ -129,14 +129,14 @@ const Blackjack:React.FC<BlackjackProps> = ({setCurrentScreen}) => {
         setButtonsVisible(false);
         console.log("Game ended due to blackjack or bust.");
     }
-    
+
     const handleStand = () => {
         setButtonsVisible(false);
         const playerHandValue = calculateHandValue(playerHand);
         const dealerValue = dealerAction()
         decideGameResult(playerHandValue, dealerValue)
     }
-    
+
     // dealerAction - logika dealera: odehrává karty dokud nemá >= 17
     // Vrací finální hodnotu dealerovy ruky (a aktualizuje stav dealera a balíčku)
     const dealerAction = () => {
@@ -146,7 +146,7 @@ const Blackjack:React.FC<BlackjackProps> = ({setCurrentScreen}) => {
         let localDealerHand = [...dealerHand];
         let localDeck = [...deckRef.current];
         while (localDealerHandValue < 17) {
-            const { card, newDeck } = ds.drawCard(localDeck);
+            const { card, newDeck } = dH.drawCard(localDeck);
             if (!card) break;
             localDealerHand.push(card);
             localDeck = newDeck;
@@ -155,7 +155,7 @@ const Blackjack:React.FC<BlackjackProps> = ({setCurrentScreen}) => {
         setDealerHand(localDealerHand);
         setDeck(localDeck);
         setDealerHandValue(localDealerHandValue);
-        
+
         return localDealerHandValue;
     }
 
@@ -164,7 +164,7 @@ const Blackjack:React.FC<BlackjackProps> = ({setCurrentScreen}) => {
     // Používá deckRef pro synchronní draw, ihned aktualizuje ruku hráče a počítá novou hodnotu
     const handleHit = () => {
         // draw card synchronously from deck service (vrátí card a newDeck)
-        const { card, newDeck } = ds.drawCard(deckRef.current);
+        const { card, newDeck } = dH.drawCard(deckRef.current);
         if (!card) return;
 
         // okamžitě aktualizuj ref a stav balíčku
@@ -237,7 +237,7 @@ const Blackjack:React.FC<BlackjackProps> = ({setCurrentScreen}) => {
 
                     <div>
                         <h2>Dealer Hand: {dealerHandValue}</h2>
-                        <CardHand hand={dealerHand} hiddenCards={dealerHiddenCards}/>
+                        <CardHand hand={dealerHand} hiddenCards={dealerHiddenCards} />
                         <h2>Player Hand: {playerHandValue}</h2>
                         <CardHand hand={playerHand} />
                     </div>

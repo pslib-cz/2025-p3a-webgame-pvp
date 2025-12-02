@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import type { Card, PlayingCardFace } from "../../Types/PlayingCardType"
-import styles from "../../assets/styles/components/Cards/PlayingCard.module.css"
+import styles from "../../assets/styles/components/cards/PlayingCard.module.css"
 
 
 type PlayingCardProps = {

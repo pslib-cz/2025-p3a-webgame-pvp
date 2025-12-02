@@ -1,20 +1,20 @@
 import { useState } from "react";
 import type { Screen, GameResult } from "../../Types/GameType"
 import MiniGamePreset from "../../Components/MinigamePreset";
-import rS from "../../Services/randomService";
+import rH from "../../Helpers/randomGeneratorHelper";
 
 
 type RussianRuletteProps = {
     setCurrentScreen: (screen: Screen) => void;   // funkce na přepnutí screenů
-    Tickets: (x:number) => void;                 // funkce na přidání/odebrání tiketů
+    Tickets: (x: number) => void;                 // funkce na přidání/odebrání tiketů
 }
 
-const RussianRulette:React.FC<RussianRuletteProps>= ({ setCurrentScreen, Tickets }) => {
+const RussianRulette: React.FC<RussianRuletteProps> = ({ setCurrentScreen, Tickets }) => {
 
     const winTickets: number = 50;  // kolik tiketů získáš při výhře
 
     // všelijaké stavy hry – v jaké části hráč zrovna je
-    const [gameState, setGameState] = useState<"idle" | "barrelOut" | "barrelIn" | "spun" | "shot" >("idle");
+    const [gameState, setGameState] = useState<"idle" | "barrelOut" | "barrelIn" | "spun" | "shot">("idle");
 
     // pozice bubínku (kam se natočí)
     const [barrelPosition, setBarrelPosition] = useState<number | null>(null);
@@ -28,7 +28,7 @@ const RussianRulette:React.FC<RussianRuletteProps>= ({ setCurrentScreen, Tickets
 
     // 🔄 Funkce která náhodně nastaví pozici bubínku (1–6)
     const handleSpin = () => {
-        setBarrelPosition(rS.generate(1,6));  // dá random číslo 1–6
+        setBarrelPosition(rH.generate(1, 6));  // dá random číslo 1–6
         console.log(barrelPosition);          // POZOR: ukazuje starou hodnotu — React stav se updateuje async
     }
 
@@ -37,7 +37,7 @@ const RussianRulette:React.FC<RussianRuletteProps>= ({ setCurrentScreen, Tickets
         console.log(barrelPosition);
 
         // pokud se pozice bubínku a náboje shoduje = boom = výhra
-        if (barrelPosition === bulletPosition){
+        if (barrelPosition === bulletPosition) {
             setResult("win");
             Tickets(winTickets);     // připíše tikety za výhru
         } else {
@@ -61,7 +61,7 @@ const RussianRulette:React.FC<RussianRuletteProps>= ({ setCurrentScreen, Tickets
                 return (
                     <div className="barrel--empty">
 
-                        { [1,2,3,4,5,6].map((num) => (
+                        {[1, 2, 3, 4, 5, 6].map((num) => (
 
                             <button
                                 key={num}

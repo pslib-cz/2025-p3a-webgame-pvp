@@ -1,7 +1,6 @@
-export const generateNumber = (min: number, max: number):number => {
+export const generate = (min: number, max: number):number => {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
-export const generate = generateNumber
 
 export const generateFloat = (min: number, max: number, decimals?: number): number => {
     if (decimals) {
@@ -17,7 +16,6 @@ export const pickFromArray = (array: any[]) => {
 
 export const randomService = {
     generate,
-    generateNumber,
     generateFloat,
     pickFromArray
 }
