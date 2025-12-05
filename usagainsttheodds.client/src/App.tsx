@@ -4,8 +4,8 @@ import Gameboard from './Components/Gameboard'
 import PlayingCard from './Components/Cards/PlayingCard';
 import HUD from './Components/HUD/HUD';
 import RussianRulette from './Pages/Minigames/RussianRulette';
-import Blackjack from './Pages/Minigames/Blackjack';
 import Apitest from './Components/Apitest';
+import MinigameContainer from './Components/MinigameContainer';
 
 
 function App() {
@@ -56,7 +56,7 @@ function App() {
 
 
       // Render blackjack component
-      return <Blackjack />;
+      return <MinigameContainer id={"blackjack"} exitScreenCallback={() => setCurrentScreen(null)} />;
 
     case "slots":
       // Render slots component

@@ -19,7 +19,7 @@ namespace UsAgainstTheOdds.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Minigame>>> GetMinigames()
         {
-            List<Minigame> ingredients = await _context.Minigames.ToListAsync();
+            Minigame ingredients = await _context.Minigames.FirstOrDefaultAsync();
             return Ok(ingredients);
         }
 

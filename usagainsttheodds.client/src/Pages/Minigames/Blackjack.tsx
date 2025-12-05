@@ -1,17 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import dH from "../../Helpers/deckHelper";
 import type { Deck, Hand } from "../../Types/PlayingCardType";
 import { useRef, useEffect } from "react";
 import CardHand from "../../Components/Cards/CardHand";
 import type { GameResult } from "../../Types/GameType";
-import MiniGamePreset from "../../Components/MinigamePreset";
-import type { Screen } from "../../Types/GameType";
+import { useMinigame } from "../../Hooks/useMinigame";
 
-type BlackjackProps = {
-    setCurrentScreen: (screen: Screen) => void
-}
 
-const Blackjack: React.FC<BlackjackProps> = ({ setCurrentScreen }) => {
+
+const Blackjack = () => {
 
     const [playerHand, setPlayerHand] = useState<Hand>([]) // playerHand, dealerHand - pole karet pro hráče a dealera
     const [dealerHand, setDealerHand] = useState<Hand>([])
@@ -20,12 +17,13 @@ const Blackjack: React.FC<BlackjackProps> = ({ setCurrentScreen }) => {
     const [dealerHiddenCards, setDealerHiddenCards] = useState<number[]>([1]); // dealerHiddenCards - indexy karet dealera které jsou skryté (při startu první karta)
     const deckCount: number = 1
     const [deck, setDeck] = useState<Deck>(dH.createShuffledDeck(deckCount)); // deck - aktuální balíček (používá se i deckRef pro synchronní přístup)
-    const [gameResult, setGameResult] = useState<GameResult | "chyba" | null>(null);
     const [buttonsVisible, setButtonsVisible] = useState<boolean>(false); // buttonsVisible - zda se zobrazují tlačítka Hit/Stand
+
+    const { endGame, setResult, setRewardMultiplier } = useMinigame();//získání endGame funkce z kontextu
 
     const deckRef = useRef<Deck>(deck); // Ref na balíček pro synchronní čtení mimo React state (řeší race condition)
     useEffect(() => {
-        deckRef.current = deck
+        deckRef.current = deck;
     }, [deck]);
 
 
@@ -71,7 +69,7 @@ const Blackjack: React.FC<BlackjackProps> = ({ setCurrentScreen }) => {
     }
 
     const reset = () => {
-        setGameResult(null);
+        setResult(null);
         setDealerHand([])
         setPlayerHand([])
         setButtonsVisible(false);
@@ -110,6 +108,7 @@ const Blackjack: React.FC<BlackjackProps> = ({ setCurrentScreen }) => {
         // pokud hráč dostal blackjack, vyřeší to hned lokálně
         if (calculateHandValue(pHand) === 21) {
             console.log("Player has blackjack!");
+            setRewardMultiplier(1.5);
             handleBlackjackOrBust(playerValue, dealerValue); // s předpočítanými hodnotami protoze to proste nemuze fungovat normalne aby se usestate aktualizoval hned, chytam nervy na ten jazyk uz
         } else setButtonsVisible(true);
     }
@@ -192,7 +191,7 @@ const Blackjack: React.FC<BlackjackProps> = ({ setCurrentScreen }) => {
         }
     }
 
-    const decideGameResult = (player: number, dealer: number): GameResult => {
+    const decideGameResult = (player: number, dealer: number): void => {
         const result = (): GameResult => {
             if (player > 21) {
                 if (dealer > 21) {
@@ -215,10 +214,14 @@ const Blackjack: React.FC<BlackjackProps> = ({ setCurrentScreen }) => {
             }
             return "draw"
         }
+
         const resultValue = result();
-        setGameResult(resultValue);
+
+        setResult(resultValue);
         console.log("Game ended with result:", resultValue, "Player:", player, "Dealer:", dealer);
-        return resultValue;
+        setTimeout(() => {
+            endGame();//ukončí hru přes kontext se zpožděním
+        }, 2500);
     }
 
     useEffect(() => {
@@ -226,38 +229,25 @@ const Blackjack: React.FC<BlackjackProps> = ({ setCurrentScreen }) => {
         handleStart();
     }, []);
 
+    
+
     return (
-        <MiniGamePreset Result={gameResult} setCurrentScreen={setCurrentScreen} GameName="Blackjack" GameInfo="card game where you try to get 21 without going over.">
-            {({ endGame }) => (
-                <>
-
-                    <div>Blackjack Component</div>
-                    <button onClick={handleStart}>Play again</button>
-
-
-                    <div>
-                        <h2>Dealer Hand: {dealerHandValue}</h2>
-                        <CardHand hand={dealerHand} hiddenCards={dealerHiddenCards} />
-                        <h2>Player Hand: {playerHandValue}</h2>
-                        <CardHand hand={playerHand} />
-                    </div>
-                    {buttonsVisible && (
-                        <div>
-                            <button onClick={handleHit}>Hit</button>
-                            <button onClick={handleStand}>Stand</button>
-                        </div>
-                    )}
-                    {/*gameResult && (
-                        <>
-                            {gameResult === "win" ? <h2>You win!</h2> :
-                            gameResult === "lose" ? <h2>You lose!</h2> : 
-                            gameResult === "draw" ? <h2>It's a draw!</h2> : <h2>Error</h2>}
-                        </>
-                    )*/}
-                </>
+        <>
+            <h1>Blackjack Component</h1>
+            <div>
+                <h2>Dealer Hand: {dealerHandValue}</h2>
+                <CardHand hand={dealerHand} hiddenCards={dealerHiddenCards} />
+                <h2>Player Hand: {playerHandValue}</h2>
+                <CardHand hand={playerHand} />
+            </div>
+            {buttonsVisible && (
+                <div>
+                    <button onClick={handleHit}>Hit</button>
+                    <button onClick={handleStand}>Stand</button>
+                </div>
             )}
-        </MiniGamePreset>
+        </>
     );
-}//kdybys to dosadil do toho game prestu jako je v rusky rulete bylo by to fajn, neco jsem tam dal ale nechci se ti do toho hrabat yk
+}
 
 export default Blackjack;
