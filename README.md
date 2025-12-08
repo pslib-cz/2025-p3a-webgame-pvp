@@ -2,11 +2,11 @@
 ***Plátek, Vedral, Prážáková***
 [figma](https://www.figma.com/design/wy3CPMltE5aFAPMANV31xf/UsAgainstTheOdds?node-id=107-9&t=POnxKl7NlW3d33x5-1)
 ---
-*
+
 Us Against the Odds je jednoduchá, ale atmosférická hra odehrávající se na městké pouti. Vaším cílem je získat ***dostatek ticketů*** plněním lehce netypických pouťových ***minihier***.
 Nejde však jen o samotné úkoly. Vaše přítelkyně si přeje plyšáka, ale neudělá vám to jednoduché. Během hraní se nebudete soustředit pouze na jednotlivá stanoviště, ale také na ***udržování vztahu***, pozornosti a spokojenosti vaší milované.
 Hra vás provede časem na pouti — proti všem překážkám.
-*
+
 ---
 ## 🎰 Gameplay & Mini-Games
 **MAPY**
