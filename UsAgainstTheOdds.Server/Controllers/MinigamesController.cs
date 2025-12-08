@@ -15,12 +15,18 @@ namespace UsAgainstTheOdds.Server.Controllers
             _context = context;
         }
 
-        [HttpGet]
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Minigame>>> GetMinigames()
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Minigame>> GetMinigame(string id)
         {
-            Minigame ingredients = await _context.Minigames.FirstOrDefaultAsync();
-            return Ok(ingredients);
+            var minigame = await _context.Minigames
+                .FirstOrDefaultAsync(m => m.MinigameId == id);
+
+            if (minigame == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(minigame);
         }
 
     }
