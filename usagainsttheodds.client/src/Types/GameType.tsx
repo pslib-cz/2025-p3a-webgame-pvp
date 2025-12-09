@@ -13,3 +13,6 @@ export type GameData = {
     price: number;
     stamina: number;
 }
+
+export type Food = null | "guláš";
+export type Drink = null | "guláš";

@@ -1,30 +1,55 @@
 import type { Screen } from './Types/GameType';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Gameboard from './Components/Gameboard'
 import PlayingCard from './Components/Cards/PlayingCard';
 import HUD from './Components/HUD/HUD';
-import RussianRulette from './Pages/Minigames/RussianRulette';
-import Blackjack from './Pages/Minigames/Blackjack';
-import random from './Services/randomService'
+import MinigameContainer from './Components/MinigameContainer';
+import {type UserData } from './Types/UserDataType';
+import Apitest from './Components/Apitest';
 
 
 function App() {
 
-  const [currentScreen, setCurrentScreen] = useState<Screen>(null);
-  const [tickets, setTickets] = useState<number>(random.generate(10,9999));
-  // For testing RelationshipMeter
-  const [relationshipValue, setRelationshipValue] = useState(random.generateNumber(1, 100));
+  const [userName, setUserName] = useState<string>("John");
 
-
-  const EnterGame = (entryCost: number, Component: React.ReactNode): React.ReactNode => {
-    if (tickets >= entryCost) {
-      setTickets(prev => prev - entryCost);
-      return Component;
-    }
-    alert("Not enough tickets to enter the game.");
-    return null;
+  
+  const intitialData: UserData = {
+    ticketsAmount: 50,
+    relationshipStamina: 85,
+    playerName: userName,
+    currentPage: "gameboard",
+    boughtBloon: false,
+    boughtFlower: true,
+    lastDrink: null,
+    lastFood: null
   }
-    
+
+  const [userData, setUserData] = useState<UserData>(() => {
+
+    try {
+      const stored = localStorage.getItem("UserData");
+
+      if (stored) {
+        return JSON.parse(stored);  // Return saved data
+      }
+    } catch {
+      return intitialData
+    }
+
+  });//taha veci z local storage jinak hodi initial value
+
+
+
+  
+  const [tickets, setTickets] = useState<number>(userData.ticketsAmount);
+  const [relationshipValue, setRelationshipValue] = useState(userData.relationshipStamina);
+  const [currentScreen, setCurrentScreen] = useState<Screen | null>(userData.currentPage);
+  
+
+  useEffect(() => {
+
+  }, [tickets, relationshipValue, currentScreen]);
+
 
 
 
@@ -35,15 +60,7 @@ function App() {
       return <div></div>
 
     case "russian-rulette":
-      return (
-        <>
-          {!showGame ? (
-            <button onClick={handleEnter}>Enter game Russian Rulette</button>
-          ) : (
-            <RussianRulette Tickets={setTickets} setCurrentScreen={setCurrentScreen} />
-          )}
-        </>
-      );
+      return <MinigameContainer id={currentScreen} exitScreenCallback={() => setCurrentScreen(null)} />;
 
 
     case "blackjack":
