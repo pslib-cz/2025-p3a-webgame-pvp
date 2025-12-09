@@ -4,3 +4,12 @@ type IntroScreens = "first" | "second"
 export type { Screen };
 
 export type GameResult = "win" | "lose" | "draw" | null;
+export type GameState = "intro" | "playing" | "ended";
+
+export type GameData = {
+    id: string;
+    name: string;
+    description: string;
+    price: number;
+    stamina: number;
+}

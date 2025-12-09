@@ -1,19 +1,18 @@
 import ChangeScreenButton from "./ChangeScreenButton"
-import type { Screen, GameResult} from "../Types/GameType"
-import { useMinigameExit } from "../hooks/useMinigameExit"
+import { useMinigame } from "../Hooks/useMinigame"
 
-type GameEndProps = {
-    result: GameResult,
-    setCurrentScreen: (screen: Screen) => void
-}
 
-const GameEnd:React.FC<GameEndProps> = ({result, setCurrentScreen}) => {
-    const { onExit } = useMinigameExit({ setCurrentScreen })
+
+const GameEnd= ({ }) => {
+    const { exitGame } = useMinigame();
+    const { tickets } = useMinigame();
+    const { result } = useMinigame();
 
     return (
         <div>
             {result === "win" ? <h2>You Win!</h2> : result === "lose" ? <h2>You Lose!</h2> : <h2>It's a Draw!</h2>}
-            <ChangeScreenButton OnClick={() => onExit(null)} Text="Exit" />
+            <p>Your reward: {tickets} tickets</p>
+            <ChangeScreenButton OnClick={exitGame} Text="Exit" />
         </div>
     )
 }

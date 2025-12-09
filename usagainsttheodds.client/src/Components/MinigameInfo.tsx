@@ -1,30 +1,22 @@
-import type { Screen } from "../Types/GameType"
+import { useMinigame } from "../Hooks/useMinigame"
 import ChangeScreenButton from "./ChangeScreenButton"
 
 
 
-type MinigameInfoProps = {
-    Info: string,
-    GameName: string,
-    onContinue?: () => void,
-    onExit?: (screen: Screen) => void
-}
 
+const MinigameInfo = ({}) => {
 
-const MinigameInfo:React.FC<MinigameInfoProps> = ({Info, GameName, onContinue, onExit}) => {
-
-    const handleExit = () => {
-        onExit?.(null);
-    }
+    const { exitGame, continueGame, data } = useMinigame();
+    
 
     return (
         <div>
-            <h2>{GameName}</h2>
+            <h2>{data?.name}</h2>
             <p>
-                {Info}
+                {data?.description}
             </p>
-            <ChangeScreenButton OnClick={handleExit} Text="Exit" />
-            <button onClick={onContinue}>Play</button>
+            <ChangeScreenButton OnClick={exitGame} Text="Exit" />
+            <button onClick={continueGame}>Play</button>
         </div>
     )
 }
