@@ -1,19 +1,63 @@
 import type { Screen } from './Types/GameType';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Gameboard from './Components/Gameboard'
 import PlayingCard from './Components/Cards/PlayingCard';
 import HUD from './Components/HUD/HUD';
 import RussianRulette from './Pages/Minigames/RussianRulette';
 import Blackjack from './Pages/Minigames/Blackjack';
 import random from './Services/randomService'
+import { type UserData } from './Types/UserDataType';
 
 
 function App() {
 
-  const [currentScreen, setCurrentScreen] = useState<Screen>(null);
-  const [tickets, setTickets] = useState<number>(random.generate(10,9999));
+
+
+
+
+
+  const [userName, setUserName] = useState<string>("John");
+
+  
+  const intitialData: UserData = {
+    ticketsAmount: 50,
+    relationshipStamina: 85,
+    playerName: userName,
+    currentPage: "gameboard"
+  }
+
+  const [userData, setUserData] = useState<UserData>(() => {
+
+    try {
+      const stored = localStorage.getItem("UserData");
+
+      if (stored) {
+        return JSON.parse(stored);  // Return saved data
+      }
+    } catch {
+      return intitialData
+    }
+
+  });//taha veci z local storage jinak hodi initial value
+
+
+
+  
+  const [tickets, setTickets] = useState<number>(userData.ticketsAmount);
   // For testing RelationshipMeter
-  const [relationshipValue, setRelationshipValue] = useState(random.generateNumber(1, 100));
+  const [relationshipValue, setRelationshipValue] = useState(userData.relationshipStamina);
+  const [currentScreen, setCurrentScreen] = useState<Screen | null>(userData.currentPage);
+  
+
+  useEffect(() => {
+
+}, [tickets, relationshipValue, currentScreen]);
+
+
+
+
+
+
 
 
   const EnterGame = (entryCost: number, Component: React.ReactNode): React.ReactNode => {
