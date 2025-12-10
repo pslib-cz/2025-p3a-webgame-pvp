@@ -5,7 +5,7 @@ const Apitest = () => {
   const [err, setErr] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("https://localhost:7222/api/Minigames")
+    fetch("https://localhost:7222/api/foods")
       .then(res => {
         if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
         return res.json();

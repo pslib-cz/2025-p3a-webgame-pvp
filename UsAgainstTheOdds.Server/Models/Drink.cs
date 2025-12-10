@@ -2,13 +2,15 @@
 
 namespace UsAgainstTheOdds.Server.Models
 {
-    public class Minigame
+    public class Drink
     {
         [Key]
-        public string MinigameId { get; set; }
+        public string DrinkId { get; set; }
         public required string Name { get; set; }
         public required string Description { get; set; }
         public required int Price { get; set; }
-        public required int Difficulty { get; set; }
+        public required int RestoreValue { get; set; }
+        public required bool IsAlcoholic { get; set; }
+        public int AlcoholContent { get; set; }
     }
 }

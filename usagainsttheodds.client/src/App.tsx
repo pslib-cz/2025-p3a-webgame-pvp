@@ -10,40 +10,39 @@ import Apitest from './Components/Apitest';
 
 function App() {
 
-  const [userName, setUserName] = useState<string>("John");
+  // const [userName, setUserName] = useState<string>("John");
 
   
-  const intitialData: UserData = {
-    ticketsAmount: 50,
-    relationshipStamina: 85,
-    playerName: userName,
-    currentPage: "gameboard",
-    boughtBloon: false,
-    boughtFlower: true,
-    lastDrink: null,
-    lastFood: null
-  }
+  // const intitialData: UserData = {
+  //   ticketsAmount: 50,
+  //   relationshipStamina: 85,
+  //   playerName: userName,
+  //   currentPage: null,
+  //   boughtBloon: false,
+  //   boughtFlower: true,
+  //   lastDrink: null,
+  //   lastFood: null
+  // }
 
-  const [userData, setUserData] = useState<UserData>(() => {
+  // const [userData, setUserData] = useState<UserData>(() => {
 
-    try {
-      const stored = localStorage.getItem("UserData");
+  //   try {
+  //     const stored = localStorage.getItem("UserData");
 
-      if (stored) {
-        return JSON.parse(stored);  // Return saved data
-      }
-    } catch {
-      return intitialData
-    }
+  //     if (stored) {
+  //       return JSON.parse(stored);  // Return saved data
+  //     }
+  //   } catch {
+  //     return intitialData
+  //   }
 
-  });//taha veci z local storage jinak hodi initial value
+  // });//taha veci z local storage jinak hodi initial value
 
 
 
-  
-  const [tickets, setTickets] = useState<number>(userData.ticketsAmount);
-  const [relationshipValue, setRelationshipValue] = useState(userData.relationshipStamina);
-  const [currentScreen, setCurrentScreen] = useState<Screen | null>(userData.currentPage);
+  const [tickets, setTickets] = useState<number>(50);
+  const [relationshipValue, setRelationshipValue] = useState(85);
+  const [currentScreen, setCurrentScreen] = useState<Screen | null>(null);
   
 
   useEffect(() => {
