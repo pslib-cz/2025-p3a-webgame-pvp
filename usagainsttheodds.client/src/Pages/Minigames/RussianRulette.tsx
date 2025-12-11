@@ -1,6 +1,5 @@
 import { useState } from "react";
 import type { Screen, GameResult } from "../../Types/GameType"
-import MiniGamePreset from "../../Components/MinigamePreset";
 import rH from "../../Helpers/randomGeneratorHelper";
 
 

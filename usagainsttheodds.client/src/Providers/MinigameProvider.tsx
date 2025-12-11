@@ -1,4 +1,4 @@
-import React, { useState, useEffect, type PropsWithChildren, createContext } from "react";
+import React, { useState, useEffect, type PropsWithChildren, createContext, use } from "react";
 import type { GameData, GameResult, GameState } from "../Types/GameType";
 
 
@@ -22,27 +22,16 @@ type MinigameContextType = {
 export const MinigameContext = createContext<MinigameContextType | null>(null);
 
 type MinigameProviderProps = {
-    id: string;
     onExitCallback: () => void;
+    promise: Promise<any> | null;
 }
 
-export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>> = ({ children, id, onExitCallback }) => {
+export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>> = ({ children, onExitCallback, promise }) => {
 
-    const [data, setData] = useState<GameData | null>(null);
-    const [promise, setPromise] = useState<Promise<any> | null>(null);
-    //load data from api
-    useEffect(() => {
-        setPromise(fetch(`https://localhost:7222/api/minigames/`).then(response => response.json()).catch(error => {//tady to pak cist podle id a nejspis i predelat
-            console.error("Error fetching minigame data:", error);
-        }));
-    }, []);
-    useEffect(() => {
-        if (promise) {
-            promise.then(data => {
-                setData(data);
-            });
-        }
-    }, [promise]);
+    
+    
+    const data: GameData | null = use(promise || Promise.reject("No promise provided"))
+
 
 
     const [state, setState] = useState<GameState>("intro");

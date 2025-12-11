@@ -1,5 +1,5 @@
 import type { Screen } from './Types/GameType';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Gameboard from './Components/Gameboard'
 import PlayingCard from './Components/Cards/PlayingCard';
 import HUD from './Components/HUD/HUD';
@@ -59,7 +59,7 @@ function App() {
       return <div></div>
 
     case "russian-rulette":
-      return <MinigameContainer id={currentScreen} exitScreenCallback={() => setCurrentScreen(null)} />;
+      return <MinigameContainer id={"russianrulette"} exitScreenCallback={() => setCurrentScreen(null)} />;
 
 
     case "blackjack":
@@ -84,12 +84,15 @@ function App() {
       // Render dice roll component
       return <div>Dice Roll Component</div>;
 
+    case "test":
+      return <MinigameContainer id={"test"} exitScreenCallback={() => setCurrentScreen(null)} />;
+
 
     default:
       // Render default or home component
       return (
         <div>
-          <Gameboard buttons={["blackjack", "dice-roll", "russian-rulette"]} setCurrent={setCurrentScreen} />
+          <Gameboard buttons={["blackjack", "test", "russian-rulette"]} setCurrent={setCurrentScreen} />
 
 
           <div>

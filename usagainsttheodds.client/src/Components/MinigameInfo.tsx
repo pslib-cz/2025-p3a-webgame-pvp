@@ -11,9 +11,9 @@ const MinigameInfo = ({}) => {
 
     return (
         <div>
-            <h2>{data?.name}</h2>
+            <h2>{data ? data.name : "No name available"}</h2>
             <p>
-                {data?.description}
+                {data ? data.description : "No description available"}
             </p>
             <ChangeScreenButton OnClick={exitGame} Text="Exit" />
             <button onClick={continueGame}>Play</button>

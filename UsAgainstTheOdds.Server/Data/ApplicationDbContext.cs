@@ -32,7 +32,7 @@ namespace UsAgainstTheOdds.Server.Data
                     },
                     new Minigame
                     {
-                        MinigameId = "russianrullete",
+                        MinigameId = "russianrulette",
                         Name = "Risky Turn",
                         Description = "Thrilling game of chance where players risk it all for reward, testing their luck and courage. Inspired by Russian roulette.",
                         Price = 500,
@@ -40,7 +40,7 @@ namespace UsAgainstTheOdds.Server.Data
                     },
                     new Minigame
                     {
-                        MinigameId = "balckjack",
+                        MinigameId = "blackjack",
                         Name = "Lucky 21",
                         Description = "Fast-paced card game where players aim for a hand value as close to 21 as possible. Rules based on the well-known Black Jack.",
                         Price = 300,
