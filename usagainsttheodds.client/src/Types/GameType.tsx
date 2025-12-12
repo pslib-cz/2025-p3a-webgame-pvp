@@ -14,5 +14,5 @@ export type GameData = {
     stamina: number;
 }
 
-export type Food = null | "guláš";
-export type Drink = null | "guláš";
+export type Food = "guláš";
+export type Drink = "guláš";

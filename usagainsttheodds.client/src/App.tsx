@@ -1,5 +1,5 @@
 import type { Screen } from './Types/GameType';
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect } from 'react';
 import Gameboard from './Components/Gameboard'
 import PlayingCard from './Components/Cards/PlayingCard';
 import HUD from './Components/HUD/HUD';
@@ -10,44 +10,57 @@ import Apitest from './Components/Apitest';
 
 function App() {
 
-  // const [userName, setUserName] = useState<string>("John");
+  const [userName, setUserName] = useState<string>("John");
 
   
-  // const intitialData: UserData = {
-  //   ticketsAmount: 50,
-  //   relationshipStamina: 85,
-  //   playerName: userName,
-  //   currentPage: null,
-  //   boughtBloon: false,
-  //   boughtFlower: true,
-  //   lastDrink: null,
-  //   lastFood: null
-  // }
-
-  // const [userData, setUserData] = useState<UserData>(() => {
-
-  //   try {
-  //     const stored = localStorage.getItem("UserData");
-
-  //     if (stored) {
-  //       return JSON.parse(stored);  // Return saved data
-  //     }
-  //   } catch {
-  //     return intitialData
-  //   }
-
-  // });//taha veci z local storage jinak hodi initial value
+  const intitialData: UserData = {
+    ticketsAmount: 50,
+    relationshipStamina: 85,
+    playerName: userName,
+    currentPage: null,
+    boughtBloon: false,
+    boughtFlower: false,
+    lastDrink: undefined,
+    lastFood: undefined
+  }
 
 
 
-  const [tickets, setTickets] = useState<number>(50);
-  const [relationshipValue, setRelationshipValue] = useState(85);
-  const [currentScreen, setCurrentScreen] = useState<Screen | null>(null);
+  const [userData, setUserData] = useState<UserData>(() => {
+
+      const stored = localStorage.getItem("UserData");
+      return stored ? JSON.parse(stored) : intitialData;  // Return saved data
+  });//taha data z local storage jinak hodi initial value
+
+
+
+  
+  const [tickets, setTickets] = useState<number>(userData.ticketsAmount);
+  const [relationshipValue, setRelationshipValue] = useState(userData.relationshipStamina);
+  const [currentScreen, setCurrentScreen] = useState<Screen | null>(userData.currentPage);
   
 
   useEffect(() => {
+      const updated = {
+        ...userData,
+        ticketsAmount: tickets,
+        relationshipStamina: relationshipValue,
+        currentPage: currentScreen
+      };
+      localStorage.setItem("UserData", JSON.stringify(updated));
 
-  }, [tickets, relationshipValue, currentScreen]);
+
+    setUserData(prev => {
+      if (
+        prev.ticketsAmount === updated.ticketsAmount &&
+        prev.relationshipStamina === updated.relationshipStamina &&
+        prev.currentPage === updated.currentPage
+      ) {
+        return prev; // nic se nezměnilo
+      }
+      return updated;
+    });
+  }, [tickets, relationshipValue, currentScreen, userData]);//ulozi do local storage kdyz se zmeni hodnota
 
 
 
@@ -59,7 +72,7 @@ function App() {
       return <div></div>
 
     case "russian-rulette":
-      return <MinigameContainer id={"russianrulette"} exitScreenCallback={() => setCurrentScreen(null)} />;
+      return <MinigameContainer id={currentScreen} exitScreenCallback={() => setCurrentScreen(null)} />;
 
 
     case "blackjack":
@@ -84,15 +97,12 @@ function App() {
       // Render dice roll component
       return <div>Dice Roll Component</div>;
 
-    case "test":
-      return <MinigameContainer id={"test"} exitScreenCallback={() => setCurrentScreen(null)} />;
-
 
     default:
       // Render default or home component
       return (
         <div>
-          <Gameboard buttons={["blackjack", "test", "russian-rulette"]} setCurrent={setCurrentScreen} />
+          <Gameboard buttons={["blackjack", "dice-roll", "russian-rulette"]} setCurrent={setCurrentScreen} />
 
 
           <div>
