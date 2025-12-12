@@ -8,7 +8,7 @@ type MinigameContextType = {
     state: GameState;
     setState: (state: GameState) => void;
     data: GameData | null;
-    continueGame: () => void;
+    playGame: () => void;
     exitGame: () => void;
     result: GameResult;
     setResult: (result: GameResult) => void;
@@ -32,17 +32,15 @@ export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>
     
     const data: GameData | null = use(promise || Promise.reject("No promise provided"))
 
-
-
     const [state, setState] = useState<GameState>("intro");
     const endGame = () => {
         setState("ended");
     }
-    const continueGame = () => {
+    const playGame = () => {
         setState("playing");
     }
     const exitGame = () => {
-        onExitCallback();
+        onExitCallback();//změní screen v app.tsx
     }
     const [result, setResult] = useState<GameResult>(null);
     const [rewardMultiplier, setRewardMultiplier] = useState<number>(2);
@@ -58,7 +56,7 @@ export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>
             state,
             setState,
             data,
-            continueGame,
+            playGame,
             exitGame,
             result,
             setResult,

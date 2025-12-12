@@ -6,7 +6,7 @@ import ChangeScreenButton from "./ChangeScreenButton"
 
 const MinigameInfo = ({}) => {
 
-    const { exitGame, continueGame, data } = useMinigame();
+    const { exitGame, playGame, data } = useMinigame();
     
 
     return (
@@ -16,7 +16,7 @@ const MinigameInfo = ({}) => {
                 {data ? data.description : "No description available"}
             </p>
             <ChangeScreenButton OnClick={exitGame} Text="Exit" />
-            <button onClick={continueGame}>Play</button>
+            <button onClick={playGame}>Play</button>
         </div>
     )
 }

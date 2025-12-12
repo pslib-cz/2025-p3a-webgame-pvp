@@ -1,5 +1,6 @@
 import { useMinigame } from "../Hooks/useMinigame";
 import Blackjack from "../Pages/Minigames/Blackjack";
+import TestMinigame from "../Pages/Minigames/TestMinigame";
 import GameEnd from "./GameEnd";
 import MinigameInfo from "./MinigameInfo";
 
@@ -22,7 +23,7 @@ const Minigame: React.FC<MinigameProps> = ({ id }) => {
             case "russianrulette":
                 return "<RussianRulette />";
             case "test":
-                return <div>Test Minigame</div>;
+                return <TestMinigame />;
             default:
                 return <div>Unknown Minigame</div>;
         }
