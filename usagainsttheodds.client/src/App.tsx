@@ -74,10 +74,7 @@ function App() {
     case "russian-rulette":
       return <MinigameContainer id={currentScreen} exitScreenCallback={() => setCurrentScreen(null)} />;
 
-
     case "blackjack":
-
-
       // Render blackjack component
       return <MinigameContainer id={"blackjack"} exitScreenCallback={() => setCurrentScreen(null)} />;
 
@@ -97,12 +94,15 @@ function App() {
       // Render dice roll component
       return <div>Dice Roll Component</div>;
 
+    case "test":
+      return <MinigameContainer id={"test"} exitScreenCallback={() => setCurrentScreen(null)} />;
+
 
     default:
       // Render default or home component
       return (
         <div>
-          <Gameboard buttons={["blackjack", "dice-roll", "russian-rulette"]} setCurrent={setCurrentScreen} />
+          <Gameboard buttons={["blackjack", "dice-roll", "russian-rulette", "test"]} setCurrent={setCurrentScreen} />
 
 
           <div>
