@@ -4,13 +4,23 @@ import type { FC } from "react";
 type ChangeScreenButtonProps = {
   to?: string;  // cesta na route?
   text?: string;
+  onClick?: () => void;
 }
 
-const ChangeScreenButton: FC<ChangeScreenButtonProps> = ({ to, text }) => {
+const ChangeScreenButton: FC<ChangeScreenButtonProps> = ({ to, text, onClick }) => {
   const navigate = useNavigate();
 
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    }
+    if (to) {
+      navigate(to);
+    }
+  };
+
   return (
-    <button onClick={() => to && navigate(to)}>
+    <button onClick={handleClick}>
       {text}
     </button>
   );

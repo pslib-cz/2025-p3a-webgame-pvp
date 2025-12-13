@@ -13,7 +13,7 @@ const RootLayout = () => {
 
   
   const intitialData: UserData = {
-    ticketsAmount: 50,
+    ticketsAmount: 5000,
     relationshipStamina: 85,
     playerName: userName,
     //currentPage: null, BUDEME UKLÁDÁT SPÍŠ POZICI HRÁČE NA X, ALE ZATIM DELAM ZE TO NEVIDIM

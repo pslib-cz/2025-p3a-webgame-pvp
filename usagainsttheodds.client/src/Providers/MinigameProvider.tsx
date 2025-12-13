@@ -11,8 +11,8 @@ type MinigameContextType = {
     exitPagePath: string;
     result: GameResult;
     setResult: (result: GameResult) => void;
-    tickets: number;
-    setTickets: (tickets: number) => void;
+    reward: number;
+    setReward: (reward: number) => void;
     rewardMultiplier: number;
     setRewardMultiplier: (multiplier: number) => void;
 }
@@ -40,10 +40,10 @@ export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>
     }
     const [result, setResult] = useState<GameResult>(null);
     const [rewardMultiplier, setRewardMultiplier] = useState<number>(2);
-    const [tickets, setTickets] = useState<number>(0);
+    const [reward, setReward] = useState<number>(data!.price);
     useEffect(() => {
-        if (result === "win") setTickets(data!.price * rewardMultiplier);
-        else if (result === "lose") setTickets(-data!.price);
+        if (result === "win") setReward(data!.price * rewardMultiplier);
+        else if (result === "lose") setReward(0);
     }, [rewardMultiplier, data, result]);
 
     return (
@@ -56,8 +56,8 @@ export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>
             exitPagePath,
             result,
             setResult,
-            tickets,
-            setTickets,
+            reward,
+            setReward,
             rewardMultiplier,
             setRewardMultiplier
         }}>

@@ -21,6 +21,9 @@ const HomePage = () => {
             <button onClick={() => navigate("/blackjack")}>
                 Blackjack
             </button>
+            <button onClick={() => navigate("/testminigame")}>
+                Test Minigame
+            </button>
           
           <div>
             <h2>karty:</h2>
