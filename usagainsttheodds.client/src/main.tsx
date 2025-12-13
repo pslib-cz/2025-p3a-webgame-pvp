@@ -17,7 +17,7 @@ createRoot(document.getElementById('root')!).render(
 
           {/* minihry */}
           <Route path="blackjack" element={<MinigameContainer id='blackjack' exitPage="/" />} />
-          <Route path="russianroulette" element={<MinigameContainer id='russianrulette' exitPage="/" />} />
+          <Route path="russianroulette" element={<MinigameContainer id='russianroulette' exitPage="/" />} />
           <Route path="testminigame" element={<MinigameContainer id='test' exitPage="/" />} />
 
           {/* 404 */}

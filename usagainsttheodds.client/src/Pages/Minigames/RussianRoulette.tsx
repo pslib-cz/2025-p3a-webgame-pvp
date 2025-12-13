@@ -3,12 +3,12 @@ import type { Screen, GameResult } from "../../Types/GameType"
 import rH from "../../Helpers/randomGeneratorHelper";
 
 
-type RussianRuletteProps = {
+type RussianrouletteProps = {
     setCurrentScreen: (screen: Screen) => void;   // funkce na přepnutí screenů
     Tickets: (x: number) => void;                 // funkce na přidání/odebrání tiketů
 }
 
-const RussianRulette: React.FC<RussianRuletteProps> = ({ setCurrentScreen, Tickets }) => {
+const Russianroulette: React.FC<RussianrouletteProps> = ({ setCurrentScreen, Tickets }) => {
 
     const winTickets: number = 50;  // kolik tiketů získáš při výhře
 
@@ -47,7 +47,7 @@ const RussianRulette: React.FC<RussianRuletteProps> = ({ setCurrentScreen, Ticke
 
 
     // 🎮 Tahle funkce na základě stavu hry renderuje správné tlačítko/obsah
-    const Rulette = (endGame: () => void) => {
+    const roulette = (endGame: () => void) => {
 
         switch (gameState) {
 
@@ -118,14 +118,14 @@ const RussianRulette: React.FC<RussianRuletteProps> = ({ setCurrentScreen, Ticke
             Tickets={Tickets}
             Result={result}
             setCurrentScreen={setCurrentScreen}
-            GameName="Russian Rulette"
+            GameName="Russian roulette"
             GameInfo="A dangerous game of chance."
         >
             {/* MiniGamePreset poskytuje endGame callback */}
             {({ endGame }) => (
                 <div>
                     <div className="button--continue">
-                        {Rulette(endGame)}   {/* vykreslí aktuální fázi hry */}
+                        {roulette(endGame)}   {/* vykreslí aktuální fázi hry */}
                     </div>
                 </div>
             )}
@@ -133,4 +133,4 @@ const RussianRulette: React.FC<RussianRuletteProps> = ({ setCurrentScreen, Ticke
     )
 }
 
-export default RussianRulette;
+export default Russianroulette;

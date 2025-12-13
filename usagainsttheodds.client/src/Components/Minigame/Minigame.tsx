@@ -20,8 +20,8 @@ const Minigame: React.FC<MinigameProps> = ({ id }) => {
         switch (id) {
             case "blackjack":
                 return <Blackjack />;
-            case "russianrulette":
-                return "<RussianRulette />";
+            case "russianroulette":
+                return "<Russianroulette />";
             case "test":
                 return <TestMinigame />;
             default:

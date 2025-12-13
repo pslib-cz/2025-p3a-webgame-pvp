@@ -5,7 +5,7 @@ const Apitest = () => {
   const [promise, setPromise] = useState<Promise<any> | null>(null);
 
   const fetchData = () => {
-  return fetch("https://localhost:7222/api/minigames/test")
+  return fetch("https://localhost:7222/api/minigames/russianroulette")
     .then(res => {
       if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
       return res.json();

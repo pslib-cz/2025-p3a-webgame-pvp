@@ -32,7 +32,7 @@ namespace UsAgainstTheOdds.Server.Data
                     },
                     new Minigame
                     {
-                        MinigameId = "russianrulette",
+                        MinigameId = "russianroulette",
                         Name = "Risky Turn",
                         Description = "Thrilling game of chance where players risk it all for reward, testing their luck and courage. Inspired by Russian roulette.",
                         Price = 500,
