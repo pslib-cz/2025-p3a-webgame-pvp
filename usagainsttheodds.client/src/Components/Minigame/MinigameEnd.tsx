@@ -1,9 +1,9 @@
-import ChangeScreenButton from "./ChangeScreenButton"
-import { useMinigame } from "../Hooks/useMinigame"
+import ChangeScreenButton from "../ChangeScreenButton"
+import { useMinigame } from "../../Hooks/useMinigame"
 
 
 
-const GameEnd= ({ }) => {
+const MinigameEnd = ({ }) => {
     const { tickets, exitPagePath, result } = useMinigame();
 
     return (
@@ -15,4 +15,4 @@ const GameEnd= ({ }) => {
     )
 }
 
-export default GameEnd;
+export default MinigameEnd;

@@ -1,13 +1,13 @@
-import { useMinigame } from "../Hooks/useMinigame"
-import ChangeScreenButton from "./ChangeScreenButton"
+import { useMinigame } from "../../Hooks/useMinigame"
+import ChangeScreenButton from "../ChangeScreenButton"
 
 
 
 
-const MinigameInfo = ({}) => {
+const MinigameInfo = ({ }) => {
 
     const { exitPagePath, playGame, data } = useMinigame();
-    
+
 
     return (
         <div>

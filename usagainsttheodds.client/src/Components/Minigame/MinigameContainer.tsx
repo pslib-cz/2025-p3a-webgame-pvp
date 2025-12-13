@@ -1,5 +1,5 @@
 import { Suspense, useState, useEffect } from "react";
-import MinigameProvider from "../Providers/MinigameProvider";
+import MinigameProvider from "../../Providers/MinigameProvider";
 import Minigame from "./Minigame";
 import { ErrorBoundary } from "react-error-boundary";
 
@@ -8,10 +8,10 @@ type MinigameContainerProps = {
     exitPage: string;
 }
 
-const MinigameContainer: React.FC<MinigameContainerProps> = ({id, exitPage}) => {
+const MinigameContainer: React.FC<MinigameContainerProps> = ({ id, exitPage }) => {
 
     const [promise, setPromise] = useState<Promise<any> | null>(null);
-    
+
     const fetchData = (id: string) => {
         console.log("Fetching minigame data for id:", id);
         return fetch(`https://localhost:7222/api/minigames/${id}`)

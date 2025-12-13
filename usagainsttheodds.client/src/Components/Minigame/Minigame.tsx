@@ -1,7 +1,7 @@
-import { useMinigame } from "../Hooks/useMinigame";
-import Blackjack from "../Pages/Minigames/Blackjack";
-import TestMinigame from "../Pages/Minigames/TestMinigame";
-import GameEnd from "./GameEnd";
+import { useMinigame } from "../../Hooks/useMinigame";
+import Blackjack from "../../Pages/Minigames/Blackjack";
+import TestMinigame from "../../Pages/Minigames/TestMinigame";
+import MinigameEnd from "./MinigameEnd";
 import MinigameInfo from "./MinigameInfo";
 
 type MinigameProps = {
@@ -14,7 +14,7 @@ const Minigame: React.FC<MinigameProps> = ({ id }) => {
     const { state } = useMinigame();
 
     if (state === "intro") {
-        return <MinigameInfo/>;
+        return <MinigameInfo />;
     }
     if (state === "playing") {
         switch (id) {
@@ -29,10 +29,10 @@ const Minigame: React.FC<MinigameProps> = ({ id }) => {
         }
     }
     if (state === "ended") {
-        
-        return <GameEnd/>;
+
+        return <MinigameEnd />;
     }
-    
+
 }
 
 export default Minigame;
