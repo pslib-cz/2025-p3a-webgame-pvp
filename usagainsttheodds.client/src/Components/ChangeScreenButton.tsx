@@ -1,13 +1,19 @@
-import React from "react"
-import type { Screen } from "../Types/GameType"
+import { useNavigate } from "react-router-dom";
+import type { FC } from "react";
+
 type ChangeScreenButtonProps = {
-    Screen?: Screen,
-    OnClick: (x:Screen) => void ,
-    Text?: string | null
+  to?: string;  // cesta na route?
+  text?: string;
 }
 
-const ChangeScreenButton:React.FC<ChangeScreenButtonProps> = ({Screen = null, OnClick, Text}) => {
+const ChangeScreenButton: FC<ChangeScreenButtonProps> = ({ to, text }) => {
+  const navigate = useNavigate();
 
-    return <button id={Screen?.toString()} onClick={() => OnClick(Screen)}>{Text}</button>
+  return (
+    <button onClick={() => to && navigate(to)}>
+      {text}
+    </button>
+  );
 }
+
 export default ChangeScreenButton;
