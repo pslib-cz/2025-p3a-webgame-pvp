@@ -5,10 +5,10 @@ import { ErrorBoundary } from "react-error-boundary";
 
 type MinigameContainerProps = {
     id: string;
-    exitScreenCallback: () => void;
+    exitPage: string;
 }
 
-const MinigameContainer: React.FC<MinigameContainerProps> = ({id, exitScreenCallback}) => {
+const MinigameContainer: React.FC<MinigameContainerProps> = ({id, exitPage}) => {
 
     const [promise, setPromise] = useState<Promise<any> | null>(null);
     
@@ -28,6 +28,10 @@ const MinigameContainer: React.FC<MinigameContainerProps> = ({id, exitScreenCall
         setPromise(fetchData(id));
     }, [id]);
 
+    if (!promise) {
+        return <div>Initializing request...</div>;
+    }
+
     return (
         <ErrorBoundary FallbackComponent={({ error, resetErrorBoundary }) => (
             <div>
@@ -37,7 +41,7 @@ const MinigameContainer: React.FC<MinigameContainerProps> = ({id, exitScreenCall
         )}
         >
             <Suspense fallback={<div>Loading minigame data...</div>}>
-                <MinigameProvider onExitCallback={exitScreenCallback} promise={promise}>
+                <MinigameProvider exitPage={exitPage} promise={promise}>
                     <Minigame id={id} />
                 </MinigameProvider>
             </Suspense>

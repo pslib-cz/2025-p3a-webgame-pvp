@@ -2,14 +2,13 @@ import React, { useState, useEffect, type PropsWithChildren, createContext, use 
 import type { GameData, GameResult, GameState } from "../Types/GameType";
 
 
-
 type MinigameContextType = {
     endGame: () => void;
     state: GameState;
     setState: (state: GameState) => void;
     data: GameData | null;
     playGame: () => void;
-    exitGame: () => void;
+    exitPagePath: string;
     result: GameResult;
     setResult: (result: GameResult) => void;
     tickets: number;
@@ -22,15 +21,15 @@ type MinigameContextType = {
 export const MinigameContext = createContext<MinigameContextType | null>(null);
 
 type MinigameProviderProps = {
-    onExitCallback: () => void;
+    exitPage: string;
     promise: Promise<any> | null;
 }
 
-export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>> = ({ children, onExitCallback, promise }) => {
+export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>> = ({ children, exitPage, promise }) => {
 
     
-    
-    const data: GameData | null = use(promise || Promise.reject("No promise provided"))
+    const exitPagePath = exitPage;
+    const data: GameData | null = use(promise || Promise.reject("No promise provided to MinigameProvider"));
 
     const [state, setState] = useState<GameState>("intro");
     const endGame = () => {
@@ -38,9 +37,6 @@ export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>
     }
     const playGame = () => {
         setState("playing");
-    }
-    const exitGame = () => {
-        onExitCallback();//změní screen v app.tsx
     }
     const [result, setResult] = useState<GameResult>(null);
     const [rewardMultiplier, setRewardMultiplier] = useState<number>(2);
@@ -57,7 +53,7 @@ export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>
             setState,
             data,
             playGame,
-            exitGame,
+            exitPagePath,
             result,
             setResult,
             tickets,

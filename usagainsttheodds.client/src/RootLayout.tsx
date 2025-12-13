@@ -58,6 +58,7 @@ const RootLayout = () => {
     });
   }, [tickets, relationshipValue, userData]);//ulozi do local storage kdyz se zmeni hodnota
 
+
   return (
     <div className="game-root">
 

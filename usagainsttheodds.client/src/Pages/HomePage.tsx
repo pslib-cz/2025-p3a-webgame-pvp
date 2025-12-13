@@ -52,6 +52,10 @@ const HomePage = () => {
           </div>
 
           <Apitest />
+
+          {/* zatim jen na vymazani cookies */}
+          <button onClick={() => {localStorage.clear(); window.location.reload();}}>Delete cookies</button>
+
         </div>
     );
 };

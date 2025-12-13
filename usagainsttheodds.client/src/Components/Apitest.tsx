@@ -30,6 +30,9 @@ const Apitest = () => {
   </div>
 );
 
+  if (!promise) {
+    return <div>Initializing API request...</div>;
+  }
 
   return (
     <div>
