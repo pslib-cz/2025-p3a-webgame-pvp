@@ -1,13 +1,17 @@
 import { createPortal } from "react-dom";
+import { useOwnOutlet } from "../Hooks/useOwnOutlet";
 
 type ModalProps = {
   onClose: () => void;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   onMuteMusic?: () => void;
   onMuteSFX?: () => void;
 };
 
 const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
+
+  const { isMusicMuted, setIsMusicMuted, isSfxMuted, setIsSfxMuted } = useOwnOutlet();
+
   return createPortal(
     <div className="modal-backdrop" onClick={onClose}>
       <div
@@ -15,8 +19,14 @@ const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
         onClick={(e) => e.stopPropagation()} // aby klik uvnitř nezavřel modal
       >
         <button onClick={onClose}>✖</button>
-        <button>mute music</button>
-        <button>mute SFX</button>
+        <div>
+          <button onClick={() => setIsMusicMuted(prev => !prev)}>{isMusicMuted ? "Unmute Music" : "Mute Music"}</button>
+          <button onClick={() => setIsSfxMuted(prev => !prev)}>{isSfxMuted ? "Unmute SFX" : "Mute SFX"}</button>
+        </div>
+        <div className="pause-menu">
+          <h2>You can rest :)</h2>
+          <p>Once you´re ready, you can continue</p>
+        </div>
         {children}
       </div>
     </div>,

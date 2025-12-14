@@ -1,17 +1,17 @@
 import PlayingCard from '../Components/Cards/PlayingCard';
 import Apitest from '../Components/Apitest';
 import { useNavigate } from 'react-router-dom';
-import { useOwnOutlet } from '../hooks/useOwnOutlet'
+import { useOwnOutlet } from '../Hooks/useOwnOutlet'
 import PauseMenu from '../Components/PauseMenu';
-import { useGameSounds } from '../hooks/useGameSounds';
+import { useGameSounds } from '../Hooks/useGameSounds';
 
 const HomePage = () => {
 
-    const { tickets, setTickets, relationshipValue, setRelationshipValue, player, setPlayer, isOpen, setIsOpen } = useOwnOutlet();
+    const { tickets, setTickets, relationshipValue, setRelationshipValue, player, setPlayer, isOpen, setIsOpen, play, stop, isMusicMuted, setIsMusicMuted, isSfxMuted, setIsSfxMuted } = useOwnOutlet();
 
     const navigate = useNavigate();
 
-    const { play, stop, isMusicMuted, setIsMusicMuted, isSfxMuted, setIsSfxMuted } = useGameSounds();
+    
 
     return (
       
@@ -25,20 +25,17 @@ const HomePage = () => {
           </button>
 
         {isOpen && (
-          <PauseMenu onClose={() => setIsOpen(false)}>
-            <div className="pause-menu">
-            <h2>You can rest :)</h2>
-            <p>Once you´re ready, you can continue</p>
-            </div>
-          </PauseMenu>
+          <PauseMenu onClose={() => setIsOpen(false)}/>
         )}
 
+          <div>
             <button className="button" onClick={() => navigate("/blackjack")}>
                 Blackjack
             </button>
             <button className="button" onClick={() => navigate("/testminigame")}>
                 Test Minigame
             </button>
+          </div>
           
       {/*
           <div>
@@ -100,10 +97,8 @@ const HomePage = () => {
 
           <div style={{fontSize: "2em", color: "red", marginTop: "1em"}}>
             <h2 style={{margin: ".1em"}}>TODO</h2>
-            <p style={{margin: ".1em"}}>-menu</p>
             <p style={{margin: ".1em"}}>-intropage</p>
             <p style={{margin: ".1em"}}>-jídelní stanky</p>
-            <p style={{margin: ".1em"}}>-predelat ten HUD nejak (nemyslim že se takhle ma delat, hlavne at mizi ve hrach)</p>
           </div>
 
           <Apitest />

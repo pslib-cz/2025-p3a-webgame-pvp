@@ -4,6 +4,7 @@ import { type UserData } from "./Types/UserDataType";
 import { isDeepEqual } from "./Helpers/generalHelper";
 import { useNavigate } from 'react-router-dom';
 import type { Person } from './Types/GameType';
+import { useGameSounds } from "./Hooks/useGameSounds";
 
 
 const RootLayout = () => {
@@ -47,12 +48,10 @@ const RootLayout = () => {
 
 
 
-
-
    const [isOpen, setIsOpen] = useState(false);
 
    
-
+    const { play, stop, isMusicMuted, setIsMusicMuted, isSfxMuted, setIsSfxMuted } = useGameSounds();
 
 
     useEffect(() => {
@@ -93,7 +92,13 @@ const RootLayout = () => {
                     girlFriend: girlfriend,
                     setGirlFriend: setGirlfriend,
                     isOpen,
-                    setIsOpen
+                    setIsOpen,
+                    play,
+                    stop,
+                    isMusicMuted,
+                    setIsMusicMuted,
+                    isSfxMuted,
+                    setIsSfxMuted,
                 }}
             />
         </div>

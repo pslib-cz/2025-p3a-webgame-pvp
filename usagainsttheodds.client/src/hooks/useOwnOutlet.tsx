@@ -1,4 +1,5 @@
 import { useOutletContext } from "react-router-dom";
+import type { SoundName } from "../Types/SoundType";
 
 export const useOwnOutlet = () => {
     const outlet = useOutletContext<{
@@ -19,6 +20,13 @@ export const useOwnOutlet = () => {
         
         isOpen: boolean;
         setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+
+        play: (soundName: SoundName) => void;
+        stop: (soundName: SoundName) => void;
+        isMusicMuted: boolean;
+        setIsMusicMuted: React.Dispatch<React.SetStateAction<boolean>>;
+        isSfxMuted: boolean;
+        setIsSfxMuted: React.Dispatch<React.SetStateAction<boolean>>;
     }>()
     return outlet;
 };

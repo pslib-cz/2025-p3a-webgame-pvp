@@ -1,14 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { Howl } from 'howler';
+import type { SoundConfigType, SoundName } from '../Types/SoundType';
 
 
-type SoundConfigType = {
-    src: string;
-    loop?: boolean;
-    volume?: number;
-    category: 'music' | 'sfx';
-}
-type SoundName = 'bgMusic' | 'chop';
+
 
 const SOUNDS_CONFIG: Record<string, SoundConfigType> = {
     //hudba
