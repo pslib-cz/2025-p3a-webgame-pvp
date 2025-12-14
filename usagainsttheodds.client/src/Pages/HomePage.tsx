@@ -35,15 +35,7 @@ const HomePage = () => {
                 Test Minigame
             </button>
           
-          <div>
-            <h2>karty:</h2>
-            <div style={{ display: 'flex', gap: '1em' }}>
-              <PlayingCard card={{ symbol: "Clubs", value: "J" }} clickable={false} />
-              <PlayingCard card={{ symbol: "Diamonds", value: "8" }} face="Back" />
-              <PlayingCard card={{ symbol: "Spades", value: "K" }} />
-            </div>
-          </div>
-
+      {/*
           <div>
             <div>
               relationshipValue:
@@ -87,6 +79,7 @@ const HomePage = () => {
                 />
             </div>
           </div>
+          */}
 
           <div style={{fontSize: "2em", color: "red", marginTop: "1em"}}>
             <h2 style={{margin: ".1em"}}>TODO</h2>
