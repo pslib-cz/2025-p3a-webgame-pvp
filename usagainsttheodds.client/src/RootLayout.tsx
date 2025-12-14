@@ -47,6 +47,14 @@ const RootLayout = () => {
 
 
 
+
+
+   const [isOpen, setIsOpen] = useState(false);
+
+   
+
+
+
     useEffect(() => {
         const updated = {
             ...userData,
@@ -84,6 +92,8 @@ const RootLayout = () => {
                     setPlayer,
                     girlFriend: girlfriend,
                     setGirlFriend: setGirlfriend,
+                    isOpen,
+                    setIsOpen
                 }}
             />
         </div>

@@ -2,19 +2,34 @@ import PlayingCard from '../Components/Cards/PlayingCard';
 import Apitest from '../Components/Apitest';
 import { useNavigate } from 'react-router-dom';
 import { useOwnOutlet } from '../Hooks/useOwnOutlet'
+import PauseMenu from '../Components/PauseMenu';
 import { useGameSounds } from '../Hooks/useGameSounds';
 
 const HomePage = () => {
 
-    const { tickets, setTickets, relationshipValue, setRelationshipValue, player, setPlayer } =
-        useOwnOutlet();
+    const { tickets, setTickets, relationshipValue, setRelationshipValue, player, setPlayer, isOpen, setIsOpen } = useOwnOutlet();
 
     const navigate = useNavigate();
 
     const { play, stop, isMusicMuted, setIsMusicMuted, isSfxMuted, setIsSfxMuted } = useGameSounds();
 
     return (
+      
+
+
+
         <div>
+
+        <button onClick={() => setIsOpen(true)}>
+          Otevřít modal
+          </button>
+
+        {isOpen && (
+          <PauseMenu onClose={() => setIsOpen(false)}>
+            <h2>You can rest :)</h2>
+            <p>Once you´re ready, you can continue</p>
+          </PauseMenu>
+        )}
 
             <button onClick={() => navigate("/blackjack")}>
                 Blackjack
