@@ -1,13 +1,33 @@
-import { useState, useEffect } from 'react';
-import HUD from './Components/HUD/HUD';
-import {type UserData } from './Types/UserDataType';
+import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
+import { type UserData } from "./Types/UserDataType";
+import { isDeepEqual } from "./Helpers/generalHelper";
 import { useNavigate } from 'react-router-dom';
 import { isDeepEqual } from './Helpers/generalHelper';
 import type { Person } from './Types/GameType';
 
 
 const RootLayout = () => {
+    const intitialData: UserData = {
+        ticketsAmount: 5000,
+        relationshipStamina: 85,
+        boughtBloon: false,
+        boughtFlower: false,
+        lastDrink: null,
+        lastFood: null,
+        player: {
+            name: "John",
+            hunger: 50,
+            thirst: 50,
+            drunkenness: 10,
+        },
+        girlFriend: {
+            name: "Anastasia",
+            hunger: 50,
+            thirst: 50,
+            drunkenness: 10,
+        },
+    };
 
   const [userName, setUserName] = useState<string>("John");
   const navigate = useNavigate();
@@ -37,6 +57,17 @@ const RootLayout = () => {
   }
 
 
+    const [userData, setUserData] = useState<UserData>(() => {
+        const stored = localStorage.getItem("UserData");
+        return stored ? JSON.parse(stored) : intitialData;
+    });
+
+    const [tickets, setTickets] = useState(userData.ticketsAmount);
+    const [relationshipValue, setRelationshipValue] = useState(
+        userData.relationshipStamina
+    );
+    const [player, setPlayer] = useState(userData.player);
+    const [girlfriend, setGirlfriend] = useState(userData.girlFriend);
   const [userData, setUserData] = useState<UserData>(() => {
 
       const stored = localStorage.getItem("UserData");
@@ -53,16 +84,21 @@ const RootLayout = () => {
 
 
 
-  useEffect(() => {
-    const updated = {
-      ...userData,
-      ticketsAmount: tickets,
-      relationshipStamina: relationshipValue,
-      player: player,
-      girlFriend: girlfriend
-    };
-    localStorage.setItem("UserData", JSON.stringify(updated));
+    useEffect(() => {
+        const updated = {
+            ...userData,
+            ticketsAmount: tickets,
+            relationshipStamina: relationshipValue,
+            player,
+            girlFriend: girlfriend,
+        };
 
+        localStorage.setItem("UserData", JSON.stringify(updated));
+
+        setUserData((prev) =>
+            isDeepEqual(prev, updated) ? prev : updated
+        );
+    }, [tickets, relationshipValue, player, girlfriend]);
     setUserData(prev => {
       if (
         isDeepEqual(prev, updated)//porovná všechny hodnoty
@@ -82,29 +118,23 @@ const RootLayout = () => {
         girlfriend
         });
 
-  return (
-    <div className="game-root">
+    return (
+        <div className="game-root">
+            <Outlet
+                context={{
+                    tickets,
+                    setTickets,
+                    relationshipValue,
+                    setRelationshipValue,
+                    player,
+                    setPlayer,
+                    girlFriend: girlfriend,
+                    setGirlFriend: setGirlfriend,
+                }}
+            />
+        </div>
 
-      {/*to co cheme ukládat pořád*/}
-      <HUD tickets={tickets} relationshipValue={relationshipValue} player={player} girlFriend={girlfriend} />
-
-      {/* tady se jakoby vykresluje ta page co chci? */}
-      <Outlet
-        context={{
-          tickets,
-          setTickets,
-          relationshipValue,
-          setRelationshipValue,
-          player,
-          setPlayer,
-          girlfriend,
-          setGirlfriend
-        }}
-      />
-
-    </div>
-
-/*
+        /*
   ---pro preklikavani page
     <button className="building" onClick={() => navigate("/blackjack")}>
       Blackjack
@@ -116,10 +146,7 @@ const RootLayout = () => {
       tickets: number;
     }>();
     */
-     
-
-  );
-  
-}
+    );
+};
 
 export default RootLayout;
