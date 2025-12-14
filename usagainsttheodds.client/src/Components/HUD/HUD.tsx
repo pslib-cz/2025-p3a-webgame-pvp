@@ -21,8 +21,6 @@ type HUDProps = {
 
 const HUD: React.FC<HUDProps> = ({ tickets, relationshipValue, player, girlFriend }) => {
 
-    
-
     return (
         <div className={styles.container}>
             <div className={styles.player}>

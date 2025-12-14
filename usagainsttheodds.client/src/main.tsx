@@ -4,6 +4,7 @@ import './index.css'
 import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import NotFoundPage from './Pages/NotFoundPage.tsx';
 import RootLayout from './RootLayout.tsx';
+import MainLayout from './MainLayout.tsx';
 import HomePage from './Pages/HomePage.tsx';
 import ErrorPage from './Pages/ErrorPage.tsx';
 import MinigameContainer from './Components/Minigame/MinigameContainer.tsx';
@@ -13,7 +14,11 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<RootLayout />} errorElement={<ErrorPage />}>
+
+        {/* pro spravny zobrazení HUD */}
+        <Route element={<MainLayout />}>
           <Route index element={<HomePage />} />
+        </Route>
 
           {/* minihry */}
           <Route path="blackjack" element={<MinigameContainer id='blackjack' exitPage="/" />} />

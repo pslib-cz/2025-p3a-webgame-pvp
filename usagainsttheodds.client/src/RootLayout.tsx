@@ -73,24 +73,7 @@ const RootLayout = () => {
 
   return (
     <div className="game-root">
-
-      {/*to co cheme ukládat pořád*/}
-      <HUD tickets={tickets} relationshipValue={relationshipValue} player={player} girlFriend={girlfriend} />
-
-      {/* tady se jakoby vykresluje ta page co chci? */}
-      <Outlet
-        context={{
-          tickets,
-          setTickets,
-          relationshipValue,
-          setRelationshipValue,
-          player,
-          setPlayer,
-          girlfriend,
-          setGirlfriend
-        }}
-      />
-
+      <Outlet/>
     </div>
 
 /*
