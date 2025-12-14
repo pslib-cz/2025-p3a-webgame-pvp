@@ -1,9 +1,9 @@
 import PlayingCard from '../Components/Cards/PlayingCard';
 import Apitest from '../Components/Apitest';
 import { useNavigate } from 'react-router-dom';
-import { useOwnOutlet } from '../Hooks/useOwnOutlet'
+import { useOwnOutlet } from '../hooks/useOwnOutlet'
 import PauseMenu from '../Components/PauseMenu';
-import { useGameSounds } from '../Hooks/useGameSounds';
+import { useGameSounds } from '../hooks/useGameSounds';
 
 const HomePage = () => {
 
@@ -18,23 +18,25 @@ const HomePage = () => {
 
 
 
-        <div>
+        <div className="main">
 
-        <button onClick={() => setIsOpen(true)}>
+        <button className="button" onClick={() => setIsOpen(true)}>
           Otevřít modal
           </button>
 
         {isOpen && (
           <PauseMenu onClose={() => setIsOpen(false)}>
+            <div className="pause-menu">
             <h2>You can rest :)</h2>
             <p>Once you´re ready, you can continue</p>
+            </div>
           </PauseMenu>
         )}
 
-            <button onClick={() => navigate("/blackjack")}>
+            <button className="button" onClick={() => navigate("/blackjack")}>
                 Blackjack
             </button>
-            <button onClick={() => navigate("/testminigame")}>
+            <button className="button" onClick={() => navigate("/testminigame")}>
                 Test Minigame
             </button>
           

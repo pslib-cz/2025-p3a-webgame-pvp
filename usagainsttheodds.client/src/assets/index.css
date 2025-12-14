@@ -1,0 +1,30 @@
+.main {
+    margin-top: 20%;
+}
+
+.button {
+    padding: 0.2% 0.5%;
+    background-color: aliceblue;
+    padding: 1px solid black;
+    border-radius: 1rem;
+    margin: 0.3%;
+}
+
+.button:hover {
+    background-color: rgb(178, 219, 255);
+}
+.modal-backdrop {
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: gray;
+    border: 1px solid black;
+    padding: 0.7%;
+    color: white;
+
+    z-index: 2;
+
+    display: flex;
+    justify-content: space-between;
+}
