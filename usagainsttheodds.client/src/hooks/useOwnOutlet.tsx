@@ -15,7 +15,10 @@ export const useOwnOutlet = () => {
             hunger: number;
             thirst: number;
             drunkenness: number;
-        }>>;
+        }>>
+        
+        isOpen: boolean;
+        setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
     }>()
     return outlet;
 };
