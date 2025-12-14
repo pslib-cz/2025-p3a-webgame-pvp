@@ -14,5 +14,12 @@ export type GameData = {
     stamina: number;
 }
 
-export type Food = "guláš";
-export type Drink = "guláš";
+export type Food = "hotdog" | "burger" | "pizza" | "salad" | "langos" | "goulash" | "cottoncandy" | null;
+export type Drink = "water" | "soda" | "beer" | "wine" | "palinka" | "fruitsmoothie" | "gintonic" | "pepermintliqueur" | "eggnog" | "slushy" | null;
+
+export type Person = {
+    name: string,
+    hunger: number,
+    thirst: number,
+    drunkenness: number
+}

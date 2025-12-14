@@ -3,10 +3,6 @@
     align-items: center;
     width: fit-content;
     margin: 1em;
-
-    position: absolute;
-    top: 0%;
-    right: 0%;
 }
 .value{
     font-size: 3em;

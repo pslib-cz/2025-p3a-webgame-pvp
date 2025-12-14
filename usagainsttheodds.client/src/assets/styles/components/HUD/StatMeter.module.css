@@ -1,0 +1,23 @@
+.bar {
+    aspect-ratio: 14/2;
+    width: auto;
+    height: 2.5em;
+    border: 3px solid #000;
+    margin: .25em;
+
+}
+.fill {
+    display: block;
+    height: 100%;
+}
+.container {
+    display: flex;
+    align-items: center;
+    
+}
+.label {
+    font-size: 2em;
+}
+.girlfriend {
+    flex-direction: row-reverse;
+}

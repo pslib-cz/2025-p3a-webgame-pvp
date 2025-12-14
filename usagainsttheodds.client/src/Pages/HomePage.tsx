@@ -5,12 +5,22 @@ import { useOutletContext } from "react-router-dom";
 
 const HomePage = () => {
 
-    const { tickets, setTickets, relationshipValue, setRelationshipValue } =
+    const { tickets, setTickets, relationshipValue, setRelationshipValue, player, setPlayer } =
     useOutletContext<{
         tickets: number;
         setTickets: React.Dispatch<React.SetStateAction<number>>;
         relationshipValue: number;
         setRelationshipValue: React.Dispatch<React.SetStateAction<number>>;
+        player: {
+            hunger: number;
+            thirst: number;
+            drunkenness: number;
+        };
+        setPlayer: React.Dispatch<React.SetStateAction<{
+            hunger: number;
+            thirst: number;
+            drunkenness: number;
+        }>>;
     }>();
 
     const navigate = useNavigate();
@@ -50,6 +60,30 @@ const HomePage = () => {
                 type="number"
                 value={tickets}
                 onChange={e => setTickets(Number(e.target.value))}
+                />
+            </div>
+            <div>
+              hunger:
+              <input
+                type="range"
+                value={player.hunger}
+                onChange={e => setPlayer(prev => ({...prev, hunger: Number(e.target.value)}))}
+                />
+            </div>
+            <div>
+              thirst:
+              <input
+                type="range"
+                value={player.thirst}
+                onChange={e => setPlayer(prev => ({...prev, thirst: Number(e.target.value)}))}
+                />
+            </div>
+            <div>
+              drunkenness:
+              <input
+                type="range"
+                value={player.drunkenness}
+                onChange={e => setPlayer(prev => ({...prev, drunkenness: Number(e.target.value)}))}
                 />
             </div>
           </div>
