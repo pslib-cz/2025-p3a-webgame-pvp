@@ -4,7 +4,7 @@ import HUD from "./Components/HUD/HUD";
 const MainLayout = () => {
     const context = useOutletContext<any>();
 
-    const { tickets, relationshipValue, player, girlFriend } = context;
+    const { tickets, relationshipValue, player, girlfriend } = context;
 
     return (
         <>
@@ -12,7 +12,7 @@ const MainLayout = () => {
                 tickets={tickets}
                 relationshipValue={relationshipValue}
                 player={player}
-                girlFriend={girlFriend}
+                girlfriend={girlfriend}
             />
 
             <Outlet context={context} />

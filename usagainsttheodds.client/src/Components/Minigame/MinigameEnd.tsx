@@ -1,18 +1,15 @@
 import ChangeScreenButton from "../ChangeScreenButton"
 import { useMinigame } from "../../Hooks/useMinigame"
-import { useOwnOutlet } from "../../Hooks/useOwnOutlet";
 
 
 
 const MinigameEnd = ({ }) => {
-    const { reward, exitPagePath, result } = useMinigame();
-
-    const { setTickets } = useOwnOutlet();
+    const { reward, exitPagePath, result, handleMinigameEnd } = useMinigame();
 
 
     const handleEnd = () => {
         console.log("Handling end of minigame, reward:", reward);
-        setTickets(prev => prev + reward);
+        handleMinigameEnd();
     }
 
 

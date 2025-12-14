@@ -9,7 +9,7 @@ import { useGameSounds } from "./Hooks/useGameSounds";
 
 const RootLayout = () => {
     const intitialData: UserData = {
-        ticketsAmount: 5000,
+        ticketsAmount: 50,
         relationshipStamina: 85,
         boughtBloon: false,
         boughtFlower: false,
@@ -21,7 +21,7 @@ const RootLayout = () => {
             thirst: 50,
             drunkenness: 10,
         },
-        girlFriend: {
+        girlfriend: {
             name: "Anastasia",
             hunger: 50,
             thirst: 50,
@@ -42,9 +42,9 @@ const RootLayout = () => {
   const [tickets, setTickets] = useState<number>(userData.ticketsAmount);
   const [relationshipValue, setRelationshipValue] = useState<number>(userData.relationshipStamina);
   const [player, setPlayer] = useState<Person>(userData.player);
-  const [girlfriend, setGirlfriend] = useState<Person>(userData.girlFriend);
+  const [girlfriend, setGirlfriend] = useState<Person>(userData.girlfriend);
   //takhle se to pak pouziva
-  //setGirlFriend(prev => ({ ...prev, name: "Pavla" }));
+  //setGirlfriend(prev => ({ ...prev, name: "Pavla" }));
 
 
 
@@ -60,7 +60,7 @@ const RootLayout = () => {
             ticketsAmount: tickets,
             relationshipStamina: relationshipValue,
             player,
-            girlFriend: girlfriend,
+            girlfriend: girlfriend,
         };
 
         localStorage.setItem("UserData", JSON.stringify(updated));
@@ -71,13 +71,13 @@ const RootLayout = () => {
     }, [tickets, relationshipValue, player, girlfriend]);//ulozi do local storage kdyz se zmeni hodnota
 
 
-        console.log
-        ("HUD DATA", {
-        tickets,
-        relationshipValue,
-        player,
-        girlfriend
-        });
+        // console.log
+        // ("HUD DATA", {
+        // tickets,
+        // relationshipValue,
+        // player,
+        // girlfriend
+        // });
 
     return (
         <div className="game-root">
@@ -89,8 +89,8 @@ const RootLayout = () => {
                     setRelationshipValue,
                     player,
                     setPlayer,
-                    girlFriend: girlfriend,
-                    setGirlFriend: setGirlfriend,
+                    girlfriend,
+                    setGirlfriend,
                     isOpen,
                     setIsOpen,
                     play,

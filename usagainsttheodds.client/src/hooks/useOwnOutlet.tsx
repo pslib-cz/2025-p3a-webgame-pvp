@@ -8,16 +8,29 @@ export const useOwnOutlet = () => {
         relationshipValue: number;
         setRelationshipValue: React.Dispatch<React.SetStateAction<number>>;
         player: {
+            name: string;
             hunger: number;
             thirst: number;
             drunkenness: number;
         };
         setPlayer: React.Dispatch<React.SetStateAction<{
+            name: string;
             hunger: number;
             thirst: number;
             drunkenness: number;
         }>>
-        
+        girlfriend: {
+            name: string;
+            hunger: number;
+            thirst: number;
+            drunkenness: number;
+        };
+        setGirlfriend: React.Dispatch<React.SetStateAction<{
+            hunger: number;
+            thirst: number;
+            drunkenness: number;
+        }>>
+
         isOpen: boolean;
         setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 
@@ -28,5 +41,6 @@ export const useOwnOutlet = () => {
         isSfxMuted: boolean;
         setIsSfxMuted: React.Dispatch<React.SetStateAction<boolean>>;
     }>()
+    
     return outlet;
 };

@@ -9,6 +9,6 @@ export type UserData = {
     lastFood: Food,
     lastDrink: Drink
     player: Person,
-    girlFriend: Person,
+    girlfriend: Person,
 }
 

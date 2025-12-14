@@ -7,10 +7,10 @@ type HUDProps = {
     tickets: number;
     relationshipValue: number;
     player:Person
-    girlFriend:Person
+    girlfriend:Person
 };
 
-const HUD: React.FC<HUDProps> = ({ tickets, relationshipValue, player, girlFriend }) => {
+const HUD: React.FC<HUDProps> = ({ tickets, relationshipValue, player, girlfriend }) => {
 
     return (
         <div className={styles.container}>
@@ -25,10 +25,10 @@ const HUD: React.FC<HUDProps> = ({ tickets, relationshipValue, player, girlFrien
                 <TicketCounter value={tickets} />
             </div>
             <div className={styles.girlfriend}>
-                <h1>{girlFriend.name}</h1>
-                <StatMeter person="girlfriend" type="hunger" value={girlFriend.hunger} />
-                <StatMeter person="girlfriend" type="thirst" value={girlFriend.thirst} />
-                <StatMeter person="girlfriend" type="drunkenness" value={girlFriend.drunkenness} />
+                <h1>{girlfriend.name}</h1>
+                <StatMeter person="girlfriend" type="hunger" value={girlfriend.hunger} />
+                <StatMeter person="girlfriend" type="thirst" value={girlfriend.thirst} />
+                <StatMeter person="girlfriend" type="drunkenness" value={girlfriend.drunkenness} />
             </div>            
         </div>
     )

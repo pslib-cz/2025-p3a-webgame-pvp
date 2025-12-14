@@ -11,7 +11,7 @@ export type GameData = {
     name: string;
     description: string;
     price: number;
-    stamina: number;
+    difficulty: number;
 }
 
 export type Food = "hotdog" | "burger" | "pizza" | "salad" | "langos" | "goulash" | "cottoncandy" | null;
