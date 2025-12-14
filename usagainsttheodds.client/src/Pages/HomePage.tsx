@@ -1,27 +1,12 @@
 import PlayingCard from '../Components/Cards/PlayingCard';
 import Apitest from '../Components/Apitest';
 import { useNavigate } from 'react-router-dom';
-import { useOutletContext } from "react-router-dom";
+import { useOwnOutlet } from '../hooks/useOwnOutlet'
 
 const HomePage = () => {
 
     const { tickets, setTickets, relationshipValue, setRelationshipValue, player, setPlayer } =
-    useOutletContext<{
-        tickets: number;
-        setTickets: React.Dispatch<React.SetStateAction<number>>;
-        relationshipValue: number;
-        setRelationshipValue: React.Dispatch<React.SetStateAction<number>>;
-        player: {
-            hunger: number;
-            thirst: number;
-            drunkenness: number;
-        };
-        setPlayer: React.Dispatch<React.SetStateAction<{
-            hunger: number;
-            thirst: number;
-            drunkenness: number;
-        }>>;
-    }>();
+        useOwnOutlet();
 
     const navigate = useNavigate();
 
