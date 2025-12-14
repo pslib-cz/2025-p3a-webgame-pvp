@@ -1,22 +1,13 @@
 import StatMeter from "./StatMeter";
 import TicketCounter from "./TicketCounter";
 import styles from "../../assets/styles/components/HUD/HUD.module.css"
+import type { Person } from "../../Types/GameType";
 
 type HUDProps = {
     tickets: number;
     relationshipValue: number;
-    player: {
-        name: string;
-        hunger: number;
-        thirst: number;
-        drunkenness: number;
-  };
-    girlFriend: {
-        name: string;
-        hunger: number;
-        thirst: number;
-        drunkenness: number;
-  };
+    player:Person
+    girlFriend:Person
 };
 
 const HUD: React.FC<HUDProps> = ({ tickets, relationshipValue, player, girlFriend }) => {

@@ -4,6 +4,7 @@ import {type UserData } from './Types/UserDataType';
 import { Outlet } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { isDeepEqual } from './Helpers/generalHelper';
+import type { Person } from './Types/GameType';
 
 
 const RootLayout = () => {
@@ -13,6 +14,7 @@ const RootLayout = () => {
 
   
   const intitialData: UserData = {
+
     ticketsAmount: 5000,
     relationshipStamina: 85,
     //currentPage: null, BUDEME UKLÁDÁT SPÍŠ POZICI HRÁČE NA X, ALE ZATIM DELAM ZE TO NEVIDIM
@@ -43,11 +45,12 @@ const RootLayout = () => {
 
 
   const [tickets, setTickets] = useState<number>(userData.ticketsAmount);
-  const [relationshipValue, setRelationshipValue] = useState(userData.relationshipStamina);
-  const [player, setPlayer] = useState(userData.player);
-  const [girlfriend, setGirlfriend] = useState(userData.girlFriend);
+  const [relationshipValue, setRelationshipValue] = useState<number>(userData.relationshipStamina);
+  const [player, setPlayer] = useState<Person>(userData.player);
+  const [girlfriend, setGirlfriend] = useState<Person>(userData.girlFriend);
   //takhle se to pak pouziva
   //setGirlFriend(prev => ({ ...prev, name: "Pavla" }));
+
 
 
   useEffect(() => {
@@ -70,6 +73,14 @@ const RootLayout = () => {
     });
   }, [tickets, relationshipValue, userData, player, girlfriend]);//ulozi do local storage kdyz se zmeni hodnota
 
+
+        console.log
+        ("HUD DATA", {
+        tickets,
+        relationshipValue,
+        player,
+        girlfriend
+        });
 
   return (
     <div className="game-root">
