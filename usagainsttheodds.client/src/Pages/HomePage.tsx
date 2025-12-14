@@ -88,6 +88,16 @@ const HomePage = () => {
             </div>
           </div>
 
+          <div style={{fontSize: "2em", color: "red", marginTop: "1em"}}>
+            <h2 style={{margin: ".1em"}}>TODO</h2>
+            <p style={{margin: ".1em"}}>-menu</p>
+            <p style={{margin: ".1em"}}>-intropage</p>
+            <p style={{margin: ".1em"}}>-jídelní stanky</p>
+            <p style={{margin: ".1em"}}>-zvuky</p>
+            <p style={{margin: ".1em"}}>-udelat pro Outlet vlastni hook (at se to za jednoduseji pouzivat)</p>
+            <p style={{margin: ".1em"}}>-predelat ten HUD nejak (nemyslim že se takhle ma delat, hlavne at mizi ve hrach)</p>
+          </div>
+
           <Apitest />
 
           {/* zatim jen na vymazani cookies */}

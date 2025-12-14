@@ -101,7 +101,7 @@ const RootLayout = () => {
 
 
     ---braní dat např. v mnihrách se dělá takto:
-    const { tickets } = useOutletContext<{                 //Z TOHODLE MUZEME UDELAT VLASTNI HOOK AT TO MUZEME LEPE POUZIVAT
+    const { tickets } = useOutletContext<{
       tickets: number;
     }>();
     */

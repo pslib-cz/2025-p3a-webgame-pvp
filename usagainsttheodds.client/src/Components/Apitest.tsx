@@ -17,7 +17,7 @@ const Apitest = () => {
 
   const ApiContent = () => {
     const data = use(promise || Promise.reject("No promise set"));
-    return <pre>{JSON.stringify(data, null, 2)}</pre>;
+    return <pre style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}>{JSON.stringify(data, null, 2)}</pre>;
   };
 
   const ErrorFallback = ({ error }: { error: Error }) => (
