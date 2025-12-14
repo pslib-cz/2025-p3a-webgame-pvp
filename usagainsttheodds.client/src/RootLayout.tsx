@@ -3,7 +3,6 @@ import { Outlet } from "react-router-dom";
 import { type UserData } from "./Types/UserDataType";
 import { isDeepEqual } from "./Helpers/generalHelper";
 import { useNavigate } from 'react-router-dom';
-import { isDeepEqual } from './Helpers/generalHelper';
 import type { Person } from './Types/GameType';
 
 
@@ -32,42 +31,6 @@ const RootLayout = () => {
   const [userName, setUserName] = useState<string>("John");
   const navigate = useNavigate();
 
-  
-  const intitialData: UserData = {
-
-    ticketsAmount: 5000,
-    relationshipStamina: 85,
-    //currentPage: null, BUDEME UKLÁDÁT SPÍŠ POZICI HRÁČE NA X, ALE ZATIM DELAM ZE TO NEVIDIM
-    boughtBloon: false,
-    boughtFlower: false,
-    lastDrink: null,
-    lastFood: null,
-    player: {
-      name: userName,
-      hunger: 50,
-      thirst: 50,
-      drunkenness: 10
-    },
-    girlFriend: {
-      name: "Anastasia",
-      hunger: 50,
-      thirst: 50,
-      drunkenness: 10
-    }
-  }
-
-
-    const [userData, setUserData] = useState<UserData>(() => {
-        const stored = localStorage.getItem("UserData");
-        return stored ? JSON.parse(stored) : intitialData;
-    });
-
-    const [tickets, setTickets] = useState(userData.ticketsAmount);
-    const [relationshipValue, setRelationshipValue] = useState(
-        userData.relationshipStamina
-    );
-    const [player, setPlayer] = useState(userData.player);
-    const [girlfriend, setGirlfriend] = useState(userData.girlFriend);
   const [userData, setUserData] = useState<UserData>(() => {
 
       const stored = localStorage.getItem("UserData");
@@ -98,16 +61,7 @@ const RootLayout = () => {
         setUserData((prev) =>
             isDeepEqual(prev, updated) ? prev : updated
         );
-    }, [tickets, relationshipValue, player, girlfriend]);
-    setUserData(prev => {
-      if (
-        isDeepEqual(prev, updated)//porovná všechny hodnoty
-      ) {
-        return prev; // nic se nezměnilo
-      }
-      return updated;
-    });
-  }, [tickets, relationshipValue, userData, player, girlfriend]);//ulozi do local storage kdyz se zmeni hodnota
+    }, [tickets, relationshipValue, player, girlfriend]);//ulozi do local storage kdyz se zmeni hodnota
 
 
         console.log
