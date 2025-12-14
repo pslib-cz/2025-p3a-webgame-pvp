@@ -20,7 +20,7 @@ const ChangeScreenButton: FC<ChangeScreenButtonProps> = ({ to, text, onClick }) 
   };
 
   return (
-    <button onClick={handleClick}>
+    <button className="button" onClick={handleClick}>
       {text}
     </button>
   );

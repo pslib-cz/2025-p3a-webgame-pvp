@@ -28,14 +28,18 @@ const HomePage = () => {
           <PauseMenu onClose={() => setIsOpen(false)}/>
         )}
 
-          <div>
-            <button className="button" onClick={() => navigate("/blackjack")}>
-                Blackjack
-            </button>
-            <button className="button" onClick={() => navigate("/testminigame")}>
-                Test Minigame
-            </button>
-          </div>
+        <div>
+          <button className="button" onClick={() => navigate("/blackjack")}>
+              Blackjack
+          </button>
+          <button className="button" onClick={() => navigate("/testminigame")}>
+              Test Minigame
+          </button>
+          <button className="button" onClick={() => navigate("/foodbar")}>
+              Food bar
+          </button>
+        </div>
+
           
       {/*
           <div>
@@ -95,11 +99,6 @@ const HomePage = () => {
             </div>
           </div>
 
-          <div style={{fontSize: "2em", color: "red", marginTop: "1em"}}>
-            <h2 style={{margin: ".1em"}}>TODO</h2>
-            <p style={{margin: ".1em"}}>-intropage</p>
-            <p style={{margin: ".1em"}}>-jídelní stanky</p>
-          </div>
 
           <Apitest />
 

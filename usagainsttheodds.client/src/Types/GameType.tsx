@@ -7,15 +7,31 @@ export type GameResult = "win" | "lose" | "draw" | null;
 export type GameState = "intro" | "playing" | "ended";
 
 export type GameData = {
-    id: string;
+    minigameId: string;
     name: string;
     description: string;
     price: number;
     difficulty: number;
 }
 
-export type Food = "hotdog" | "burger" | "pizza" | "salad" | "langos" | "goulash" | "cottoncandy" | null;
-export type Drink = "water" | "soda" | "beer" | "wine" | "palinka" | "fruitsmoothie" | "gintonic" | "pepermintliqueur" | "eggnog" | "slushy" | null;
+
+export type FoodData = {
+    foodId: string;
+    name: string;
+    description: string;
+    price: number;
+    restoreValue: number;
+}
+
+export type DrinkData = {
+    drinkId: string;
+    name: string;
+    description: string;
+    price: number;
+    restoreValue: number;
+    isAlcoholic: boolean;
+    alcoholContent: number;
+}
 
 export type Person = {
     name: string,

@@ -9,7 +9,7 @@ import { useGameSounds } from "./Hooks/useGameSounds";
 
 const RootLayout = () => {
     const intitialData: UserData = {
-        ticketsAmount: 50,
+        ticketsAmount: 5000,
         relationshipStamina: 85,
         boughtBloon: false,
         boughtFlower: false,

@@ -8,6 +8,7 @@ import MainLayout from './MainLayout.tsx';
 import HomePage from './Pages/HomePage.tsx';
 import ErrorPage from './Pages/ErrorPage.tsx';
 import MinigameContainer from './Components/Minigame/MinigameContainer.tsx';
+import FoodBar from './Pages/FoodBar.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -20,8 +21,10 @@ createRoot(document.getElementById('root')!).render(
           <Route index element={<HomePage />} />
         </Route>
 
+          <Route path="foodbar" element={<FoodBar />} />
+
           {/* minihry */}
-          <Route path="blackjack" element={<MinigameContainer id='blackjack' exitPage="/" />} />
+          <Route path="blackjack" element={<MinigameContainer id='blackjack' exitPage="/" />} />{/*ten exit bych ulozil do databaze*/}
           <Route path="russianroulette" element={<MinigameContainer id='russianroulette' exitPage="/" />} />
           <Route path="testminigame" element={<MinigameContainer id='test' exitPage="/" />} />
 
