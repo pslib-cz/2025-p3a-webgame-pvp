@@ -1,7 +1,8 @@
 import PlayingCard from '../Components/Cards/PlayingCard';
 import Apitest from '../Components/Apitest';
 import { useNavigate } from 'react-router-dom';
-import { useOwnOutlet } from '../hooks/useOwnOutlet'
+import { useOwnOutlet } from '../Hooks/useOwnOutlet'
+import { useGameSounds } from '../Hooks/useGameSounds';
 
 const HomePage = () => {
 
@@ -9,6 +10,8 @@ const HomePage = () => {
         useOwnOutlet();
 
     const navigate = useNavigate();
+
+    const { play, stop, isMusicMuted, setIsMusicMuted, isSfxMuted, setIsSfxMuted } = useGameSounds();
 
     return (
         <div>
@@ -66,13 +69,23 @@ const HomePage = () => {
           </div>
           */}
 
+          <div style={{marginTop: "1em"}}>
+            <div>
+              <button onClick={() => play("bgMusic")}>Play Music</button>
+              <button onClick={() => stop("bgMusic")}>Stop Music</button>
+              <button onClick={() => play("chop")}>Play SFX</button>
+            </div>
+            <div>
+              <button onClick={() => setIsMusicMuted(prev => !prev)}>{isMusicMuted ? "Unmute Music" : "Mute Music"}</button>
+              <button onClick={() => setIsSfxMuted(prev => !prev)}>{isSfxMuted ? "Unmute SFX" : "Mute SFX"}</button>
+            </div>
+          </div>
+
           <div style={{fontSize: "2em", color: "red", marginTop: "1em"}}>
             <h2 style={{margin: ".1em"}}>TODO</h2>
             <p style={{margin: ".1em"}}>-menu</p>
             <p style={{margin: ".1em"}}>-intropage</p>
             <p style={{margin: ".1em"}}>-jídelní stanky</p>
-            <p style={{margin: ".1em"}}>-zvuky</p>
-            <p style={{margin: ".1em"}}>-udelat pro Outlet vlastni hook (at se to za jednoduseji pouzivat)</p>
             <p style={{margin: ".1em"}}>-predelat ten HUD nejak (nemyslim že se takhle ma delat, hlavne at mizi ve hrach)</p>
           </div>
 

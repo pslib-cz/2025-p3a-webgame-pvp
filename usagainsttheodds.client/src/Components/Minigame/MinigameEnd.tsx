@@ -1,15 +1,13 @@
 import ChangeScreenButton from "../ChangeScreenButton"
 import { useMinigame } from "../../Hooks/useMinigame"
-import { useOutletContext } from "react-router-dom";
+import { useOwnOutlet } from "../../Hooks/useOwnOutlet";
 
 
 
 const MinigameEnd = ({ }) => {
     const { reward, exitPagePath, result } = useMinigame();
 
-    const { setTickets } = useOutletContext<{
-        setTickets: React.Dispatch<React.SetStateAction<number>>;
-    }>();
+    const { setTickets } = useOwnOutlet();
 
 
     const handleEnd = () => {

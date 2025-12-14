@@ -1,6 +1,6 @@
-import { useOutletContext } from "react-router-dom";
 import { useMinigame } from "../../Hooks/useMinigame"
 import ChangeScreenButton from "../ChangeScreenButton"
+import { useOwnOutlet } from "../../Hooks/useOwnOutlet";
 
 
 
@@ -9,10 +9,7 @@ const MinigameInfo = ({ }) => {
 
     const { exitPagePath, playGame, data } = useMinigame();
 
-    const { setTickets, tickets } = useOutletContext<{
-        setTickets: React.Dispatch<React.SetStateAction<number>>;
-        tickets: number;
-    }>();
+    const { setTickets, tickets } = useOwnOutlet();
 
     const handlePlay = () => {
         if (data!.price > tickets) {

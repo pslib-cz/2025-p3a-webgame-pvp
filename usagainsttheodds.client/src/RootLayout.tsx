@@ -96,9 +96,10 @@ const RootLayout = () => {
 
 
     ---braní dat např. v mnihrách se dělá takto:
-    const { tickets } = useOutletContext<{
-      tickets: number;
-    }>();
+    const { tickets } = useOwnOutlet();
+    ---pokud chci měnit data takto:
+    const { setTickets } = useOwnOutlet();
+    setTickets(prev => prev - 100);
     */
     );
 };
