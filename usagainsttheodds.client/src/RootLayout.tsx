@@ -1,82 +1,75 @@
-import { useState, useEffect } from 'react';
-import HUD from './Components/HUD/HUD';
-import {type UserData } from './Types/UserDataType';
+import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
-import { isDeepEqual } from './Helpers/generalHelper';
-
+import { type UserData } from "./Types/UserDataType";
+import { isDeepEqual } from "./Helpers/generalHelper";
 
 const RootLayout = () => {
-
-  const [userName, setUserName] = useState<string>("John");
-  const navigate = useNavigate();
-
-  
-  const intitialData: UserData = {
-    ticketsAmount: 5000,
-    relationshipStamina: 85,
-    //currentPage: null, BUDEME UKLÁDÁT SPÍŠ POZICI HRÁČE NA X, ALE ZATIM DELAM ZE TO NEVIDIM
-    boughtBloon: false,
-    boughtFlower: false,
-    lastDrink: null,
-    lastFood: null,
-    player: {
-      name: userName,
-      hunger: 50,
-      thirst: 50,
-      drunkenness: 10
-    },
-    girlFriend: {
-      name: "Anastasia",
-      hunger: 50,
-      thirst: 50,
-      drunkenness: 10
-    }
-  }
-
-
-  const [userData, setUserData] = useState<UserData>(() => {
-
-      const stored = localStorage.getItem("UserData");
-      return stored ? JSON.parse(stored) : intitialData;  // Return saved data
-  });//taha data z local storage jinak hodi initial value
-
-
-  const [tickets, setTickets] = useState<number>(userData.ticketsAmount);
-  const [relationshipValue, setRelationshipValue] = useState(userData.relationshipStamina);
-  const [player, setPlayer] = useState(userData.player);
-  const [girlfriend, setGirlfriend] = useState(userData.girlFriend);
-  //takhle se to pak pouziva
-  //setGirlFriend(prev => ({ ...prev, name: "Pavla" }));
-
-
-  useEffect(() => {
-    const updated = {
-      ...userData,
-      ticketsAmount: tickets,
-      relationshipStamina: relationshipValue,
-      player: player,
-      girlFriend: girlfriend
+    const intitialData: UserData = {
+        ticketsAmount: 5000,
+        relationshipStamina: 85,
+        boughtBloon: false,
+        boughtFlower: false,
+        lastDrink: null,
+        lastFood: null,
+        player: {
+            name: "John",
+            hunger: 50,
+            thirst: 50,
+            drunkenness: 10,
+        },
+        girlFriend: {
+            name: "Anastasia",
+            hunger: 50,
+            thirst: 50,
+            drunkenness: 10,
+        },
     };
-    localStorage.setItem("UserData", JSON.stringify(updated));
 
-    setUserData(prev => {
-      if (
-        isDeepEqual(prev, updated)//porovná všechny hodnoty
-      ) {
-        return prev; // nic se nezměnilo
-      }
-      return updated;
+    const [userData, setUserData] = useState<UserData>(() => {
+        const stored = localStorage.getItem("UserData");
+        return stored ? JSON.parse(stored) : intitialData;
     });
-  }, [tickets, relationshipValue, userData, player, girlfriend]);//ulozi do local storage kdyz se zmeni hodnota
 
+    const [tickets, setTickets] = useState(userData.ticketsAmount);
+    const [relationshipValue, setRelationshipValue] = useState(
+        userData.relationshipStamina
+    );
+    const [player, setPlayer] = useState(userData.player);
+    const [girlfriend, setGirlfriend] = useState(userData.girlFriend);
 
-  return (
-    <div className="game-root">
-      <Outlet/>
-    </div>
+    useEffect(() => {
+        const updated = {
+            ...userData,
+            ticketsAmount: tickets,
+            relationshipStamina: relationshipValue,
+            player,
+            girlFriend: girlfriend,
+        };
 
-/*
+        localStorage.setItem("UserData", JSON.stringify(updated));
+
+        setUserData((prev) =>
+            isDeepEqual(prev, updated) ? prev : updated
+        );
+    }, [tickets, relationshipValue, player, girlfriend]);
+
+    return (
+        <div className="game-root">
+            <Outlet
+                context={{
+                    tickets,
+                    setTickets,
+                    relationshipValue,
+                    setRelationshipValue,
+                    player,
+                    setPlayer,
+                    girlFriend: girlfriend,
+                    setGirlFriend: setGirlfriend,
+                }}
+            />
+        </div>
+
+        /*
   ---pro preklikavani page
     <button className="building" onClick={() => navigate("/blackjack")}>
       Blackjack
@@ -88,10 +81,7 @@ const RootLayout = () => {
       tickets: number;
     }>();
     */
-     
-
-  );
-  
-}
+    );
+};
 
 export default RootLayout;

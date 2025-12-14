@@ -1,22 +1,23 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useOutletContext } from "react-router-dom";
 import HUD from "./Components/HUD/HUD";
-import { useOutletContext } from "react-router-dom";
 
 const MainLayout = () => {
-  const { tickets, relationshipValue, player, girlFriend } =
-    useOutletContext<any>();
+    const context = useOutletContext<any>();
 
-  return (
-    <>
-      <HUD
-        tickets={tickets}
-        relationshipValue={relationshipValue}
-        player={player}
-        girlFriend={girlFriend}
-      />
-      <Outlet />
-    </>
-  );
+    const { tickets, relationshipValue, player, girlFriend } = context;
+
+    return (
+        <>
+            <HUD
+                tickets={tickets}
+                relationshipValue={relationshipValue}
+                player={player}
+                girlFriend={girlFriend}
+            />
+
+            <Outlet context={context} />
+        </>
+    );
 };
 
 export default MainLayout;
