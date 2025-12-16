@@ -16,6 +16,7 @@ namespace UsAgainstTheOdds.Server.Controllers
             _context = context;
         }
 
+        //https://localhost:7222/api/consumables
         [HttpGet]
         public async Task<ActionResult<List<Consumable>>> GetConsumables()
         {
@@ -23,6 +24,8 @@ namespace UsAgainstTheOdds.Server.Controllers
             return Ok(Consumables);
         }
 
+
+        //https://localhost:7222/api/consumables/{id}
         [HttpGet("{id}")]
         public async Task<ActionResult<Consumable>> GetConsumable(string id)
         {
@@ -36,6 +39,21 @@ namespace UsAgainstTheOdds.Server.Controllers
             }
 
             return Ok(Consumable);
+        }
+
+
+        //https://localhost:7222/api/consumables/type/{type}
+        [HttpGet("type/{type}")]
+        public async Task<ActionResult<List<Consumable>>> GetConsumablesByType(Consumable.ConsumableType type)
+        {
+            if (!Enum.IsDefined(typeof(Consumable.ConsumableType), type))
+            {
+                return BadRequest("Invalid consumable type.");
+            }
+            var consumables = await _context.Consumables
+                .Where(c=> c.Type == type).ToListAsync();
+
+            return Ok(consumables);
         }
     }
 }

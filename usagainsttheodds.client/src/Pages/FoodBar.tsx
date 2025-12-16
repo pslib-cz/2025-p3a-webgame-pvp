@@ -1,7 +1,7 @@
 import ChangeScreenButton from "../Components/ChangeScreenButton"
 import { use, useEffect, useState } from "react";
 import type { DrinkData, FoodData } from "../Types/GameType";
-import { useOwnOutlet } from "../hooks/useOwnOutlet";
+import { useOwnOutlet } from "../Hooks/useOwnOutlet";
 
 
 
