@@ -1,9 +1,9 @@
 import PlayingCard from '../Components/Cards/PlayingCard';
 import Apitest from '../Components/Apitest';
 import { useNavigate } from 'react-router-dom';
-import { useOwnOutlet } from '../Hooks/useOwnOutlet'
+import { useOwnOutlet } from '../hooks/useOwnOutlet'
 import PauseMenu from '../Components/PauseMenu';
-import { useGameSounds } from '../Hooks/useGameSounds';
+import { useGameSounds } from '../hooks/useGameSounds';
 
 const HomePage = () => {
 

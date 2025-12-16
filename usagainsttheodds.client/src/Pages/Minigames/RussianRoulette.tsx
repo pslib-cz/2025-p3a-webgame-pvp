@@ -1,14 +1,11 @@
 import { useState } from "react";
-import type { Screen, GameResult } from "../../Types/GameType"
+import type { GameResult } from "../../Types/GameType"
 import rH from "../../Helpers/randomGeneratorHelper";
+import { useRef, useEffect } from "react";
+import { useMinigame } from "../../hooks/useMinigame";
 
 
-type RussianrouletteProps = {
-    setCurrentScreen: (screen: Screen) => void;   // funkce na přepnutí screenů
-    Tickets: (x: number) => void;                 // funkce na přidání/odebrání tiketů
-}
-
-const Russianroulette: React.FC<RussianrouletteProps> = ({ setCurrentScreen, Tickets }) => {
+const Russianroulette = () => {
 
     const winTickets: number = 50;  // kolik tiketů získáš při výhře
 
@@ -21,15 +18,24 @@ const Russianroulette: React.FC<RussianrouletteProps> = ({ setCurrentScreen, Tic
     // pozice náboje, kterou zvolil hráč
     const [bulletPosition, setBulletPosition] = useState<number | null>(null);
 
-    // výsledek hry — výhra / prohra / null
-    const [result, setResult] = useState<GameResult>(null);
+    const { endGame, setResult, setRewardMultiplier } = useMinigame();
 
 
+
+
+
+
+
+
+
+    
     // 🔄 Funkce která náhodně nastaví pozici bubínku (1–6)
     const handleSpin = () => {
         setBarrelPosition(rH.generate(1, 6));  // dá random číslo 1–6
         console.log(barrelPosition);          // POZOR: ukazuje starou hodnotu — React stav se updateuje async
     }
+
+
 
     // 💥 Funkce, která zkontroluje jestli hráč trefil náboj
     const handleShoot = () => {
@@ -38,7 +44,6 @@ const Russianroulette: React.FC<RussianrouletteProps> = ({ setCurrentScreen, Tic
         // pokud se pozice bubínku a náboje shoduje = boom = výhra
         if (barrelPosition === bulletPosition) {
             setResult("win");
-            Tickets(winTickets);     // připíše tikety za výhru
         } else {
             setResult("lose");       // když se neshoduje = hráč přežil = prohra
         }
@@ -46,90 +51,13 @@ const Russianroulette: React.FC<RussianrouletteProps> = ({ setCurrentScreen, Tic
 
 
 
-    // 🎮 Tahle funkce na základě stavu hry renderuje správné tlačítko/obsah
-    const roulette = (endGame: () => void) => {
-
-        switch (gameState) {
-
-            // 🟢 Start hry — hráč vytáhne bubínek
-            case "idle":
-                return <button onClick={() => setGameState("barrelOut")}>Take out the barrel</button>;
-
-            // 🔧 Hráč volí do kterého slotu dá náboj
-            case "barrelOut":
-                return (
-                    <div className="barrel--empty">
-
-                        {[1, 2, 3, 4, 5, 6].map((num) => (
-
-                            <button
-                                key={num}
-                                onClick={() => {
-                                    setBulletPosition(num);     // dá náboj do pozice
-                                    setGameState("barrelIn");   // pokračuje dál
-                                }}
-                                className={bulletPosition === num ? "selected" : ""}
-                            >
-                                {num}
-                            </button>
-
-                        ))}
-
-                    </div>
-                )
-
-            // 🔄 Natočí bubínek
-            case "barrelIn":
-                return <button
-                    onClick={() => {
-                        handleSpin();          // random natočení
-                        setGameState("spun");  // další fáze
-                    }}
-                >
-                    Spin the barrel
-                </button>;
-
-            // 🔫 Stisk spouště
-            case "spun":
-                return <button
-                    onClick={() => {
-                        handleShoot();         // zkontroluje výsledek
-                        setGameState("shot");  // jde na konec hry
-                    }}
-                >
-                    Shoot
-                </button>;
-
-            // 🏁 Konec hry — tlačítko na návrat zpět
-            case "shot":
-                return <button onClick={() => endGame()}>End</button>;
-
-            default:
-                return null;
-        }
-
-    }
-
 
 
     // 📦 Obalovač minihry — generuje UI kolem hry (layout, styl, atd.)
     return (
-        <MiniGamePreset
-            Tickets={Tickets}
-            Result={result}
-            setCurrentScreen={setCurrentScreen}
-            GameName="Russian roulette"
-            GameInfo="A dangerous game of chance."
-        >
-            {/* MiniGamePreset poskytuje endGame callback */}
-            {({ endGame }) => (
-                <div>
-                    <div className="button--continue">
-                        {roulette(endGame)}   {/* vykreslí aktuální fázi hry */}
-                    </div>
-                </div>
-            )}
-        </MiniGamePreset>
+        <>
+
+        </>
     )
 }
 

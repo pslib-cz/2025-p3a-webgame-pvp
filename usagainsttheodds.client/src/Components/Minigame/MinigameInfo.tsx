@@ -1,6 +1,6 @@
-import { useMinigame } from "../../Hooks/useMinigame"
+import { useMinigame } from "../../hooks/useMinigame"
 import ChangeScreenButton from "../ChangeScreenButton"
-import { useOwnOutlet } from "../../Hooks/useOwnOutlet";
+import { useOwnOutlet } from "../../hooks/useOwnOutlet";
 
 
 

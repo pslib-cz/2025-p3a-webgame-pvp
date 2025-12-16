@@ -1,6 +1,6 @@
 import React, { useState, useEffect, type PropsWithChildren, createContext, use } from "react";
 import type { GameData, GameResult, GameState } from "../Types/GameType";
-import { useOwnOutlet } from "../Hooks/useOwnOutlet";
+import { useOwnOutlet } from "../hooks/useOwnOutlet";
 
 
 type MinigameContextType = {

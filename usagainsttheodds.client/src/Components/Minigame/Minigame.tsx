@@ -1,4 +1,4 @@
-import { useMinigame } from "../../Hooks/useMinigame";
+import { useMinigame } from "../../hooks/useMinigame";
 import Blackjack from "../../Pages/Minigames/Blackjack";
 import TestMinigame from "../../Pages/Minigames/TestMinigame";
 import MinigameEnd from "./MinigameEnd";
