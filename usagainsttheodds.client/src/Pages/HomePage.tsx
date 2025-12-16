@@ -1,9 +1,10 @@
 import PlayingCard from '../Components/Cards/PlayingCard';
 import Apitest from '../Components/Apitest';
 import { useNavigate } from 'react-router-dom';
-import { useOwnOutlet } from '../hooks/useOwnOutlet'
+import { useOwnOutlet } from '../Hooks/useOwnOutlet'
 import PauseMenu from '../Components/PauseMenu';
 import { useGameSounds } from '../hooks/useGameSounds';
+import Russianroulette from './Minigames/RussianRoulette';
 
 const HomePage = () => {
 
@@ -35,12 +36,19 @@ const HomePage = () => {
           <button className="button" onClick={() => navigate("/testminigame")}>
               Test Minigame
           </button>
+          <button className="button" onClick={() => navigate("/russianroulette")}>
+              ruska rul
+          </button>
           <button className="button" onClick={() => navigate("/foodbar")}>
               Food bar
           </button>
+          <Russianroulette/>
         </div>
 
+
           
+
+
       {/*
           <div>
             <div>

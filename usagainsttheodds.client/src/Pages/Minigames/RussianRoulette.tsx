@@ -2,8 +2,8 @@ import { useState } from "react";
 import type { GameResult } from "../../Types/GameType"
 import rH from "../../Helpers/randomGeneratorHelper";
 import { useRef, useEffect } from "react";
-import { useMinigame } from "../../hooks/useMinigame";
-
+import { useMinigame } from "../../Hooks/useMinigame";
+import Gun from "../../Components/Gun/Gun";
 
 const Russianroulette = () => {
 
@@ -17,8 +17,11 @@ const Russianroulette = () => {
 
     // pozice náboje, kterou zvolil hráč
     const [bulletPosition, setBulletPosition] = useState<number | null>(null);
-
+/*
     const { endGame, setResult, setRewardMultiplier } = useMinigame();
+    setRewardMultiplier(5);
+
+*/
 
 
 
@@ -27,15 +30,13 @@ const Russianroulette = () => {
 
 
 
-
-    
     // 🔄 Funkce která náhodně nastaví pozici bubínku (1–6)
     const handleSpin = () => {
         setBarrelPosition(rH.generate(1, 6));  // dá random číslo 1–6
         console.log(barrelPosition);          // POZOR: ukazuje starou hodnotu — React stav se updateuje async
     }
 
-
+/*
 
     // 💥 Funkce, která zkontroluje jestli hráč trefil náboj
     const handleShoot = () => {
@@ -50,13 +51,13 @@ const Russianroulette = () => {
     }
 
 
-
+*/
 
 
     // 📦 Obalovač minihry — generuje UI kolem hry (layout, styl, atd.)
     return (
         <>
-
+            <Gun/>
         </>
     )
 }

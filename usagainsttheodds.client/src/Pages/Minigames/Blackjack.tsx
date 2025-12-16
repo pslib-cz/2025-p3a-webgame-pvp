@@ -4,7 +4,7 @@ import type { Deck, Hand } from "../../Types/PlayingCardType";
 import { useRef, useEffect } from "react";
 import CardHand from "../../Components/Cards/CardHand";
 import type { GameResult } from "../../Types/GameType";
-import { useMinigame } from "../../hooks/useMinigame";
+import { useMinigame } from "../../Hooks/useMinigame";
 
 
 
@@ -70,7 +70,7 @@ const Blackjack = () => {
 
 
 
-    
+
     const reset = () => {
         setResult(null);
         setDealerHand([])

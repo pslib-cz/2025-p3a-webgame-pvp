@@ -1,0 +1,25 @@
+.pos1{
+
+}
+.pos2{
+
+}
+.pos3{
+
+}
+.pos4{
+
+}
+.pos5{
+
+}
+.pos6{
+
+}
+.bullet{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #3D3D3D;
+    border-radius: 50%;
+}

@@ -27,7 +27,6 @@ createRoot(document.getElementById('root')!).render(
           <Route path="blackjack" element={<MinigameContainer id='blackjack' exitPage="/" />} />{/*ten exit bych ulozil do databaze*/}
           <Route path="russianroulette" element={<MinigameContainer id='russianroulette' exitPage="/" />} />
           <Route path="testminigame" element={<MinigameContainer id='test' exitPage="/" />} />
-
           {/* 404 */}
           <Route path="*" element={<NotFoundPage />} />
         </Route>

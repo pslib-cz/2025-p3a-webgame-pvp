@@ -1,6 +1,7 @@
-import { useMinigame } from "../../hooks/useMinigame";
+import { useMinigame } from "../../Hooks/useMinigame";
 import Blackjack from "../../Pages/Minigames/Blackjack";
 import TestMinigame from "../../Pages/Minigames/TestMinigame";
+import Russianroulette from "../../Pages/Minigames/RussianRoulette";
 import MinigameEnd from "./MinigameEnd";
 import MinigameInfo from "./MinigameInfo";
 
@@ -21,7 +22,7 @@ const Minigame: React.FC<MinigameProps> = ({ id }) => {
             case "blackjack":
                 return <Blackjack />;
             case "russianroulette":
-                return "<Russianroulette />";
+                return <Russianroulette />;
             case "test":
                 return <TestMinigame />;
             default:
