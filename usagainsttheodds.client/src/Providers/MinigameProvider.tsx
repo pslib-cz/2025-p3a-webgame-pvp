@@ -1,6 +1,6 @@
 import React, { useState, useEffect, type PropsWithChildren, createContext, use } from "react";
 import type { GameData, GameResult, GameState } from "../Types/GameType";
-import { useOwnOutlet } from "../hooks/useOwnOutlet";
+import { useOwnOutlet } from "../Hooks/useOwnOutlet";
 
 
 type MinigameContextType = {
@@ -51,18 +51,26 @@ export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>
     }, [rewardMultiplier, data, result]);
 
     const handleMinigameEnd = () => {
+
+        const pHungerMultiplier = 5;
+        const pThirstMultiplier = 7;
+        const pDrunkennessMultiplier = 2;
+        const gHungerMultiplier = 4;
+        const gThirstMultiplier = 5;
+        const gDrunkennessMultiplier = 1;
+
         console.log("handleMinigameEnd called");
         setTickets(prev => prev + reward);
         setPlayer(prev => ({
             ...prev,
-            hunger: ((prev.hunger - (data!.difficulty*5)) >= 0 ? (prev.hunger - (data!.difficulty*5)) : 0),
-            thirst: ((prev.thirst - (data!.difficulty*7)) >= 0 ? (prev.thirst - (data!.difficulty*7)) : 0),
-            drunkenness: ((prev.drunkenness - (data!.difficulty*2)) >= 0 ? (prev.drunkenness - (data!.difficulty*2)) : 0),
+            hunger: ((prev.hunger - (data!.difficulty*pHungerMultiplier)) >= 0 ? (prev.hunger - (data!.difficulty*pHungerMultiplier)) : 0),
+            thirst: ((prev.thirst - (data!.difficulty*pThirstMultiplier)) >= 0 ? (prev.thirst - (data!.difficulty*pThirstMultiplier)) : 0),
+            drunkenness: ((prev.drunkenness - (data!.difficulty*pDrunkennessMultiplier)) >= 0 ? (prev.drunkenness - (data!.difficulty*pDrunkennessMultiplier)) : 0),
         }))
         setGirlfriend(prev => ({
-            hunger: ((prev.hunger - (data!.difficulty*4)) >= 0 ? (prev.hunger - (data!.difficulty*4)) : 0),
-            thirst: ((prev.thirst - (data!.difficulty*5)) >= 0 ? (prev.thirst - (data!.difficulty*5)) : 0),
-            drunkenness: ((prev.drunkenness - (data!.difficulty*1)) >= 0 ? (prev.drunkenness - (data!.difficulty*1)) : 0),
+            hunger: ((prev.hunger - (data!.difficulty*gHungerMultiplier)) >= 0 ? (prev.hunger - (data!.difficulty*gHungerMultiplier)) : 0),
+            thirst: ((prev.thirst - (data!.difficulty*gThirstMultiplier)) >= 0 ? (prev.thirst - (data!.difficulty*gThirstMultiplier)) : 0),
+            drunkenness: ((prev.drunkenness - (data!.difficulty*gDrunkennessMultiplier)) >= 0 ? (prev.drunkenness - (data!.difficulty*gDrunkennessMultiplier)) : 0),
         }))
     }
 

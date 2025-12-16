@@ -1,6 +1,6 @@
 import ChangeScreenButton from "../Components/ChangeScreenButton"
 import { use, useEffect, useState } from "react";
-import type { DrinkData, FoodData } from "../Types/GameType";
+import type { Consumable } from "../Types/GameType";
 import { useOwnOutlet } from "../Hooks/useOwnOutlet";
 
 
@@ -9,99 +9,65 @@ const FoodBar = () => {
 
     const { player, setPlayer, girlfriend, setGirlfriend, tickets, setTickets } = useOwnOutlet();
 
-    const [foodPromise, setFoodPromise] = useState<Promise<FoodData[]> | null>(null);
-    const [drinkPromise, setDrinkPromise] = useState<Promise<DrinkData[]> | null>(null);
+    const [promise, setPromise] = useState<Promise<Consumable[]> | null>(null);
 
-    const fetchFood = () => {
-        console.log("Fetching food data");
-        return fetch(`https://localhost:7222/api/foods/`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            });
+    
+    
+    
+    const fetchConsumables = () => {
+        console.log("Fetching consumables data");
+        return fetch(`/api/consumables/`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        });
     }
-
-
-    const fetchDrink = () => {
-        console.log("Fetching drink data");
-        return fetch(`https://localhost:7222/api/drinks/`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            });
-    }
-
-
+    
+    
     //load data from api
     useEffect(() => {
-        setFoodPromise(fetchFood());
-        setDrinkPromise(fetchDrink());
+        setPromise(fetchConsumables());
     }, []);
-
-    if (!foodPromise || !drinkPromise) {
+    
+    if (!promise) {
         return <div>Initializing request...</div>;
     }
 
-    const foodData = use(foodPromise);
-    const drinkData = use(drinkPromise);
+    const data = use(promise);
+    
+    const handleBuy = (itemId: string) => {
 
-    const handleBuy = (itemType: "food" | "drink", itemId: string) => {
+        const item = data.find(i => i.consumableId === itemId);
+        if (!item) {
+            console.error("Item not found");
+            return;
+        }
 
+        if (tickets < item.price) {
+            alert("Not enough tickets!");
+            return;
+        }
 
-        if (itemType === "food") {
-
-
-            const foodItem = foodData.find(item => item.foodId === itemId);
-
-            if (foodItem && tickets >= foodItem.price) {
-                setTickets(prev => prev - foodItem.price);
-                setPlayer({
-                    ...player,
-                    hunger: Math.min(player.hunger + foodItem.restoreValue, 100)
-                });
-                setGirlfriend({
-                    ...girlfriend,
-                    hunger: Math.min(girlfriend.hunger + foodItem.restoreValue, 100)
-                });
-                console.log(`Bought food item: ${foodItem.name}`);
-                console.log(`Player hunger: ${player.hunger}, Girlfriend hunger: ${girlfriend.hunger}, Tickets left: ${tickets - foodItem.price}`);
-            } else alert("Not enough tickets to buy this item!");
-
-        } else if (itemType === "drink") {
-
-
-            const drinkItem = drinkData.find(item => item.drinkId === itemId);
-
-            if (drinkItem && tickets >= drinkItem.price) {
-                setTickets(prev => prev - drinkItem.price);
-                setPlayer({
-                    ...player,
-                    thirst: Math.min(player.thirst + drinkItem.restoreValue, 100),
-                    drunkenness: drinkItem.isAlcoholic ? Math.min(player.drunkenness + drinkItem.alcoholContent, 100) : player.drunkenness
-                });
-                setGirlfriend({
-                    ...girlfriend,
-                    thirst: Math.min(girlfriend.thirst + drinkItem.restoreValue, 100),
-                    drunkenness: drinkItem.isAlcoholic ? Math.min(girlfriend.drunkenness + drinkItem.alcoholContent, 100) : girlfriend.drunkenness
-                });
-                console.log(`Bought drink item: ${drinkItem.name}`);
-                console.log(`Player : ${player.thirst} ${player.drunkenness}, Girlfriend : ${girlfriend.thirst} ${girlfriend.drunkenness}, Tickets left: ${tickets - drinkItem.price}`);
-            } else alert("Not enough tickets to buy this drink!");
-
-
-
-        } else console.error("Invalid item type");
-
-
-
-
-
-
-
+        setTickets(prev => prev - item.price);
+        
+        setPlayer(prev => {
+            return {
+                ...prev,
+                hunger: Math.min(100, prev.hunger + item.hungerRestoreValue),
+                thirst: Math.min(100, prev.thirst + item.thirstRestoreValue),
+                drunkenness: item.isAlcoholic ? Math.min(100, prev.drunkenness + item.alcoholContent) : prev.drunkenness
+            };
+        });
+        setGirlfriend(prev => {
+            return {
+                ...prev,
+                hunger: Math.min(100, prev.hunger + item.hungerRestoreValue),
+                thirst: Math.min(100, prev.thirst + item.thirstRestoreValue),
+                drunkenness: item.isAlcoholic ? Math.min(100, prev.drunkenness + item.alcoholContent) : prev.drunkenness
+            };
+        });
     }
 
     return (
@@ -110,21 +76,15 @@ const FoodBar = () => {
             <h1>FoodBar</h1>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1em' }}>
-                {foodData.map((foodItem: FoodData) => (
-                    <div key={foodItem.foodId}>
-                        <h2>{foodItem.name}</h2>
-                        <p>Hunger Restore: {foodItem.restoreValue}</p>
-                        <p>Price: {foodItem.price} tickets</p>
-                        <button onClick={() => handleBuy("food", foodItem.foodId)}>Buy</button>
-                    </div>
-                ))}
-                {drinkData.map((drinkItem: DrinkData) => (
-                    <div key={drinkItem.drinkId}>
-                        <h2>{drinkItem.name}</h2>
-                        <p>Thirst Restore: {drinkItem.restoreValue}</p>
-                        {drinkItem.isAlcoholic && <p>Alcohol Content: {drinkItem.alcoholContent}</p>}
-                        <p>Price: {drinkItem.price} tickets</p>
-                        <button onClick={() => handleBuy("drink", drinkItem.drinkId)}>Buy</button>
+                {data.map((item) => (
+                    <div key={item.consumableId} style={{ border: '1px solid black', padding: '1em' }}>
+                        <h2>{item.name}</h2>
+                        <p>{item.description}</p>
+                        <p>Price: {item.price} tickets</p>
+                        <p>Hunger Restore: {item.hungerRestoreValue}</p>
+                        <p>Thirst Restore: {item.thirstRestoreValue}</p>
+                        {item.isAlcoholic && <p>Alcohol Content: {item.alcoholContent}</p>}
+                        <button onClick={() => handleBuy(item.consumableId)}>Buy</button>
                     </div>
                 ))}
 
