@@ -15,7 +15,7 @@ const MinigameContainer: React.FC<MinigameContainerProps> = ({ id, exitPage }) =
 
     const fetchData = (id: string) => {
         console.log("Fetching minigame data for id:", id);
-        return fetch(`https://localhost:7222/api/minigames/${id}`)
+        return fetch(`/api/minigames/${id}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);

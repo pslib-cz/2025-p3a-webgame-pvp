@@ -3,7 +3,6 @@ import Apitest from '../Components/Apitest';
 import { useNavigate } from 'react-router-dom';
 import { useOwnOutlet } from '../Hooks/useOwnOutlet'
 import PauseMenu from '../Components/PauseMenu';
-import { useGameSounds } from '../hooks/useGameSounds';
 import Russianroulette from './Minigames/RussianRoulette';
 
 const HomePage = () => {
