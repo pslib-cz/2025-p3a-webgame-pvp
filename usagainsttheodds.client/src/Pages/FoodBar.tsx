@@ -7,7 +7,7 @@ import { useOwnOutlet } from "../Hooks/useOwnOutlet";
 
 const FoodBar = () => {
 
-    const { player, setPlayer, girlfriend, setGirlfriend, tickets, setTickets } = useOwnOutlet();
+    const { setPlayer, setGirlfriend, tickets, setTickets } = useOwnOutlet();
 
     const [promise, setPromise] = useState<Promise<Consumable[]> | null>(null);
 

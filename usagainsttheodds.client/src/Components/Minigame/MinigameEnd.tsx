@@ -1,5 +1,5 @@
 import ChangeScreenButton from "../ChangeScreenButton"
-import { useMinigame } from "../../hooks/useMinigame"
+import { useMinigame } from "../../Hooks/useMinigame"
 
 
 

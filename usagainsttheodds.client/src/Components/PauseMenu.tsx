@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import { useOwnOutlet } from "../hooks/useOwnOutlet";
+import { useOwnOutlet } from "../Hooks/useOwnOutlet";
 
 type ModalProps = {
   onClose: () => void;

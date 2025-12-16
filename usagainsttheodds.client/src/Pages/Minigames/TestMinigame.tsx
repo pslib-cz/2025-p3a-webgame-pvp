@@ -1,4 +1,4 @@
-import { useMinigame } from "../../hooks/useMinigame";
+import { useMinigame } from "../../Hooks/useMinigame";
 
 const TestMinigame = () => {
 

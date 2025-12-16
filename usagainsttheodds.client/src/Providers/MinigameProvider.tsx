@@ -31,7 +31,7 @@ export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>
 
     const { setTickets, setPlayer, setGirlfriend } = useOwnOutlet();
 
-    
+
     const exitPagePath = exitPage;
     const data: GameData | null = use(promise || Promise.reject("No promise provided to MinigameProvider"));
 
