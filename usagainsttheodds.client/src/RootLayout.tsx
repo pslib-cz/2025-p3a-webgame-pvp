@@ -4,7 +4,7 @@ import { type UserData } from "./Types/UserDataType";
 import { isDeepEqual } from "./Helpers/generalHelper";
 import { useNavigate } from 'react-router-dom';
 import type { Person } from './Types/GameType';
-import { useGameSounds } from "./hooks/useGameSounds";
+import { useGameSounds } from "./Hooks/useGameSounds";
 
 
 const RootLayout = () => {

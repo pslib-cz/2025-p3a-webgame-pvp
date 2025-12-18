@@ -4,15 +4,23 @@ import TestMinigame from "../../Pages/Minigames/TestMinigame";
 import Russianroulette from "../../Pages/Minigames/RussianRoulette";
 import MinigameEnd from "./MinigameEnd";
 import MinigameInfo from "./MinigameInfo";
+import { useEffect } from "react";
 
 type MinigameProps = {
     id: string;
+    devVersion?: boolean;
 }
 
 
-const Minigame: React.FC<MinigameProps> = ({ id }) => {
+const Minigame: React.FC<MinigameProps> = ({ id, devVersion = false }) => {
+    const { state, setState } = useMinigame();
 
-    const { state } = useMinigame();
+
+    useEffect(() => {
+        if (devVersion && state === "intro") {
+            setState("playing");
+        }
+    }, [])
 
     if (state === "intro") {
         return <MinigameInfo />;

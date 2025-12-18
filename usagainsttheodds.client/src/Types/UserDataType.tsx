@@ -6,8 +6,8 @@ export type UserData = {
     currentPage?: Screen,
     boughtFlower: boolean,
     boughtBloon: boolean,
-    lastFood: Consumable,
-    lastDrink: Consumable,
+    lastFood: Consumable | null,
+    lastDrink: Consumable | null,
     player: Person,
     girlfriend: Person,
 }
