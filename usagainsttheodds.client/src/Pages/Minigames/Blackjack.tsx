@@ -20,9 +20,10 @@ const Blackjack = () => {
     const deckCount: number = 1
     const [deck, setDeck] = useState<Deck>(dH.createShuffledDeck(deckCount)); // deck - aktuální balíček (používá se i deckRef pro synchronní přístup)
     const [buttonsVisible, setButtonsVisible] = useState<boolean>(false); // buttonsVisible - zda se zobrazují tlačítka Hit/Stand
+    const [blackjack, setBlackjack] = useState<boolean>(false);
 
     const { endGame, setResult, result, setRewardMultiplier } = useMinigame();//získání endGame funkce z kontextu
-    const endGameTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);//ref na timeout pro ukončení hry aby šel zrušit při unmountu
+    
 
     const deckRef = useRef<Deck>(deck); // Ref na balíček pro synchronní čtení mimo React state (řeší race condition)
     useEffect(() => {
@@ -37,39 +38,12 @@ const Blackjack = () => {
         setPlayerHandValue(calculateHandValue(playerHand));
     }, [playerHand])
 
-
-
-
-    // useEffect: při mountu komponenty
-    useEffect(() => {
-
-        return () => {
-            // cleanup při unmountu komponenty
-            if (endGameTimeoutRef.current) {
-                clearTimeout(endGameTimeoutRef.current);
-            }
-        }
-    }, []);
-
     // handleStart - zahájí novou hru: resetne stavy a rozdá počáteční karty
     const handleStart = () => {
         console.log("Starting Blackjack game...");
-        // reset();
         setStarted(true);
         dealInitialHands()
     }
-    // reset - resetuje stavy pro novou hru
-    // const reset = () => {
-
-    //     setResult(null);
-    //     setDealerHand([])
-    //     setPlayerHand([])
-    //     setButtonsVisible(false);
-    //     const newDeck = dH.createShuffledDeck(deckCount);
-    //     deckRef.current = newDeck;   // synchronně aktualizovat ref
-    //     setDeck(newDeck)
-    //     setDealerHiddenCards([1])
-    // }
 
     // dealInitialHands - rozdá počáteční karty hráči a dealerovi
     const dealInitialHands = () => {
@@ -95,28 +69,25 @@ const Blackjack = () => {
         setDeck(local);
         deckRef.current = local; // synchronně aktualizovat ref
         
-        if (calculateHandValue(pHand) === 21) {
-            console.warn("Player dealt a blackjack on initial deal!");//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        }
         console.log("Initial hands dealt. Player Hand:", calculateHandValue(pHand), "Dealer Hand:", calculateHandValue(dHand, dealerHiddenCards));
 
         const playerValue = calculateHandValue(pHand);
 
-
         // pokud hráč dostal blackjack, vyřeší to hned lokálně
-        if (calculateHandValue(pHand) === 21) {
-            handleBlackjack(playerValue); 
+        if (playerValue === 21) {
+            handleBlackjack(pHand, dHand, local);
         } else setButtonsVisible(true);
 
     }
 
     // handleBlackjack - zpracuje situaci kdy hráč má blackjack při rozdání
-    const handleBlackjack = (playerHandValue?: number) => {
+    const handleBlackjack = (pHand: Hand, dHand: Hand, currentDeck: Deck) => {
         console.log("Player has blackjack!");
         setRewardMultiplier(1.5);
+        setBlackjack(true);
 
-        const playerValue = playerHandValue !== undefined ? playerHandValue : calculateHandValue(playerHand);
-        const dealerValue = dealerAction();
+        const playerValue = calculateHandValue(pHand);
+        const dealerValue = dealerAction(dHand, currentDeck);
 
         setButtonsVisible(false);
         decideGameResult(playerValue, dealerValue)
@@ -198,13 +169,16 @@ const Blackjack = () => {
     }
 
     // dealerAction - logika dealera: odehrává karty dokud nemá >= 17
-    const dealerAction = () => {
+    const dealerAction = (currentDealerHand?: Hand, currentDeck?: Deck) => {
         console.log("Dealer's turn.");
         setButtonsVisible(false);
         revealDealersCards()
-        let localDealerHandValue = calculateHandValue(dealerHand);
-        let localDealerHand = [...dealerHand];
-        let localDeck = [...deckRef.current];
+
+        // Použije předané karty, nebo aktuální state, pokud nejsou předány
+        let localDealerHand = currentDealerHand ? [...currentDealerHand] : [...dealerHand];
+        let localDeck = currentDeck ? [...currentDeck] : [...deckRef.current];
+        let localDealerHandValue = calculateHandValue(localDealerHand);
+
         while (localDealerHandValue < 17) {
             const { card, newDeck } = dH.drawCard(localDeck);
             if (!card) break;
@@ -214,6 +188,7 @@ const Blackjack = () => {
         }
         setDealerHand(localDealerHand);
         setDeck(localDeck);
+        deckRef.current = localDeck;
         setDealerHandValue(localDealerHandValue);
 
         console.log("Dealer's turn ended with hand value:", localDealerHandValue);
@@ -256,36 +231,44 @@ const Blackjack = () => {
 
         console.log("Game ended with result:", resultValue, "Player:", player, "Dealer:", dealer);
 
-        endGameTimeoutRef.current = setTimeout(() => {
-            endGame();
-        }, 2500)
     }
-
+    
+    const handleAnimationEnd = (event: React.AnimationEvent) => {
+        if (event.animationName.includes("resultScreenFadeIn")) {
+            endGame();
+        }
+    }
     
 
     return (
-        <div>
-            <h1>Blackjack Component</h1>
+        <div className={styles.blackjackContainer}>
+            <span className={styles.deck}></span>
             {!started && (
-                <button onClick={handleStart}>Deal cards</button>
+                <button className={`button ${styles.startButton}`} onClick={handleStart}>Deal cards</button>
             )}
             {started && (
                 <>
-                    <div>
-                        <h2>Dealer Hand: {dealerHandValue}</h2>
+                    <div className={`${styles.handContainer} ${styles.dealerHandContainer}`}>
+                        <p className={styles.handScore}>{dealerHandValue}</p>
                         <CardHand hand={dealerHand} hiddenCards={dealerHiddenCards} />
-                        <h2>Player Hand: {playerHandValue}</h2>
+                    </div>
+                    <div className={`${styles.handContainer} ${styles.playerHandContainer}`}>
+                        <p className={styles.handScore}>{playerHandValue}</p>
                         <CardHand hand={playerHand} />
                     </div>
+                    
                     {buttonsVisible && (
-                        <div>
-                            <button onClick={handleHit}>Hit</button>
-                            <button onClick={handleStand}>Stand</button>
+                        <div className={styles.buttonsContainer}>
+                            <button className={`button`} onClick={handleHit}>Hit</button>
+                            <button className={`button`} onClick={handleStand}>Stand</button>
                         </div>
                     )}
                     {result && (
-                        <div className={styles.resultScreen}>
-                            <h2>{result}</h2>
+                        <div onAnimationEnd={handleAnimationEnd} className={styles.resultScreen}>
+                            {blackjack && <span className={styles.resultText}>Blackjack!</span>}
+                            {result === "win" && <span className={styles.resultText}>You win!</span>}
+                            {result === "lose" && <span className={styles.resultText}>You lose!</span>}
+                            {result === "draw" && <span className={styles.resultText}>It's a draw!</span>}
                         </div>
                     )}
                 </>

@@ -5,9 +5,6 @@
     height: 100vh;
 }
 
-body, h1, p {
-    margin: 0;
-}
 
 .cutscene1 {
     background-image: url('../images/Cutscene/Intro1.jpg');

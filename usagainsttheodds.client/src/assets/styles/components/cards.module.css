@@ -21,7 +21,9 @@
     transform: perspective(1000px) rotateY(0deg);
     transition: transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 300ms;
     transform-origin: center center;
-    will-change: transform;  
+    will-change: transform;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .clickable{

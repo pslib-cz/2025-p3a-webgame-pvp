@@ -1,13 +1,17 @@
+body, h1, h2, h3, p {
+    margin: 0;
+}
+
 .main {
     margin-top: 18em;
 }
 
 .button {
-    padding: 0.2% 0.5%;
+    padding: .25em .5em;
     background-color: aliceblue;
-    padding: 1px solid black;
+    border: .15em solid black;
     border-radius: 1rem;
-    margin: 0.3%;
+    margin: 0.25em;
 }
 
 .button:hover {
@@ -38,3 +42,4 @@
 
     cursor: default;
 }
+
