@@ -29,16 +29,16 @@ const HomePage = () => {
         )}
 
         <div>
-          <button className="button" onClick={() => navigate("/blackjack")}>
+          <button className="button" onClick={() => navigate("/stall/blackjack")}>
               Blackjack
           </button>
-          <button className="button" onClick={() => navigate("/testminigame")}>
+          <button className="button" onClick={() => navigate("/stall/testminigame")}>
               Test Minigame
           </button>
-          <button className="button" onClick={() => navigate("/russianroulette")}>
+          <button className="button" onClick={() => navigate("/stall/russianroulette")}>
               ruska rul
           </button>
-          <button className="button" onClick={() => navigate("/foodbar")}>
+          <button className="button" onClick={() => navigate("/stall/foodbar")}> {/*opravit když jdu zpět v prohlížeči že se znovu nenačte ta stránka*/}
               Food bar
           </button>
           {/* <Russianroulette/> */}
