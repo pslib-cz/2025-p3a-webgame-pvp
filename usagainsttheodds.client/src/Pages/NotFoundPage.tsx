@@ -5,7 +5,7 @@ export const NotFoundPage: FC = () => (
   <div>
     <h1>404: Stránka nenalezena</h1>
     <p>Tahle cesta neexistuje. Zkus to jinak!</p>
-    <Link to="/">Zpět na hrací plochu.</Link>
+    <Link to="/game">Zpět na hrací plochu.</Link>
   </div>
 );
 

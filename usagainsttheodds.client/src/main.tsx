@@ -9,6 +9,8 @@ import HomePage from './Pages/HomePage.tsx';
 import ErrorPage from './Pages/ErrorPage.tsx';
 import MinigameContainer from './Components/Minigame/MinigameContainer.tsx';
 import FoodBar from './Pages/FoodBar.tsx';
+import StartPage from './Pages/StartPage.tsx'
+import IntroCutscene from './Pages/Cutscene/IntroCutscene.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -16,18 +18,25 @@ createRoot(document.getElementById('root')!).render(
       <Routes>
         <Route path="/" element={<RootLayout />} errorElement={<ErrorPage />}>
 
-        {/* pro spravny zobrazení HUD */}
-        <Route element={<MainLayout />}>
-          <Route index element={<HomePage />} />
-        </Route>
+          {/* START */}
+          <Route index element={<StartPage />} />
 
-          <Route path="foodbar" element={<FoodBar />} />
+          {/* CUTSCÉNY */}
+          <Route path="cutscene">
+            <Route path="intro" element={<IntroCutscene />} />
+          </Route>
 
-          {/* minihry */}
-          <Route path="blackjack" element={<MinigameContainer id='blackjack' exitPage="/" devVersion={true} />} />{/*ten exit bych ulozil do databaze*/}
-          <Route path="russianroulette" element={<MinigameContainer id='russianroulette' exitPage="/" devVersion={true} />} />
-          <Route path="testminigame" element={<MinigameContainer id='test' exitPage="/" devVersion={true} />} />
-          {/* 404 */}
+          {/* HRA */}
+          <Route path="game" element={<MainLayout />}>
+            <Route index element={<HomePage />} />
+
+            <Route path="foodbar" element={<FoodBar />} />
+
+            <Route path="blackjack" element={<MinigameContainer id="blackjack" exitPage="/game" />} />
+            <Route path="russianroulette" element={<MinigameContainer id="russianroulette" exitPage="/game" />} />
+            <Route path="testminigame" element={<MinigameContainer id="test" exitPage="/game" />} />
+          </Route>
+
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

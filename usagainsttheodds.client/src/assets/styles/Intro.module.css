@@ -1,0 +1,19 @@
+.cutscene {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.cutscene1 {
+    background-image: url('../images/Cutscene/Intro1.jpg');
+}
+.cutscene2 {
+    background-image: url('../images/Cutscene/Intro2.jpg');
+}
+.cutscene3 {
+    background-image: url('../images/Cutscene/Intro3.jpg');
+}
+.cutscene4 {
+    background-image: url('../images/Cutscene/Intro4.jpg');
+}
