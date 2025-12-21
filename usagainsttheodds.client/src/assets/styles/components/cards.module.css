@@ -2,7 +2,7 @@
     --left-offset: calc(var(--card-width) / 2);
     --top-offset: calc(var(--card-height) / 2);
 
-    --card-width: 7vw;
+    --card-width: 7.5em;
     --card-height: calc(var(--card-width) * 1.36);
 
     --card-hover-translate-x: calc(var(--card-width) / -8);
