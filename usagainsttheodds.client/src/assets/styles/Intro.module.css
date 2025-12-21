@@ -5,6 +5,10 @@
     height: 100vh;
 }
 
+body, h1, p {
+    margin: 0;
+}
+
 .cutscene1 {
     background-image: url('../images/Cutscene/Intro1.jpg');
 }
@@ -16,4 +20,11 @@
 }
 .cutscene4 {
     background-image: url('../images/Cutscene/Intro4.jpg');
+}
+
+.cutscene__button {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    padding: 0.5em 1em;
 }
