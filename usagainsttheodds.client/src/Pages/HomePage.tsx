@@ -38,7 +38,7 @@ const HomePage = () => {
           <button className="button" onClick={() => navigate("/stall/russianroulette")}>
               ruska rul
           </button>
-          <button className="button" onClick={() => navigate("/stall/foodbar")}> {/*opravit když jdu zpět v prohlížeči že se znovu nenačte ta stránka*/}
+          <button className="button" onClick={() => navigate("/stall/foodbar")}>
               Food bar
           </button>
           {/* <Russianroulette/> */}

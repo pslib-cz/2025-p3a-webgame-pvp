@@ -1,0 +1,93 @@
+:root{
+    --left-offset: calc(var(--card-width) / 2);
+    --top-offset: calc(var(--card-height) / 2);
+
+    --card-width: 7vw;
+    --card-height: calc(var(--card-width) * 1.36);
+
+    --card-hover-translate-x: calc(var(--card-width) / -8);
+    --card-hover-translate-y: calc(var(--card-height) / -8);
+}
+
+/*karta*/
+.card {
+    display: block;
+    aspect-ratio: 100/136;
+    height: var(--card-height);
+    min-width: var(--card-width);
+    background-size: cover;
+    
+    transform-style: preserve-3d;
+    transform: perspective(1000px) rotateY(0deg);
+    transition: transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 300ms;
+    transform-origin: center center;
+    will-change: transform;  
+}
+
+.clickable{
+    cursor: pointer;
+}
+.face {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+.hidden {
+    transform: rotateY(180deg);
+}
+.Back{
+    background-image: url(../../images/Cards/cardBack.png);
+    transform: rotateY(180deg);
+}
+.Front{
+    transform: rotateY(0deg);
+}
+
+
+/*ruka karet ve hře*/
+.handContainer {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(5, calc(var(--card-width) - var(--left-offset)));
+    margin: 1em;
+    width: fit-content;
+    padding-top: calc(var(--top-offset) + calc(var(--card-hover-translate-y) * -1));
+    padding-left: calc(var(--left-offset) + calc(var(--card-hover-translate-x) * -2));
+    padding-bottom: calc(var(--card-hover-translate-y) * -1);
+    padding-right: calc(var(--card-hover-translate-x) * -1);
+    overflow-y: auto;
+    max-height: 40vh;
+}
+
+
+/* tohle jen v ruce*/
+.handContainer .card:nth-child(5n+1) {
+    rotate: 0 0 1 -8deg;
+    translate: 0 calc(var(--card-height) / 15);
+}
+.handContainer .card:nth-child(5n+2) {
+    rotate: 0 0 1 -4deg;
+    translate: 0 calc(var(--card-height) / 50);
+}
+.handContainer .card:nth-child(5n+3) {
+    rotate: 0 0 1 0deg;
+}
+.handContainer .card:nth-child(5n+4) {
+    rotate: 0 0 1 4deg;
+    translate: 0 calc(var(--card-height) / 50);
+}
+.handContainer .card:nth-child(5n+0) {
+    rotate: 0 0 1 8deg;
+    translate: 0 calc(var(--card-height) / 15);
+}
+
+.handContainer .card{
+    margin-top: calc(var(--top-offset) * -1);
+    margin-left: calc(var(--left-offset) * -1); 
+}
+
+.handContainer .card:not(.hidden):hover {
+    transform: translate(var(--card-hover-translate-x), var(--card-hover-translate-y));
+}

@@ -1,7 +1,7 @@
 import type React from "react"
 import type { Hand, PlayingCardFace } from "../../Types/PlayingCardType"
 import PlayingCard from "./PlayingCard"
-import styles from "../../assets/styles/components/cards/CardHand.module.css"
+import styles from "../../assets/styles/components/Cards.module.css"
 
 type CardHandProps = {
     hand: Hand

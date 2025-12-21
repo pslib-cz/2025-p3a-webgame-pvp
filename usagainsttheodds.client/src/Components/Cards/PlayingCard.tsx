@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import type { Card, PlayingCardFace } from "../../Types/PlayingCardType"
-import styles from "../../assets/styles/components/cards/PlayingCard.module.css"
+import styles from "../../assets/styles/components/cards.module.css"
 
 
 type PlayingCardProps = {
@@ -37,6 +37,10 @@ const PlayingCard: React.FC<PlayingCardProps> = ({ card, face="Front", clickable
         turnCard()
     }
 
+    const getCardImageUrl = (card: Card)=> {
+        return new URL(`../../assets/images/Cards/card${card.symbol}${card.value}.png`, import.meta.url).href;
+    }
+
     return (
         <>
             <span onClick={(clickableState ? handleClick : undefined)} 
@@ -47,7 +51,7 @@ const PlayingCard: React.FC<PlayingCardProps> = ({ card, face="Front", clickable
                     `}
             >
                 {/* přední strana karty */}
-                <span className={`${styles.face} ${styles.Front} ${styles[`${card.symbol}${card.value}`]}`} />
+                <span className={`${styles.face} ${styles.Front} ${styles[`${card.symbol}${card.value}`]}`} style={{ backgroundImage: `url(${getCardImageUrl(card)})` }} />
                 {/* zadní strana karty */}
                 <span className={`${styles.face} ${styles.Back}`} />
             </span>
