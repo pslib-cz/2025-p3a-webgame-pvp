@@ -4,6 +4,8 @@ import rH from "../../Helpers/randomGeneratorHelper";
 import { useRef, useEffect } from "react";
 import { useMinigame } from "../../Hooks/useMinigame";
 import Gun from "../../Components/Gun/Gun";
+import minigameStyles from "../../assets/styles/Minigames/Minigame.module.css"
+import styles from "../../assets/styles/Minigames/BlackJack.module.css"
 
 const Russianroulette = () => {
 
@@ -17,11 +19,12 @@ const Russianroulette = () => {
 
     // pozice náboje, kterou zvolil hráč
     const [bulletPosition, setBulletPosition] = useState<number | null>(null);
-/*
-    const { endGame, setResult, setRewardMultiplier } = useMinigame();
-    setRewardMultiplier(5);
 
-*/
+
+    const { endGame, setResult, result, setRewardMultiplier = 5 } = useMinigame();//získání endGame funkce z kontextu
+
+    const [buttonsVisible, setButtonsVisible] = useState(true);
+    const [shootButtonsVisible, setShootButtonsVisible] = useState(false);
 
 
 
@@ -36,29 +39,55 @@ const Russianroulette = () => {
         console.log(barrelPosition);          // POZOR: ukazuje starou hodnotu — React stav se updateuje async
     }
 
-/*
+    const GetBullet = () => {
+        if (bulletPosition !== null) {console.log("jupi", bulletPosition);}
+        return <div>Vybraná pozice náboje: {bulletPosition !== null ? bulletPosition + 1 : "žádná"}</div>; 
+    }
+    const [barrelOpened, setBarrelOpened] = useState(false);
 
-    // 💥 Funkce, která zkontroluje jestli hráč trefil náboj
     const handleShoot = () => {
-        console.log(barrelPosition);
+        setButtonsVisible(false);
+        setShootButtonsVisible(false);
+    }
 
-        // pokud se pozice bubínku a náboje shoduje = boom = výhra
-        if (barrelPosition === bulletPosition) {
-            setResult("win");
-        } else {
-            setResult("lose");       // když se neshoduje = hráč přežil = prohra
+        
+    const handleAnimationEnd = (event: React.AnimationEvent) => {
+        if (event.animationName.includes("resultScreenFadeIn")) {
+            endGame();
         }
     }
 
 
-*/
-
-
-    // 📦 Obalovač minihry — generuje UI kolem hry (layout, styl, atd.)
     return (
-        <>
-            <Gun/>
-        </>
+        <div className={minigameStyles.container}>
+            <div style={{ marginBottom: 12 }}>
+            </div>
+            <Gun bulletPosition={setBulletPosition} barrelOpened={barrelOpened} />
+        
+                <>
+                    <Gun bulletPosition={setBulletPosition} barrelOpened={barrelOpened} />
+                    
+                    {buttonsVisible && (
+                        <div>
+                            <button className="button" onClick={() => {setBarrelOpened(true); setShootButtonsVisible(false)}}>Open barrel</button>
+                            <button className="button" onClick={() => {setBarrelOpened(false); setShootButtonsVisible(true)}} style={{ marginLeft: 8 }}>Close barrel</button>
+                        </div>
+                    )}
+
+                    {shootButtonsVisible && (
+                            <button className={`button`} onClick={handleShoot}>Shoot</button>
+                    )}
+
+                    {result && (
+                        <div onAnimationEnd={handleAnimationEnd} className={styles.resultScreen}>
+                            {result === "win" && <span className={styles.resultText}>You win!</span>}
+                            {result === "lose" && <span className={styles.resultText}>You lose!</span>}
+                            {result === "draw" && <span className={styles.resultText}>It's a draw!</span>}
+                        </div>
+                    )}
+                </>
+        
+        </div>
     )
 }
 

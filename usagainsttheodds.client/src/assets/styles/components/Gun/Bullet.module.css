@@ -1,25 +1,32 @@
-.pos1{
-
-}
-.pos2{
-
-}
-.pos3{
-
-}
-.pos4{
-
-}
-.pos5{
-
-}
-.pos6{
-
-}
 .bullet{
     position: absolute;
     width: 20px;
     height: 20px;
     background-color: #3D3D3D;
     border-radius: 50%;
+    top: 35%;left: 44%;
+
+}
+
+.pos1{
+    transform: translate(0px, -40px);
+}
+.pos2{
+    transform: translate(35px, -20px);
+}
+.pos3{
+    transform: translate(35px, 20px);
+}
+.pos4{
+    transform: translate(0px, 40px);
+}
+.pos5{
+    transform: translate(-35px, 20px);
+}
+.pos6{
+    transform: translate(-35px, -20px);
+}
+
+.bulletIn{
+    background-color: red;
 }
