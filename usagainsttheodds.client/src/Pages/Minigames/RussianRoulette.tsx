@@ -25,6 +25,7 @@ const Russianroulette = () => {
 
     const [buttonsVisible, setButtonsVisible] = useState(true);
     const [shootButtonsVisible, setShootButtonsVisible] = useState(false);
+    const [spinButtonsVisible, setSpinButtonsVisible] = useState(false);
 
 
 
@@ -32,12 +33,6 @@ const Russianroulette = () => {
 
 
 
-
-    // 🔄 Funkce která náhodně nastaví pozici bubínku (1–6)
-    const handleSpin = () => {
-        setBarrelPosition(rH.generate(1, 6));  // dá random číslo 1–6
-        console.log(barrelPosition);          // POZOR: ukazuje starou hodnotu — React stav se updateuje async
-    }
 
     const GetBullet = () => {
         if (bulletPosition !== null) {console.log("jupi", bulletPosition);}
@@ -45,10 +40,24 @@ const Russianroulette = () => {
     }
     const [barrelOpened, setBarrelOpened] = useState(false);
 
-    const handleShoot = () => {
+    const handleSpin = () => {
         setButtonsVisible(false);
-        setShootButtonsVisible(false);
+        setSpinButtonsVisible(false);
+
+        setShootButtonsVisible(true);
+        setBarrelPosition(rH.generate(1, 6));  // dá random číslo 1–6
+        console.log(barrelPosition);          // POZOR: ukazuje starou hodnotu — React stav se updateuje async
+
     }
+
+    const handleShoot = () => {
+        setSpinButtonsVisible(false);
+        decideGameResult(barrelPosition!, bulletPosition!);
+    }
+
+
+
+
 
         
     const handleAnimationEnd = (event: React.AnimationEvent) => {
@@ -56,6 +65,16 @@ const Russianroulette = () => {
             endGame();
         }
     }
+    const decideGameResult = (barrelPosition: number, bulletPosition: number): void => {
+        const result = (): GameResult => {
+            if (barrelPosition === bulletPosition! + 1) return "win";
+            else return "lose";
+        }
+        const resultValue = result();
+        setResult(resultValue);
+        console.log("Game ended with result:", resultValue);
+    }
+
 
 
     return (
@@ -69,11 +88,28 @@ const Russianroulette = () => {
                     
                     {buttonsVisible && (
                         <div>
-                            <button className="button" onClick={() => {setBarrelOpened(true); setShootButtonsVisible(false)}}>Open barrel</button>
-                            <button className="button" onClick={() => {setBarrelOpened(false); setShootButtonsVisible(true)}} style={{ marginLeft: 8 }}>Close barrel</button>
+                            <button className="button" 
+                                    onClick={() => {
+                                                setBarrelOpened(true); 
+                                                setShootButtonsVisible(false)
+                                            }}>
+                                Open barrel
+                            </button>
+
+                            <button className="button" 
+                                onClick={() => {
+                                    setBarrelOpened(false);
+                                    if(bulletPosition !== null) setSpinButtonsVisible(true)
+                                }} 
+                                style={{ marginLeft: 8 }}>
+                                    Close barrel
+                            </button>
                         </div>
                     )}
 
+                    {spinButtonsVisible && (
+                        <button className={`button`} onClick={handleSpin}>Spin</button>
+                    )}
                     {shootButtonsVisible && (
                             <button className={`button`} onClick={handleShoot}>Shoot</button>
                     )}
