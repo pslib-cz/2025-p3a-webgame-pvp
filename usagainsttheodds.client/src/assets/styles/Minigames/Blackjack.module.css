@@ -11,8 +11,6 @@
 
 .deck {
     position: absolute;
-    top: 45%;
-    left: 85%;
     transform: translate(-50%, -50%);
     width: var(--card-width);
     height: var(--card-height);
@@ -44,15 +42,6 @@
 .handContainer {
     position: absolute;
     width: fit-content;
-}
-.dealerHandContainer {
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-.playerHandContainer {
-    top: 75%;
-    left: 50%;
     transform: translate(-50%, -50%);
 }
 
