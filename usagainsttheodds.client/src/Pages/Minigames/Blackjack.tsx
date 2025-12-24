@@ -6,6 +6,7 @@ import CardHand from "../../Components/Cards/CardHand";
 import type { GameResult } from "../../Types/GameType";
 import { useMinigame } from "../../Hooks/useMinigame";
 import styles from "../../assets/styles/minigames/Blackjack.module.css";
+import minigameStyles from "../../assets/styles/Minigames/Minigame.module.css"
 
 
 
@@ -280,7 +281,7 @@ const Blackjack = () => {
     
 
     return (
-        <div className={styles.blackjackContainer}>
+        <div className={`${styles.blackjackContainer} ${minigameStyles.container}`}>
             <span className={styles.deck} style={{left: `${deckPosition[0]}%`, top: `${deckPosition[1]}%`}}/>
             {!started && (
                 <button className={`button ${styles.startButton}`} onClick={handleStart}>Deal cards</button>
