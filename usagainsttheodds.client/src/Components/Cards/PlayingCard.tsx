@@ -43,6 +43,7 @@ const PlayingCard: React.FC<PlayingCardProps> = ({ card, face="Front", clickable
         }
     }
 
+    //výpočet zkama se ma karta animovat z balíčku at to sedi
     const getAnimationStyle = () => {
         if (!deckPosition || !index) return {}; 
 

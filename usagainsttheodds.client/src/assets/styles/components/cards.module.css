@@ -48,6 +48,8 @@
 @keyframes dealFromDeck {
     0% {
         transform: translate(var(--deck-pos-x), var(--deck-pos-y));
+        rotate: 0 0 1 0deg;
+        
     }
     100% {
         transform: translate(0, 0);

@@ -51,25 +51,6 @@ const Blackjack = () => {
     useEffect(() => {
         deckRef.current = deck;
     }, [deck]);
-    
-    
-
-
-
-
-
-    //karty z balicku nesedi na balicek
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -161,8 +142,12 @@ const Blackjack = () => {
         const newPlayerValue = calculateHandValue(playerHandRef.current);
         console.log("New player hand value:", newPlayerValue);
 
-        if (newPlayerValue > 21) {
-            console.log("Player busts!");
+        if (newPlayerValue >= 21) {
+            if (newPlayerValue === 21) {
+                console.log("Player has 21!");
+            } else {
+                console.log("Player busts!");
+            }
             revealDealersCards();
             decideGameResult(newPlayerValue, calculateHandValue(dealerHandRef.current));
         } else {
