@@ -5,6 +5,7 @@ import Russianroulette from "../../Pages/Minigames/RussianRoulette";
 import MinigameEnd from "./MinigameEnd";
 import MinigameInfo from "./MinigameInfo";
 import { useEffect } from "react";
+import WhackkAMole from "../../Pages/Minigames/WhackAMole";
 
 type MinigameProps = {
     id: string;
@@ -33,6 +34,8 @@ const Minigame: React.FC<MinigameProps> = ({ id, devVersion = false }) => {
                 return <Russianroulette />;
             case "test":
                 return <TestMinigame />;
+            case "whackamole":
+                return <WhackkAMole />;
             default:
                 return <div>Unknown Minigame</div>;
         }

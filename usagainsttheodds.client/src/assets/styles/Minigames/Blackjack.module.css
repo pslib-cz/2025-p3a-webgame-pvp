@@ -1,9 +1,4 @@
 .blackjackContainer {
-    position: relative;
-    background-color: rgba(6, 46, 3, 0.274);
-    width: 100vw;
-    height: 100vh;
-    position: relative;
     background-image: url(../../images/blackjackBg.png);
     background-size: cover;
     background-position: center;

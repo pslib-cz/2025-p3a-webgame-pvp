@@ -3,7 +3,6 @@ import Apitest from '../Components/Apitest';
 import { useNavigate } from 'react-router-dom';
 import { useOwnOutlet } from '../Hooks/useOwnOutlet'
 import PauseMenu from '../Components/PauseMenu';
-import Russianroulette from './Minigames/RussianRoulette';
 
 const HomePage = () => {
 
@@ -37,6 +36,9 @@ const HomePage = () => {
           </button>
           <button className="button" onClick={() => navigate("/stall/russianroulette")}>
               ruska rul
+          </button>
+          <button className="button" onClick={() => navigate("/stall/whackamole")}>
+              Whack A Mole
           </button>
           <button className="button" onClick={() => navigate("/stall/foodbar")}>
               Food bar
