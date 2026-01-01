@@ -43,6 +43,8 @@ createRoot(document.getElementById('root')!).render(
             <Route path="russianroulette" element={<MinigameContainer id="russianroulette" devVersion={true} exitPage="/game" />} />
             <Route path="testminigame" element={<MinigameContainer id="test" exitPage="/game" devVersion={true} />} />
             <Route path="whackamole" element={<MinigameContainer id="whackamole" exitPage="/game" devVersion={true} />} />
+            <Route path="sloty" element={<MinigameContainer id="slots" exitPage="/game" devVersion={true} />} />
+  
 
           </Route>
 

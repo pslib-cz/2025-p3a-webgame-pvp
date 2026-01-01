@@ -40,6 +40,9 @@ const HomePage = () => {
           <button className="button" onClick={() => navigate("/stall/whackamole")}>
               Whack A Mole
           </button>
+          <button className="button" onClick={() => navigate("/stall/slots")}>
+              Sloty
+          </button>
           <button className="button" onClick={() => navigate("/stall/foodbar")}>
               Food bar
           </button>
