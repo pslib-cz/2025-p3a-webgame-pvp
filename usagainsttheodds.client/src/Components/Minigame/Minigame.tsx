@@ -6,7 +6,7 @@ import MinigameEnd from "./MinigameEnd";
 import MinigameInfo from "./MinigameInfo";
 import { useEffect } from "react";
 import WhackkAMole from "../../Pages/Minigames/WhackAMole";
-import SlotsGame from "../../Pages/Minigames/SlotsGame";
+import SlotsGame from "../../Pages/Minigames/Slots";
 
 type MinigameProps = {
     id: string;

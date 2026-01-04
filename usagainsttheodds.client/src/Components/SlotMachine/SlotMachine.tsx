@@ -2,17 +2,20 @@ import React from "react";
 import SlotRow from "./SlotRow";
 
 type SlotMachineProps = {
-  isSpinning?: boolean;
+  isSpinning: boolean;
+  firstPosition: (x:number) => void;
+  secondPosition: (x:number) => void;
+  thirdPosition: (x:number) => void;
 };
 
-const SlotMachine: React.FC<SlotMachineProps> = ({ isSpinning = false }) => {
+const SlotMachine: React.FC<SlotMachineProps> = ({ isSpinning, firstPosition, secondPosition, thirdPosition }) => {
 
 
   return (
     <div>
-      <SlotRow isSpinning={isSpinning} />
-      <SlotRow isSpinning={isSpinning} />
-      <SlotRow isSpinning={isSpinning} />
+      <SlotRow  isSpinning={isSpinning} currentPosition={firstPosition} />
+      <SlotRow isSpinning={isSpinning} currentPosition={secondPosition} />
+      <SlotRow isSpinning={isSpinning} currentPosition={thirdPosition} />
     </div>
   );
 };

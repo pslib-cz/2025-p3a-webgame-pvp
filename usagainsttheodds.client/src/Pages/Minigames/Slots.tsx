@@ -5,6 +5,7 @@ import { useMinigame } from "../../Hooks/useMinigame";
 import minigameStyles from "../../assets/styles/Minigames/Minigame.module.css"
 //import styles from "../../assets/styles/Minigames/BlackJack.module.css"
 import SlotMachine from "../../Components/SlotMachine/SlotMachine";
+import styles from "../../assets/styles/Minigames/BlackJack.module.css"
 
 const Russianroulette = () => {
 
@@ -14,20 +15,15 @@ const Russianroulette = () => {
 
 
 
-    const { endGame, setResult, result, setRewardMultiplier = 5 } = useMinigame();//získání endGame funkce z kontextu
+    const { endGame, setResult, result, setRewardMultiplier } = useMinigame();//získání endGame funkce z kontextu
     const [buttonsVisible, setButtonsVisible] = useState(true);
     const [isSpinning, setIsSpinning] = useState(false);
+    const [firstSlot, setFirstSlot] = useState<number>(0);
+    const [secondSlot, setSecondSlot] = useState<number>(0);
+    const [thirdSlot, setThirdSlot] = useState<number>(0);
 
 
 
-
-
-
-
-
-    const handleSpin = () => {
-
-    }
 
 
 
@@ -39,9 +35,13 @@ const Russianroulette = () => {
         }
     }
 
-    const decideGameResult = (barrelPosition: number, bulletPosition: number): void => {
+    const decideGameResult = (): void => {
         const result = (): GameResult => {
-            if (barrelPosition === bulletPosition! + 1) return "win";
+            if (firstSlot === secondSlot && secondSlot === thirdSlot)
+            {
+                setRewardMultiplier(firstSlot+2);// nastaví reward multiplier podle symbolu
+                return "win";
+            } 
             else return "lose";
         }
         const resultValue = result();
@@ -55,45 +55,33 @@ const Russianroulette = () => {
         <div className={minigameStyles.container}>
             <div style={{ marginBottom: 12 }}>
             </div>
-                <SlotMachine isSpinning={isSpinning} />
-            
-                    {/*<Gun bulletPosition={setBulletPosition} barrelOpened={barrelOpened} />
+                <SlotMachine firstPosition={setFirstSlot} secondPosition={setSecondSlot} thirdPosition={setThirdSlot} isSpinning={isSpinning} />
+
+                
                     
                     {buttonsVisible && (
                         <div>
                             <button className="button" 
-                                    onClick={() => {
-                                                setBarrelOpened(true); 
-                                                setShootButtonsVisible(false)
-                                            }}>
-                                Open barrel
+                                    onClick={() => setIsSpinning(true)}>
+                                Spin
                             </button>
 
                             <button className="button" 
-                                onClick={() => {
-                                    setBarrelOpened(false);
-                                    if(bulletPosition !== null) setSpinButtonsVisible(true)
-                                }} 
+                                onClick={() => {setIsSpinning(false); setButtonsVisible(false);decideGameResult();}} 
                                 style={{ marginLeft: 8 }}>
-                                    Close barrel
+                                    Stop
                             </button>
                         </div>
                     )}
 
-                    {spinButtonsVisible && (
-                        <button className={`button`} onClick={handleSpin}>Spin</button>
-                    )}
-                    {shootButtonsVisible && (
-                            <button className={`button`} onClick={handleShoot}>Shoot</button>
-                    )}
+
 
                     {result && (
                         <div onAnimationEnd={handleAnimationEnd} className={styles.resultScreen}>
                             {result === "win" && <span className={styles.resultText}>You win!</span>}
                             {result === "lose" && <span className={styles.resultText}>You lose!</span>}
-                            {result === "draw" && <span className={styles.resultText}>It's a draw!</span>}
                         </div>
-                    )} */}
+                    )}  
         
         </div>
     )
