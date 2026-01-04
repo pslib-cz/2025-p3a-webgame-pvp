@@ -25,6 +25,13 @@ export type Consumable = {
     isAlcoholic: boolean;
     alcoholContent: number;
 }
+export type Items = {
+    ItemId: string;
+    name: string;
+    description: string;
+    price: number;
+    staminaRestoreValue: number;
+}
 
 
 export type Person = {

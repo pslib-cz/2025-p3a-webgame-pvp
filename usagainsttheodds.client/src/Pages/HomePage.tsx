@@ -46,6 +46,9 @@ const HomePage = () => {
           <button className="button" onClick={() => navigate("/stall/foodbar")}>
               Food bar
           </button>
+          <button className="button" onClick={() => navigate("/stall/itemshop")}>
+              Item shop
+          </button>
           {/* <Russianroulette/> */}
         </div>
 
