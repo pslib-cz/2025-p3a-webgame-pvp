@@ -37,7 +37,7 @@ createRoot(document.getElementById('root')!).render(
           {/* STÁNKY */}
           <Route path='stall'>
 
-            <Route path="foodbar" element={<ErrorBoundary fallback={<><div>Error loading FoodBar</div><Link to="/game">Go Back</Link></>}><Suspense fallback={<div>Loading...</div>}><FoodBar /></Suspense></ErrorBoundary>} />
+            <Route path="foodbar" element={<FoodBar />} />
 
             <Route path="blackjack" element={<MinigameContainer id="blackjack" exitPage="/game" />} />
             <Route path="russianroulette" element={<MinigameContainer id="russianroulette"exitPage="/game" />} />

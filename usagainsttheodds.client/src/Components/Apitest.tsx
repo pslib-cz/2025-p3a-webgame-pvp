@@ -3,7 +3,7 @@ import { ErrorBoundary } from "react-error-boundary";
 
 const Apitest = () => {
   const [promise, setPromise] = useState<Promise<any> | null>(null);
-  const url = "/api/minigames/russianroulette/";
+  const url = "/api/consumables";
 
   const fetchData = () => {
     return fetch(url)
