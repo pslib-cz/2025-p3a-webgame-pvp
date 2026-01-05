@@ -39,11 +39,11 @@ createRoot(document.getElementById('root')!).render(
 
             <Route path="foodbar" element={<ErrorBoundary fallback={<><div>Error loading FoodBar</div><Link to="/game">Go Back</Link></>}><Suspense fallback={<div>Loading...</div>}><FoodBar /></Suspense></ErrorBoundary>} />
 
-            <Route path="blackjack" element={<MinigameContainer id="blackjack" exitPage="/game" devVersion={true} />} />
-            <Route path="russianroulette" element={<MinigameContainer id="russianroulette" devVersion={true} exitPage="/game" />} />
-            <Route path="testminigame" element={<MinigameContainer id="test" exitPage="/game" devVersion={true} />} />
-            <Route path="whackamole" element={<MinigameContainer id="whackamole" exitPage="/game" devVersion={true} />} />
-            <Route path="slots" element={<MinigameContainer id="slots" exitPage="/game" devVersion={true} />} />
+            <Route path="blackjack" element={<MinigameContainer id="blackjack" exitPage="/game" />} />
+            <Route path="russianroulette" element={<MinigameContainer id="russianroulette"exitPage="/game" />} />
+            <Route path="testminigame" element={<MinigameContainer id="test" exitPage="/game" />} />
+            <Route path="whackamole" element={<MinigameContainer id="whackamole" exitPage="/game"  />} />
+            <Route path="slots" element={<MinigameContainer id="slots" exitPage="/game"  />} />
   
 
           </Route>

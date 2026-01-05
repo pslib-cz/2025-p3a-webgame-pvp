@@ -54,8 +54,23 @@ namespace UsAgainstTheOdds.Server.Data
                         Description = "Players guess under which cup the hidden object is located, based on luck and intuition. Based on the shell game.",
                         Price = 200,
                         Difficulty = 1
+                    },
+                    new Minigame
+                    {
+                        MinigameId = "slots",
+                        Name = "Spiny spin :)",
+                        Description = "Player spins Slot machine and hopes for all three symbols to be same",
+                        Price = 100,
+                        Difficulty = 1
+                    },
+                    new Minigame
+                    {
+                        MinigameId = "whackamole",
+                        Name = "Whack a Mole",
+                        Description = "Player is whacking moles.",
+                        Price = 100,
+                        Difficulty = 3
                     }
-
                 );
             });
 
