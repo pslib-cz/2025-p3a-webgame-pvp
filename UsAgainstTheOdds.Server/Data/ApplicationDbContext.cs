@@ -13,6 +13,7 @@ namespace UsAgainstTheOdds.Server.Data
         public DbSet<Food> Foods { get; set; }
         public DbSet<Drink> Drinks { get; set; }
         public DbSet<Consumable> Consumables { get; set; }
+        public DbSet<Item> Items { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -73,172 +74,64 @@ namespace UsAgainstTheOdds.Server.Data
                     }
                 );
             });
+            
 
-
-            /*
-             * modelBuilder.Entity<Food>(ent =>
+            modelBuilder.Entity<Item>(ent =>
             {
                 ent.HasData(
-                    new Food
+                    new Item
                     {
-                        FoodId = "hotdog",
-                        Name = "Hot Dog",
-                        Description = "A classic hot dog with mustard and ketchup.",
-                        Price = 5,
-                        RestoreValue = 10
+                        ItemId = "blackbear",
+                        Name = "Black Bear",
+                        Price = 10000,
+                        RelationRestoreValue = 20
                     },
-                    new Food
+                    new Item
                     {
-                        FoodId = "burger",
-                        Name = "Burger",
-                        Description = "A delicious beef burger with lettuce, tomato, and cheese.",
-                        Price = 10,
-                        RestoreValue = 20
+                        ItemId = "whitebear",
+                        Name = "White Bear",
+                        Price = 11000,
+                        RelationRestoreValue = 20
                     },
-                    new Food
+                    new Item
                     {
-                        FoodId = "pizza",
-                        Name = "Pizza",
-                        Description = "A large pepperoni pizza with extra cheese.",
-                        Price = 15,
-                        RestoreValue = 30
+                        ItemId = "pinkbear",
+                        Name = "Pink Bear",
+                        Price = 12000,
+                        RelationRestoreValue = 20
                     },
-                    new Food
+                    new Item
                     {
-                        FoodId = "salad",
-                        Name = "Salad",
-                        Description = "A fresh garden salad with a variety of vegetables.",
-                        Price = 8,
-                        RestoreValue = 15
+                        ItemId = "tulip",
+                        Name = "Tulip",
+                        Price = 500,
+                        RelationRestoreValue = 30
                     },
-                    new Food
+                    new Item
                     {
-                        FoodId = "langos",
-                        Name = "Lángos",
-                        Description = "A traditional Hungarian deep-fried flatbread topped with garlic, sour cream, and cheese.",
-                        Price = 7,
-                        RestoreValue = 12
+                        ItemId = "sunflower",
+                        Name = "Sunflower",
+                        Price = 600,
+                        RelationRestoreValue = 32
                     },
-                    new Food
+                    new Item
                     {
-                        FoodId = "goulash",
-                        Name = "Goulash",
-                        Description = "A hearty Hungarian stew made with beef, vegetables, and paprika.",
-                        Price = 12,
-                        RestoreValue = 25
+                        ItemId = "rose",
+                        Name = "Rose",
+                        Price = 700,
+                        RelationRestoreValue = 35
                     },
-                    new Food
+                    new Item
                     {
-                        FoodId = "cottoncandy",
-                        Name = "Cotton Candy",
-                        Description = "A fluffy and sweet treat made from spun sugar.",
-                        Price = 4,
-                        RestoreValue = 8
+                        ItemId = "gingerbreadheart",
+                        Name = "Gingerbread Heart",
+                        Price = 200,
+                        RelationRestoreValue = 10
                     }
-                );
+
+
+                    );
             });
-            modelBuilder.Entity<Drink>(ent =>
-            {
-                ent.HasData(
-                    new Drink
-                    {
-                        DrinkId = "water",
-                        Name = "Water",
-                        Description = "A refreshing glass of water.",
-                        Price = 2,
-                        RestoreValue = 3,
-                        IsAlcoholic = false
-                    },
-                    new Drink
-                    {
-                        DrinkId = "soda",
-                        Name = "Soda",
-                        Description = "A refreshing carbonated soft drink.",
-                        Price = 3,
-                        RestoreValue = 5,
-                        IsAlcoholic = false
-                    },
-                    new Drink
-                    {
-                        DrinkId = "beer",
-                        Name = "Beer",
-                        Description = "A cold glass of beer.",
-                        Price = 6,
-                        RestoreValue = 10,
-                        IsAlcoholic = true,
-                        AlcoholContent = 5
-                    },
-                    new Drink
-                    {
-                        DrinkId = "wine",
-                        Name = "Wine",
-                        Description = "A glass of fine wine.",
-                        Price = 8,
-                        RestoreValue = 12,
-                        IsAlcoholic = true,
-                        AlcoholContent = 12
-                    },
-                    new Drink
-                    {
-                        DrinkId = "palinka",
-                        Name = "Pálinka",
-                        Description = "A traditional Hungarian fruit brandy, known for its strong flavor and high alcohol content.",
-                        Price = 10,
-                        RestoreValue = 15,
-                        IsAlcoholic = true,
-                        AlcoholContent = 40
-                    },
-                    new Drink
-                    {
-                        DrinkId = "fruitsmoothie",
-                        Name = "Fruit Smoothie",
-                        Description = "A healthy and refreshing blend of fresh fruits.",
-                        Price = 5,
-                        RestoreValue = 8,
-                        IsAlcoholic = false
-                    },
-                    new Drink
-                    {
-                        DrinkId = "gintonic",
-                        Name = "Gin Tonic",
-                        Description = "A classic cocktail made with gin and tonic water, garnished with a slice of lime.",
-                        Price = 9,
-                        RestoreValue = 14,
-                        IsAlcoholic = true,
-                        AlcoholContent = 15
-                    },
-                    new Drink
-                    {
-                        DrinkId = "pepermintliqueur",
-                        Name = "Peppermint Liqueur",
-                        Description = "A sweet and minty liqueur made from peppermint leaves, perfect for a refreshing after-dinner drink.",
-                        Price = 7,
-                        RestoreValue = 10,
-                        IsAlcoholic = true,
-                        AlcoholContent = 25
-                    },
-                    new Drink
-                    {
-                        DrinkId = "eggnog",
-                        Name = "Eggnog",
-                        Description = "A rich and creamy holiday drink made with milk, cream, sugar, whipped egg whites, and egg yolks, often spiked with rum or bourbon.",
-                        Price = 6,
-                        RestoreValue = 9,
-                        IsAlcoholic = true,
-                        AlcoholContent = 20
-                    },
-                    new Drink
-                    {
-                        DrinkId = "slushy",
-                        Name = "Slushy",
-                        Description = "A cold and refreshing slushy drink made with crushed ice and flavored syrup, perfect for hot days.",
-                        Price = 4,
-                        RestoreValue = 6,
-                        IsAlcoholic = false
-                    }
-                );
-            });
-             */
 
 
             modelBuilder.Entity<Consumable>(ent =>
