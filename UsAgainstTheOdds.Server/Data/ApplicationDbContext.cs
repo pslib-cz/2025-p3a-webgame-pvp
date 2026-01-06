@@ -59,7 +59,7 @@ namespace UsAgainstTheOdds.Server.Data
                     new Minigame
                     {
                         MinigameId = "slots",
-                        Name = "Spiny spin :)",
+                        Name = "Spiny spin",
                         Description = "Player spins Slot machine and hopes for all three symbols to be same",
                         Price = 100,
                         Difficulty = 1
@@ -81,8 +81,8 @@ namespace UsAgainstTheOdds.Server.Data
                 ent.HasData(
                     new Item
                     {
-                        ItemId = "blackbear",
-                        Name = "Black Bear",
+                        ItemId = "brownbear",
+                        Name = "Brown Bear",
                         Price = 10000,
                         RelationRestoreValue = 20
                     },
