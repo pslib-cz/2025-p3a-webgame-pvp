@@ -5,9 +5,10 @@ type MoleHoleProps = {
     index: number;
     isMoleUp: boolean;
     hitCallback: (index: number) => void;
+    isUpCallback: (index: number) => void;
 }
 
-const MoleHole: React.FC<MoleHoleProps> = ({ index, isMoleUp, hitCallback }) => {
+const MoleHole: React.FC<MoleHoleProps> = ({ index, isMoleUp, hitCallback, isUpCallback }) => {
     return (
         <div className={styles.moleHole}>
             <Mole
@@ -15,6 +16,7 @@ const MoleHole: React.FC<MoleHoleProps> = ({ index, isMoleUp, hitCallback }) => 
                 isUp={isMoleUp}
 
                 hitCallback={hitCallback}
+                isUpCallback={isUpCallback}
             />
         </div>
     );

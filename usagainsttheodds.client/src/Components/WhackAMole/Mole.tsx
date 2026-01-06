@@ -5,9 +5,10 @@ type MoleProps = {
     index: number;
     isUp: boolean;
     hitCallback: (index: number) => void;
+    isUpCallback: (index: number) => void;
 }
 
-const Mole: React.FC<MoleProps> = ({ index, isUp, hitCallback }) => {
+const Mole: React.FC<MoleProps> = ({ index, isUp, hitCallback, isUpCallback }) => {
 
     const [gotHit, setGotHit] = useState<boolean>(false);
 
@@ -26,6 +27,9 @@ const Mole: React.FC<MoleProps> = ({ index, isUp, hitCallback }) => {
     const handleAnimationEnd = (event: React.AnimationEvent) => {
         if (event.animationName.includes('gotHit')) {
             hitCallback(index);
+        }
+        if (event.animationName.includes("goingUp")) {
+            isUpCallback(index)
         }
     }
 

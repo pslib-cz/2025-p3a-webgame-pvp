@@ -1,4 +1,4 @@
-import { useEffect, useEffectEvent, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import minigameStyles from '../../assets/styles/Minigames/Minigame.module.css';
 import HolesGrid from '../../Components/WhackAMole/HolesGrid';
 import type { MoleHoleType } from '../../Types/MoleHoleType';
@@ -18,57 +18,65 @@ const WhackkAMole = () => {
         { index: 8, isMoleUp: false }
     ]);
     const [molesSpawning, setMolesSpawning] = useState<boolean>(true);
-    const freeIndexesRef = useRef<number[]>([])
     const [spawnInterval, setSpawnInterval] = useState<number>(1000);
-    
+    const [despawnInterval, setDespawnInterval] = useState<number>(2500);
+    const [possibleMoles, setPossibleMoles] = useState<number>(1);
+
+
+    //kdyz zalejza dolu a hitnes ho tak animace fixnout
+
     useEffect(() => {
         if (!molesSpawning) return;
 
         const interval = setInterval(() => {
-            console.log("available holes", ...freeIndexesRef.current)
-            if (freeIndexesRef.current.length > 0) {
-                const pickedIndex = random.pickFromArray(freeIndexesRef.current);
+
+            if (holes.filter(x => x.isMoleUp === true).length < possibleMoles) {//aby to spawnovalo jen kolik ma
+                const pickedIndex = random.generate(0,8);                
                 spawnMole(pickedIndex);
                 console.log("picked hole", pickedIndex)
-            }
+            }//nahodnou neobsazenou pozici
+            
         }, spawnInterval);
 
         return () => clearInterval(interval);
     }, [molesSpawning, spawnInterval])
 
 
-    useEffect(() => {
-        freeIndexesRef.current = []
-        holes.filter(hole => !hole.isMoleUp).forEach(freehole => freeIndexesRef.current.push(freehole.index))
-        console.log("free holes updated ", ...freeIndexesRef.current)
-    },[holes])
+
 
     const handleHit = (index: number) => {
         setScore(prev => prev + 1);
         despawnMole(index);
     }
 
-    const despawnMole = (index: number) => {
-        setHoles(prev => [
-            ...prev.slice(0, index),
-            { ...prev[index], isMoleUp: false },
-            ...prev.slice(index + 1)
-        ])
+    const waitToDespawn = (index: number) => {
+        setTimeout(() => {
+            despawnMole(index);
+        }, despawnInterval);
     }
-    //nahodny cas po jakem despawn
+
+    const despawnMole = (index: number) => {
+        setHoles(prevHoles => {
+            if (!prevHoles[index].isMoleUp) return prevHoles;
+
+            const newHoles = [...prevHoles]
+            newHoles[index] = {...newHoles[index], isMoleUp: false}
+            return newHoles
+        })
+    }
 
     const spawnMole = (index: number) => {
-        setHoles(prev => [
-            ...prev.slice(0, index),
-            { ...prev[index], isMoleUp: true },
-            ...prev.slice(index + 1)
-        ])
+        setHoles(prevHoles => {
+            const newHoles = [...prevHoles]
+            newHoles[index] = {...newHoles[index], isMoleUp: true}
+            return newHoles
+        })
     }
 
     return (
     <div className={minigameStyles.container}>
         <h2>Moles hit: {score}</h2>
-        <HolesGrid holes={holes} hitCallback={(id) => handleHit(id)} />
+        <HolesGrid holes={holes} hitCallback={handleHit} isUpCallback={waitToDespawn}/>
 
         <button onClick={() => setHoles(prev => prev.map(hole => ({ ...hole, isMoleUp: true })))}>spawn all moles</button>
         <button onClick={() => setHoles(prev => prev.map(hole => ({ ...hole, isMoleUp: false })))}>despawn all moles</button>

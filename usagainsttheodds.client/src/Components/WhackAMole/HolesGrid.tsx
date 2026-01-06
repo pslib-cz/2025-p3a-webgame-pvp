@@ -3,11 +3,12 @@ import type { MoleHoleType } from "../../Types/MoleHoleType";
 import MoleHole from "./MoleHole";
 
 type HolesGridProps = {
-    hitCallback: (id: number) => void;
+    hitCallback: (index: number) => void;
+    isUpCallback: (index: number) => void
     holes: MoleHoleType[];
 }
 
-const HolesGrid: React.FC<HolesGridProps> = ({ holes, hitCallback }) => {
+const HolesGrid: React.FC<HolesGridProps> = ({ holes, hitCallback, isUpCallback }) => {
 
 
     return (
@@ -18,6 +19,7 @@ const HolesGrid: React.FC<HolesGridProps> = ({ holes, hitCallback }) => {
                         index={hole.index}
                         isMoleUp={hole.isMoleUp}
                         hitCallback={() => hitCallback(hole.index)}
+                        isUpCallback={() => isUpCallback(hole.index)}
                     />
                 </span>
             ))}
