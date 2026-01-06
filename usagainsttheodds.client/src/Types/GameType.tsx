@@ -30,7 +30,7 @@ export type Items = {
     name: string;
     description: string;
     price: number;
-    staminaRestoreValue: number;
+    RelationRestoreValue: number;
 }
 
 

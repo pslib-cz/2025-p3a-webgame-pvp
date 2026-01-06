@@ -53,7 +53,7 @@ const ItemShop = () => {
 
         setTickets(prev => prev - item.price);
         
-        setRelationshipValue(prev => Math.min(100, prev + item.staminaRestoreValue));
+        setRelationshipValue(prev => Math.min(100, prev + item.RelationRestoreValue));
 
     }
 
@@ -68,7 +68,7 @@ const ItemShop = () => {
                         <h2>{item.name}</h2>
                         <p>{item.description}</p>
                         <p>Price: {item.price} tickets</p>
-                        <p>Stamina Restore: {item.staminaRestoreValue}</p>
+                        <p>Relation Restore: {item.RelationRestoreValue}</p>
                         <button onClick={() => handleBuy(item.ItemId)}>Buy</button>
                     </div>
                 ))}

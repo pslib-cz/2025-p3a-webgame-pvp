@@ -6,6 +6,7 @@ import minigameStyles from "../../assets/styles/Minigames/Minigame.module.css"
 //import styles from "../../assets/styles/Minigames/BlackJack.module.css"
 import SlotMachine from "../../Components/SlotMachine/SlotMachine";
 import styles from "../../assets/styles/Minigames/BlackJack.module.css"
+import rS from "../../Helpers/randomGeneratorHelper";
 
 const Russianroulette = () => {
 
@@ -16,17 +17,26 @@ const Russianroulette = () => {
 
 
     const { endGame, setResult, result, setRewardMultiplier } = useMinigame();//získání endGame funkce z kontextu
-    const [buttonsVisible, setButtonsVisible] = useState(true);
+    const [spinButtonVisible, setSpinButtonVisible] = useState(true);
+    const [stopButtonVisible, setStopButtonVisible] = useState(false);
     const [isSpinning, setIsSpinning] = useState(false);
-    const [firstSlot, setFirstSlot] = useState<number>(0);
-    const [secondSlot, setSecondSlot] = useState<number>(0);
-    const [thirdSlot, setThirdSlot] = useState<number>(0);
 
 
 
 
 
 
+const [positions, setPositions] = useState<[number, number, number]>([0, 0, 0]);
+
+    useEffect(() => {
+      if (isSpinning) {
+        setPositions([
+          rS.generate(0, 8),
+          rS.generate(0, 8),
+          rS.generate(0, 8),
+        ]);
+      }
+    }, [isSpinning]);
 
         
     const handleAnimationEnd = (event: React.AnimationEvent) => {
@@ -37,9 +47,12 @@ const Russianroulette = () => {
 
     const decideGameResult = (): void => {
         const result = (): GameResult => {
-            if (firstSlot === secondSlot && secondSlot === thirdSlot)
+            if (positions[0] === positions[1] && positions[1] === positions[2])
             {
-                setRewardMultiplier(firstSlot+2);// nastaví reward multiplier podle symbolu
+                console.log(positions[0]);
+                console.log(positions[1]);
+                console.log(positions[2]);
+                setRewardMultiplier(positions[0]+2);// nastaví reward multiplier podle symbolu
                 return "win";
             } 
             else return "lose";
@@ -53,25 +66,24 @@ const Russianroulette = () => {
 
     return (
         <div className={minigameStyles.container}>
-            <div style={{ marginBottom: 12 }}>
-            </div>
-                <SlotMachine firstPosition={setFirstSlot} secondPosition={setSecondSlot} thirdPosition={setThirdSlot} isSpinning={isSpinning} />
+                <SlotMachine firstPosition={positions[0]} secondPosition={positions[1]} thirdPosition={positions[2]} isSpinning={isSpinning} />
 
-                
-                    
-                    {buttonsVisible && (
-                        <div>
-                            <button className="button" 
-                                    onClick={() => setIsSpinning(true)}>
-                                Spin
-                            </button>
+                    {spinButtonVisible && (
+                        <button className="button" 
+                                onClick={() => {setIsSpinning(true)
+                                setSpinButtonVisible(false);
+                                setStopButtonVisible(true);
+                                }}>
+                            Spin
+                        </button>
+                    )}
 
+                    {stopButtonVisible && (
                             <button className="button" 
-                                onClick={() => {setIsSpinning(false); setButtonsVisible(false);decideGameResult();}} 
+                                onClick={() => {setIsSpinning(false); setStopButtonVisible(false);decideGameResult();}} 
                                 style={{ marginLeft: 8 }}>
                                     Stop
                             </button>
-                        </div>
                     )}
 
 

@@ -1,4 +1,7 @@
-body, h1, h2, h3, p {
+@import url('https://fonts.googleapis.com/css2?family=Jersey+15&display=swap');
+
+body, h1, h2, h3, p, a, button {
+    font-family: "Jersey 15", sans-serif;
     margin: 0;
 }
 
@@ -14,6 +17,10 @@ body, h1, h2, h3, p {
     margin: 0.25em;
 }
 
+.btn-modal-content {
+    padding: 0.3rem 1rem;
+}
+
 .button:hover {
     background-color: rgb(178, 219, 255);
 }
@@ -23,11 +30,8 @@ body, h1, h2, h3, p {
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.508);
     padding: 0.7%;
-    color: white;
     z-index: 200;
-
     cursor: not-allowed;
 
 }
@@ -36,10 +40,26 @@ body, h1, h2, h3, p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #4a4a4a;
-    padding: 1em;
+    background-image: url("../assets/images/PauseMenu.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 2.6% 5%;
     width: max-content;
-
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: center;
     cursor: default;
+}
+
+.modal-interactive {
+    width: 100%;
+}
+
+.interactive-btn {
+    display: flex;
+    justify-content: space-between;
+    padding: 2%;
+    flex-grow: 1;
 }
 

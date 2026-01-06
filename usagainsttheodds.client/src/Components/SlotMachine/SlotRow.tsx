@@ -1,32 +1,38 @@
 import rS from "../../Helpers/randomGeneratorHelper";
 import { useState, useEffect } from "react";
+
+import lemon from "../../assets/images/SlotMachine/lemon.png";
+import melon from "../../assets/images/SlotMachine/melon.png";
+import cherry from "../../assets/images/SlotMachine/cherry.png";
+import heart from "../../assets/images/SlotMachine/heart.png";
+import bell from "../../assets/images/SlotMachine/bell.png";
+import horseshoe from "../../assets/images/SlotMachine/horseshoe.png";
+import clover from "../../assets/images/SlotMachine/clover.png";
+import diamond from "../../assets/images/SlotMachine/diamond.png";
+import seven from "../../assets/images/SlotMachine/seven.png";
+//import spin from "../../assets/images/SlotMachine/spin.png";
+
+
 type SlotRowProps = {
     isSpinning: boolean;
-    currentPosition: (x:number) => void;
+    currentPosition: number;
 };
 
 const SlotRow: React.FC<SlotRowProps> = ({isSpinning, currentPosition}) => {
     const [position, setPosition] = useState<number>(0);
     const Symbols: string[] = [
-        "../../assets/images/SlotMachine/lemon.png",
-        "../../assets/images/SlotMachine/watermelon.png",
-        "../../assets/images/SlotMachine/cherry.png",
-        "../../assets/images/SlotMachine/heart.png",
-        "../../assets/images/SlotMachine/bell.png",
-        "../../assets/images/SlotMachine/horseshoe.png",
-        "../../assets/images/SlotMachine/clover.png",
-        "../../assets/images/SlotMachine/diamond.png",
-        "../../assets/images/SlotMachine/seven.png",
-        "../../assets/images/SlotMachine/spin.png"
+        lemon,
+        melon,
+        cherry,
+        heart,
+        bell,
+        horseshoe,
+        clover,
+        diamond,
+        seven,
+        //spin
         ];
 
-
-    useEffect(() => {
-        if (isSpinning) {
-            setPosition(rS.generate(0, Symbols.length - 2)); // Exclude the spinner image
-            currentPosition(position);
-        }
-    }, [isSpinning]);
 
     if (isSpinning) {
       // while spinning show the spinner image without calling setState during render
@@ -34,12 +40,11 @@ const SlotRow: React.FC<SlotRowProps> = ({isSpinning, currentPosition}) => {
           <img src={Symbols[9]} alt="spinning"/>
       );
     }
-    
-    return (
-      <div>
-          <img src={Symbols[position]} alt="slot symbol" />
-      </div>
-    );
+    else {
+        return (
+            <img style={{  width: "100%"}} src={Symbols[currentPosition]} alt="slot symbol" />
+        );
+    }
 };
 
 export default SlotRow;
