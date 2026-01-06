@@ -1,1 +1,23 @@
+.slot-machine {
+  position: relative;
+  overflow: hidden;
+}
+.frame {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+}
+.slotsContainer {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 48%;
+  transform: translateX(-51%);
+  width: 65%;
+  top: 28%;
+  gap: 8px;
 
+  z-index: 5;
+}

@@ -16,11 +16,14 @@ const SlotMachine: React.FC<SlotMachineProps> = ({ isSpinning, firstPosition, se
 
 
   return (
-    <div className="slot-machine">
-      <img src={machineFrame} alt="" />
-      <SlotRow  isSpinning={isSpinning} currentPosition={firstPosition} />
-      <SlotRow isSpinning={isSpinning} currentPosition={secondPosition} />
-      <SlotRow isSpinning={isSpinning} currentPosition={thirdPosition} />
+    <div className={`${style.slotMachineContainer}`}>
+      <img src={machineFrame} alt="slot machine frame" className={style.frame} />
+      <div className={style.slotsContainer}>
+        <SlotRow isSpinning={isSpinning} currentPosition={firstPosition} />
+        <SlotRow isSpinning={isSpinning} currentPosition={secondPosition} />
+        <SlotRow isSpinning={isSpinning} currentPosition={thirdPosition} />
+      </div>
+
     </div>
   );
 };

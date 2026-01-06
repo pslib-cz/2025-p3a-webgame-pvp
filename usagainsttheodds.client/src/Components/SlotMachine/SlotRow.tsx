@@ -42,9 +42,7 @@ const SlotRow: React.FC<SlotRowProps> = ({isSpinning, currentPosition}) => {
     }
     else {
         return (
-        <div>
-            <img src={Symbols[currentPosition]} alt="slot symbol" />
-        </div>
+            <img style={{  width: "100%"}} src={Symbols[currentPosition]} alt="slot symbol" />
         );
     }
 };
