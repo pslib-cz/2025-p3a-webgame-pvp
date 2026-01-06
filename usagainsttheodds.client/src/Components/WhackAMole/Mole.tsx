@@ -20,11 +20,13 @@ const Mole: React.FC<MoleProps> = ({ index, isUp, hitCallback, isUpCallback }) =
     }, [isUp]);
 
     const hnadleClick = () => {
-        if (isUp || !gotHit) {
+        if (isUp && !gotHit) {
             setGotHit(true)
         }
     }
     const handleAnimationEnd = (event: React.AnimationEvent) => {
+        event.stopPropagation()//aby to zastavilo bublani z ditete aby se nespustil callback 2x
+
         if (event.animationName.includes('gotHit')) {
             hitCallback(index);
         }
@@ -39,12 +41,20 @@ return (
     <>
             <span
                 className={`
-                    ${styles.mole}
-                    ${gotHit ? styles.gotHit : (isUp ? styles.isUp : styles.isDown)}
-                `}  
-                onClick={hnadleClick}
-                onAnimationEnd={handleAnimationEnd}    
-            />
+                    ${styles.moleContainer}
+                    ${isUp ? styles.isUp : styles.isDown}
+                `}
+                onAnimationEnd={handleAnimationEnd}
+            >
+                <span
+                    className={`
+                        ${styles.mole}
+                        ${gotHit && styles.gotHit}
+                    `}  
+                    onClick={hnadleClick}
+                    onAnimationEnd={handleAnimationEnd}    
+                />
+            </span>
         
     </>
 );

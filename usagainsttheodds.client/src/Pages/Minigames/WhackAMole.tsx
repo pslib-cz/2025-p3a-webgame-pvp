@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import minigameStyles from '../../assets/styles/Minigames/Minigame.module.css';
 import HolesGrid from '../../Components/WhackAMole/HolesGrid';
 import type { MoleHoleType } from '../../Types/MoleHoleType';
@@ -21,25 +21,32 @@ const WhackkAMole = () => {
     const [spawnInterval, setSpawnInterval] = useState<number>(1000);
     const [despawnInterval, setDespawnInterval] = useState<number>(2500);
     const [possibleMoles, setPossibleMoles] = useState<number>(1);
+    const holesRef = useRef(holes)
 
+    useEffect(() => {
+        holesRef.current = holes
+    }, [holes])
 
-    //kdyz zalejza dolu a hitnes ho tak animace fixnout
 
     useEffect(() => {
         if (!molesSpawning) return;
 
         const interval = setInterval(() => {
+            const freeHoles: number[] = []
 
-            if (holes.filter(x => x.isMoleUp === true).length < possibleMoles) {//aby to spawnovalo jen kolik ma
-                const pickedIndex = random.generate(0,8);                
+            //pres ref protoze v intervalu to bere jen data kdyz vznikl a takhle to vzalo referenci na misto odkud se maji vzit ty data
+            holesRef.current.filter(x => x.isMoleUp === false).forEach(x => freeHoles.push(x.index))
+
+            
+            if (9-freeHoles.length < possibleMoles) {
+                const pickedIndex = random.pickFromArray(freeHoles);                
                 spawnMole(pickedIndex);
-                console.log("picked hole", pickedIndex)
-            }//nahodnou neobsazenou pozici
+            }
             
         }, spawnInterval);
 
         return () => clearInterval(interval);
-    }, [molesSpawning, spawnInterval])
+    }, [molesSpawning, spawnInterval, possibleMoles])
 
 
 
@@ -78,8 +85,8 @@ const WhackkAMole = () => {
         <h2>Moles hit: {score}</h2>
         <HolesGrid holes={holes} hitCallback={handleHit} isUpCallback={waitToDespawn}/>
 
-        <button onClick={() => setHoles(prev => prev.map(hole => ({ ...hole, isMoleUp: true })))}>spawn all moles</button>
-        <button onClick={() => setHoles(prev => prev.map(hole => ({ ...hole, isMoleUp: false })))}>despawn all moles</button>
+        <button onClick={() => holes.forEach(x => spawnMole(x.index))}>spawn all moles</button>
+        <button onClick={() => holes.forEach(x => despawnMole(x.index))}>despawn all moles</button>
         <button onClick={() => setMolesSpawning(prev => !prev)}>{molesSpawning ? "Stop Spawning" : "Start Spawning"}</button>
     </div>
     );

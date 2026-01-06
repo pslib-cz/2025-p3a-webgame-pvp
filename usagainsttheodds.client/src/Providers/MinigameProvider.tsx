@@ -68,6 +68,7 @@ export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>
             drunkenness: ((prev.drunkenness - (data!.difficulty*pDrunkennessMultiplier)) >= 0 ? (prev.drunkenness - (data!.difficulty*pDrunkennessMultiplier)) : 0),
         }))
         setGirlfriend(prev => ({
+            ...prev,
             hunger: ((prev.hunger - (data!.difficulty*gHungerMultiplier)) >= 0 ? (prev.hunger - (data!.difficulty*gHungerMultiplier)) : 0),
             thirst: ((prev.thirst - (data!.difficulty*gThirstMultiplier)) >= 0 ? (prev.thirst - (data!.difficulty*gThirstMultiplier)) : 0),
             drunkenness: ((prev.drunkenness - (data!.difficulty*gDrunkennessMultiplier)) >= 0 ? (prev.drunkenness - (data!.difficulty*gDrunkennessMultiplier)) : 0),

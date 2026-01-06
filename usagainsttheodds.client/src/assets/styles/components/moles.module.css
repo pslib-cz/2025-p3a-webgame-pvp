@@ -19,6 +19,14 @@
 
 }
 
+.moleContainer {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: translateY(-100%);
+    
+}
+
 .mole {
     display: block;
     width: 100%;
@@ -26,7 +34,6 @@
     background-image: url("../../images/mole.png");
     background-size: contain;
     cursor: pointer;
-    transform: translateY(-100%);
     transform-origin: bottom;
 }
 .gotHit {
