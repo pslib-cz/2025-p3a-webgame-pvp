@@ -11,6 +11,7 @@ import MinigameContainer from './Components/Minigame/MinigameContainer.tsx';
 import FoodBar from './Pages/FoodBar.tsx';
 import StartPage from './Pages/StartPage.tsx'
 import IntroCutscene from './Pages/Cutscene/IntroCutscene.tsx'
+import ItemShop from './Pages/ItemShop.tsx';
 import { ErrorBoundary } from 'react-error-boundary';
 
 createRoot(document.getElementById('root')!).render(
@@ -37,7 +38,8 @@ createRoot(document.getElementById('root')!).render(
           {/* STÁNKY */}
           <Route path='stall'>
 
-            <Route path="foodbar" element={<FoodBar />} />
+          <Route path="foodbar" element={<FoodBar />} />
+          <Route path="itemshop" element={<ItemShop/> } />
 
             <Route path="blackjack" element={<MinigameContainer id="blackjack" exitPage="/game" />} />
             <Route path="russianroulette" element={<MinigameContainer id="russianroulette"exitPage="/game" />} />
