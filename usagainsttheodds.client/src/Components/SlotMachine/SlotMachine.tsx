@@ -1,18 +1,23 @@
 import React from "react";
 import SlotRow from "./SlotRow";
+import machineFrame from "../../assets/images/SlotMachine/slot-pozadi.png";
+import style from "../../assets/styles/Minigames/SlotMachine/SlotMachine.module.css";
 
 type SlotMachineProps = {
   isSpinning: boolean;
-  firstPosition: (x:number) => void;
-  secondPosition: (x:number) => void;
-  thirdPosition: (x:number) => void;
+  firstPosition: number;
+  secondPosition: number;
+  thirdPosition: number;
 };
 
 const SlotMachine: React.FC<SlotMachineProps> = ({ isSpinning, firstPosition, secondPosition, thirdPosition }) => {
 
 
+
+
   return (
-    <div>
+    <div className="slot-machine">
+      <img src={machineFrame} alt="" />
       <SlotRow  isSpinning={isSpinning} currentPosition={firstPosition} />
       <SlotRow isSpinning={isSpinning} currentPosition={secondPosition} />
       <SlotRow isSpinning={isSpinning} currentPosition={thirdPosition} />
