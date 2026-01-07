@@ -19,15 +19,12 @@ const HomePage = () => {
 
         <div className="main">
 
-        <button className="button" onClick={() => setIsOpen(true)}>
-          Otevřít modal
-          </button>
-
-        {isOpen && (
-          <PauseMenu onClose={() => setIsOpen(false)}/>
-        )}
+        
 
         <div>
+          <button className="btn-menu" onClick={() => setIsOpen(true)}/>
+            {isOpen && ( <PauseMenu onClose={() => setIsOpen(false)}/> )}
+
           <button className="button" onClick={() => navigate("/stall/blackjack")}>
               Blackjack
           </button>
