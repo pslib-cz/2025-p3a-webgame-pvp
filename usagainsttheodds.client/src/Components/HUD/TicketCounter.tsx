@@ -12,9 +12,8 @@ const TicketCounter: React.FC<TicketCounterProps> = ({ value }) => {
     }
 
     return (
-        <div className={styles.container}>
-            <span className={styles.value}>{formatNumber(value)}</span>
-            <span className={styles.icon}></span>
+        <div className={styles.ticket_container}>
+            <span className={styles.ticket_value}>{formatNumber(value)}</span>
         </div>
     )
 }

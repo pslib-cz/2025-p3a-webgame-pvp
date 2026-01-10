@@ -1,8 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Jersey+15&display=swap');
 
+:root {
+    --light-color: #E8D3D3;
+    --dark-color: #341B17;
+    --brown: #69362E;
+    --orange: #B04B3C;
+
+}
+
 body, h1, h2, h3, p, a, button {
     font-family: "Jersey 15", sans-serif;
     margin: 0;
+    color: var(--dark-color);
 }
 
 .main {
@@ -11,14 +20,31 @@ body, h1, h2, h3, p, a, button {
 
 .button {
     padding: .25em .5em;
-    background-color: aliceblue;
-    border: .15em solid black;
+    background-color: var(--light-color);
+    border: .15em solid var(--dark-color);
     border-radius: 1rem;
     margin: 0.25em;
+    cursor: pointer;
 }
 
 .btn-modal-content {
     padding: 0.3rem 1rem;
+}
+
+.btn-menu {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    height: 32px;
+    background-color: transparent;
+    background-image: url("../assets/images/Main/Menu-button.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 0;
+    cursor: pointer;
 }
 
 .button:hover {
@@ -40,7 +66,7 @@ body, h1, h2, h3, p, a, button {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-image: url("../assets/images/PauseMenu.png");
+    background-image: url("../assets/images/Main/PauseMenu.png");
     background-size: cover;
     background-repeat: no-repeat;
     padding: 2.6% 5%;
