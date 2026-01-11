@@ -7,6 +7,7 @@ import minigameStyles from "../../assets/styles/Minigames/Minigame.module.css"
 import SlotMachine from "../../Components/SlotMachine/SlotMachine";
 import styles from "../../assets/styles/Minigames/SlotMachine/SlotMachine.module.css"
 import rS from "../../Helpers/randomGeneratorHelper";
+import Minigame from "../../Components/Minigame/Minigame";
 
 const Russianroulette = () => {
 
@@ -90,9 +91,9 @@ const [positions, setPositions] = useState<[number, number, number]>([0, 0, 0]);
                         </button>
 
                     {result && (
-                        <div onAnimationEnd={handleAnimationEnd} className={styles.resultScreen}>
-                            {result === "win" && <span className={styles.resultText}>You win!</span>}
-                            {result === "lose" && <span className={styles.resultText}>You lose!</span>}
+                        <div onAnimationEnd={handleAnimationEnd} className={minigameStyles.resultScreen}>
+                            {result === "win" && <span className={minigameStyles.resultText}>You win!</span>}
+                            {result === "lose" && <span className={minigameStyles.resultText}>You lose!</span>}
                         </div>
                     )}  
         

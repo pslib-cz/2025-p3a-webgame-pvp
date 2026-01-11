@@ -295,11 +295,11 @@ const Blackjack = () => {
                         </div>
                     )}
                     {result && (
-                        <div onAnimationEnd={handleAnimationEnd} className={styles.resultScreen}>
-                            {blackjack && <span className={styles.resultText}>Blackjack!</span>}
-                            {result === "win" && <span className={styles.resultText}>You win!</span>}
-                            {result === "lose" && <span className={styles.resultText}>You lose!</span>}
-                            {result === "draw" && <span className={styles.resultText}>It's a draw!</span>}
+                        <div onAnimationEnd={handleAnimationEnd} className={`${minigameStyles.resultScreen}`}>
+                            {blackjack && <span className={`${minigameStyles.resultText}`}>Blackjack!</span>}
+                            {result === "win" && <span className={`${minigameStyles.resultText}`}>You win!</span>}
+                            {result === "lose" && <span className={`${minigameStyles.resultText}`}>You lose!</span>}
+                            {result === "draw" && <span className={`${minigameStyles.resultText}`}>It's a draw!</span>}
                         </div>
                     )}
                 </>
