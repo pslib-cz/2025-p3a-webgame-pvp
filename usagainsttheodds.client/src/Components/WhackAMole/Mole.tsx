@@ -39,6 +39,7 @@ const Mole: React.FC<MoleProps> = ({ index, isUp, hitCallback, isUpCallback }) =
 
 return (
     <>
+        
             <span
                 className={`
                     ${styles.moleContainer}

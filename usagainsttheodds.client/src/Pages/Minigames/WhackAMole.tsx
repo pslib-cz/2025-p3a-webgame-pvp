@@ -3,6 +3,9 @@ import minigameStyles from '../../assets/styles/Minigames/Minigame.module.css';
 import HolesGrid from '../../Components/WhackAMole/HolesGrid';
 import type { MoleHoleType } from '../../Types/MoleHoleType';
 import random from "../../Helpers/randomGeneratorHelper"
+import useTimer from '../../Hooks/useTimer';
+import MolesStartButton from '../../Components/WhackAMole/MolesStartButton';
+import MoleHole from '../../Components/WhackAMole/MoleHole';
 
 const WhackkAMole = () => {
     const [score, setScore] = useState<number>(0);
@@ -17,16 +20,19 @@ const WhackkAMole = () => {
         { index: 7, isMoleUp: false },
         { index: 8, isMoleUp: false }
     ]);
-    const [molesSpawning, setMolesSpawning] = useState<boolean>(true);
+    const [molesSpawning, setMolesSpawning] = useState<boolean>(false);
     const [spawnInterval, setSpawnInterval] = useState<number>(1000);
     const [despawnInterval, setDespawnInterval] = useState<number>(2500);
     const [possibleMoles, setPossibleMoles] = useState<number>(1);
+    
+
+    //nekdy buguje vylezani
+
     const holesRef = useRef(holes)
 
     useEffect(() => {
         holesRef.current = holes
     }, [holes])
-
 
     useEffect(() => {
         if (!molesSpawning) return;
@@ -47,9 +53,6 @@ const WhackkAMole = () => {
 
         return () => clearInterval(interval);
     }, [molesSpawning, spawnInterval, possibleMoles])
-
-
-
 
     const handleHit = (index: number) => {
         setScore(prev => prev + 1);
@@ -80,15 +83,30 @@ const WhackkAMole = () => {
         })
     }
 
-    return (
-    <div className={minigameStyles.container}>
-        <h2>Moles hit: {score}</h2>
-        <HolesGrid holes={holes} hitCallback={handleHit} isUpCallback={waitToDespawn}/>
 
-        <button onClick={() => holes.forEach(x => spawnMole(x.index))}>spawn all moles</button>
-        <button onClick={() => holes.forEach(x => despawnMole(x.index))}>despawn all moles</button>
-        <button onClick={() => setMolesSpawning(prev => !prev)}>{molesSpawning ? "Stop Spawning" : "Start Spawning"}</button>
-    </div>
+
+    const handleStart = () => {
+        console.log("hra začala")
+        setMolesSpawning(true)
+        countdown.start()
+    }
+
+    const handleTimeUp = () => {
+        console.log("čas vypršel")
+        setMolesSpawning(false)
+    }
+    
+    const countdown = useTimer(30000, handleTimeUp)
+
+    return (
+        <div className={`${minigameStyles.container}`}>
+            <h2>Moles hit: {score}</h2>
+            <h2>Time left: {countdown.seconds}.{countdown.milliseconds}</h2>
+            <HolesGrid holes={holes} hitCallback={handleHit} isUpCallback={waitToDespawn}/>
+
+            <MolesStartButton startCallback={handleStart}/>
+
+        </div>
     );
 }
 
