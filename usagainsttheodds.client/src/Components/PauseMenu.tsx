@@ -25,6 +25,7 @@ const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
         <div className="modal-interactive">
           <p className="interactive-btn">Music<button onClick={() => setIsMusicMuted(prev => !prev)}>{isMusicMuted ? "Off" : "On"}</button></p>
           <p className="interactive-btn">SFX<button onClick={() => setIsSfxMuted(prev => !prev)}>{isSfxMuted ? "Off" : "On"}</button></p>
+          <button onClick={() => {localStorage.clear(); window.location.reload();}}>Reset Game</button>
         </div>
         
         <button className="btn-modal-content" onClick={onClose}>Return to game</button>
