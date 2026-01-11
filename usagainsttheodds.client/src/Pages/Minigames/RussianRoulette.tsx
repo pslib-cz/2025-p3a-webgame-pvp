@@ -5,7 +5,6 @@ import { useRef, useEffect } from "react";
 import { useMinigame } from "../../Hooks/useMinigame";
 import Gun from "../../Components/Gun/Gun";
 import minigameStyles from "../../assets/styles/Minigames/Minigame.module.css"
-import styles from "../../assets/styles/Minigames/BlackJack.module.css"
 
 const Russianroulette = () => {
 
@@ -112,10 +111,10 @@ const Russianroulette = () => {
                     )}
 
                     {result && (
-                        <div onAnimationEnd={handleAnimationEnd} className={styles.resultScreen}>
-                            {result === "win" && <span className={styles.resultText}>You win!</span>}
-                            {result === "lose" && <span className={styles.resultText}>You lose!</span>}
-                            {result === "draw" && <span className={styles.resultText}>It's a draw!</span>}
+                        <div onAnimationEnd={handleAnimationEnd} className={minigameStyles.resultScreen}>
+                            {result === "win" && <span className={minigameStyles.resultText}>You win!</span>}
+                            {result === "lose" && <span className={minigameStyles.resultText}>You lose!</span>}
+                            {result === "draw" && <span className={minigameStyles.resultText}>It's a draw!</span>}
                         </div>
                     )}
         </div>
