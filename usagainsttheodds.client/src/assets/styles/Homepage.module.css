@@ -1,0 +1,192 @@
+.main_right {
+    background-image: url("../images/Main/Background-first.png");
+    height: 100vh;
+    background-size: cover;
+    background-position:left top;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.main_left {
+    background-image: url("../images/Main/Background-second.png");
+    height: 100vh;
+    background-size: cover;
+    background-position:left top;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.goLEFT_btn, .goRIGHT_btn {
+    position: absolute;
+    margin: 0 1rem;
+    padding: 1.5em 0.3em;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 50%;
+    transition: padding 0.3s ease;
+    background-color: var(--light-color);   
+    border: 0;
+}
+
+.goLEFT_btn:hover, .goRIGHT_btn:hover {
+    padding: 1.7em 0.5em;
+    opacity: 100%;
+    cursor: pointer;
+}
+.goLEFT_btn {
+    right: 0;
+}
+.goRIGHT_btn svg {
+    transform: rotate(180deg);
+}
+
+
+/* STÁNKY */
+
+.building {
+    position: absolute;
+    z-index: 1;
+    padding: 1rem;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: transparent;
+    transition: transform 0.3s ease;
+}
+
+.building:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.wheel {
+    background-image: url("../images/Homepage/Wheel.png");
+    width: 40%;
+    height: 40%;
+    right: 35%;
+    top: 0;
+}
+.shop {
+    background-image: url("../images/Homepage/Shop.png");
+    width: 25%;
+    height: 35%;
+    left: 5%;
+    top: 13%;
+}
+.russianroulette {
+    background-image: url("../images/Homepage/Russianroulette.png");
+    width: 20%;
+    height: 30%;
+    left: -5%;
+    top: 40%;
+}
+.baloons {
+    background-image: url("../images/Homepage/Baloons.png");
+    width: 10%;
+    height: 18%;
+    right: 15%;
+    top: 40%;
+}
+
+.feelinglucky {
+    background-image: url("../images/Homepage/Feelinglucky.png");
+    width: 15%;
+    height: 30%;
+    right: 20%;
+    top: 15%;
+}
+
+.slots {
+    background-image: url("../images/Homepage/Slots.png");
+    width: 10%;
+    height: 27%;
+    right: 30%;
+    top: 15%;
+}
+
+
+.blackjack {
+    background-image: url("../images/Homepage/Blackjack.png");
+    width: 30%;
+    height: 40%;
+    right: 1%;
+    top: 22%;
+}
+.whackamole {
+    background-image: url("../images/Homepage/Whackamole.png");
+    width: 15%;
+    height: 25%;
+    right: 1%;
+    top: 52%;
+}
+
+.food {
+    background-image: url("../images/Homepage/Food.png");
+    width: 20%;
+    height: 30%;
+    left: 22%;
+    top: 10%;
+}
+
+.pexeso {
+    background-image: url("../images/Homepage/Pexeso.png");
+    width: 10%;
+    height: 27%;
+    right: 40%;
+    top: 15%;
+}
+
+
+/* NPC + ANIMACE*/
+
+.npc_1, .npc_2 {
+    position: absolute;
+    z-index: 2;
+
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    width: 6%;
+    height: 16%;
+}
+
+.npc_1 {
+    animation: long-walk 20s linear infinite;
+    transform-origin: center;
+}
+
+.girlindress {
+    background-image: url(../images/Homepage/NPC/Girlindress.png);
+    top: 62%;
+    left: 40%;
+}
+
+.family {
+    background-image: url(../images/Homepage/NPC/Family.png);
+    top: 62%;
+    left: 15%;
+}
+
+@keyframes long-walk {
+    0%   { transform: translateX(0) scaleX(1) translateY(0); }
+    25%  { transform: translateX(10vw) scaleX(1) translateY(-2px); }
+    50%  { transform: translateX(20vw) scaleX(1) translateY(0); }
+    50.1%{ transform: translateX(20vw) scaleX(-1) translateY(0); }
+    75%  { transform: translateX(10vw) scaleX(-1) translateY(-2px); }
+    100% { transform: translateX(0) scaleX(-1) translateY(0); }
+}
+
+.npc_2 {
+    animation: short-walk 15s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes short-walk {
+    0%   { transform: translateX(0) scaleX(1) translateY(0); }
+    25%  { transform: translateX(15vw) scaleX(1) translateY(-2px); }
+    50%  { transform: translateX(30vw) scaleX(1) translateY(0); }
+    50.1%{ transform: translateX(30vw) scaleX(-1) translateY(0); }
+    75%  { transform: translateX(15vw) scaleX(-1) translateY(-2px); }
+    100% { transform: translateX(0) scaleX(-1) translateY(0); }
+}
