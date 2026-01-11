@@ -12,6 +12,7 @@ import FoodBar from './Pages/FoodBar.tsx';
 import StartPage from './Pages/StartPage.tsx'
 import IntroCutscene from './Pages/Cutscene/IntroCutscene.tsx'
 import ItemShop from './Pages/ItemShop.tsx';
+import Wheel from './Pages/Cutscene/Wheel.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -25,6 +26,7 @@ createRoot(document.getElementById('root')!).render(
           {/* CUTSCÉNY */}
           <Route path="cutscene">
             <Route path="intro" element={<IntroCutscene />} />
+            {/* <Route path="wheel" element={<Wheel />} /> */}
           </Route>
 
           {/* HRA */}

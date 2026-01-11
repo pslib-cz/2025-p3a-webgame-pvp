@@ -1,7 +1,8 @@
 .blackjackContainer {
+    background-color: var(--dark-color);
     background-image: url(../../images/blackjackBg.png);
     background-size: cover;
-    background-position: center;
+    background-position: top center;
 }
 
 .deck {

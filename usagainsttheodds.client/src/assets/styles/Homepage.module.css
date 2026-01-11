@@ -1,0 +1,73 @@
+.main_right {
+    background-image: url("../images/Main/Background-first.png");
+    height: 100vh;
+    background-size: cover;
+    background-position:left top;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.main_left {
+    background-image: url("../images/Main/Background-second.png");
+    height: 100vh;
+    background-size: cover;
+    background-position:left top;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.goLEFT_btn, .goRIGHT_btn {
+    position: absolute;
+    margin: 0 1rem;
+    padding: 1.5em 0.3em;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 50%;
+    transition: padding 0.3s ease;
+    background-color: var(--light-color);   
+    border: 0;
+}
+
+.goLEFT_btn:hover, .goRIGHT_btn:hover {
+    padding: 1.7em 0.5em;
+    opacity: 100%;
+    cursor: pointer;
+}
+.goLEFT_btn {
+    right: 0;
+}
+.goRIGHT_btn svg {
+    transform: rotate(180deg);
+}
+
+.building {
+    position: absolute;
+    z-index: 1;
+    padding: 1rem;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: transparent;
+    transition: transform 0.3s ease;
+}
+
+.building:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+}
+
+.wheel {
+    background-image: url("../images/Homepage/Wheel.png");
+    width: 40%;
+    height: 40%;
+    right: 35%;
+    top: 0;
+}
+
+.blackjack {
+    background-image: url("../images/Homepage/Blackjack.png");
+    width: 30%;
+    height: 40%;
+    right: 1%;
+    top: 22%;
+}
