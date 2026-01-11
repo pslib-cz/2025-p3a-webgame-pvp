@@ -39,6 +39,9 @@
     transform: rotate(180deg);
 }
 
+
+/* STÁNKY */
+
 .building {
     position: absolute;
     z-index: 1;
@@ -53,7 +56,7 @@
 
 .building:hover {
     cursor: pointer;
-    transform: scale(1.02);
+    transform: scale(1.05);
 }
 
 .wheel {
@@ -63,6 +66,44 @@
     right: 35%;
     top: 0;
 }
+.shop {
+    background-image: url("../images/Homepage/Shop.png");
+    width: 25%;
+    height: 35%;
+    left: 5%;
+    top: 13%;
+}
+.russianroulette {
+    background-image: url("../images/Homepage/Russianroulette.png");
+    width: 20%;
+    height: 30%;
+    left: -5%;
+    top: 40%;
+}
+.baloons {
+    background-image: url("../images/Homepage/Baloons.png");
+    width: 10%;
+    height: 18%;
+    right: 15%;
+    top: 40%;
+}
+
+.feelinglucky {
+    background-image: url("../images/Homepage/Feelinglucky.png");
+    width: 15%;
+    height: 30%;
+    right: 20%;
+    top: 15%;
+}
+
+.slots {
+    background-image: url("../images/Homepage/Slots.png");
+    width: 10%;
+    height: 27%;
+    right: 30%;
+    top: 15%;
+}
+
 
 .blackjack {
     background-image: url("../images/Homepage/Blackjack.png");
@@ -70,4 +111,82 @@
     height: 40%;
     right: 1%;
     top: 22%;
+}
+.whackamole {
+    background-image: url("../images/Homepage/Whackamole.png");
+    width: 15%;
+    height: 25%;
+    right: 1%;
+    top: 52%;
+}
+
+.food {
+    background-image: url("../images/Homepage/Food.png");
+    width: 20%;
+    height: 30%;
+    left: 22%;
+    top: 10%;
+}
+
+.pexeso {
+    background-image: url("../images/Homepage/Pexeso.png");
+    width: 10%;
+    height: 27%;
+    right: 40%;
+    top: 15%;
+}
+
+
+/* NPC + ANIMACE*/
+
+.npc_1, .npc_2 {
+    position: absolute;
+    z-index: 2;
+
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    width: 6%;
+    height: 16%;
+}
+
+.npc_1 {
+    animation: long-walk 20s linear infinite;
+    transform-origin: center;
+}
+
+.girlindress {
+    background-image: url(../images/Homepage/NPC/Girlindress.png);
+    top: 62%;
+    left: 40%;
+}
+
+.family {
+    background-image: url(../images/Homepage/NPC/Family.png);
+    top: 62%;
+    left: 15%;
+}
+
+@keyframes long-walk {
+    0%   { transform: translateX(0) scaleX(1) translateY(0); }
+    25%  { transform: translateX(10vw) scaleX(1) translateY(-2px); }
+    50%  { transform: translateX(20vw) scaleX(1) translateY(0); }
+    50.1%{ transform: translateX(20vw) scaleX(-1) translateY(0); }
+    75%  { transform: translateX(10vw) scaleX(-1) translateY(-2px); }
+    100% { transform: translateX(0) scaleX(-1) translateY(0); }
+}
+
+.npc_2 {
+    animation: short-walk 15s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes short-walk {
+    0%   { transform: translateX(0) scaleX(1) translateY(0); }
+    25%  { transform: translateX(15vw) scaleX(1) translateY(-2px); }
+    50%  { transform: translateX(30vw) scaleX(1) translateY(0); }
+    50.1%{ transform: translateX(30vw) scaleX(-1) translateY(0); }
+    75%  { transform: translateX(15vw) scaleX(-1) translateY(-2px); }
+    100% { transform: translateX(0) scaleX(-1) translateY(0); }
 }

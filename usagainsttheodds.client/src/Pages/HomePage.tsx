@@ -35,29 +35,20 @@ const HomePage = () => {
             <button className="btn-menu" onClick={() => setIsOpen(true)}/>
               {isOpen && ( <PauseMenu onClose={() => setIsOpen(false)}/> )}
 
-            <button className={`${styles.building} ${styles.wheel}`} onClick={() => navigate("/cutscene/wheel")}/>
+            <button className={`${styles.building} ${styles.wheel}`} onClick={() => navigate("/stall/wheel")}/>
+            <button className={`${styles.building} ${styles.shop}`} onClick={() => navigate("/stall/itemshop")}/>
+              <button className={`${styles.building} ${styles.feelinglucky}`} onClick={() => navigate("/stall/feelinglucky")}/> {/* nema routu udelanou*/}
+            <button className={`${styles.building} ${styles.russianroulette}`} onClick={() => navigate("/stall/russianroulette")}/>
+            <button className={`${styles.building} ${styles.baloons}`} onClick={() => navigate("/stall/baloons")}/> {/* nema routu udelanou*/}
+            
 
-            <button className={`${styles.building} ${styles.russianroulette}`} onClick={() => navigate("/stall/russianroulette")}>
-                ruska rul
-            </button>
-            <button className="button" onClick={() => navigate("/stall/whackamole")}>
-                Whack A Mole
-            </button>
-            <button className="button" onClick={() => navigate("/stall/slots")}>
-                Sloty
-            </button>
-            <button className="button" onClick={() => navigate("/stall/foodbar")}>
-                Food bar
-            </button>
-            <button className="button" onClick={() => navigate("/stall/itemshop")}>
-                Item shop
-            </button>
+            
             {/* <Russianroulette/> */}
           </div>
 
           <div className={styles.NPC}>
-            <span className={styles.family}></span>
-          </div>
+              <span className={`${styles.npc_1} ${styles.family}`}></span>
+            </div> 
 
         </div>
         )}
@@ -77,11 +68,15 @@ const HomePage = () => {
               {isOpen && ( <PauseMenu onClose={() => setIsOpen(false)}/> )}
 
             <div className={styles.games}>
+              <button className={`${styles.building} ${styles.food}`} onClick={() => navigate("/stall/foodbar")}/>
+              <button className={`${styles.building} ${styles.slots}`} onClick={() => navigate("/stall/slots")}/>
               <button className={`${styles.building} ${styles.blackjack}`} onClick={() => navigate("/stall/blackjack")}/>
+              <button className={`${styles.building} ${styles.whackamole}`} onClick={() => navigate("/stall/whackamole")}/>
+              <button className={`${styles.building} ${styles.pexeso}`} onClick={() => navigate("/stall/pexeso")}/> {/* nema routu udelanou*/}
             </div>
 
             <div className={styles.NPC}>
-              <span className={styles.girlindress}></span>
+              <span className={`${styles.npc_1} ${styles.girlindress}`}></span>
             </div> 
 
           </div> )}

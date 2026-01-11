@@ -26,7 +26,7 @@ createRoot(document.getElementById('root')!).render(
           {/* CUTSCÉNY */}
           <Route path="cutscene">
             <Route path="intro" element={<IntroCutscene />} />
-            {/* <Route path="wheel" element={<Wheel />} /> */}
+            
           </Route>
 
           {/* HRA */}
@@ -47,7 +47,7 @@ createRoot(document.getElementById('root')!).render(
             <Route path="testminigame" element={<MinigameContainer id="test" exitPage="/game" devVersion={true} />} />
             <Route path="whackamole" element={<MinigameContainer id="whackamole" exitPage="/game" devVersion={true} />} />
             <Route path="slots" element={<MinigameContainer id="slots" exitPage="/game" devVersion={true}  />} />
-  
+            {/* <Route path="wheel" element={<Wheel />} /> */}
 
           </Route>
 
