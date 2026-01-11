@@ -1,5 +1,29 @@
-.container{
+.container {
     position: relative;
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
+
+    display: flex;
+    background-color: #000;  /* Černé okraje, pokud okno nesedí do poměru */
+}
+.alignToBottom {
+    justify-content: center;
+    align-items: flex-end;
+}
+.alignToTop {
+    justify-content: center;
+    align-items: flex-start;
+}
+.alignToLeft {
+    justify-content: flex-start;
+    align-items: center;
+}
+.alignToRight {
+    justify-content: flex-end;
+    align-items: center;
+}
+.centered {
+    justify-content: center;
+    align-items: center;
 }

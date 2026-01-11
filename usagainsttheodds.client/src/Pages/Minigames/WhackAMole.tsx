@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import minigameStyles from '../../assets/styles/Minigames/Minigame.module.css';
+import styles from "../../assets/styles/components/moles.module.css"
 import HolesGrid from '../../Components/WhackAMole/HolesGrid';
 import type { MoleHoleType } from '../../Types/MoleHoleType';
 import random from "../../Helpers/randomGeneratorHelper"
 import useTimer from '../../Hooks/useTimer';
 import MolesStartButton from '../../Components/WhackAMole/MolesStartButton';
-import MoleHole from '../../Components/WhackAMole/MoleHole';
 
 const WhackkAMole = () => {
     const [score, setScore] = useState<number>(0);
@@ -84,7 +84,6 @@ const WhackkAMole = () => {
     }
 
 
-
     const handleStart = () => {
         console.log("hra začala")
         setMolesSpawning(true)
@@ -98,13 +97,35 @@ const WhackkAMole = () => {
     
     const countdown = useTimer(30000, handleTimeUp)
 
-    return (
-        <div className={`${minigameStyles.container}`}>
-            <h2>Moles hit: {score}</h2>
-            <h2>Time left: {countdown.seconds}.{countdown.milliseconds}</h2>
-            <HolesGrid holes={holes} hitCallback={handleHit} isUpCallback={waitToDespawn}/>
 
-            <MolesStartButton startCallback={handleStart}/>
+
+    return (
+        <div className={`${minigameStyles.container} ${minigameStyles.alignToBottom}`}>
+            <div className={`${styles.machine} ${minigameStyles.gameArea}`}>
+                <div className={styles.interactiveArea}>
+                
+                    {/* Levá část: Grid s dírami */}
+                    <div className={styles.gridWrapper}>
+                        <HolesGrid holes={holes} hitCallback={handleHit} isUpCallback={waitToDespawn}/>
+                    </div>
+
+                    {/* Pravá část: Sloupeček s info boxy a tlačítkem */}
+                    <div className={styles.sidebar}>
+
+                        <div className={styles.scoreTag}>
+                            <span className={styles.scoreLabel}>HITS</span>
+                            <span className={styles.scoreValue}>{score}</span>
+                        </div>
+                            
+
+                        <div className={styles.buttonWrapper}>
+                            <MolesStartButton startCallback={handleStart} secondsLeft={countdown.seconds}/>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
     );

@@ -4,12 +4,13 @@ import useTimer from "../../Hooks/useTimer"
 
 type MolesStartButtonProps =  {
     startCallback: () => void
+    secondsLeft: number
 }
 
 
-const MolesStartButton: React.FC<MolesStartButtonProps> = ({startCallback}) => {
+const MolesStartButton: React.FC<MolesStartButtonProps> = ({startCallback, secondsLeft}) => {
     const [state, setState] = useState<"NotStarted" | "Countdown" | "Started">("NotStarted")
-    const [buttonText, setButtonText] = useState<"PLAY"| number | "WHACK THE MOLES">("PLAY")
+    const [buttonText, setButtonText] = useState<"PLAY"| number | "GO!">("PLAY")
     const countdown = useTimer(3900, () => onCountdownEnd())
 
     const onCountdownEnd = () => {
@@ -25,12 +26,19 @@ const MolesStartButton: React.FC<MolesStartButtonProps> = ({startCallback}) => {
             case "Countdown":
                 countdown.start()
                 setButtonText(countdown.seconds)
+                if (countdown.seconds <= 0) setButtonText("GO!")
                 break
             case "Started":
-                setButtonText("WHACK THE MOLES")
+                if (secondsLeft <= 29 ) setButtonText(secondsLeft)
                 break
         }
     }, [state, countdown.seconds])
+
+    useEffect(() => {
+        if (state === "Started") {
+            setButtonText(secondsLeft)
+        }
+    }, [secondsLeft])
 
     const handleClick = () => {
         if (state === "NotStarted") {
@@ -41,11 +49,11 @@ const MolesStartButton: React.FC<MolesStartButtonProps> = ({startCallback}) => {
 
 
     return (
-        <button onClick={handleClick} className={`${styles.startButtonContainer} ${state === "NotStarted" && styles.notStarted} ${state==="Started" && styles.startedContainer}`}>
+        <button onClick={handleClick} className={`${styles.startButtonContainer} ${state === "NotStarted" && styles.notStarted}`}>
             <div
-                className={`${styles.startButtonText}  ${state === "Started" && styles.started}`}
+                className={`${styles.startButtonText}`}
             >
-                {buttonText} {state === "Started" && buttonText}
+                {buttonText}
             </div>
         </button>
     )
