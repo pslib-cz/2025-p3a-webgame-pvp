@@ -75,7 +75,7 @@ const ItemShop = () => {
 
             </div>
 
-            <ChangeScreenButton to="/" text="Go Back" />
+            <ChangeScreenButton to="/game" text="Go Back" />
         </div>
     )
 }

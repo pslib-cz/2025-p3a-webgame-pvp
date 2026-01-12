@@ -34,7 +34,7 @@ createRoot(document.getElementById('root')!).render(
           {/* HRA */}
           <Route path="game" element={<MainLayout />}>
             <Route index element={<HomePage />} />
-            <Route path="left" element={<HomePage2 />} />
+            <Route path="right" element={<HomePage2 />} />
           </Route>
 
           {/* STÁNKY */}
@@ -43,11 +43,11 @@ createRoot(document.getElementById('root')!).render(
           <Route path="foodbar" element={<FoodBar />} />
           <Route path="itemshop" element={<ItemShop/> } />
 
-            <Route path="blackjack" element={<MinigameContainer id="blackjack" exitPage="/game/left" devVersion={true} />} />
+            <Route path="blackjack" element={<MinigameContainer id="blackjack" exitPage="/game/right" devVersion={true} />} />
             <Route path="russianroulette" element={<MinigameContainer id="russianroulette"exitPage="/game" devVersion={true} />} />
             <Route path="testminigame" element={<MinigameContainer id="test" exitPage="/game" devVersion={true} />} />
-            <Route path="whackamole" element={<MinigameContainer id="whackamole" exitPage="/game/left" devVersion={true} />} />
-            <Route path="slots" element={<MinigameContainer id="slots" exitPage="/game/left" devVersion={true}  />} />
+            <Route path="whackamole" element={<MinigameContainer id="whackamole" exitPage="/game/right" devVersion={true} />} />
+            <Route path="slots" element={<MinigameContainer id="slots" exitPage="/game/right" devVersion={true}  />} />
             {/* <Route path="wheel" element={<Wheel />} /> */}
 
           </Route>

@@ -90,7 +90,7 @@ const FoodBar = () => {
 
             </div>
 
-            <ChangeScreenButton to="/" text="Go Back" />
+            <ChangeScreenButton to="/game/right" text="Go Back" />
         </div>
     )
 }
