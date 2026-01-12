@@ -1,3 +1,29 @@
+.game{
+    overflow: hidden;
+    position: relative;
+}
+
+.background {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right:0;
+    width: 200vw;
+    height: 40vh;
+    background-image: url("../images/Main/Background-night.png");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: wind 10s ease-in-out infinite;
+}
+
+@keyframes wind {
+    0%   { transform: translateX(0); }
+    50%  { transform: translateX(1.7vw); }
+    100% { transform: translateX(0); }
+}
+
+
 .main_right {
     background-image: url("../images/Main/Background-first.png");
     height: 100vh;
