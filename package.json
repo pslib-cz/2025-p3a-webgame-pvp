@@ -1,6 +1,10 @@
 {
   "dependencies": {
-    "react-error-boundary": "^6.0.0",
+    "howler": "^2.2.4",
+    "react-error-boundary": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/howler": "^2.2.12",
     "react-router-dom": "^7.10.1"
   }
 }
