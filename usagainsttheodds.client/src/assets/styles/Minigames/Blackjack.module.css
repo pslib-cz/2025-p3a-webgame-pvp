@@ -1,0 +1,56 @@
+.blackjackContainer {
+    background-color: var(--dark-color);
+    background-image: url(../../images/blackjackBg.png);
+    background-size: cover;
+    background-position: top center;
+}
+
+.deck {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: var(--card-width);
+    height: var(--card-height);
+    background-image: url(../../images/Cards/cardBack.png);
+    background-size: cover;
+    box-shadow: 0 8px 8px rgb(255, 255, 255);
+}
+
+.startButton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.handScore {
+    position:absolute;
+    font-size: 3em;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    font-weight: bold;
+    top: -5%;
+    left: -5%;
+}
+
+.handContainer {
+    position: absolute;
+    width: fit-content;
+    transform: translate(-50%, -50%);
+}
+
+.buttonsContainer {
+    position: absolute;
+    bottom: 10%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+    display: flex;
+}
+.buttonsContainer > * {
+    font-size: 1.75rem;
+}
+
+
+

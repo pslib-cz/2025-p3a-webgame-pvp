@@ -1,17 +1,18 @@
-.container{
+.ticket_container{
     display: flex;
-    align-items: center;
-    width: fit-content;
-    margin: 1em;
+    justify-content: center;
+    align-items:flex-end;
+    width: 150px;
+    height: 80px;
+    margin: 0.5rem;
+    background-image: url("../../../images/Main/Ticket-icon.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
-.value{
-    font-size: 3em;
-}
-.icon{
-    display: block;
-    aspect-ratio: 3/2;
-    height: 3em;
-    width: auto;
-    background-image: url(../../../images/ticket.png);
-    background-size: cover;
+
+.ticket_value{
+    font-size: 2rem;
+    margin-bottom: 0.7rem;
+    color: var(--orange);
 }

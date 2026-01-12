@@ -1,0 +1,74 @@
+.cutscene {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+
+.cutscene1 {
+    background-image: url('../images/Cutscene/Intro1.jpg');
+}
+.cutscene2 {
+    background-image: url('../images/Cutscene/Intro2.jpg');
+}
+.cutscene3 {
+    background-image: url('../images/Cutscene/Intro3.jpg');
+}
+.cutscene4 {
+    background-image: url('../images/Cutscene/Intro4.jpg');
+}
+
+.cutscene__button {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    padding: 0.5em 1em;
+}
+
+
+/* STARTPAGE */
+
+.startpage {
+    background-image: url('../images/Cutscene/Intropage.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.startpage .text {
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    gap: 2rem;
+    font-size: 3rem;
+}
+
+.startpage h1 {
+    color: var(--light-color);
+    text-shadow: 2px 2px 4px #1c1c1c;
+}
+
+.startpage .buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    font-size: 2rem;
+}
+
+.buttonIntro {
+    font-size: 1.8rem;
+    padding: .25em .5em;
+    background-color: none;
+    margin: 0.25em;
+    cursor: pointer;
+}

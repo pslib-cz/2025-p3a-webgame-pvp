@@ -14,24 +14,25 @@ export type GameData = {
     difficulty: number;
 }
 
-
-export type FoodData = {
-    foodId: string;
+export type Consumable = {
+    consumableId: string;
+    type: "food" | "drink";
     name: string;
     description: string;
     price: number;
-    restoreValue: number;
-}
-
-export type DrinkData = {
-    drinkId: string;
-    name: string;
-    description: string;
-    price: number;
-    restoreValue: number;
+    hungerRestoreValue: number;
+    thirstRestoreValue: number;
     isAlcoholic: boolean;
     alcoholContent: number;
 }
+export type Items = {
+    ItemId: string;
+    name: string;
+    description: string;
+    price: number;
+    RelationRestoreValue: number;
+}
+
 
 export type Person = {
     name: string,

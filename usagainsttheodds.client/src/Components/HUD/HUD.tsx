@@ -10,26 +10,30 @@ type HUDProps = {
     girlfriend:Person
 };
 
+
+
 const HUD: React.FC<HUDProps> = ({ tickets, relationshipValue, player, girlfriend }) => {
 
     return (
-        <div className={styles.container}>
-            <div className={styles.player}>
-                <h1>{player.name}</h1>
-                <StatMeter type="hunger" value={player.hunger} />
-                <StatMeter type="thirst" value={player.thirst} />
-                <StatMeter type="drunkenness" value={player.drunkenness} />
-            </div>            
-            <div className={styles.center}>
+        <div className={styles.stats_container}>
+            <div className={styles.stats_top}>
                 <StatMeter type="relationship" value={relationshipValue} />
                 <TicketCounter value={tickets} />
             </div>
-            <div className={styles.girlfriend}>
-                <h1>{girlfriend.name}</h1>
-                <StatMeter person="girlfriend" type="hunger" value={girlfriend.hunger} />
-                <StatMeter person="girlfriend" type="thirst" value={girlfriend.thirst} />
-                <StatMeter person="girlfriend" type="drunkenness" value={girlfriend.drunkenness} />
-            </div>            
+            <div className={styles.stats_bottom}>
+                <div className={styles.player}>
+                    <h1>{player.name}</h1>
+                    <StatMeter type="hunger" value={player.hunger} />
+                    <StatMeter type="thirst" value={player.thirst} />
+                    {/*<StatMeter type="drunkenness" value={player.drunkenness} />*/}
+                </div>
+                <div className={styles.girlfriend}>
+                    <h1>{girlfriend.name}</h1>
+                    <StatMeter person="girlfriend" type="hunger" value={girlfriend.hunger} />
+                    <StatMeter person="girlfriend" type="thirst" value={girlfriend.thirst} />
+                    {/*<StatMeter person="girlfriend" type="drunkenness" value={girlfriend.drunkenness} />*/}
+                </div>          
+            </div>  
         </div>
     )
 }

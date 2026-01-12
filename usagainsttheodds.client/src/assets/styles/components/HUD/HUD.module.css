@@ -1,4 +1,4 @@
-.container {
+.stats_container {
     position: fixed;
     top: 0;
     left: 0;
@@ -9,10 +9,34 @@
     pointer-events: none; /* DŮLEŽITÉ: Kliknutí projdou skrz prázdná místa dolů do hry */
 
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    padding: .5em;
     box-sizing: border-box;
 }
+
+.stats_top, .stats_bottom {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1%;
+}
+
 .girlfriend {
     text-align: right;
+}
+.player, .girlfriend {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 348px;
+    height: 140px;
+    background-image: url("../../../images/Main/stats-background.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.player .name {
+    text-align: left;
 }

@@ -12,6 +12,8 @@ namespace UsAgainstTheOdds.Server.Data
         public DbSet<Minigame> Minigames { get; set; }
         public DbSet<Food> Foods { get; set; }
         public DbSet<Drink> Drinks { get; set; }
+        public DbSet<Consumable> Consumables { get; set; }
+        public DbSet<Item> Items { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -53,170 +55,294 @@ namespace UsAgainstTheOdds.Server.Data
                         Description = "Players guess under which cup the hidden object is located, based on luck and intuition. Based on the shell game.",
                         Price = 200,
                         Difficulty = 1
+                    },
+                    new Minigame
+                    {
+                        MinigameId = "slots",
+                        Name = "Spiny spin",
+                        Description = "Player spins Slot machine and hopes for all three symbols to be same",
+                        Price = 100,
+                        Difficulty = 1
+                    },
+                    new Minigame
+                    {
+                        MinigameId = "whackamole",
+                        Name = "Whack a Mole",
+                        Description = "Player is whacking moles.",
+                        Price = 100,
+                        Difficulty = 3
                     }
-
                 );
             });
+            
 
-            modelBuilder.Entity<Food>(ent =>
+            modelBuilder.Entity<Item>(ent =>
             {
                 ent.HasData(
-                    new Food
+                    new Item
                     {
-                        FoodId = "hotdog",
+                        ItemId = "brownbear",
+                        Name = "Brown Bear",
+                        Price = 10000,
+                        RelationRestoreValue = 20
+                    },
+                    new Item
+                    {
+                        ItemId = "whitebear",
+                        Name = "White Bear",
+                        Price = 11000,
+                        RelationRestoreValue = 20
+                    },
+                    new Item
+                    {
+                        ItemId = "pinkbear",
+                        Name = "Pink Bear",
+                        Price = 12000,
+                        RelationRestoreValue = 20
+                    },
+                    new Item
+                    {
+                        ItemId = "tulip",
+                        Name = "Tulip",
+                        Price = 500,
+                        RelationRestoreValue = 30
+                    },
+                    new Item
+                    {
+                        ItemId = "sunflower",
+                        Name = "Sunflower",
+                        Price = 600,
+                        RelationRestoreValue = 32
+                    },
+                    new Item
+                    {
+                        ItemId = "rose",
+                        Name = "Rose",
+                        Price = 700,
+                        RelationRestoreValue = 35
+                    },
+                    new Item
+                    {
+                        ItemId = "gingerbreadheart",
+                        Name = "Gingerbread Heart",
+                        Price = 200,
+                        RelationRestoreValue = 10
+                    }
+
+
+                    );
+            });
+
+
+            modelBuilder.Entity<Consumable>(ent =>
+            {
+                ent.HasData(
+                    // Food items
+                    new Consumable
+                    {
+                        ConsumableId = "hotdog",
+                        Type = Consumable.ConsumableType.Food,
                         Name = "Hot Dog",
                         Description = "A classic hot dog with mustard and ketchup.",
                         Price = 5,
-                        RestoreValue = 10
+                        HungerRestoreValue = 10,
+                        ThirstRestoreValue = 0,
+                        IsAlcoholic = false,
+                        AlcoholContent = 0
                     },
-                    new Food
+                    new Consumable
                     {
-                        FoodId = "burger",
+                        ConsumableId = "burger",
+                        Type = Consumable.ConsumableType.Food,
                         Name = "Burger",
                         Description = "A delicious beef burger with lettuce, tomato, and cheese.",
                         Price = 10,
-                        RestoreValue = 20
+                        HungerRestoreValue = 20,
+                        ThirstRestoreValue = 0,
+                        IsAlcoholic = false,
+                        AlcoholContent = 0
                     },
-                    new Food
+                    new Consumable
                     {
-                        FoodId = "pizza",
+                        ConsumableId = "pizza",
+                        Type = Consumable.ConsumableType.Food,
                         Name = "Pizza",
                         Description = "A large pepperoni pizza with extra cheese.",
                         Price = 15,
-                        RestoreValue = 30
+                        HungerRestoreValue = 30,
+                        ThirstRestoreValue = 0,
+                        IsAlcoholic = false,
+                        AlcoholContent = 0
                     },
-                    new Food
+                    new Consumable
                     {
-                        FoodId = "salad",
+                        ConsumableId = "salad",
+                        Type = Consumable.ConsumableType.Food,
                         Name = "Salad",
                         Description = "A fresh garden salad with a variety of vegetables.",
                         Price = 8,
-                        RestoreValue = 15
+                        HungerRestoreValue = 15,
+                        ThirstRestoreValue = 0,
+                        IsAlcoholic = false,
+                        AlcoholContent = 0
                     },
-                    new Food
+                    new Consumable
                     {
-                        FoodId = "langos",
+                        ConsumableId = "langos",
+                        Type = Consumable.ConsumableType.Food,
                         Name = "Lángos",
                         Description = "A traditional Hungarian deep-fried flatbread topped with garlic, sour cream, and cheese.",
                         Price = 7,
-                        RestoreValue = 12
+                        HungerRestoreValue = 12,
+                        ThirstRestoreValue = 0,
+                        IsAlcoholic = false,
+                        AlcoholContent = 0
                     },
-                    new Food
+                    new Consumable
                     {
-                        FoodId = "goulash",
+                        ConsumableId = "goulash",
+                        Type = Consumable.ConsumableType.Food,
                         Name = "Goulash",
                         Description = "A hearty Hungarian stew made with beef, vegetables, and paprika.",
                         Price = 12,
-                        RestoreValue = 25
+                        HungerRestoreValue = 25,
+                        ThirstRestoreValue = 0,
+                        IsAlcoholic = false,
+                        AlcoholContent = 0
                     },
-                    new Food
+                    new Consumable
                     {
-                        FoodId = "cottoncandy",
+                        ConsumableId = "cottoncandy",
+                        Type = Consumable.ConsumableType.Food,
                         Name = "Cotton Candy",
                         Description = "A fluffy and sweet treat made from spun sugar.",
                         Price = 4,
-                        RestoreValue = 8
-                    }
-                );
-            });
-            modelBuilder.Entity<Drink>(ent =>
-            {
-                ent.HasData(
-                    new Drink
+                        HungerRestoreValue = 8,
+                        ThirstRestoreValue = 0,
+                        IsAlcoholic = false,
+                        AlcoholContent = 0
+                    },
+
+                    // Drink items
+                    new Consumable
                     {
-                        DrinkId = "water",
+                        ConsumableId = "water",
+                        Type = Consumable.ConsumableType.Drink,
                         Name = "Water",
                         Description = "A refreshing glass of water.",
                         Price = 2,
-                        RestoreValue = 3,
-                        IsAlcoholic = false
+                        HungerRestoreValue = 0,
+                        ThirstRestoreValue = 3,
+                        IsAlcoholic = false,
+                        AlcoholContent = 0
                     },
-                    new Drink
+                    new Consumable
                     {
-                        DrinkId = "soda",
+                        ConsumableId = "soda",
+                        Type = Consumable.ConsumableType.Drink,
                         Name = "Soda",
                         Description = "A refreshing carbonated soft drink.",
                         Price = 3,
-                        RestoreValue = 5,
-                        IsAlcoholic = false
+                        HungerRestoreValue = 0,
+                        ThirstRestoreValue = 5,
+                        IsAlcoholic = false,
+                        AlcoholContent = 0
                     },
-                    new Drink
+                    new Consumable
                     {
-                        DrinkId = "beer",
+                        ConsumableId = "beer",
+                        Type = Consumable.ConsumableType.Drink,
                         Name = "Beer",
                         Description = "A cold glass of beer.",
                         Price = 6,
-                        RestoreValue = 10,
+                        HungerRestoreValue = 0,
+                        ThirstRestoreValue = 10,
                         IsAlcoholic = true,
                         AlcoholContent = 5
                     },
-                    new Drink
+                    new Consumable
                     {
-                        DrinkId = "wine",
+                        ConsumableId = "wine",
+                        Type = Consumable.ConsumableType.Drink,
                         Name = "Wine",
                         Description = "A glass of fine wine.",
                         Price = 8,
-                        RestoreValue = 12,
+                        HungerRestoreValue = 0,
+                        ThirstRestoreValue = 12,
                         IsAlcoholic = true,
                         AlcoholContent = 12
                     },
-                    new Drink
+                    new Consumable
                     {
-                        DrinkId = "palinka",
+                        ConsumableId = "palinka",
+                        Type = Consumable.ConsumableType.Drink,
                         Name = "Pálinka",
                         Description = "A traditional Hungarian fruit brandy, known for its strong flavor and high alcohol content.",
                         Price = 10,
-                        RestoreValue = 15,
+                        HungerRestoreValue = 0,
+                        ThirstRestoreValue = 15,
                         IsAlcoholic = true,
                         AlcoholContent = 40
                     },
-                    new Drink
+                    new Consumable
                     {
-                        DrinkId = "fruitsmoothie",
+                        ConsumableId = "fruitsmoothie",
+                        Type = Consumable.ConsumableType.Drink,
                         Name = "Fruit Smoothie",
                         Description = "A healthy and refreshing blend of fresh fruits.",
                         Price = 5,
-                        RestoreValue = 8,
-                        IsAlcoholic = false
+                        HungerRestoreValue = 0,
+                        ThirstRestoreValue = 8,
+                        IsAlcoholic = false,
+                        AlcoholContent = 0
                     },
-                    new Drink
+                    new Consumable
                     {
-                        DrinkId = "gintonic",
+                        ConsumableId = "gintonic",
+                        Type = Consumable.ConsumableType.Drink,
                         Name = "Gin Tonic",
                         Description = "A classic cocktail made with gin and tonic water, garnished with a slice of lime.",
                         Price = 9,
-                        RestoreValue = 14,
+                        HungerRestoreValue = 0,
+                        ThirstRestoreValue = 14,
                         IsAlcoholic = true,
                         AlcoholContent = 15
                     },
-                    new Drink
+                    new Consumable
                     {
-                        DrinkId = "pepermintliqueur",
+                        ConsumableId = "pepermintliqueur",
+                        Type = Consumable.ConsumableType.Drink,
                         Name = "Peppermint Liqueur",
                         Description = "A sweet and minty liqueur made from peppermint leaves, perfect for a refreshing after-dinner drink.",
                         Price = 7,
-                        RestoreValue = 10,
+                        HungerRestoreValue = 0,
+                        ThirstRestoreValue = 10,
                         IsAlcoholic = true,
                         AlcoholContent = 25
                     },
-                    new Drink
+                    new Consumable
                     {
-                        DrinkId = "eggnog",
+                        ConsumableId = "eggnog",
+                        Type = Consumable.ConsumableType.Drink,
                         Name = "Eggnog",
                         Description = "A rich and creamy holiday drink made with milk, cream, sugar, whipped egg whites, and egg yolks, often spiked with rum or bourbon.",
                         Price = 6,
-                        RestoreValue = 9,
+                        HungerRestoreValue = 0,
+                        ThirstRestoreValue = 9,
                         IsAlcoholic = true,
                         AlcoholContent = 20
                     },
-                    new Drink
+                    new Consumable
                     {
-                        DrinkId = "slushy",
+                        ConsumableId = "slushy",
+                        Type = Consumable.ConsumableType.Drink,
                         Name = "Slushy",
                         Description = "A cold and refreshing slushy drink made with crushed ice and flavored syrup, perfect for hot days.",
                         Price = 4,
-                        RestoreValue = 6,
-                        IsAlcoholic = false
+                        HungerRestoreValue = 0,
+                        ThirstRestoreValue = 6,
+                        IsAlcoholic = false,
+                        AlcoholContent = 0
                     }
                 );
             });

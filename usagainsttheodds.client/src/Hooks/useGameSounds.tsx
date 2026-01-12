@@ -14,7 +14,7 @@ const SOUNDS_CONFIG: Record<string, SoundConfigType> = {
         category: "music",
     },
 
-    //sfx
+    //sfxx
     chop: {
         src: "/audio/chop.ogg",
         category: "sfx",

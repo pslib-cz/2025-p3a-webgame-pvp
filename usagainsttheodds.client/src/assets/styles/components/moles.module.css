@@ -1,0 +1,258 @@
+
+
+.machine{
+    position: relative;
+    bottom: 0%;
+    height: 95vh;
+    aspect-ratio: 1028/1280;
+    background-image: url("../../images/Mole/whackAMoleMachine.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin: 0 auto;
+
+    box-sizing: border-box;
+
+}
+
+.interactiveArea {
+    --grid-width: 70%;
+    --sidebar-width: calc(100% - var(--grid-width));
+
+    position: absolute;
+    top: 56%;    /* Upravte dle obrázku - začátek herní plochy */
+    left: 5%;   /* Odsazení od levého okraje automatu */
+    width: 92.5%;  /* Šířka herní plochy */
+    height: 35%; /* Výška herní plochy */
+    
+
+    box-sizing: border-box;
+}
+
+/* Levý sloupec s dírami */
+.gridWrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: var(--grid-width);
+    height: 100%;
+
+    box-sizing: border-box;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-between;
+    justify-items: center;
+    align-items: center;
+    padding: 2cqh;
+    gap: 2cqh;
+    
+    width: 100%;
+    height: 100%;
+
+    box-sizing: border-box;    
+}
+
+/* Pravý sloupec */
+.sidebar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: var(--sidebar-width);
+
+    box-sizing: border-box;
+}
+
+
+.scoreTag {
+    position: absolute;
+    background-image: url("../../images/Mole/whackAMoleTag.png");
+    background-size: 100% 100%;
+    width: 90%;
+    height: 30%;
+    right: 50%;
+    transform: translateX(50%);
+    font-size: 4cqh;
+    
+    padding: 0.2em;
+
+    box-sizing: border-box;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #00ff00; /* Retro zelená */
+}
+
+.scoreLabel {
+    font-size: .9em;
+    color: var(--dark-color);
+}
+
+.scoreValue {
+    font-size: 1.3em;
+}
+
+
+.buttonWrapper {
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    bottom: 0%;
+    right: 50%;
+    transform: translateX(50%);
+    max-height: var(--button-height);
+    width: 90%;
+    height: 70%;
+
+    box-sizing: padding-box;
+}
+
+.startButtonContainer {
+
+    font: inherit;
+
+    --color-off: rgb(0, 100, 0);
+    --color-on: rgb(0, 255, 0);
+    --frame-color-on: rgb(100,55,115);
+    --frame-color-off: rgb(78, 40, 92);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+    aspect-ratio: 1/1;
+    background-color: rgb(5, 15, 5);
+    border-radius: 50%;
+    font-size: 4cqh;
+
+    
+    border: .40em solid var(--frame-color-on); 
+    color: var(--color-on);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+
+.notStarted {
+    animation: displayFlicker 1.2s steps(2) infinite;
+    cursor: pointer;
+}
+
+
+.startButtonText {
+    font-size: 1.45em;
+    font-weight: bold;
+    user-select: none;
+    letter-spacing: .1em;
+    text-indent: .1em;
+    text-align: center;
+    white-space: nowrap;
+}
+
+@keyframes displayFlicker {
+    0%, 100% {
+        color: var(--color-on);
+        border-color: var(--frame-color-on);
+    }
+    50% {
+        color: var(--color-off);
+        border-color: var(--frame-color-off); 
+    }
+}
+
+@keyframes textCarousel {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+
+
+
+
+
+
+.moleHoleBack {
+    position: relative;
+    aspect-ratio: 2/1;
+    width: 10cqh;
+    overflow: hidden;
+    background-image: url("../../images/Mole/backMoleHole.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    z-index: 1;
+}
+
+.moleHoleFront {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    clip-path: polygon(0% 36.46%, 4.27% 37.09%, 5.83% 62.09%, 29.79% 86.05%, 68.34% 86.04%, 92.82% 58.96%, 93.23% 36.46%, 100% 34.38%, 100% 100%, 0% 100%);
+    
+    background-image: url("../../images/Mole/frontMoleHole.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.moleContainer {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: translateY(-100%);
+    z-index: 2;
+}
+
+.mole {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../images/Mole/mole.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    transform-origin: center bottom;
+    clip-path: polygon(25.52% 12.5%, 76.56% 10.16%, 89.58% 90.63%, 10.42% 97.66%);
+}
+
+.gotHit {
+    animation: gotHit 250ms linear forwards;
+}
+.isUp {
+    animation: goingUp 500ms ease-out forwards;
+}
+.isDown {
+    animation: goingDown 500ms ease-in forwards;
+}
+
+@keyframes goingUp {
+    0% {transform: translateY(100%);}
+    100% {transform: translateY(0);}
+}
+
+@keyframes goingDown {
+    0% {transform: translateY(0);}
+    100% {transform: translateY(100%);}
+}
+
+@keyframes gotHit {
+    0% {transform: scaleY(100%);}
+    100% {transform: scaleY(0)  ;}
+}

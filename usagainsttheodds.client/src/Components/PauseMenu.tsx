@@ -18,15 +18,17 @@ const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
         className="modal-content"
         onClick={(e) => e.stopPropagation()} // aby klik uvnitř nezavřel modal
       >
-        <button onClick={onClose}>✖</button>
-        <div>
-          <button onClick={() => setIsMusicMuted(prev => !prev)}>{isMusicMuted ? "Unmute Music" : "Mute Music"}</button>
-          <button onClick={() => setIsSfxMuted(prev => !prev)}>{isSfxMuted ? "Unmute SFX" : "Mute SFX"}</button>
-        </div>
         <div className="pause-menu">
-          <h2>You can rest :)</h2>
+          <h2>Game menu</h2>
           <p>Once you´re ready, you can continue</p>
         </div>
+        <div className="modal-interactive">
+          <p className="interactive-btn">Music<button onClick={() => setIsMusicMuted(prev => !prev)}>{isMusicMuted ? "Off" : "On"}</button></p>
+          <p className="interactive-btn">SFX<button onClick={() => setIsSfxMuted(prev => !prev)}>{isSfxMuted ? "Off" : "On"}</button></p>
+          <button onClick={() => {localStorage.clear(); window.location.reload();}}>Reset Game</button>
+        </div>
+        
+        <button className="btn-modal-content" onClick={onClose}>Return to game</button>
         {children}
       </div>
     </div>,

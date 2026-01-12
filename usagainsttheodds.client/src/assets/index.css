@@ -1,13 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+15&display=swap');
+
+:root {
+    --light-color: #E8D3D3;
+    --dark-color: #341B17;
+    --brown: #69362E;
+    --orange: #B04B3C;
+
+}
+
+body, h1, h2, h3, p, a, button {
+    font-family: "Jersey 15", sans-serif;
+    margin: 0;
+    color: var(--dark-color);
+}
+
 .main {
     margin-top: 18em;
 }
 
 .button {
-    padding: 0.2% 0.5%;
-    background-color: aliceblue;
-    padding: 1px solid black;
+    padding: .25em .5em;
+    background-color: var(--light-color);
+    border: .15em solid var(--dark-color);
     border-radius: 1rem;
-    margin: 0.3%;
+    margin: 0.25em;
+    cursor: pointer;
+}
+
+.btn-modal-content {
+    padding: 0.3rem 1rem;
+}
+
+.btn-menu {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    height: 32px;
+    background-color: transparent;
+    background-image: url("../assets/images/Main/Menu-button.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 0;
+    cursor: pointer;
 }
 
 .button:hover {
@@ -19,12 +57,10 @@
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.508);
     padding: 0.7%;
-    color: white;
     z-index: 200;
-
     cursor: not-allowed;
+    background-color: rgba(0, 0, 0, 0.7);
 
 }
 .modal-content {
@@ -32,9 +68,26 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #4a4a4a;
-    padding: 1em;
+    background-image: url("../assets/images/Main/PauseMenu.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 2.6% 5%;
     width: max-content;
-
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: center;
     cursor: default;
 }
+
+.modal-interactive {
+    width: 100%;
+}
+
+.interactive-btn {
+    display: flex;
+    justify-content: space-between;
+    padding: 2%;
+    flex-grow: 1;
+}
+

@@ -1,0 +1,39 @@
+.slot-machine {
+  position: relative;
+  overflow: hidden;
+}
+.frame {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+}
+.slotsContainer {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 48%;
+  transform: translateX(-51%);
+  width: 62%;
+  top: 20%;
+  gap: 8px;
+
+  z-index: 5;
+}
+.slotMachineContainer{
+max-width: 100vw;
+}
+.spinButton{
+  background-image: url(../../../images/SlotMachine/spinButton.png);
+  position: absolute;
+  bottom: 0;
+  z-index: 11;
+}
+.stopButton{
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 11;
+}

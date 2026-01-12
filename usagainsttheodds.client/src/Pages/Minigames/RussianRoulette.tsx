@@ -1,14 +1,12 @@
 import { useState } from "react";
-import type { Screen, GameResult } from "../../Types/GameType"
+import type { GameResult } from "../../Types/GameType"
 import rH from "../../Helpers/randomGeneratorHelper";
+import { useRef, useEffect } from "react";
+import { useMinigame } from "../../Hooks/useMinigame";
+import Gun from "../../Components/Gun/Gun";
+import minigameStyles from "../../assets/styles/Minigames/Minigame.module.css"
 
-
-type RussianrouletteProps = {
-    setCurrentScreen: (screen: Screen) => void;   // funkce na přepnutí screenů
-    Tickets: (x: number) => void;                 // funkce na přidání/odebrání tiketů
-}
-
-const Russianroulette: React.FC<RussianrouletteProps> = ({ setCurrentScreen, Tickets }) => {
+const Russianroulette = () => {
 
     const winTickets: number = 50;  // kolik tiketů získáš při výhře
 
@@ -21,115 +19,105 @@ const Russianroulette: React.FC<RussianrouletteProps> = ({ setCurrentScreen, Tic
     // pozice náboje, kterou zvolil hráč
     const [bulletPosition, setBulletPosition] = useState<number | null>(null);
 
-    // výsledek hry — výhra / prohra / null
-    const [result, setResult] = useState<GameResult>(null);
+
+    const { endGame, setResult, result, setRewardMultiplier = 5 } = useMinigame();//získání endGame funkce z kontextu
+
+    const [buttonsVisible, setButtonsVisible] = useState(true);
+    const [shootButtonsVisible, setShootButtonsVisible] = useState(false);
+    const [spinButtonsVisible, setSpinButtonsVisible] = useState(false);
 
 
-    // 🔄 Funkce která náhodně nastaví pozici bubínku (1–6)
+
+
+
+
+
+
+    const GetBullet = () => {
+        if (bulletPosition !== null) {console.log("jupi", bulletPosition);}
+        return <div>Vybraná pozice náboje: {bulletPosition !== null ? bulletPosition + 1 : "žádná"}</div>; 
+    }
+    const [barrelOpened, setBarrelOpened] = useState(false);
+
     const handleSpin = () => {
+        setButtonsVisible(false);
+        setSpinButtonsVisible(false);
+
+        setShootButtonsVisible(true);
         setBarrelPosition(rH.generate(1, 6));  // dá random číslo 1–6
         console.log(barrelPosition);          // POZOR: ukazuje starou hodnotu — React stav se updateuje async
+
     }
 
-    // 💥 Funkce, která zkontroluje jestli hráč trefil náboj
     const handleShoot = () => {
-        console.log(barrelPosition);
+        setSpinButtonsVisible(false);
+        decideGameResult(barrelPosition!, bulletPosition!);
+    }
 
-        // pokud se pozice bubínku a náboje shoduje = boom = výhra
-        if (barrelPosition === bulletPosition) {
-            setResult("win");
-            Tickets(winTickets);     // připíše tikety za výhru
-        } else {
-            setResult("lose");       // když se neshoduje = hráč přežil = prohra
+
+
+
+
+        
+    const handleAnimationEnd = (event: React.AnimationEvent) => {
+        if (event.animationName.includes("resultScreenFadeIn")) {
+            endGame();
         }
     }
+    const decideGameResult = (barrelPosition: number, bulletPosition: number): void => {
+        const result = (): GameResult => {
+            if (barrelPosition === bulletPosition! + 1) return "win";
+            else return "lose";
+        }
+        const resultValue = result();
+        setResult(resultValue);
+        console.log("Game ended with result:", resultValue);
+    }
 
 
 
-    // 🎮 Tahle funkce na základě stavu hry renderuje správné tlačítko/obsah
-    const roulette = (endGame: () => void) => {
-
-        switch (gameState) {
-
-            // 🟢 Start hry — hráč vytáhne bubínek
-            case "idle":
-                return <button onClick={() => setGameState("barrelOut")}>Take out the barrel</button>;
-
-            // 🔧 Hráč volí do kterého slotu dá náboj
-            case "barrelOut":
-                return (
-                    <div className="barrel--empty">
-
-                        {[1, 2, 3, 4, 5, 6].map((num) => (
-
-                            <button
-                                key={num}
-                                onClick={() => {
-                                    setBulletPosition(num);     // dá náboj do pozice
-                                    setGameState("barrelIn");   // pokračuje dál
-                                }}
-                                className={bulletPosition === num ? "selected" : ""}
-                            >
-                                {num}
+    return (
+        <div className={minigameStyles.container}>
+            <div style={{ marginBottom: 12 }}>
+            </div>
+                    <Gun bulletPosition={setBulletPosition} barrelOpened={barrelOpened} />
+                    
+                    {buttonsVisible && (
+                        <div>
+                            <button className="button" 
+                                    onClick={() => {
+                                                setBarrelOpened(true); 
+                                                setShootButtonsVisible(false)
+                                            }}>
+                                Open barrel
                             </button>
 
-                        ))}
+                            <button className="button" 
+                                onClick={() => {
+                                    setBarrelOpened(false);
+                                    if(bulletPosition !== null) setSpinButtonsVisible(true)
+                                }} 
+                                style={{ marginLeft: 8 }}>
+                                    Close barrel
+                            </button>
+                        </div>
+                    )}
 
-                    </div>
-                )
+                    {spinButtonsVisible && (
+                        <button className={`button`} onClick={handleSpin}>Spin</button>
+                    )}
+                    {shootButtonsVisible && (
+                            <button className={`button`} onClick={handleShoot}>Shoot</button>
+                    )}
 
-            // 🔄 Natočí bubínek
-            case "barrelIn":
-                return <button
-                    onClick={() => {
-                        handleSpin();          // random natočení
-                        setGameState("spun");  // další fáze
-                    }}
-                >
-                    Spin the barrel
-                </button>;
-
-            // 🔫 Stisk spouště
-            case "spun":
-                return <button
-                    onClick={() => {
-                        handleShoot();         // zkontroluje výsledek
-                        setGameState("shot");  // jde na konec hry
-                    }}
-                >
-                    Shoot
-                </button>;
-
-            // 🏁 Konec hry — tlačítko na návrat zpět
-            case "shot":
-                return <button onClick={() => endGame()}>End</button>;
-
-            default:
-                return null;
-        }
-
-    }
-
-
-
-    // 📦 Obalovač minihry — generuje UI kolem hry (layout, styl, atd.)
-    return (
-        <MiniGamePreset
-            Tickets={Tickets}
-            Result={result}
-            setCurrentScreen={setCurrentScreen}
-            GameName="Russian roulette"
-            GameInfo="A dangerous game of chance."
-        >
-            {/* MiniGamePreset poskytuje endGame callback */}
-            {({ endGame }) => (
-                <div>
-                    <div className="button--continue">
-                        {roulette(endGame)}   {/* vykreslí aktuální fázi hry */}
-                    </div>
-                </div>
-            )}
-        </MiniGamePreset>
+                    {result && (
+                        <div onAnimationEnd={handleAnimationEnd} className={minigameStyles.resultScreen}>
+                            {result === "win" && <span className={minigameStyles.resultText}>You win!</span>}
+                            {result === "lose" && <span className={minigameStyles.resultText}>You lose!</span>}
+                            {result === "draw" && <span className={minigameStyles.resultText}>It's a draw!</span>}
+                        </div>
+                    )}
+        </div>
     )
 }
 
