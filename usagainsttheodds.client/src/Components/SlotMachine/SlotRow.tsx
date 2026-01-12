@@ -10,7 +10,7 @@ import horseshoe from "../../assets/images/SlotMachine/horseshoe.png";
 import clover from "../../assets/images/SlotMachine/clover.png";
 import diamond from "../../assets/images/SlotMachine/diamond.png";
 import seven from "../../assets/images/SlotMachine/seven.png";
-//import spin from "../../assets/images/SlotMachine/spin.png";
+import spin from "../../assets/images/SlotMachine/spin.png";
 
 
 type SlotRowProps = {
@@ -30,7 +30,7 @@ const SlotRow: React.FC<SlotRowProps> = ({isSpinning, currentPosition}) => {
         clover,
         diamond,
         seven,
-        //spin
+        spin
         ];
 
 
