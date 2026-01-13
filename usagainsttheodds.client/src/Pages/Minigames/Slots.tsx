@@ -53,9 +53,13 @@ const [positions, setPositions] = useState<[number, number, number]>([0, 0, 0]);
                 console.log(positions[0]);
                 console.log(positions[1]);
                 console.log(positions[2]);
+                setRewardMultiplier(positions[0]*2+2);//jackpot
+                return "win";
+            }
+            else if (positions[0] === positions[1] || positions[1] === positions[2] || positions[0] === positions[2]) {
                 setRewardMultiplier(positions[0]+2);// nastaví reward multiplier podle symbolu
                 return "win";
-            } 
+            }
             else return "lose";
         }
         const resultValue = result();

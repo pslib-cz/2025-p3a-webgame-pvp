@@ -17,12 +17,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  left: 48%;
-  transform: translateX(-51%);
-  width: 62%;
-  top: 20%;
-  gap: 8px;
+  left: 13.6cqw;
+  width: 49cqw;
+  
+  top: 28.5cqw;
+  gap: 1.1cqw;
   z-index: 5;
+}
+.slot {
+  height: 19.7cqw;
+  width: 31.3%;
 }
 
 
@@ -37,8 +41,8 @@
 .spinButton{
   background-image: url(../../../images/SlotMachine/spinButton.png);
   aspect-ratio: 40/435;
-  height: 50cqh;
-  bottom: 13cqh;  
+  width: 2.5cqw;
+  bottom: 6.5cqw;  
   right: 5cqw; 
   
   
@@ -46,8 +50,8 @@
 .stopButton{
   background-image: url(../../../images/SlotMachine/stopButton.png);
   aspect-ratio: 160/44;
-  height: 6cqh;
-  bottom: 15cqh;
+  width: 10cqw;
+  bottom: 7.5cqw;
   right: 14.5cqw;
 
 }

@@ -1,5 +1,6 @@
 import rS from "../../Helpers/randomGeneratorHelper";
 import { useState, useEffect } from "react";
+import style from "../../assets/styles/Minigames/SlotMachine/SlotMachine.module.css";
 
 import lemon from "../../assets/images/SlotMachine/lemon.png";
 import melon from "../../assets/images/SlotMachine/melon.png";
@@ -37,12 +38,12 @@ const SlotRow: React.FC<SlotRowProps> = ({isSpinning, currentPosition}) => {
     if (isSpinning) {
       // while spinning show the spinner image without calling setState during render
       return (
-          <img src={Symbols[9]} alt="spinning"/>
+          <img className={style.slot} src={Symbols[9]} alt="spinning"/>
       );
     }
     else {
         return (
-            <img style={{  width: "100%"}} src={Symbols[currentPosition]} alt="slot symbol" />
+            <img className={style.slot} src={Symbols[currentPosition]} alt="slot symbol" />
         );
     }
 };
