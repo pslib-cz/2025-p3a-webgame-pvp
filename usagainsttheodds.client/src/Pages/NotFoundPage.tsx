@@ -1,7 +1,7 @@
-import { type FC } from "react";
+
 import { Link } from "react-router-dom";
 
-export const NotFoundPage: FC = () => (
+const NotFoundPage = () => (
   <div>
     <h1>404: Stránka nenalezena</h1>
     <p>Tahle cesta neexistuje. Zkus to jinak!</p>

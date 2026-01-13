@@ -10,8 +10,8 @@
   background-size: cover;
   z-index: 10;
   background-image: url(../../../images/SlotMachine/slot-pozadi.png);
-
-}
+  perspective: 800px;
+} 
 .slotsContainer {
   position: absolute;
   display: flex;
@@ -36,6 +36,10 @@
   background-size: 100% 100%;
   z-index: 11;
   border: 0;
+}
+.slotButton:hover{
+  cursor: pointer;
+  scale: 1.01;
 
 }
 .spinButton{
@@ -44,14 +48,23 @@
   width: 2.5cqw;
   bottom: 6.5cqw;  
   right: 5cqw; 
-  
-  
+  transform-origin: center bottom;
+  transform-style: preserve-3d;
 }
+.spinButton.spinning{
+  animation: spinButtonAnim 1s ease-in-out;
+}
+@keyframes spinButtonAnim {
+  0% { transform: rotateX(0deg)}
+  50% { transform: rotateX(-30deg)}
+  100% { transform: rotateX(0deg)}
+}
+
+
 .stopButton{
   background-image: url(../../../images/SlotMachine/stopButton.png);
   aspect-ratio: 160/44;
   width: 10cqw;
   bottom: 7.5cqw;
   right: 14.5cqw;
-
 }

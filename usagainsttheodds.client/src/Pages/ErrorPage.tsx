@@ -1,7 +1,7 @@
-import { type FC } from "react";
+
 import { Link } from "react-router-dom";
 
-export const ErrorPage: FC = () => (
+const ErrorPage = () => (
   <div>
     <h1>Error</h1>
     <p>Někdy to opravíme, opravdu. :)</p>

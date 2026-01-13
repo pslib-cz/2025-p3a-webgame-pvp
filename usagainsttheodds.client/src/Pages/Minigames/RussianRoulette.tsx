@@ -1,17 +1,13 @@
 import { useState } from "react";
 import type { GameResult } from "../../Types/GameType"
 import rH from "../../Helpers/randomGeneratorHelper";
-import { useRef, useEffect } from "react";
 import { useMinigame } from "../../Hooks/useMinigame";
 import Gun from "../../Components/Gun/Gun";
 import minigameStyles from "../../assets/styles/Minigames/Minigame.module.css"
 
 const Russianroulette = () => {
 
-    const winTickets: number = 50;  // kolik tiketů získáš při výhře
-
     // všelijaké stavy hry – v jaké části hráč zrovna je
-    const [gameState, setGameState] = useState<"idle" | "barrelOut" | "barrelIn" | "spun" | "shot">("idle");
 
     // pozice bubínku (kam se natočí)
     const [barrelPosition, setBarrelPosition] = useState<number | null>(null);
@@ -33,10 +29,7 @@ const Russianroulette = () => {
 
 
 
-    const GetBullet = () => {
-        if (bulletPosition !== null) {console.log("jupi", bulletPosition);}
-        return <div>Vybraná pozice náboje: {bulletPosition !== null ? bulletPosition + 1 : "žádná"}</div>; 
-    }
+
     const [barrelOpened, setBarrelOpened] = useState(false);
 
     const handleSpin = () => {

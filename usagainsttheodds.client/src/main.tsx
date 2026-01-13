@@ -1,7 +1,7 @@
-import { StrictMode, Suspense } from 'react'
+import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './assets/index.css'
-import { BrowserRouter, Routes, Route, Link, } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFoundPage from './Pages/NotFoundPage.tsx';
 import RootLayout from './RootLayout.tsx';
 import MainLayout from './MainLayout.tsx';
@@ -12,9 +12,14 @@ import FoodBar from './Pages/FoodBar.tsx';
 import StartPage from './Pages/StartPage.tsx'
 import IntroCutscene from './Pages/Cutscene/IntroCutscene.tsx'
 import ItemShop from './Pages/ItemShop.tsx';
-import Wheel from './Pages/Cutscene/Wheel.tsx';
 import HomePage2 from './Pages/HomePage2.tsx';
-import HomePage1 from './Pages/HomePage1.tsx';
+import EndingGood from './Pages/EndingGood';
+import EndingDrunk from './Pages/EndingDrunk';
+import EndingHungry from './Pages/EndingHungry';
+import EndingThirsty from './Pages/EndingThirsty';
+import EndingBankrupt from './Pages/EndingBankrupt';
+import EndingBreakup from './Pages/EndingBreakup';
+import EndingNeutral from './Pages/EndingNeutral';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -50,6 +55,18 @@ createRoot(document.getElementById('root')!).render(
             <Route path="slots" element={<MinigameContainer id="slots" exitPage="/game/right" devVersion={true}  />} />
             {/* <Route path="wheel" element={<Wheel />} /> */}
 
+          </Route>
+
+          {/* Ending pages (individual routes) */}
+          <Route path="ending">
+            <Route index element={<EndingNeutral />} />
+            <Route path="good" element={<EndingGood />} />
+            <Route path="drunk" element={<EndingDrunk />} />
+            <Route path="hungry" element={<EndingHungry />} />
+            <Route path="thirsty" element={<EndingThirsty />} />
+            <Route path="bankrupt" element={<EndingBankrupt />} />
+            <Route path="breakup" element={<EndingBreakup />} />
+            <Route path="neutral" element={<EndingNeutral />} />
           </Route>
 
           {/* 404 */}

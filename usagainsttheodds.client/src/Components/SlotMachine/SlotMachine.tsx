@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SlotRow from "./SlotRow";
 import machineFrame from "../../assets/images/SlotMachine/slot-pozadi.png";
 import style from "../../assets/styles/Minigames/SlotMachine/SlotMachine.module.css";
@@ -16,6 +16,14 @@ const SlotMachine: React.FC<SlotMachineProps> = ({ spin, stop, isSpinning, first
 
 
 
+  const [btnAnimating, setBtnAnimating] = useState(false);
+
+  const handleSpinClick = () => {
+    // restart local button animation so it plays on every click
+    setBtnAnimating(false);
+    requestAnimationFrame(() => setBtnAnimating(true));
+    spin();
+  };
 
   return (
     <div className={`${style.frame}`}>
@@ -25,7 +33,11 @@ const SlotMachine: React.FC<SlotMachineProps> = ({ spin, stop, isSpinning, first
         <SlotRow isSpinning={isSpinning} currentPosition={secondPosition} />
         <SlotRow isSpinning={isSpinning} currentPosition={thirdPosition} />
       </div>
-      <button className={`${style.spinButton} ${style.slotButton}`} onClick={spin}></button>
+      <button
+        className={`${style.spinButton} ${style.slotButton} ${btnAnimating ? style.spinning : ""}`}
+        onClick={handleSpinClick}
+        onAnimationEnd={() => setBtnAnimating(false)}
+      ></button>
       <button className={`${style.stopButton} ${style.slotButton}`} onClick={stop}></button>
 
     </div>
