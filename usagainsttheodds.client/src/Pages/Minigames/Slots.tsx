@@ -63,40 +63,33 @@ const [positions, setPositions] = useState<[number, number, number]>([0, 0, 0]);
         console.log("Game ended with result:", resultValue);
     }
 
+    const Spin = (): void => {
+        if(spinButtonClickable){
+            setIsSpinning(true)
+            setSpinButtonClickable(false);
+            setStopButtonClickable(true);
+        }
+    }
+
+    const Stop = (): void => {
+        if(stopButtonClickable){
+            setIsSpinning(false); 
+            setStopButtonClickable(false);
+            decideGameResult();
+        }
+    }
 
 
     return (
-        <div className={minigameStyles.container}>
-                <SlotMachine firstPosition={positions[0]} secondPosition={positions[1]} thirdPosition={positions[2]} isSpinning={isSpinning} />
-                        <button className={`button ${styles.spinButton}`}
-                                onClick={() => {
-                                    if(spinButtonClickable){
-                                        setIsSpinning(true)
-                                        setSpinButtonClickable(false);
-                                        setStopButtonClickable(true);
-                                    }
-                                }}>
-                            Spin
-                        </button>
-                        <button className={`button ${styles.stopButton}`}
-                            onClick={() => {
-                                if(stopButtonClickable){
-                                    setIsSpinning(false); 
-                                    setStopButtonClickable(false);
-                                    decideGameResult();
-                                }
-                            }} 
-                            style={{ marginLeft: 8 }}>
-                                Stop
-                        </button>
-
+        <div className={`${minigameStyles.container} ${minigameStyles.alignToBottom}`}>
+            
+                    <SlotMachine spin={Spin} stop={Stop} firstPosition={positions[0]} secondPosition={positions[1]} thirdPosition={positions[2]} isSpinning={isSpinning} />
                     {result && (
                         <div onAnimationEnd={handleAnimationEnd} className={minigameStyles.resultScreen}>
                             {result === "win" && <span className={minigameStyles.resultText}>You win!</span>}
                             {result === "lose" && <span className={minigameStyles.resultText}>You lose!</span>}
                         </div>
-                    )}  
-        
+                    )} 
         </div>
     )
 }

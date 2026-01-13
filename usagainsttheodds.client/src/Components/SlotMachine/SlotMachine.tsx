@@ -8,21 +8,25 @@ type SlotMachineProps = {
   firstPosition: number;
   secondPosition: number;
   thirdPosition: number;
+  spin: () => void;
+  stop: () => void;
 };
 
-const SlotMachine: React.FC<SlotMachineProps> = ({ isSpinning, firstPosition, secondPosition, thirdPosition }) => {
+const SlotMachine: React.FC<SlotMachineProps> = ({ spin, stop, isSpinning, firstPosition, secondPosition, thirdPosition }) => {
 
 
 
 
   return (
-    <div className={`${style.slotMachineContainer}`}>
-      <img src={machineFrame} alt="slot machine frame" className={style.frame} />
+    <div className={`${style.frame}`}>
+      {/*<img src={machineFrame} alt="slot machine frame" className={style.frame} />*/}
       <div className={style.slotsContainer}>
         <SlotRow isSpinning={isSpinning} currentPosition={firstPosition} />
         <SlotRow isSpinning={isSpinning} currentPosition={secondPosition} />
         <SlotRow isSpinning={isSpinning} currentPosition={thirdPosition} />
       </div>
+      <button className={`${style.spinButton} ${style.slotButton}`} onClick={spin}></button>
+      <button className={`${style.stopButton} ${style.slotButton}`} onClick={stop}></button>
 
     </div>
   );
