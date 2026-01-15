@@ -53,10 +53,24 @@ const Blackjack = () => {
     }, [deck]);
 
 
+    //resetuje stav při načtení komponenty, aby fungovalo play again
+    useEffect(() => {
+        setStarted(false);
+        setPlayerHand([]);
+        setDealerHand([]);
+        setPlayerHandValue(0);
+        setDealerHandValue(0);
+        setDealerHiddenCards([1]);
+        setDeck(dH.createShuffledDeck(deckCount));
+        setButtonsVisible(false);
+        setBlackjack(false);
+        setResult(null);
+    }, []);
+
+
 
     // handleStart - zahájí novou hru
     const handleStart = () => {
-        console.log("Starting Blackjack game...");
         setStarted(true);
         dealInitialHands()
     }
@@ -82,7 +96,6 @@ const Blackjack = () => {
 
             const {card, newDeck} = dH.drawCard(deckRef.current);
             if (!card) {
-                console.error("Deck is empty, cannot deal more cards.");
                 resolve();
                 return;
             }
@@ -108,7 +121,6 @@ const Blackjack = () => {
         await dealCard("player");
         await dealCard("dealer");
         
-        console.log("Initial hands dealt. Player Hand:", calculateHandValue(playerHandRef.current), "Dealer Hand:", calculateHandValue(dealerHandRef.current, dealerHiddenCards));
 
         // pokud hráč dostal blackjack, vyřeší to hned lokálně
         if (calculateHandValue(playerHandRef.current) === 21) {
@@ -119,7 +131,6 @@ const Blackjack = () => {
 
     // handleBlackjack - zpracuje situaci kdy hráč má blackjack při rozdání
     const handleBlackjack = async () => {
-        console.log("Player has blackjack!");
         setRewardMultiplier(1.5);
         setBlackjack(true);
 
@@ -134,20 +145,13 @@ const Blackjack = () => {
 
     // handleHit - hráč táhne kartu
     const handleHit = async () => {
-        console.log("Player hits.");
         setButtonsVisible(false);
 
         await dealCard("player");        
 
         const newPlayerValue = calculateHandValue(playerHandRef.current);
-        console.log("New player hand value:", newPlayerValue);
 
         if (newPlayerValue >= 21) {
-            if (newPlayerValue === 21) {
-                console.log("Player has 21!");
-            } else {
-                console.log("Player busts!");
-            }
             revealDealersCards();
             decideGameResult(newPlayerValue, calculateHandValue(dealerHandRef.current));
         } else {
@@ -186,7 +190,6 @@ const Blackjack = () => {
 
     // handleStand - hráč stojí, dealer odehraje a rozhodne se výsledek
     const handleStand = async () => {
-        console.log("Player stands.");
         setButtonsVisible(false);
         const playerHandValue = calculateHandValue(playerHand);
         const dealerValue = await dealerAction()
@@ -197,7 +200,6 @@ const Blackjack = () => {
 
     // dealerAction - logika dealera: odehrává karty dokud nemá >= 17
     const dealerAction = async () => {
-        console.log("Dealer's turn.");
         setButtonsVisible(false);
         await revealDealersCards();
 
@@ -209,13 +211,11 @@ const Blackjack = () => {
             localDealerHandValue = calculateHandValue(dealerHandRef.current);
         }
 
-        console.log("Dealer's turn ended with hand value:", localDealerHandValue);
         return localDealerHandValue;
     }
 
     // revealDealersCards - odhalí karty dealera
     const revealDealersCards = (): Promise<void> => {
-        console.log("Revealing dealer's cards.");
         
         if (dealerHiddenCards.length === 0) return Promise.resolve();
 
@@ -254,7 +254,6 @@ const Blackjack = () => {
         const resultValue = result();
         setResult(resultValue);
 
-        console.log("Game ended with result:", resultValue, "Player:", player, "Dealer:", dealer);
 
     }
     

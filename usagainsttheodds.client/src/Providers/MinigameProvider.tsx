@@ -16,7 +16,6 @@ type MinigameContextType = {
     setReward: (reward: number) => void;
     rewardMultiplier: number;
     setRewardMultiplier: (multiplier: number) => void;
-    handleMinigameEnd: () => void;
 }
 
 // Vytvoření kontextu
@@ -29,29 +28,34 @@ type MinigameProviderProps = {
 
 export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>> = ({ children, exitPage, promise }) => {
 
-    const { setTickets, setPlayer, setGirlfriend, setRelationshipValue } = useOwnOutlet();
+    const { tickets, setTickets, setPlayer, setGirlfriend, setRelationshipValue,  } = useOwnOutlet();
 
 
     const exitPagePath = exitPage;
     const data: GameData | null = use(promise || Promise.reject("No promise provided to MinigameProvider"));
-
     const [state, setState] = useState<GameState>("intro");
-    const endGame = () => {
-        setState("ended");
-    }
-    const playGame = () => {
-        setState("playing");
-    }
     const [result, setResult] = useState<GameResult>(null);
     const [rewardMultiplier, setRewardMultiplier] = useState<number>(2);
     const [reward, setReward] = useState<number>(data!.price);
+
     useEffect(() => {
         if (result === "win") setReward(data!.price * rewardMultiplier);
         else if (result === "lose") setReward(0);
     }, [rewardMultiplier, data, result]);
+    
+    const playGame = () => {
 
-    const handleMinigameEnd = () => {
+        if (data!.price > tickets) {
+            alert("Not enough tickets to play this game.");
+            return;
+        } else {
+            console.log("Starting minigame, price:", data!.price);
+            setTickets(prev => prev - data!.price);
+            setState("playing");
+        }
+    }
 
+    const endGame = () => {
         const pHungerMultiplier = 5;
         const pThirstMultiplier = 7;
         const pDrunkennessMultiplier = 2;
@@ -59,9 +63,9 @@ export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>
         const gThirstMultiplier = 5;
         const gDrunkennessMultiplier = 1;
         const staminaMultiplier = 3;
-
-        console.log("handleMinigameEnd called");
-        setRelationshipValue(prev => prev + (data!.difficulty * staminaMultiplier));
+        
+        setState("ended");
+        setRelationshipValue(prev => prev - (data!.difficulty * staminaMultiplier));
         setTickets(prev => prev + reward);
         setPlayer(prev => ({
             ...prev,
@@ -75,6 +79,7 @@ export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>
             thirst: ((prev.thirst - (data!.difficulty*gThirstMultiplier)) >= 0 ? (prev.thirst - (data!.difficulty*gThirstMultiplier)) : 0),
             drunkenness: ((prev.drunkenness - (data!.difficulty*gDrunkennessMultiplier)) >= 0 ? (prev.drunkenness - (data!.difficulty*gDrunkennessMultiplier)) : 0),
         }))
+
     }
 
     return (
@@ -91,7 +96,6 @@ export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>
             setReward,
             rewardMultiplier,
             setRewardMultiplier,
-            handleMinigameEnd
         }}>
             {children}
         </MinigameContext.Provider>

@@ -72,7 +72,7 @@ const RootLayout = () => {
 
         checkIfLost(updated);
 
-        }, [tickets, relationshipValue, player, girlfriend]);//ulozi do local storage kdyz se zmeni hodnota
+    }, [tickets, relationshipValue, player, girlfriend]);//ulozi do local storage kdyz se zmeni hodnota
 
 
 
