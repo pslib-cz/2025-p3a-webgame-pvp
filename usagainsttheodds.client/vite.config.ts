@@ -50,6 +50,10 @@ export default defineConfig({
             '^/api': {
                 target,
                 secure: false
+            },
+            '^/images': {
+                target,
+                secure: false
             }
         },
         port: parseInt(env.DEV_SERVER_PORT || '5173'),

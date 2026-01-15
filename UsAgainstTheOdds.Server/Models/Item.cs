@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace UsAgainstTheOdds.Server.Models
 {
@@ -7,7 +7,10 @@ namespace UsAgainstTheOdds.Server.Models
         [Key]
         public string ItemId { get; set; }
         public required string Name { get; set; }
+        public required string Description { get; set; }
         public required int Price { get; set; }
         public required int RelationRestoreValue { get; set; }
+
     }
+
 }

@@ -9,6 +9,7 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="src\assets\images\NováSložka\" />
+    <None Remove="src\assets\images\NováSložka\**" />
+    <TypeScriptConfiguration Remove="src\assets\images\NováSložka\**" />
   </ItemGroup>
 </Project>

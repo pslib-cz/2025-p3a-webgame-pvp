@@ -258,63 +258,73 @@ namespace UsAgainstTheOdds.Server.Migrations
                         });
                 });
 
-            modelBuilder.Entity("UsAgainstTheOdds.Server.Models.Drink", b =>
+            modelBuilder.Entity("UsAgainstTheOdds.Server.Models.IntroScreen", b =>
                 {
-                    b.Property<string>("DrinkId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("AlcoholContent")
+                    b.Property<int>("IntroScreenId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("ButtonText")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("IsAlcoholic")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Price")
+                    b.Property<int>("Speaker")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("RestoreValue")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("DrinkId");
-
-                    b.ToTable("Drinks");
-                });
-
-            modelBuilder.Entity("UsAgainstTheOdds.Server.Models.Food", b =>
-                {
-                    b.Property<string>("FoodId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Description")
+                    b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.HasKey("IntroScreenId");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("INTEGER");
+                    b.ToTable("IntroScreens");
 
-                    b.Property<int>("RestoreValue")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("FoodId");
-
-                    b.ToTable("Foods");
+                    b.HasData(
+                        new
+                        {
+                            IntroScreenId = 1,
+                            ButtonText = "Continue",
+                            ImageUrl = "images/Cutscenes/intro1.png",
+                            Speaker = 1,
+                            Text = "We’ve got nothing left but a few last coins and this city, ready to swallow us whole."
+                        },
+                        new
+                        {
+                            IntroScreenId = 2,
+                            ButtonText = "Continue",
+                            ImageUrl = "images/Cutscenes/intro2.png",
+                            Speaker = 2,
+                            Text = "But we can’t give up now. We have to take a chance, no matter the odds."
+                        },
+                        new
+                        {
+                            IntroScreenId = 3,
+                            ButtonText = "Continue",
+                            ImageUrl = "images/Cutscenes/intro3.png",
+                            Speaker = 1,
+                            Text = "This casino is our only shot—either we win big today, or we lose the little we have left."
+                        },
+                        new
+                        {
+                            IntroScreenId = 4,
+                            ButtonText = "Let's go!",
+                            ImageUrl = "images/Cutscenes/intro4.png",
+                            Speaker = 2,
+                            Text = "Take a breath, we're going in... today, it's the two of us against the odds."
+                        });
                 });
 
             modelBuilder.Entity("UsAgainstTheOdds.Server.Models.Item", b =>
                 {
                     b.Property<string>("ItemId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -334,14 +344,16 @@ namespace UsAgainstTheOdds.Server.Migrations
                     b.HasData(
                         new
                         {
-                            ItemId = "blackbear",
-                            Name = "Black Bear",
+                            ItemId = "brownbear",
+                            Description = "A cuddly brown bear plush toy.",
+                            Name = "Brown Bear",
                             Price = 10000,
                             RelationRestoreValue = 20
                         },
                         new
                         {
                             ItemId = "whitebear",
+                            Description = "A cuddly white bear plush toy.",
                             Name = "White Bear",
                             Price = 11000,
                             RelationRestoreValue = 20
@@ -349,6 +361,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                         new
                         {
                             ItemId = "pinkbear",
+                            Description = "A cuddly pink bear plush toy.",
                             Name = "Pink Bear",
                             Price = 12000,
                             RelationRestoreValue = 20
@@ -356,6 +369,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                         new
                         {
                             ItemId = "tulip",
+                            Description = "A beautiful tulip flower.",
                             Name = "Tulip",
                             Price = 500,
                             RelationRestoreValue = 30
@@ -363,6 +377,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                         new
                         {
                             ItemId = "sunflower",
+                            Description = "A bright sunflower.",
                             Name = "Sunflower",
                             Price = 600,
                             RelationRestoreValue = 32
@@ -370,6 +385,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                         new
                         {
                             ItemId = "rose",
+                            Description = "A romantic red rose.",
                             Name = "Rose",
                             Price = 700,
                             RelationRestoreValue = 35
@@ -377,6 +393,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                         new
                         {
                             ItemId = "gingerbreadheart",
+                            Description = "A sweet gingerbread heart cookie.",
                             Name = "Gingerbread Heart",
                             Price = 200,
                             RelationRestoreValue = 10
@@ -444,7 +461,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                             MinigameId = "slots",
                             Description = "Player spins Slot machine and hopes for all three symbols to be same",
                             Difficulty = 1,
-                            Name = "Spiny spin :)",
+                            Name = "Spiny spin",
                             Price = 100
                         },
                         new

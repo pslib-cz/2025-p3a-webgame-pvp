@@ -7,26 +7,26 @@ namespace UsAgainstTheOdds.Server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class DrinksController : ControllerBase
+    public class ItemsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        public DrinksController(ApplicationDbContext context)
+        public ItemsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Food>>> GetDrinks()
+        public async Task<ActionResult<List<Item>>> GetItems()
         {
-            var Drinks = await _context.Drinks.ToListAsync();
-            return Ok(Drinks);
+            var Items = await _context.Items.ToListAsync();
+            return Ok(Items);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Drink>> GetDrink(string id)
+        public async Task<ActionResult<Item>> GetItem(string id)
         {
-            var Drink = await _context.Drinks
-                .FirstOrDefaultAsync(m => m.DrinkId == id);
+            var Drink = await _context.Items
+                .FirstOrDefaultAsync(m => m.ItemId == id);
 
             if (Drink == null)
             {
@@ -38,3 +38,4 @@ namespace UsAgainstTheOdds.Server.Controllers
 
     }
 }
+    

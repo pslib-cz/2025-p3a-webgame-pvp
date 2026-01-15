@@ -6,14 +6,13 @@ namespace UsAgainstTheOdds.Server.Data
 {
     public class ApplicationDbContext : DbContext
     {
-        private readonly ApplicationDbContext _context;
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options) { }
         public DbSet<Minigame> Minigames { get; set; }
-        public DbSet<Food> Foods { get; set; }
-        public DbSet<Drink> Drinks { get; set; }
         public DbSet<Consumable> Consumables { get; set; }
         public DbSet<Item> Items { get; set; }
+
+        public DbSet<IntroScreen> IntroScreens { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -84,49 +83,56 @@ namespace UsAgainstTheOdds.Server.Data
                         ItemId = "brownbear",
                         Name = "Brown Bear",
                         Price = 10000,
-                        RelationRestoreValue = 20
+                        RelationRestoreValue = 20,
+                        Description = "A cuddly brown bear plush toy."
                     },
                     new Item
                     {
                         ItemId = "whitebear",
                         Name = "White Bear",
                         Price = 11000,
-                        RelationRestoreValue = 20
+                        RelationRestoreValue = 20,
+                        Description = "A cuddly white bear plush toy."
                     },
                     new Item
                     {
                         ItemId = "pinkbear",
                         Name = "Pink Bear",
                         Price = 12000,
-                        RelationRestoreValue = 20
+                        RelationRestoreValue = 20,
+                        Description = "A cuddly pink bear plush toy."
                     },
                     new Item
                     {
                         ItemId = "tulip",
                         Name = "Tulip",
                         Price = 500,
-                        RelationRestoreValue = 30
+                        RelationRestoreValue = 30,
+                        Description = "A beautiful tulip flower."
                     },
                     new Item
                     {
                         ItemId = "sunflower",
                         Name = "Sunflower",
                         Price = 600,
-                        RelationRestoreValue = 32
+                        RelationRestoreValue = 32,
+                        Description = "A bright sunflower."
                     },
                     new Item
                     {
                         ItemId = "rose",
                         Name = "Rose",
                         Price = 700,
-                        RelationRestoreValue = 35
+                        RelationRestoreValue = 35,
+                        Description = "A romantic red rose."
                     },
                     new Item
                     {
                         ItemId = "gingerbreadheart",
                         Name = "Gingerbread Heart",
                         Price = 200,
-                        RelationRestoreValue = 10
+                        RelationRestoreValue = 10,
+                        Description = "A sweet gingerbread heart cookie."
                     }
 
 
@@ -344,6 +350,46 @@ namespace UsAgainstTheOdds.Server.Data
                         IsAlcoholic = false,
                         AlcoholContent = 0
                     }
+                );
+            });
+
+
+            modelBuilder.Entity<IntroScreen>(ent =>
+            {
+                ent.HasData(
+                    new IntroScreen
+                    {
+                        IntroScreenId = 1,
+                        Text = "We’ve got nothing left but a few last coins and this city, ready to swallow us whole.",
+                        Speaker = Enums.SpeakerType.Boy,
+                        ImageUrl = "images/Cutscenes/intro1.png",
+                        ButtonText = "Continue"
+                    },
+                    new IntroScreen
+                    {
+                        IntroScreenId = 2,
+                        Text = "But we can’t give up now. We have to take a chance, no matter the odds.",
+                        Speaker = Enums.SpeakerType.Girl,
+                        ImageUrl = "images/Cutscenes/intro2.png",
+                        ButtonText = "Continue"
+                    },
+                    new IntroScreen
+                    {
+                        IntroScreenId = 3,
+                        Text = "This casino is our only shot—either we win big today, or we lose the little we have left.",
+                        Speaker = Enums.SpeakerType.Boy,
+                        ImageUrl = "images/Cutscenes/intro3.png",
+                        ButtonText = "Continue"
+                    },
+                    new IntroScreen
+                    {
+                        IntroScreenId = 4,
+                        Text = "Take a breath, we're going in... today, it's the two of us against the odds.",
+                        Speaker = Enums.SpeakerType.Girl,
+                        ImageUrl = "images/Cutscenes/intro4.png",
+                        ButtonText = "Let's go!"
+                    }
+
                 );
             });
         }
