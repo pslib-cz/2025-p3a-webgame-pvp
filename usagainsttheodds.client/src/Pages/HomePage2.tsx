@@ -37,7 +37,7 @@ const HomePage2 = () => {
               <button className={`${styles.building} ${styles.slots}`} onClick={() => navigate("/stall/slots")}/>
               <button className={`${styles.building} ${styles.blackjack}`} onClick={() => navigate("/stall/blackjack")}/>
               <button className={`${styles.building} ${styles.whackamole}`} onClick={() => navigate("/stall/whackamole")}/>
-              <button className={`${styles.building} ${styles.pexeso}`} onClick={() => navigate("/stall/pexeso")}/> {/* nema routu udelanou*/}
+              <button className={`${styles.building} ${styles.pexeso}`} onClick={() => navigate("/stall/memorymatch")}/> {/* nema routu udelanou*/}
             </div>
 
             <div className={styles.NPC}>

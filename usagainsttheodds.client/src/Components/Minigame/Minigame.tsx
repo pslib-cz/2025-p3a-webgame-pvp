@@ -7,6 +7,7 @@ import MinigameInfo from "./MinigameInfo";
 import { useEffect } from "react";
 import WhackkAMole from "../../Pages/Minigames/WhackAMole";
 import SlotsGame from "../../Pages/Minigames/Slots";
+import MemoryMatch from "../../Pages/Minigames/MemoryMatch";
 
 type MinigameProps = {
     id: string;
@@ -31,6 +32,8 @@ const Minigame: React.FC<MinigameProps> = ({ id, devVersion = false }) => {
         switch (id) {
             case "blackjack":
                 return <Blackjack />;
+            case "memorymatch":
+                return <MemoryMatch />;
             case "russianroulette":
                 return <Russianroulette />;
             case "test":
