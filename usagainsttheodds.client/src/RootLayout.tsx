@@ -68,7 +68,34 @@ const RootLayout = () => {
         setUserData((prev) =>
             isDeepEqual(prev, updated) ? prev : updated
         );
-    }, [tickets, relationshipValue, player, girlfriend]);//ulozi do local storage kdyz se zmeni hodnota
+
+
+        checkIfLost(updated);
+
+        }, [tickets, relationshipValue, player, girlfriend]);//ulozi do local storage kdyz se zmeni hodnota
+
+
+
+    const checkIfLost = (data: UserData) => {
+        console.log("Checking losing conditions", data);
+        if ( data.relationshipStamina <= 0 ){
+            return navigate("/ending/breakup");
+        }
+        if ( data.ticketsAmount <= 0 ){
+            return navigate("/ending/bankrupt");
+        }
+        if ( data.player.hunger <= 0 || data.girlfriend.hunger <= 0 ){
+            return navigate("/ending/hungry");
+        }
+        if ( data.player.thirst <= 0 || data.girlfriend.thirst <= 0 ){
+            return navigate("/ending/thirsty");
+        }
+        if ( data.player.drunkenness >= 100 || data.girlfriend.drunkenness >= 100 ){
+            return navigate("/ending/drunk");
+        }
+        return;
+    }
+
 
 
         // console.log

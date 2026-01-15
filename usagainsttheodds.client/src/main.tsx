@@ -13,13 +13,13 @@ import StartPage from './Pages/StartPage.tsx'
 import IntroCutscene from './Pages/Cutscene/IntroCutscene.tsx'
 import ItemShop from './Pages/ItemShop.tsx';
 import HomePage2 from './Pages/HomePage2.tsx';
-import EndingGood from './Pages/EndingGood';
-import EndingDrunk from './Pages/EndingDrunk';
-import EndingHungry from './Pages/EndingHungry';
-import EndingThirsty from './Pages/EndingThirsty';
-import EndingBankrupt from './Pages/EndingBankrupt';
-import EndingBreakup from './Pages/EndingBreakup';
-import EndingNeutral from './Pages/EndingNeutral';
+import EndingGood from './Pages/Endings/EndingGood';
+import EndingDrunk from './Pages/Endings/EndingDrunk';
+import EndingHungry from './Pages/Endings/EndingHungry';
+import EndingThirsty from './Pages/Endings/EndingThirsty';
+import EndingBankrupt from './Pages/Endings/EndingBankrupt';
+import EndingBreakup from './Pages/Endings/EndingBreakup';
+import EndingNeutral from './Pages/Endings/EndingNeutral';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -52,6 +52,7 @@ createRoot(document.getElementById('root')!).render(
             <Route path="russianroulette" element={<MinigameContainer id="russianroulette"exitPage="/game" devVersion={true} />} />
             <Route path="testminigame" element={<MinigameContainer id="test" exitPage="/game" devVersion={true} />} />
             <Route path="whackamole" element={<MinigameContainer id="whackamole" exitPage="/game/right" devVersion={true} />} />
+            <Route path="memorymatch" element={<MinigameContainer id="memorymatch" exitPage="/game/right" devVersion={true} />} />
             <Route path="slots" element={<MinigameContainer id="slots" exitPage="/game/right" devVersion={true}  />} />
             {/* <Route path="wheel" element={<Wheel />} /> */}
 

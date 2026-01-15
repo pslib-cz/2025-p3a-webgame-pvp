@@ -29,7 +29,7 @@ type MinigameProviderProps = {
 
 export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>> = ({ children, exitPage, promise }) => {
 
-    const { setTickets, setPlayer, setGirlfriend } = useOwnOutlet();
+    const { setTickets, setPlayer, setGirlfriend, setRelationshipValue } = useOwnOutlet();
 
 
     const exitPagePath = exitPage;
@@ -58,8 +58,10 @@ export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>
         const gHungerMultiplier = 4;
         const gThirstMultiplier = 5;
         const gDrunkennessMultiplier = 1;
+        const staminaMultiplier = 3;
 
         console.log("handleMinigameEnd called");
+        setRelationshipValue(prev => prev + (data!.difficulty * staminaMultiplier));
         setTickets(prev => prev + reward);
         setPlayer(prev => ({
             ...prev,
