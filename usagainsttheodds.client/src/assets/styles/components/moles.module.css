@@ -1,16 +1,11 @@
 
 
 .machine{
-    position: relative;
-    bottom: 0%;
-    height: 95vh;
-    aspect-ratio: 1028/1280;
+    --aspect-ratio: 1028/1280;
+
     background-image: url("../../images/Mole/whackAMoleMachine.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    margin: 0 auto;
-
-    box-sizing: border-box;
 
 }
 
@@ -37,6 +32,8 @@
     height: 100%;
 
     box-sizing: border-box;
+
+    container-type: size;
 }
 
 .grid {
@@ -46,12 +43,14 @@
     justify-items: center;
     align-items: center;
     padding: 2cqh;
-    gap: 2cqh;
+    gap: 2cqh 2cqw;
     
     width: 100%;
     height: 100%;
 
-    box-sizing: border-box;    
+    container-type: size;
+
+    box-sizing: border-box;
 }
 
 /* Pravý sloupec */
@@ -74,9 +73,7 @@
     height: 30%;
     right: 50%;
     transform: translateX(50%);
-    font-size: 4cqh;
     
-    padding: 0.2em;
 
     box-sizing: border-box;
     
@@ -84,16 +81,20 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    font-size: 2.5cqmin;    
+
+
     color: #00ff00; /* Retro zelená */
 }
 
 .scoreLabel {
-    font-size: .9em;
+    font-size: 1.2em;
     color: var(--dark-color);
 }
 
 .scoreValue {
-    font-size: 1.3em;
+    font-size: 2.5em;
 }
 
 
@@ -131,7 +132,7 @@
     aspect-ratio: 1/1;
     background-color: rgb(5, 15, 5);
     border-radius: 50%;
-    font-size: 4cqh;
+    font-size: 3.5cqh;
 
     
     border: .40em solid var(--frame-color-on); 
@@ -186,7 +187,7 @@
 .moleHoleBack {
     position: relative;
     aspect-ratio: 2/1;
-    width: 10cqh;
+    width: 25cqw;
     overflow: hidden;
     background-image: url("../../images/Mole/backMoleHole.png");
     background-size: contain;

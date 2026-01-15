@@ -3,10 +3,28 @@
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-
     display: flex;
     background-color: #000;  /* Černé okraje, pokud okno nesedí do poměru */
 }
+
+.gameArea {
+    position: relative;
+    aspect-ratio: var(--aspect-ratio);
+
+    /* Rozměry: Snaž se být co nejširší... */
+    width: 100%;
+    height: auto; /* ...ale výšku si dopočítej podle poměru stran */
+
+    /* Omezení: Nikdy nepřeteč výšku ani šířku okna */
+    max-height: 95vh;
+    /* Tento výpočet zajistí, že max-šířka bude vždy odpovídat 95vh při daném poměru */
+    max-width: calc(95vh * (var(--aspect-ratio)));
+
+    container-type: size;
+
+}
+
+
 .alignToBottom {
     justify-content: center;
     align-items: flex-end;
@@ -27,6 +45,8 @@
     justify-content: center;
     align-items: center;
 }
+
+
 .resultText {
     position: absolute;
     top: 0;
