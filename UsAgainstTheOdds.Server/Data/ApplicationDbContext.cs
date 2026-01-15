@@ -70,6 +70,14 @@ namespace UsAgainstTheOdds.Server.Data
                         Description = "Player is whacking moles.",
                         Price = 100,
                         Difficulty = 3
+                    },
+                    new Minigame
+                    {
+                        MinigameId = "memorymatch",
+                        Name = "Memory Match",
+                        Description = "Player is matching pairs of cards.",
+                        Price = 150,
+                        Difficulty = 2
                     }
                 );
             });
