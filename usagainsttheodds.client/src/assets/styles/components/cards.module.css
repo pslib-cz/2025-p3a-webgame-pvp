@@ -149,7 +149,3 @@
     margin-top: calc(var(--top-offset) * -1);
     margin-left: calc(var(--left-offset) * -1);
 }
-
-.handContainer .card:not(.isBack):hover {
-    transform: translate(var(--card-hover-translate-x), var(--card-hover-translate-y));
-}
