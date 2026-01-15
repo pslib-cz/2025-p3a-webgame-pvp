@@ -13,7 +13,7 @@
 
 /* BODY */
 .gunbody {
-    background-image: url(../../../images/Gun/Gun-body.png);
+    background-image: url(/images/Gun/Gun-body.png);
     aspect-ratio: 11 / 27;
     height: 33vh;
     position: relative;
@@ -22,7 +22,7 @@
 
 /* BARREL */
 .gunbarrel {
-    background-image: url(../../../images/Gun/Barrel.png);
+    background-image: url(/images/Gun/Barrel.png);
     aspect-ratio: 40 / 47;
     width: 100%;
     position: absolute;
@@ -34,6 +34,6 @@
 
 /* OTEVŘENÍ */
 .gunbarrelOppened {
-    transform: translate(120%,0) rotate(90deg);
-    
+    transform: translate(120%, 0) rotate(90deg);
+
 }

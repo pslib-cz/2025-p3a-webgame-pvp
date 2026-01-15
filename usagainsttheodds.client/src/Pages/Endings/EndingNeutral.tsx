@@ -5,7 +5,7 @@ const EndingNeutral: React.FC = () => (
   <Ending
     title="The End"
     message="Thanks for playing!"
-    imageUrl="/assets/images/endings/neutral.png"
+    imageUrl="/images/endings/neutral.png"
     cta="Back to menu"
     variant="ending-neutral"
   />

@@ -1,4 +1,4 @@
-:root{
+:root {
     --card-width: 7.5em;
     --card-height: calc(var(--card-width) * 1.36);
 }
@@ -37,9 +37,11 @@
     0% {
         transform: rotateY(180deg);
     }
+
     60% {
         transform: rotateY(180deg);
     }
+
     100% {
         transform: rotateY(0deg);
     }
@@ -49,8 +51,9 @@
     0% {
         transform: translate(var(--deck-pos-x), var(--deck-pos-y));
         rotate: 0 0 1 0deg;
-        
+
     }
+
     100% {
         transform: translate(0, 0);
     }
@@ -60,10 +63,11 @@
     from {
         transform: rotateY(180deg);
     }
+
     to {
         transform: rotateY(0deg);
     }
-    
+
 }
 
 .isBack {
@@ -74,9 +78,10 @@
     transform: rotateY(0deg);
 }
 
-.clickable{
+.clickable {
     cursor: pointer;
 }
+
 .face {
     position: absolute;
     inset: 0;
@@ -84,11 +89,13 @@
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 }
-.Back{
-    background-image: url(../../images/Cards/cardBack.png);
+
+.Back {
+    background-image: url(/images/Cards/cardBack.png);
     transform: rotateY(180deg);
 }
-.Front{
+
+.Front {
     transform: rotateY(0deg);
 }
 
@@ -118,25 +125,29 @@
     rotate: 0 0 1 -8deg;
     translate: 0 calc(var(--card-height) / 15);
 }
+
 .handContainer .cardContainer:nth-child(5n+2) {
     rotate: 0 0 1 -4deg;
     translate: 0 calc(var(--card-height) / 50);
 }
+
 .handContainer .cardContainer:nth-child(5n+3) {
     rotate: 0 0 1 0deg;
 }
+
 .handContainer .cardContainer:nth-child(5n+4) {
     rotate: 0 0 1 4deg;
     translate: 0 calc(var(--card-height) / 50);
 }
+
 .handContainer .cardContainer:nth-child(5n+0) {
     rotate: 0 0 1 8deg;
     translate: 0 calc(var(--card-height) / 15);
 }
 
-.handContainer .cardContainer{
+.handContainer .cardContainer {
     margin-top: calc(var(--top-offset) * -1);
-    margin-left: calc(var(--left-offset) * -1); 
+    margin-left: calc(var(--left-offset) * -1);
 }
 
 .handContainer .card:not(.isBack):hover {

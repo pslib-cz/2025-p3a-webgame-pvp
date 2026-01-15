@@ -7,6 +7,7 @@
     margin-left: 1.7rem;
     background-color: var(--light-color);
 }
+
 .bar::before {
     content: "";
     position: absolute;
@@ -15,32 +16,47 @@
     right: -5px;
     bottom: -2px;
 
-    background-image: url("../../../images/Main/Bar.png");
+    background-image: url("/images/Main/Bar.png");
     background-size: 100% 110%;
     background-repeat: no-repeat;
 
     pointer-events: none;
     z-index: 102;
 }
+
 .fill {
     display: block;
     height: 100%;
 }
+
 .container {
     display: flex;
     align-items: center;
 }
+
 .label {
     display: inline-flex;
     font-size: 2em;
 }
-.food-icon, .drink-icon, .heart-icon {
+
+.food-icon,
+.drink-icon,
+.heart-icon {
     width: 32px;
     height: 32px;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
 }
-.drink-icon { background-image: url("../../../images/Main/Drink-icon.png");}
-.food-icon { background-image: url("../../../images/Main/Food-icon.png");}
-.heart-icon { background-image: url("../../../images/Main/Heart-icon.png");}
+
+.drink-icon {
+    background-image: url("/images/Main/Drink-icon.png");
+}
+
+.food-icon {
+    background-image: url("/images/Main/Food-icon.png");
+}
+
+.heart-icon {
+    background-image: url("/images/Main/Heart-icon.png");
+}

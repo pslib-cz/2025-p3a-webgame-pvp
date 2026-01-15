@@ -1,4 +1,4 @@
-.game{
+.game {
     overflow: hidden;
     position: relative;
 }
@@ -7,10 +7,10 @@
     position: absolute;
     z-index: -1;
     top: 0;
-    right:0;
+    right: 0;
     width: 200vw;
     height: 40vh;
-    background-image: url("../images/Main/Background-night.png");
+    background-image: url("/images/Main/Background-night.png");
     background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
@@ -18,30 +18,40 @@
 }
 
 @keyframes wind {
-    0%   { transform: translateX(0); }
-    50%  { transform: translateX(1.7vw); }
-    100% { transform: translateX(0); }
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(1.7vw);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
 }
 
 
 .main_right {
-    background-image: url("../images/Main/Background-first.png");
+    background-image: url("/images/Main/Background-first.png");
     height: 100vh;
     background-size: cover;
-    background-position:left top;
-    background-repeat: no-repeat;
-    position: relative;
-}
-.main_left {
-    background-image: url("../images/Main/Background-second.png");
-    height: 100vh;
-    background-size: cover;
-    background-position:left top;
+    background-position: left top;
     background-repeat: no-repeat;
     position: relative;
 }
 
-.goLEFT_btn, .goRIGHT_btn {
+.main_left {
+    background-image: url("/images/Main/Background-second.png");
+    height: 100vh;
+    background-size: cover;
+    background-position: left top;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.goLEFT_btn,
+.goRIGHT_btn {
     position: absolute;
     margin: 0 1rem;
     padding: 1.5em 0.3em;
@@ -49,18 +59,21 @@
     transform: translateY(-50%);
     opacity: 50%;
     transition: padding 0.3s ease;
-    background-color: var(--light-color);   
+    background-color: var(--light-color);
     border: 0;
 }
 
-.goLEFT_btn:hover, .goRIGHT_btn:hover {
+.goLEFT_btn:hover,
+.goRIGHT_btn:hover {
     padding: 1.7em 0.5em;
     opacity: 100%;
     cursor: pointer;
 }
+
 .goLEFT_btn {
     right: 0;
 }
+
 .goRIGHT_btn svg {
     transform: rotate(180deg);
 }
@@ -86,28 +99,31 @@
 }
 
 .wheel {
-    background-image: url("../images/Homepage/Wheel.png");
+    background-image: url("/images/Homepage/Wheel.png");
     width: 40%;
     height: 40%;
     right: 35%;
     top: 0;
 }
+
 .shop {
-    background-image: url("../images/Homepage/Shop.png");
+    background-image: url("/images/Homepage/Shop.png");
     width: 25%;
     height: 35%;
     left: 5%;
     top: 13%;
 }
+
 .russianroulette {
-    background-image: url("../images/Homepage/Russianroulette.png");
+    background-image: url("/images/Homepage/Russianroulette.png");
     width: 20%;
     height: 30%;
     left: -5%;
     top: 40%;
 }
+
 .baloons {
-    background-image: url("../images/Homepage/Baloons.png");
+    background-image: url("/images/Homepage/Baloons.png");
     width: 10%;
     height: 18%;
     right: 15%;
@@ -115,7 +131,7 @@
 }
 
 .feelinglucky {
-    background-image: url("../images/Homepage/Feelinglucky.png");
+    background-image: url("/images/Homepage/Feelinglucky.png");
     width: 15%;
     height: 30%;
     right: 20%;
@@ -123,7 +139,7 @@
 }
 
 .slots {
-    background-image: url("../images/Homepage/Slots.png");
+    background-image: url("/images/Homepage/Slots.png");
     width: 10%;
     height: 27%;
     right: 30%;
@@ -132,14 +148,15 @@
 
 
 .blackjack {
-    background-image: url("../images/Homepage/Blackjack.png");
+    background-image: url("/images/Homepage/Blackjack.png");
     width: 30%;
     height: 40%;
     right: 1%;
     top: 22%;
 }
+
 .whackamole {
-    background-image: url("../images/Homepage/Whackamole.png");
+    background-image: url("/images/Homepage/Whackamole.png");
     width: 15%;
     height: 25%;
     right: 1%;
@@ -147,7 +164,7 @@
 }
 
 .food {
-    background-image: url("../images/Homepage/Food.png");
+    background-image: url("/images/Homepage/Food.png");
     width: 20%;
     height: 30%;
     left: 22%;
@@ -155,7 +172,7 @@
 }
 
 .pexeso {
-    background-image: url("../images/Homepage/Pexeso.png");
+    background-image: url("/images/Homepage/Pexeso.png");
     width: 10%;
     height: 27%;
     right: 40%;
@@ -165,7 +182,8 @@
 
 /* NPC + ANIMACE*/
 
-.npc_1, .npc_2 {
+.npc_1,
+.npc_2 {
     position: absolute;
     z-index: 2;
 
@@ -183,24 +201,41 @@
 }
 
 .girlindress {
-    background-image: url(../images/Homepage/NPC/Girlindress.png);
+    background-image: url(/images/Homepage/NPC/Girlindress.png);
     top: 62%;
     left: 40%;
 }
 
 .family {
-    background-image: url(../images/Homepage/NPC/Family.png);
+    background-image: url(/images/Homepage/NPC/Family.png);
     top: 62%;
     left: 15%;
 }
 
 @keyframes long-walk {
-    0%   { transform: translateX(0) scaleX(1) translateY(0); }
-    25%  { transform: translateX(10vw) scaleX(1) translateY(-2px); }
-    50%  { transform: translateX(20vw) scaleX(1) translateY(0); }
-    50.1%{ transform: translateX(20vw) scaleX(-1) translateY(0); }
-    75%  { transform: translateX(10vw) scaleX(-1) translateY(-2px); }
-    100% { transform: translateX(0) scaleX(-1) translateY(0); }
+    0% {
+        transform: translateX(0) scaleX(1) translateY(0);
+    }
+
+    25% {
+        transform: translateX(10vw) scaleX(1) translateY(-2px);
+    }
+
+    50% {
+        transform: translateX(20vw) scaleX(1) translateY(0);
+    }
+
+    50.1% {
+        transform: translateX(20vw) scaleX(-1) translateY(0);
+    }
+
+    75% {
+        transform: translateX(10vw) scaleX(-1) translateY(-2px);
+    }
+
+    100% {
+        transform: translateX(0) scaleX(-1) translateY(0);
+    }
 }
 
 .npc_2 {
@@ -209,10 +244,27 @@
 }
 
 @keyframes short-walk {
-    0%   { transform: translateX(0) scaleX(1) translateY(0); }
-    25%  { transform: translateX(15vw) scaleX(1) translateY(-2px); }
-    50%  { transform: translateX(30vw) scaleX(1) translateY(0); }
-    50.1%{ transform: translateX(30vw) scaleX(-1) translateY(0); }
-    75%  { transform: translateX(15vw) scaleX(-1) translateY(-2px); }
-    100% { transform: translateX(0) scaleX(-1) translateY(0); }
+    0% {
+        transform: translateX(0) scaleX(1) translateY(0);
+    }
+
+    25% {
+        transform: translateX(15vw) scaleX(1) translateY(-2px);
+    }
+
+    50% {
+        transform: translateX(30vw) scaleX(1) translateY(0);
+    }
+
+    50.1% {
+        transform: translateX(30vw) scaleX(-1) translateY(0);
+    }
+
+    75% {
+        transform: translateX(15vw) scaleX(-1) translateY(-2px);
+    }
+
+    100% {
+        transform: translateX(0) scaleX(-1) translateY(0);
+    }
 }

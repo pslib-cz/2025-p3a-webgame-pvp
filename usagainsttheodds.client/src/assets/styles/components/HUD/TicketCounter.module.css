@@ -1,17 +1,17 @@
-.ticket_container{
+.ticket_container {
     display: flex;
     justify-content: center;
-    align-items:flex-end;
+    align-items: flex-end;
     width: 150px;
     height: 80px;
     margin: 0.5rem;
-    background-image: url("../../../images/Main/Ticket-icon.png");
+    background-image: url("/images/Main/Ticket-icon.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-.ticket_value{
+.ticket_value {
     font-size: 2rem;
     margin-bottom: 0.7rem;
     color: var(--orange);

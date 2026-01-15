@@ -2,6 +2,7 @@
   position: relative;
   overflow: hidden;
 }
+
 .frame {
   position: absolute;
   bottom: 0;
@@ -9,9 +10,10 @@
   aspect-ratio: 1278/960;
   background-size: cover;
   z-index: 10;
-  background-image: url(../../../images/SlotMachine/slot-pozadi.png);
+  background-image: url(/images/SlotMachine/slot-pozadi.png);
   perspective: 800px;
-} 
+}
+
 .slotsContainer {
   position: absolute;
   display: flex;
@@ -19,50 +21,63 @@
   align-items: center;
   left: 13.6cqw;
   width: 49cqw;
-  
+
   top: 28.5cqw;
   gap: 1.1cqw;
   z-index: 5;
 }
+
 .slot {
   height: 19.7cqw;
   width: 31.3%;
 }
 
 
-.slotButton{
+.slotButton {
   position: absolute;
   background-color: transparent;
   background-size: 100% 100%;
   z-index: 11;
   border: 0;
 }
-.slotButton:hover{
+
+.slotButton:hover {
   cursor: pointer;
   scale: 1.01;
 
 }
-.spinButton{
-  background-image: url(../../../images/SlotMachine/spinButton.png);
+
+.spinButton {
+  background-image: url(/images/SlotMachine/spinButton.png);
   aspect-ratio: 40/435;
   width: 2.5cqw;
-  bottom: 6.5cqw;  
-  right: 5cqw; 
+  bottom: 6.5cqw;
+  right: 5cqw;
   transform-origin: center bottom;
   transform-style: preserve-3d;
 }
-.spinButton.spinning{
+
+.spinButton.spinning {
   animation: spinButtonAnim 1s ease-in-out;
 }
+
 @keyframes spinButtonAnim {
-  0% { transform: rotateX(0deg)}
-  50% { transform: rotateX(-30deg)}
-  100% { transform: rotateX(0deg)}
+  0% {
+    transform: rotateX(0deg)
+  }
+
+  50% {
+    transform: rotateX(-30deg)
+  }
+
+  100% {
+    transform: rotateX(0deg)
+  }
 }
 
 
-.stopButton{
-  background-image: url(../../../images/SlotMachine/stopButton.png);
+.stopButton {
+  background-image: url(/images/SlotMachine/stopButton.png);
   aspect-ratio: 160/44;
   width: 10cqw;
   bottom: 7.5cqw;

@@ -7,16 +7,19 @@
 
 
 .cutscene1 {
-    background-image: url('../images/Cutscene/Intro1.jpg');
+    background-image: url('/images/Cutscene/Intro1.jpg');
 }
+
 .cutscene2 {
-    background-image: url('../images/Cutscene/Intro2.jpg');
+    background-image: url('/images/Cutscene/Intro2.jpg');
 }
+
 .cutscene3 {
-    background-image: url('../images/Cutscene/Intro3.jpg');
+    background-image: url('/images/Cutscene/Intro3.jpg');
 }
+
 .cutscene4 {
-    background-image: url('../images/Cutscene/Intro4.jpg');
+    background-image: url('/images/Cutscene/Intro4.jpg');
 }
 
 .cutscene__button {

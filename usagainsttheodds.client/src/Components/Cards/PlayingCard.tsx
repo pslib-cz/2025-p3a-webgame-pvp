@@ -7,12 +7,12 @@ type PlayingCardProps = {
     card: Card
     face?: PlayingCardFace
     clickable?: boolean
-    deckPosition?: [number, number] 
+    deckPosition?: [number, number]
     onAnimationEnd?: () => void
     index?: [number, number]
 }
 
-const PlayingCard: React.FC<PlayingCardProps> = ({ card, face="Front", clickable = true, deckPosition, onAnimationEnd, index }) => {
+const PlayingCard: React.FC<PlayingCardProps> = ({ card, face = "Front", clickable = true, deckPosition, onAnimationEnd, index }) => {
 
     const [currentFace, setCurrentFace] = useState<PlayingCardFace>(face);
     const [hasDealt, setHasDealt] = useState(false);
@@ -21,9 +21,6 @@ const PlayingCard: React.FC<PlayingCardProps> = ({ card, face="Front", clickable
         setCurrentFace(face)
     }, [face]);
 
-    const getCardImageUrl = (card: Card)=> {
-        return new URL(`../../assets/images/Cards/card${card.symbol}${card.value}.png`, import.meta.url).href;
-    }
 
     const isFlippingDuringDeal = !hasDealt && deckPosition && currentFace === "Front";
 
@@ -31,7 +28,7 @@ const PlayingCard: React.FC<PlayingCardProps> = ({ card, face="Front", clickable
     const handleAnimationEnd = (event: React.AnimationEvent) => {
         // Skončila animace posunu z balíčku
         if (event.animationName.includes("dealFromDeck")) {
-            setHasDealt(true); 
+            setHasDealt(true);
             if (onAnimationEnd) onAnimationEnd();
         }
     }
@@ -45,15 +42,15 @@ const PlayingCard: React.FC<PlayingCardProps> = ({ card, face="Front", clickable
 
     //výpočet zkama se ma karta animovat z balíčku at to sedi
     const getAnimationStyle = () => {
-        if (!deckPosition || !index) return {}; 
+        if (!deckPosition || !index) return {};
 
         const col = index[0];
         const row = index[1];
-        
+
         // Krok mezi kartami
         const stepX = `(var(--card-width) - var(--left-offset))`;
         const stepY = `(var(--card-height) - (var(--top-offset)) * 1.5)`;
-        
+
 
         return {
             ["--deck-pos-x" as string]: `calc(
@@ -78,15 +75,15 @@ const PlayingCard: React.FC<PlayingCardProps> = ({ card, face="Front", clickable
                 onTransitionEnd={handleTransitionEnd}
                 className={`
                     ${styles.card}
-                    ${isFlippingDuringDeal 
-                        ? styles.flippingDuringDeal 
+                    ${isFlippingDuringDeal
+                        ? styles.flippingDuringDeal
                         : (currentFace === "Back" ? styles.isBack : styles.isFront)
                     }
                     ${clickable && styles.clickable}
                 `}
                 onClick={clickable ? () => setCurrentFace(prev => prev === "Front" ? "Back" : "Front") : undefined}
             >
-                <span className={`${styles.face} ${styles.Front}`} style={{ backgroundImage: `url(${getCardImageUrl(card)})` }} />
+                <span className={`${styles.face} ${styles.Front}`} style={{ backgroundImage: `url(/images/Cards/card${card.symbol}${card.value}.png)` }} />
                 <span className={`${styles.face} ${styles.Back}`} />
             </span>
         </span>

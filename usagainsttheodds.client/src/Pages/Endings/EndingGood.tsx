@@ -5,7 +5,7 @@ const EndingGood: React.FC = () => (
   <Ending
     title="Victory!"
     message="You won — congratulations!"
-    imageUrl="/assets/images/endings/good.png"
+    imageUrl="/images/endings/good.png"
     cta="Play again"
     variant="ending-good"
   />

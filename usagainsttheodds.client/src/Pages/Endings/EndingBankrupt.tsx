@@ -5,7 +5,7 @@ const EndingBankrupt: React.FC = () => (
   <Ending
     title="Bankrupt Ending"
     message="You lost all your money — time to rethink your strategy."
-    imageUrl="/assets/images/endings/bankrupt.png"
+    imageUrl="/images/endings/bankrupt.png"
     cta="Restart"
     variant="ending-bankrupt"
   />

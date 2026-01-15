@@ -4,9 +4,11 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    
-    z-index: 100; /* Musí být nad hrou */
-    pointer-events: none; /* DŮLEŽITÉ: Kliknutí projdou skrz prázdná místa dolů do hry */
+
+    z-index: 100;
+    /* Musí být nad hrou */
+    pointer-events: none;
+    /* DŮLEŽITÉ: Kliknutí projdou skrz prázdná místa dolů do hry */
 
     display: flex;
     flex-direction: column;
@@ -14,7 +16,8 @@
     box-sizing: border-box;
 }
 
-.stats_top, .stats_bottom {
+.stats_top,
+.stats_bottom {
     display: flex;
     justify-content: space-between;
     margin: 0 1%;
@@ -23,7 +26,9 @@
 .girlfriend {
     text-align: right;
 }
-.player, .girlfriend {
+
+.player,
+.girlfriend {
     margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
@@ -31,7 +36,7 @@
     justify-content: center;
     width: 348px;
     height: 140px;
-    background-image: url("../../../images/Main/stats-background.png");
+    background-image: url("/images/Main/stats-background.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

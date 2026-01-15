@@ -13,6 +13,8 @@ import diamond from "../../assets/images/SlotMachine/diamond.png";
 import seven from "../../assets/images/SlotMachine/seven.png";
 import spin from "../../assets/images/SlotMachine/spin.png";
 
+//předelej si prosím někdy cesty na /images/... já ti do toho nechci sahat :)
+
 
 type SlotRowProps = {
     isSpinning: boolean;
