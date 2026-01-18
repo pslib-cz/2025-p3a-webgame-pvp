@@ -1,21 +1,14 @@
 import { Suspense, use, useEffect, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+import apiGet from "../Helpers/apiHelper";
 
 const Apitest = () => {
   const [promise, setPromise] = useState<Promise<any> | null>(null);
-  const url = "/api/consumables";
-
-  const fetchData = () => {
-    return fetch(url)
-      .then(res => {
-        if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-        return res.json();
-    });
-  };
+  
 
   useEffect(() => {
-    setPromise(fetchData());
-  }, [url]);
+    setPromise(apiGet<any>("/api/consumables/"));
+  }, []);
 
   const ApiContent = () => {
     const data = use(promise || Promise.reject("No promise set"));
@@ -35,6 +28,9 @@ const Apitest = () => {
   if (!promise) {
     return <div>Initializing API request...</div>;
   }
+
+
+
 
   return (
     <div>

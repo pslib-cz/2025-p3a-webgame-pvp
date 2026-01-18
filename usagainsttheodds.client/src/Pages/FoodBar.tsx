@@ -2,6 +2,7 @@ import ChangeScreenButton from "../Components/ChangeScreenButton"
 import { use, useEffect, useState } from "react";
 import type { Consumable } from "../Types/GameType";
 import { useOwnOutlet } from "../Hooks/useOwnOutlet";
+import apiGet from "../Helpers/apiHelper";
 
 
 
@@ -11,25 +12,11 @@ const FoodBar = () => {
 
     const [promise, setPromise] = useState<Promise<Consumable[]> | null>(null);
 
-    
-    
-    
-    const fetchConsumables = () => {
-        console.log("Fetching consumables data");
-        return fetch(`/api/consumables/`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        });
-    }
-    
-    
     //load data from api
     useEffect(() => {
-        setPromise(fetchConsumables());
+        setPromise(apiGet<Consumable[]>('/api/consumables/'));
     }, []);
+    
     
     if (!promise) {
         return <div>Initializing request...</div>;
