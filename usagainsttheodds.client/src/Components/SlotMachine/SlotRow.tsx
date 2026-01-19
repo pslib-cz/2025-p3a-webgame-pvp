@@ -1,6 +1,5 @@
 import style from "../../assets/styles/Minigames/SlotMachine/SlotMachine.module.css";
 
-import lemon from "/images/SlotMachine/lemon.png";
 
 
 type SlotRowProps = {
