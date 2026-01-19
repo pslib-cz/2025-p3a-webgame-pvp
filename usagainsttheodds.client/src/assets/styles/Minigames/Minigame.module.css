@@ -64,7 +64,7 @@
     color: white;
     font-size: 1.5rem;
     z-index: 100;
-    animation: resultScreenFadeIn 2500ms ease-in-out;
+    animation: resultScreenFadeIn 1.5s ease-in-out;
 }
 
 .resultText {

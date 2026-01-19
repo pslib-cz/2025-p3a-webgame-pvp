@@ -1,5 +1,3 @@
-import rS from "../../Helpers/randomGeneratorHelper";
-import { useState, useEffect } from "react";
 import style from "../../assets/styles/Minigames/SlotMachine/SlotMachine.module.css";
 
 //import lemon from "/images/SlotMachine/lemon.png";
@@ -11,7 +9,6 @@ type SlotRowProps = {
 };
 
 const SlotRow: React.FC<SlotRowProps> = ({isSpinning, currentPosition}) => {
-    const [position, setPosition] = useState<number>(0);
     const Symbols: string[] = [
         "/images/SlotMachine/lemon.png",
         "/images/SlotMachine/melon.png",
