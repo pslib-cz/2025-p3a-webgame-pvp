@@ -12,7 +12,7 @@ const Card: React.FC<CardProps> = ({ card, onClick }) => {
 
     return (
         <div
-        className={styles.card + " " + (card.facingUp ? styles.up : "") + " " + (card.collected ? styles.collected : "")}
+        className={styles.card + (card.facingUp ? styles.up : "") + (card.collected ? styles.collected : "")}
         onClick={() => onClick(card.id)}>
 
         {card.facingUp ? card.value : "?"}

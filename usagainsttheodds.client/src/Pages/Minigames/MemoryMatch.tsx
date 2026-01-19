@@ -98,7 +98,7 @@ const MemoryMatch = () => {
         <div>
             <h1>Memory Match Minigame</h1>
             <div className={style.board}>
-                <MemoryBoard  cards={cards} onCardClick={handleCardClick} />
+                <MemoryBoard cards={cards} onCardClick={handleCardClick} />
             </div>
         </div>
     )
