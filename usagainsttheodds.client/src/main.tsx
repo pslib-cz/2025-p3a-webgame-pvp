@@ -36,8 +36,6 @@ createRoot(document.getElementById('root')!).render(
           <Route path="cutscene">
             <Route path="intro" element={<IntroCutscene />} />
             
-            <Route path='apitest' element={<Apitest />} />
-            
           </Route>
 
           {/* HRA */}

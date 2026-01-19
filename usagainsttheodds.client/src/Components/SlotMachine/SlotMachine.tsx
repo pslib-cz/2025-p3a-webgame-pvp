@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import SlotRow from "./SlotRow";
 import style from "../../assets/styles/Minigames/SlotMachine/SlotMachine.module.css";
 
 type SlotMachineProps = {
@@ -28,9 +27,9 @@ const SlotMachine: React.FC<SlotMachineProps> = ({ spin, stop, isSpinning, first
     <div className={`${style.frame}`}>
       {/*<img src="/images/SlotMachine/slot-pozadi.png" alt="slot machine frame" className={style.frame} />*/}
       <div className={style.slotsContainer}>
-        <SlotRow isSpinning={isSpinning} currentPosition={firstPosition} />
+        {/* <SlotRow isSpinning={isSpinning} currentPosition={firstPosition} />
         <SlotRow isSpinning={isSpinning} currentPosition={secondPosition} />
-        <SlotRow isSpinning={isSpinning} currentPosition={thirdPosition} />
+        <SlotRow isSpinning={isSpinning} currentPosition={thirdPosition} /> */}
       </div>
       <button
         className={`${style.spinButton} ${style.slotButton} ${btnAnimating ? style.spinning : ""}`}

@@ -40,3 +40,13 @@ export type Person = {
     thirst: number,
     drunkenness: number
 }
+
+export type IntroScreen = {
+    introScreenId: number,
+    text: string,
+    speaker: Speaker
+    imageUrl: string,
+    buttonText: string
+}
+
+export type Speaker = "Narrator" | "Boy" | "Girl"

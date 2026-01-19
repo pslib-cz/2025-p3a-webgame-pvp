@@ -370,7 +370,7 @@ namespace UsAgainstTheOdds.Server.Data
                         IntroScreenId = 1,
                         Text = "We’ve got nothing left but a few last coins and this city, ready to swallow us whole.",
                         Speaker = Enums.SpeakerType.Boy,
-                        ImageUrl = "images/Cutscenes/intro1.png",
+                        ImageUrl = "/images/Cutscene/intro1.png",
                         ButtonText = "Continue"
                     },
                     new IntroScreen
@@ -378,7 +378,7 @@ namespace UsAgainstTheOdds.Server.Data
                         IntroScreenId = 2,
                         Text = "But we can’t give up now. We have to take a chance, no matter the odds.",
                         Speaker = Enums.SpeakerType.Girl,
-                        ImageUrl = "images/Cutscenes/intro2.png",
+                        ImageUrl = "/images/Cutscene/intro2.png",
                         ButtonText = "Continue"
                     },
                     new IntroScreen
@@ -386,7 +386,7 @@ namespace UsAgainstTheOdds.Server.Data
                         IntroScreenId = 3,
                         Text = "This casino is our only shot—either we win big today, or we lose the little we have left.",
                         Speaker = Enums.SpeakerType.Boy,
-                        ImageUrl = "images/Cutscenes/intro3.png",
+                        ImageUrl = "/images/Cutscene/intro3.png",
                         ButtonText = "Continue"
                     },
                     new IntroScreen
@@ -394,7 +394,7 @@ namespace UsAgainstTheOdds.Server.Data
                         IntroScreenId = 4,
                         Text = "Take a breath, we're going in... today, it's the two of us against the odds.",
                         Speaker = Enums.SpeakerType.Girl,
-                        ImageUrl = "images/Cutscenes/intro4.png",
+                        ImageUrl = "/images/Cutscene/intro4.png",
                         ButtonText = "Let's go!"
                     }
 
