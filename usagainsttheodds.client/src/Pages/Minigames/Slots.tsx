@@ -19,12 +19,20 @@ const Russianroulette = () => {
     const [stopButtonClickable, setStopButtonClickable] = useState(false);
     const [isSpinning, setIsSpinning] = useState(false);
     const [jackpot, setJackpot] = useState(false);
+    const [positions, setPositions] = useState<[number, number, number]>([0, 0, 0]);
+
+    useEffect(()=> {
+        setSpinButtonClickable(true);
+        setStopButtonClickable(false);
+        setIsSpinning(false);
+        setJackpot(false);
+        setPositions([0,0,0]);
+        setResult(null);
+    }, [])
 
 
 
 
-
-const [positions, setPositions] = useState<[number, number, number]>([0, 0, 0]);
 
     useEffect(() => {
       if (isSpinning) {
