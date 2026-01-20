@@ -56,6 +56,7 @@ createRoot(document.getElementById('root')!).render(
             <Route path="whackamole" element={<MinigameContainer id="whackamole" exitPage="/game/right" devVersion={true} />} />
             <Route path="memorymatch" element={<MinigameContainer id="memorymatch" exitPage="/game/right" devVersion={true} />} />
             <Route path="slots" element={<MinigameContainer id="slots" exitPage="/game/right" devVersion={true}  />} />
+            <Route path="darts" element={<MinigameContainer id="darts" exitPage='/game/right' devVersion={true}/>} />
             {/* <Route path="wheel" element={<Wheel />} /> */}
 
           </Route>
