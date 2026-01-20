@@ -26,7 +26,6 @@ const SlotMachine: React.FC<SlotMachineProps> = ({ spin, stop, isSpinning, first
 
   return (
     <div className={`${style.frame}`}>
-      <img src="/images/SlotMachine/slot-pozadi.png" alt="slot machine frame" className={style.frame} />
       <div className={style.slotsContainer}>
         <SlotRow isSpinning={isSpinning} currentPosition={firstPosition} />
         <SlotRow isSpinning={isSpinning} currentPosition={secondPosition} />

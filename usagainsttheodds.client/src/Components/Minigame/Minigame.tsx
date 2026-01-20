@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import WhackkAMole from "../../Pages/Minigames/WhackAMole";
 import SlotsGame from "../../Pages/Minigames/Slots";
 import MemoryMatch from "../../Pages/Minigames/MemoryMatch";
+import Darts from "../../Pages/Minigames/Darts";
 
 type MinigameProps = {
     id: string;
@@ -42,6 +43,8 @@ const Minigame: React.FC<MinigameProps> = ({ id, devVersion = false }) => {
                 return <WhackkAMole />;
             case "slots":
                 return <SlotsGame />;
+            case "darts":
+                return <Darts />
             default:
                 return <div>Unknown Minigame</div>;
         }
