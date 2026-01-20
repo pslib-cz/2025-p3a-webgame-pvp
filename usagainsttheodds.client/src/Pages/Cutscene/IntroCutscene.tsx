@@ -1,12 +1,15 @@
 import { useEffect, useState, use } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import styles from '../../assets/styles/intro.module.css';
 import type { IntroScreen } from "../../Types/GameType";
 import apiGet from "../../Helpers/apiHelper";
+import { useOwnOutlet } from "../../Hooks/useOwnOutlet";
 
 const IntroCutscene = () => {
 
+    const navigate = useNavigate()
     const [promise, setPromise] = useState<Promise<IntroScreen[]> | null>(null);
+    const [page, setPage] = useState<number>(0)
 
     //load data from api
     useEffect(() => {
@@ -19,66 +22,30 @@ const IntroCutscene = () => {
     }
     
     const data = use(promise);
+    const sceneData = data[page]
+
+    const nextPage = () => {
+        if (data.length-1 === page) navigate("/game");
+        else setPage(prev => prev + 1)
+    }
 
 
 
     return (
-        <div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1em' }}>
-                {data.map((screen) => (
-                    <div key={screen.introScreenId} style={{ border: '1px solid black', padding: '1em' }}>
-                        <h2>{screen.introScreenId}</h2>
-                        <h2>Speaker: {screen.speaker}</h2>
-                        <p>{screen.text}</p>
-                        <img src={screen.imageUrl} />
-                        <button>{screen.buttonText}</button>
-                    </div>
-                ))}
+        <div className={`${styles.page}`} style={{backgroundImage: `url(${sceneData.imageUrl})`}}>
+            
+            <div className={styles.textContainer}>
+                <span className={`${styles.speaker} ${styles[sceneData.speaker]}`}></span>
+                <p className={styles.text}>{sceneData.text}{sceneData.text}</p>
+                <p className={styles.text}>{sceneData.text}{sceneData.text}{sceneData.text}{sceneData.text}</p>
+                                
             </div>
 
-            
+            <button className={styles.button} onClick={nextPage}>
+                {data.length-1 === page ? "Let's play!" : "Continue"}
+            </button>
 
-            {/* {page === 2 && ( 
-                <div className={`${styles.cutscene} ${styles.cutscene1}`}>
-                    <h1>Prvni dialog</h1>
-
-                <button className={styles.cutscene__button} onClick={() => setPage(3)}>
-                    pokracovat
-                </button>
-
-                </div>
-            )}
-            {page === 3 && ( 
-                <div className={`${styles.cutscene} ${styles.cutscene2}`}>
-                    <h1>Druhy dialog</h1>
-
-                <button className={styles.cutscene__button} onClick={() => setPage(4)}>
-                    Pokracovat
-                </button>
-
-                </div>
-            )}
-            {page === 4 && ( 
-                <div className={`${styles.cutscene} ${styles.cutscene3}`}>
-                    <h1>Treti dialog</h1>
-
-                <button className={styles.cutscene__button} onClick={() => setPage(5)}>
-                    Pokracovat
-                </button>
-
-                </div>
-            )}
-
-            {page === 5 && ( 
-                <div className={`${styles.cutscene} ${styles.cutscene4}`}>
-                    <h1>Posledni dialog</h1>
-
-                <button className={styles.cutscene__button} onClick={() => navigate("/game")}>
-                    Zacit hru
-                </button>
-
-                </div>
-            )} */}
+        
 
 
         </div>

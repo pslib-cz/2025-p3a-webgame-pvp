@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using UsAgainstTheOdds.Server.Data;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,8 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("Default") ?? "Filename=UsAgainstTheOdds.sqlite"));
+    options.UseSqlite(builder.Configuration.GetConnectionString("Default") ?? "Filename=UsAgainstTheOdds.sqlite")
+);
 
+builder.Services.AddControllers().AddJsonOptions(options => {
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
