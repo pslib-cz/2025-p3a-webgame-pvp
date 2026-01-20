@@ -9,9 +9,9 @@
         }
         public enum SpeakerType
         {
-            Narrator = 0,
-            Boy = 1,
-            Girl = 2,
+            Narrator,
+            Boy,
+            Girl,
         }
     }
 }

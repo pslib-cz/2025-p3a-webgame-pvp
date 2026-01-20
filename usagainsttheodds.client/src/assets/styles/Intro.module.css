@@ -1,33 +1,45 @@
-.cutscene {
+.page {
+    position: relative;
     background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-size: 100% 100%;
     height: 100vh;
+    width: 100vw;
+    
 }
 
 
-.cutscene1 {
-    background-image: url('/images/Cutscene/Intro1.jpg');
-}
-
-.cutscene2 {
-    background-image: url('/images/Cutscene/Intro2.jpg');
-}
-
-.cutscene3 {
-    background-image: url('/images/Cutscene/Intro3.jpg');
-}
-
-.cutscene4 {
-    background-image: url('/images/Cutscene/Intro4.jpg');
-}
-
-.cutscene__button {
+.button {
     position: absolute;
     bottom: 5%;
     right: 5%;
     padding: 0.5em 1em;
 }
+
+.textContainer {
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%);
+
+    padding: 2em;
+    width: max-content;
+    max-width: 40%;
+    background-color: blanchedalmond;
+}
+.speaker{
+    width: 50px;
+    height: 50px;
+    display: block;
+}
+.Boy{
+    background-color: aqua;
+}
+.Girl{
+    background-color: brown;
+}
+
+
+
 
 
 /* STARTPAGE */
