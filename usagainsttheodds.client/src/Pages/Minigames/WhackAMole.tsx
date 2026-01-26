@@ -6,9 +6,15 @@ import type { MoleHoleType } from '../../Types/MoleHoleType';
 import random from "../../Helpers/randomGeneratorHelper"
 import useTimer from '../../Hooks/useTimer';
 import MolesStartButton from '../../Components/WhackAMole/MolesStartButton';
+import { useMinigame } from '../../Hooks/useMinigame';
 
-const WhackkAMole = () => {
+const WhackAMole = () => {
     const [score, setScore] = useState<number>(0);
+    const scoreRef = useRef(score);
+    useEffect(() => {
+        scoreRef.current = score;
+    }, [score]);
+
     const [holes, setHoles] = useState<MoleHoleType[]>([
         { index: 0, isMoleUp: false },
         { index: 1, isMoleUp: false },
@@ -21,12 +27,34 @@ const WhackkAMole = () => {
         { index: 8, isMoleUp: false }
     ]);
     const [molesSpawning, setMolesSpawning] = useState<boolean>(false);
-    const [spawnInterval, setSpawnInterval] = useState<number>(1000);
-    const [despawnInterval, setDespawnInterval] = useState<number>(2500);
-    const [possibleMoles, setPossibleMoles] = useState<number>(1);
-    
+    const [spawnInterval, setSpawnInterval] = useState<number>(500);
+    const [despawnInterval, setDespawnInterval] = useState<number>(600);
+    const [possibleMoles, setPossibleMoles] = useState<number>(2);
+    const [countdownTime, setCountdownTime] = useState<number>(25000);
 
-    //nekdy buguje vylezani
+    const timeoutsRef = useRef<(ReturnType<typeof setTimeout> | null)[]>(new Array(9).fill(null));
+
+    const {endGame, result, setResult, setRewardMultiplier} = useMinigame();
+
+    useEffect(() => {
+        setScore(0);
+        setHoles([
+            { index: 0, isMoleUp: false },
+            { index: 1, isMoleUp: false },
+            { index: 2, isMoleUp: false },
+            { index: 3, isMoleUp: false },
+            { index: 4, isMoleUp: false },
+            { index: 5, isMoleUp: false },
+            { index: 6, isMoleUp: false },
+            { index: 7, isMoleUp: false },
+            { index: 8, isMoleUp: false }
+        ]);
+        setMolesSpawning(false);
+        setSpawnInterval(500);
+        setDespawnInterval(600);
+        setPossibleMoles(2);
+        setResult(null);
+    }, []);
 
     const holesRef = useRef(holes)
 
@@ -55,14 +83,27 @@ const WhackkAMole = () => {
     }, [molesSpawning, spawnInterval, possibleMoles])
 
     const handleHit = (index: number) => {
-        setScore(prev => prev + 1);
+        if (timeoutsRef.current[index]) {
+            clearTimeout(timeoutsRef.current[index]!);
+            timeoutsRef.current[index] = null;
+        }
+        setScore(prev => {
+            const newScore = prev + 1;
+            scoreRef.current = newScore;
+            return newScore;
+        });
         despawnMole(index);
     }
 
     const waitToDespawn = (index: number) => {
-        setTimeout(() => {
+        if (timeoutsRef.current[index]) clearTimeout(timeoutsRef.current[index]);
+
+        const timeoutId = setTimeout(() => {
             despawnMole(index);
+            timeoutsRef.current[index] = null;
         }, despawnInterval);
+
+        timeoutsRef.current[index] = timeoutId;
     }
 
     const despawnMole = (index: number) => {
@@ -85,18 +126,67 @@ const WhackkAMole = () => {
 
 
     const handleStart = () => {
-        console.log("hra začala")
+        setScore(0);
         setMolesSpawning(true)
         countdown.start()
     }
 
     const handleTimeUp = () => {
-        console.log("čas vypršel")
         setMolesSpawning(false)
-    }
-    
-    const countdown = useTimer(30000, handleTimeUp)
 
+        timeoutsRef.current.forEach((timeoutId, index) => {
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+                timeoutsRef.current[index] = null;
+            }
+        });
+
+        setHoles(prevHoles => prevHoles.map(hole => ({ ...hole, isMoleUp: false })));
+
+        decideGameResult();
+    }
+
+    const decideGameResult = () => {
+        const finalScore = scoreRef.current
+        let multiplier: number;
+        let finalResult: "win" | "lose" | "draw";
+
+        if (finalScore >= 45) {
+            multiplier = 2.5;
+            finalResult = "win";
+        } else if (finalScore >= 40) {
+            multiplier = 2.25;
+            finalResult = "win";
+        } else if (finalScore >= 35) {
+            multiplier = 2.0;
+            finalResult = "win";
+        } else if (finalScore >= 30) {
+            multiplier = 1.75;
+            finalResult = "win";
+        } else if (finalScore >= 25) {
+            multiplier = 1.5;
+            finalResult = "win";
+        } else if (finalScore >= 20) {
+            multiplier = 1.25;
+            finalResult = "win";
+        } else if (finalScore >= 10) {
+            multiplier = 0.5;
+            finalResult = "lose";
+        } else {
+            multiplier = 0;
+            finalResult = "lose";
+        }
+        setRewardMultiplier(multiplier);
+        setResult(finalResult);
+    }
+
+    const countdown = useTimer(countdownTime, handleTimeUp)
+    
+    const handleAnimationEnd = (event: React.AnimationEvent) => {
+        if (event.animationName.includes("resultScreenFadeIn")) {
+            endGame();
+        }
+    }
 
 
     return (
@@ -124,6 +214,13 @@ const WhackkAMole = () => {
                     </div>
 
                 </div>
+                {result && (
+                        <div onAnimationEnd={handleAnimationEnd} className={`${minigameStyles.resultScreen}`}>
+                            {result === "win" && <span className={`${minigameStyles.resultText}`}>You win!</span>}
+                            {result === "lose" && <span className={`${minigameStyles.resultText}`}>You lose!</span>}
+                            {result === "draw" && <span className={`${minigameStyles.resultText}`}>It's a draw!</span>}
+                        </div>
+                    )}
 
             </div>
 
@@ -131,4 +228,4 @@ const WhackkAMole = () => {
     );
 }
 
-export default WhackkAMole;
+export default WhackAMole;

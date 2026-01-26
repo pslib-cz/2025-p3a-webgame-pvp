@@ -5,10 +5,10 @@ import Russianroulette from "../../Pages/Minigames/RussianRoulette";
 import MinigameEnd from "./MinigameEnd";
 import MinigameInfo from "./MinigameInfo";
 import { useEffect } from "react";
-import WhackkAMole from "../../Pages/Minigames/WhackAMole";
 import SlotsGame from "../../Pages/Minigames/Slots";
 import MemoryMatch from "../../Pages/Minigames/MemoryMatch";
 import Darts from "../../Pages/Minigames/Darts";
+import WhackAMole from "../../Pages/Minigames/WhackAMole";
 
 type MinigameProps = {
     id: string;
@@ -40,7 +40,7 @@ const Minigame: React.FC<MinigameProps> = ({ id, devVersion = false }) => {
             case "test":
                 return <TestMinigame />;
             case "whackamole":
-                return <WhackkAMole />;
+                return <WhackAMole />;
             case "slots":
                 return <SlotsGame />;
             case "darts":

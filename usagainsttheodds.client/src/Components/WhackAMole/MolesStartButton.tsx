@@ -9,7 +9,7 @@ type MolesStartButtonProps =  {
 
 
 const MolesStartButton: React.FC<MolesStartButtonProps> = ({startCallback, secondsLeft}) => {
-    const [state, setState] = useState<"NotStarted" | "Countdown" | "Started">("NotStarted")
+    const [state, setState] = useState<"NotStarted" | "Countdown" | "Started" | "Ended">("NotStarted")
     const [buttonText, setButtonText] = useState<"PLAY"| number | "GO!">("PLAY")
     const countdown = useTimer(3900, () => onCountdownEnd())
 
@@ -37,6 +37,9 @@ const MolesStartButton: React.FC<MolesStartButtonProps> = ({startCallback, secon
     useEffect(() => {
         if (state === "Started") {
             setButtonText(secondsLeft)
+        }
+        if (secondsLeft <= 0 && state === "Started") {
+            setState("Ended")
         }
     }, [secondsLeft])
 

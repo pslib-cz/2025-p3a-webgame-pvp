@@ -1,5 +1,5 @@
 import { Suspense, use, useEffect, useState } from "react";
-import { ErrorBoundary } from "react-error-boundary";
+import { ErrorBoundary, type FallbackProps } from "react-error-boundary";
 import apiGet from "../Helpers/apiHelper";
 
 const Apitest = () => {
@@ -15,15 +15,24 @@ const Apitest = () => {
     return <pre style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}>{JSON.stringify(data, null, 2)}</pre>;
   };
 
-  const ErrorFallback = ({ error }: { error: Error }) => (
-  <div>
-    <pre style={{ color: 'red' }}>Error: {error.message}</pre>
-    {error.message.includes("Failed to fetch") && (
-      <h3 style={{ color: 'red' }}>MUSÍŠ MÍT ZAPLÝ BACKEND SERVER</h3>
-    )}
-    <button onClick={() => window.location.reload()}>Reload</button>
-  </div>
-);
+  const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
+    let message = "Unknown error";
+    if (error instanceof Error) {
+      message = error.message;
+    } else if (typeof error === "string") {
+      message = error;
+    }
+
+    return (
+      <div>
+        <pre style={{ color: 'red' }}>Error: {message}</pre>
+        {message.includes("Failed to fetch") && (
+          <h3 style={{ color: 'red' }}>MUSÍŠ MÍT ZAPLÝ BACKEND SERVER</h3>
+        )}
+        <button onClick={resetErrorBoundary}>Reload</button>
+      </div>
+    );
+  };
 
   if (!promise) {
     return <div>Initializing API request...</div>;

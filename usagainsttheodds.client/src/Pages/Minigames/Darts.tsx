@@ -17,17 +17,17 @@ const Darts = () => {
 
 
 
-    useEffect(()=> {
-        if(isStopped.stoppedX && isStopped.stoppedY){
-            setIsShot(true);
-            CountScore(pos.posX, pos.posY)
-        }
-    }, [isStopped])
+    // useEffect(()=> {
+    //     if(isStopped.stoppedX && isStopped.stoppedY){
+    //         setIsShot(true);
+    //         CountScore(pos.posX, pos.posY)
+    //     }
+    // }, [isStopped])
 
 
-    const CountScore: (x: number, y:number) =>{
+    // const CountScore: (x: number, y:number) =>{
 
-    }
+    // }
 
 
 //pocitani vzdalenosti - maxscore -  math.sqrt(math.pow(math.abs(posx - 50)) + math.pow(math.abs(posy -50))))

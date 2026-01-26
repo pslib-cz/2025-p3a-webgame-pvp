@@ -241,15 +241,15 @@
 }
 
 .gotHit {
-    animation: gotHit 250ms linear forwards;
+    animation: gotHit 150ms linear forwards;
 }
 
 .isUp {
-    animation: goingUp 500ms ease-out forwards;
+    animation: goingUp 200ms ease-out forwards;
 }
 
 .isDown {
-    animation: goingDown 500ms ease-in forwards;
+    animation: goingDown 200ms ease-in forwards;
 }
 
 @keyframes goingUp {
