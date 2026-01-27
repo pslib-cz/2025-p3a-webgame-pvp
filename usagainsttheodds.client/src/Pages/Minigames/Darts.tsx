@@ -1,8 +1,5 @@
-import { useState } from "react";
-import type { GameResult } from "../../Types/GameType"
-import { useEffect } from "react";
-import { useMinigame } from "../../Hooks/useMinigame";
-import minigameStyles from "../../assets/styles/Minigames/Minigame.module.css"
+
+import { useState, useEffect } from "react";
 import DartsSlider from "../../Components/Darts/DartsSlider";
 import {type position, type stopped } from "../../Types/DartTypes"
 import styles from "../../assets/styles/Minigames/Darts.module.css"
@@ -14,7 +11,6 @@ const Darts = () => {
     const [pos, setPos] = useState<position>({posX: 50, posY: 50});
     const [isStopped, setIsStopped] = useState<stopped>({stoppedX: false, stoppedY: false});
 
-    const [isShot, setIsShot] = useState<boolean>(false);
     const maxScore = 500;
     const [playerScore, setPlayerScore] = useState<number>(0);
 

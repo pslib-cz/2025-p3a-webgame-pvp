@@ -1,4 +1,4 @@
-import { useState, useEffect, use } from "react"
+import { useState, useEffect } from "react"
 import MemoryBoard from "../../Components/MemoryMatch/Board"
 import type { CardType } from "../../Types/CardType";
 import style from "../../assets/styles/Minigames/Memorymatch.module.css"
@@ -6,7 +6,6 @@ import style from "../../assets/styles/Minigames/Memorymatch.module.css"
 
 function createCards(): CardType[] {
     const values = [...Array(8).keys(), ...Array(8).keys()] //opakuje se, potrebuji pary
-    const cards: CardType[] = [];
 
     //zamichani na hraci plochu
     for (let i = values.length - 1; i > 0; i--) {

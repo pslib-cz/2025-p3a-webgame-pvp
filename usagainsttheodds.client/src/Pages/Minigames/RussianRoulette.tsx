@@ -16,7 +16,7 @@ const Russianroulette = () => {
     const [bulletPosition, setBulletPosition] = useState<number | null>(null);
 
 
-    const { endGame, setResult, result, setRewardMultiplier = 5 } = useMinigame();//získání endGame funkce z kontextu
+    const { endGame, setResult, result = 5 } = useMinigame();//získání endGame funkce z kontextu
 
     const [buttonsVisible, setButtonsVisible] = useState(true);
     const [shootButtonsVisible, setShootButtonsVisible] = useState(false);

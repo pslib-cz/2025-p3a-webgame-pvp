@@ -30,7 +30,7 @@ const WhackAMole = () => {
     const [spawnInterval, setSpawnInterval] = useState<number>(500);
     const [despawnInterval, setDespawnInterval] = useState<number>(600);
     const [possibleMoles, setPossibleMoles] = useState<number>(2);
-    const [countdownTime, setCountdownTime] = useState<number>(25000);
+    const [countdownTime] = useState<number>(25000);
 
     const timeoutsRef = useRef<(ReturnType<typeof setTimeout> | null)[]>(new Array(9).fill(null));
 

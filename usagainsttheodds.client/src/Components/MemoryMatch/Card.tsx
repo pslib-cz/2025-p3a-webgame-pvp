@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styles from '../../assets/styles/Minigames/Memorymatch.module.css';
 import type { CardType } from '../../Types/CardType';
 

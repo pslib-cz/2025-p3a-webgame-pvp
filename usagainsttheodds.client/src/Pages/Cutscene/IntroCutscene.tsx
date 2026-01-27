@@ -1,9 +1,8 @@
 import { useEffect, useState, use } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from '../../assets/styles/intro.module.css';
 import type { IntroScreen } from "../../Types/GameType";
 import apiGet from "../../Helpers/apiHelper";
-import { useOwnOutlet } from "../../Hooks/useOwnOutlet";
 
 const IntroCutscene = () => {
 

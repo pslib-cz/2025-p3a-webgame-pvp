@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("Default") ?? "Filename=UsAgainstTheOdds.sqlite")
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection") ?? "Filename=UsAgainstTheOdds.sqlite")
 );
 
 builder.Services.AddControllers().AddJsonOptions(options => {

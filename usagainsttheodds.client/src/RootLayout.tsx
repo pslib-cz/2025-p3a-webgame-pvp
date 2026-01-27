@@ -30,7 +30,6 @@ const RootLayout = () => {
         },
     };
 
-  const [userName, setUserName] = useState<string>("John");
   const navigate = useNavigate();
 
   const [userData, setUserData] = useState<UserData>(() => {
