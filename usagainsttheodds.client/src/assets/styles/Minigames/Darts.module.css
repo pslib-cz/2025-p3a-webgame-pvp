@@ -29,3 +29,6 @@
     display: block;
     background-color: black;
 }
+.rotate90deg{
+    transform: rotate(90deg);
+}

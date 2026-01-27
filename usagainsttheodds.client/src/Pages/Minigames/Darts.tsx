@@ -37,13 +37,14 @@ const Darts = () => {
 
     return (
         <div>
-            <DartsSlider dartsPosPercent={(x: number) => setPos({posX: x, posY: pos.posY})} isShot={isStopped.stoppedX}/>
+            <DartsSlider isAxisY={false} dartsPosPercent={(x: number) => setPos({posX: x, posY: pos.posY})} isShot={isStopped.stoppedX}/>
             <button onClick={() => setIsStopped({stoppedX: true, stoppedY: isStopped.stoppedY})}>stoppedX</button>
 
 
 
 
-            <DartsSlider dartsPosPercent={(y: number) => setPos({posX: pos.posX, posY: y})} isShot={isStopped.stoppedY}/>
+
+            <DartsSlider isAxisY={true} dartsPosPercent={(y: number) => setPos({posX: pos.posX, posY: y})} isShot={isStopped.stoppedY}/>
             <button onClick={() => setIsStopped({stoppedX: isStopped.stoppedX, stoppedY: true})}>stoppedX</button>
         </div>
 

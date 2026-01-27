@@ -5,11 +5,12 @@ import { useState, useEffect } from "react";
 
 type DartsSliderProps = {
   dartsPosPercent: (x:number) => void,
-  isShot: boolean
+  isShot: boolean,
+  isAxisY: boolean
 }
 
 
-const DartsSlider:React.FC<DartsSliderProps> = ({dartsPosPercent, isShot}) => {
+const DartsSlider:React.FC<DartsSliderProps> = ({dartsPosPercent, isShot, isAxisY}) => {
 
     const [pos , setPos] = useState<number>(0);
     const [dir, setDir] = useState(1);
@@ -43,7 +44,7 @@ const DartsSlider:React.FC<DartsSliderProps> = ({dartsPosPercent, isShot}) => {
 
 
  return (
-    <div className={styles.bar}>
+    <div className={`${styles.bar} ${isAxisY && styles.rotate90deg}`}>
 
         <img className={`${styles.pointer} ${styles.pointerDown}`} src="/images/darts/pointer.png" alt="pointer" />
         <img className={styles.pointer} src="/images/darts/pointer.png" alt="pointer" />
