@@ -84,7 +84,6 @@
 .building {
     position: absolute;
     z-index: 1;
-    padding: 1rem;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -100,25 +99,25 @@
 
 .wheel {
     background-image: url("/images/Homepage/Wheel.png");
-    width: 40%;
-    height: 40%;
-    right: 35%;
-    top: 0;
+    width: 38%;
+    aspect-ratio: 167 / 86;
+    right: 36%;
+    top: -2%;
 }
 
 .shop {
     background-image: url("/images/Homepage/Shop.png");
-    width: 25%;
-    height: 35%;
-    left: 5%;
+    width: 22%;
+    aspect-ratio: 74 / 59;
+    left: 6%;
     top: 13%;
 }
 
 .russianroulette {
     background-image: url("/images/Homepage/Russianroulette.png");
-    width: 20%;
-    height: 30%;
-    left: -5%;
+    width: 12%;
+    aspect-ratio: 43 / 61;
+    left: 1%;
     top: 40%;
 }
 
@@ -126,41 +125,50 @@
     background-image: url("/images/Homepage/Baloons.png");
     width: 10%;
     height: 18%;
-    right: 15%;
-    top: 40%;
+    right: 20%;
+    bottom: 35%;
 }
 
 .feelinglucky {
     background-image: url("/images/Homepage/Feelinglucky.png");
-    width: 15%;
-    height: 30%;
-    right: 20%;
-    top: 15%;
+    width: 10%;
+    aspect-ratio: 180 / 256;
+    right: 15%;
+    top: 16%;
 }
+
+.darts {
+    background-image: url("/images/Homepage/Darts.png");
+    width: 8%;
+    aspect-ratio: 136 / 204;
+    right: 27%;
+    top: 17%;
+}
+
 
 .slots {
     background-image: url("/images/Homepage/Slots.png");
-    width: 10%;
-    height: 27%;
-    right: 30%;
+    width: 11%;
+    aspect-ratio: 48 / 64;
+    right: 37%;
     top: 15%;
 }
 
 
 .blackjack {
     background-image: url("/images/Homepage/Blackjack.png");
-    width: 30%;
-    height: 40%;
-    right: 1%;
-    top: 22%;
+    width: 26%;
+    aspect-ratio: 108 / 84;
+    right: 9%;
+    top: 18%;
 }
 
 .whackamole {
     background-image: url("/images/Homepage/Whackamole.png");
-    width: 15%;
-    height: 25%;
+    width: 12%;
+    aspect-ratio: 23 / 29;
     right: 1%;
-    top: 52%;
+    top: 45%;
 }
 
 .food {
@@ -173,10 +181,10 @@
 
 .pexeso {
     background-image: url("/images/Homepage/Pexeso.png");
-    width: 10%;
-    height: 27%;
-    right: 40%;
-    top: 15%;
+    width: 11%;
+    aspect-ratio: 38 / 62;
+    right: 48%;
+    top: 10%;
 }
 
 

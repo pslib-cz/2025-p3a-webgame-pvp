@@ -7,14 +7,28 @@
 }
 
 .pointer{
- width: 10%;
+ width: 8%;
  position: absolute;
  bottom: -10px;
  left: 50%;
+ z-index: 10;
  transform: translateX(-50%);
 
 }
 .pointerDown{
  top: -10px;
- transform: rotate(180deg);
+ transform: rotate(180deg) translateX(50%);
+}
+
+.selector{
+    height: 100%;
+    width: 4px;
+    position: absolute;
+    top: 0;
+
+    display: block;
+    background-color: black;
+}
+.rotate90deg{
+    transform: rotate(90deg);
 }

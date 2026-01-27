@@ -5,6 +5,7 @@ import { isDeepEqual } from "./Helpers/generalHelper";
 import { useNavigate } from 'react-router-dom';
 import type { Person } from './Types/GameType';
 import { useGameSounds } from "./Hooks/useGameSounds";
+import HUD from "./Components/HUD/HUD";
 
 
 const RootLayout = () => {

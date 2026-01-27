@@ -18,18 +18,16 @@ const Mole: React.FC<MoleProps> = ({ index, isUp, hitCallback, isUpCallback }) =
             setGotHit(false);
         }
     }, [isUp]);
-
+    
     const hnadleClick = () => {
         if (isUp && !gotHit) {
             setGotHit(true)
+            hitCallback(index);
         }
     }
     const handleAnimationEnd = (event: React.AnimationEvent) => {
         event.stopPropagation()//aby to zastavilo bublani z ditete aby se nespustil callback 2x
 
-        if (event.animationName.includes('gotHit')) {
-            hitCallback(index);
-        }
         if (event.animationName.includes("goingUp")) {
             isUpCallback(index)
         }

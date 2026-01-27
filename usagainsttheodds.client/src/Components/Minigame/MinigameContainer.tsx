@@ -52,12 +52,21 @@ const MinigameContainer: React.FC<MinigameContainerProps> = ({ id, exitPage, dev
         }
 
         return (
-            <ErrorBoundary FallbackComponent={({ error, resetErrorBoundary }) => (
-                <div>
-                    <pre style={{ color: 'red' }}>{error.message}</pre>
-                    <button onClick={resetErrorBoundary}>Try again</button>
-                </div>
-            )}
+            <ErrorBoundary
+                FallbackComponent={({ error, resetErrorBoundary }) => {
+                    let message = "Unknown error";
+                    if (error instanceof Error) {
+                    message = error.message;
+                    } else if (typeof error === "string") {
+                    message = error;
+                    }
+                    return (
+                    <div>
+                        <pre style={{ color: 'red' }}>{message}</pre>
+                        <button onClick={resetErrorBoundary}>Try again</button>
+                    </div>
+                    );
+                }}
             >
                 <Suspense fallback={<div>Loading minigame data...</div>}>
                     <MinigameProvider exitPage={exitPage} promise={promise}>
