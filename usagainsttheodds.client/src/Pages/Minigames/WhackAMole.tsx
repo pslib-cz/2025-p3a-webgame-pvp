@@ -21,9 +21,9 @@ const WhackkAMole = () => {
         { index: 8, isMoleUp: false }
     ]);
     const [molesSpawning, setMolesSpawning] = useState<boolean>(false);
-    const [spawnInterval, setSpawnInterval] = useState<number>(1000);
-    const [despawnInterval, setDespawnInterval] = useState<number>(2500);
-    const [possibleMoles, setPossibleMoles] = useState<number>(1);
+    const [spawnInterval] = useState<number>(1000);
+    const [despawnInterval] = useState<number>(2500);
+    const [possibleMoles] = useState<number>(1);
     
 
     //nekdy buguje vylezani

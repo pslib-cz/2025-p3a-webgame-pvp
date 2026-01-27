@@ -20,7 +20,6 @@ import EndingThirsty from './Pages/Endings/EndingThirsty';
 import EndingBankrupt from './Pages/Endings/EndingBankrupt';
 import EndingBreakup from './Pages/Endings/EndingBreakup';
 import EndingNeutral from './Pages/Endings/EndingNeutral';
-import Apitest from './Components/Apitest.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
