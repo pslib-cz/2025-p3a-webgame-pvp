@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import styles from "../assets/styles/Intro.module.css"
-import ResetButton from '../Components/ResetButton';
 import IntroRules from '../Components/IntroRules';
+import { useState } from 'react';
 
 const StartPage = () => {
     const navigate = useNavigate();

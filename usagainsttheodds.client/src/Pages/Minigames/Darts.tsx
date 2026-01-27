@@ -1,5 +1,5 @@
 
-import { useEffect } from "react";
+import { useState } from "react";
 import DartsSlider from "../../Components/Darts/DartsSlider";
 import {type position, type stopped } from "../../Types/DartTypes"
 
@@ -10,7 +10,7 @@ const Darts = () => {
     const [pos, setPos] = useState<position>({posX: 0, posY: 0});
     const [isStopped, setIsStopped] = useState<stopped>({stoppedX: false, stoppedY: false});
 
-    const [isShot, setIsShot] = useState<boolean>(false);
+    // const [isShot, setIsShot] = useState<boolean>(false);
 
 
 
