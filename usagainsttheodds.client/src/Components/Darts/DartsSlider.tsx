@@ -27,14 +27,12 @@ const DartsSlider:React.FC<DartsSliderProps> = ({dartsPosPercent, isShot, isAxis
               setDir(1);
               return prev + 1;
             }
+            dartsPosPercent(prev); 
             return prev + dir;
           });
         }, 30); // rychlost
         
       return () => clearInterval(interval);
-      }
-      else{
-        dartsPosPercent(pos); 
       }
 
 
@@ -44,7 +42,7 @@ const DartsSlider:React.FC<DartsSliderProps> = ({dartsPosPercent, isShot, isAxis
 
 
  return (
-    <div className={`${styles.bar} ${isAxisY && styles.rotate90deg}`}>
+    <div className={`${styles.bar} ${isAxisY && styles.barVertical}`}>
 
         <img className={`${styles.pointer} ${styles.pointerDown}`} src="/images/darts/pointer.png" alt="pointer" />
         <img className={styles.pointer} src="/images/darts/pointer.png" alt="pointer" />
