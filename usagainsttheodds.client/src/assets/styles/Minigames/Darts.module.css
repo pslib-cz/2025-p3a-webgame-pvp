@@ -1,13 +1,24 @@
 .bar{
-    margin: 100px auto;
-    position: relative;
-    height: 60px;
-    width: 400px;
+    height: 30px;
+    width: 100%;
     background: linear-gradient(90deg,rgba(255, 0, 0, 1) 0%, rgba(251, 255, 0, 1) 25%, rgba(51, 255, 0, 1) 49%, rgba(181, 255, 181, 1) 50%, rgba(51, 255, 0, 1) 51%, rgba(230, 255, 0, 1) 75%, rgba(255, 0, 0, 1) 100%);
+    position: absolute;
+    top: -50%;
+    left: 0;
+}
+.barVertical{
+    transform: rotate(90deg) translateX(50%);
+    top: -15px;
+    left: -100%;
+}
+
+.dartButton{
+    position: absolute;
+    bottom: 0;
 }
 
 .pointer{
- width: 8%;
+ width: 4%;
  position: absolute;
  bottom: -10px;
  left: 50%;
@@ -25,7 +36,25 @@
     width: 4px;
     position: absolute;
     top: 0;
-
     display: block;
     background-color: black;
+}
+
+.dartsGameContainer{
+    position: relative;
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}   
+.dartContainer{
+    position: absolute;
+    height: 400px;
+    width: 400px;
+}
+.dart{
+    
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 100;
 }

@@ -1,10 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from "react";
-import { Outlet } from "react-router-dom";
 import styles from "../assets/styles/Intro.module.css"
-import { useOwnOutlet } from '../Hooks/useOwnOutlet';
-import ResetButton from '../Components/ResetButton';
 import IntroRules from '../Components/IntroRules';
+import { useState } from 'react';
 
 const StartPage = () => {
     const navigate = useNavigate();
@@ -15,11 +12,11 @@ const StartPage = () => {
         setShowComponent(true);
     };
 
-    const NewGame = () => {
-        localStorage.removeItem("UserData");
-        navigate("/cutscene/intro");
+    // const NewGame = () => {
+    //     localStorage.removeItem("UserData");
+    //     navigate("/cutscene/intro");
 
-    };
+    // };
 
     const Continue = () => {
         navigate("/game");

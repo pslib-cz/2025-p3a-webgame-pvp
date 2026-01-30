@@ -1,14 +1,11 @@
-import PlayingCard from '../Components/Cards/PlayingCard';
-import Apitest from '../Components/Apitest';
 import styles from "../assets/styles/Homepage.module.css"
 import { useNavigate } from 'react-router-dom';
 import { useOwnOutlet } from '../Hooks/useOwnOutlet'
 import PauseMenu from '../Components/PauseMenu';
-import { useState } from 'react';
 
 const HomePage1 = () => {
 
-    const { tickets, setTickets, relationshipValue, setRelationshipValue, player, setPlayer, isOpen, setIsOpen, play, stop, isMusicMuted, setIsMusicMuted, isSfxMuted, setIsSfxMuted } = useOwnOutlet();
+    const { isOpen, setIsOpen } = useOwnOutlet();
 
     const navigate = useNavigate();
 
