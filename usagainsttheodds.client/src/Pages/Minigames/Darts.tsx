@@ -1,39 +1,43 @@
-
+import minigameStyles from "../../assets/styles/Minigames/Minigame.module.css"
 import { useState, useEffect } from "react";
 import DartsSlider from "../../Components/Darts/DartsSlider";
 import {type position, type stopped } from "../../Types/DartTypes"
 import styles from "../../assets/styles/Minigames/Darts.module.css"
-
+import { useMinigame } from "../../Hooks/useMinigame";
 
 const Darts = () => {
 
-    
     const [pos, setPos] = useState<position>({posX: 50, posY: 50});
     const [isStopped, setIsStopped] = useState<stopped>({stoppedX: false, stoppedY: false});
-
-    const maxScore = 500;
+    const maxScore = 100;
     const [playerScore, setPlayerScore] = useState<number>(0);
+    const { endGame, setResult, result, setRewardMultiplier } = useMinigame();
+
+
+    useEffect(() => {
+        setPos({posX: 50, posY: 50});
+        setPlayerScore(0);
+        setIsStopped({stoppedX: false, stoppedY: false});
+        setResult(null);
+    }, []);
+
+
+
 
 
      useEffect(()=> {
-         if(isStopped.stoppedX && isStopped.stoppedY){
-             CountScore(pos.posX, pos.posY)
-             
-         }
-     }, [isStopped])
+         if(isStopped.stoppedX && isStopped.stoppedY) CountScore(pos.posX, pos.posY)
+        }, [isStopped])
 
      useEffect(()=> {
-        console.log(playerScore)
+        if(isStopped.stoppedX && isStopped.stoppedY) decideGameResult(playerScore)
      },[playerScore])
 
 
-
-
-
-
+    //pocitani vzdalenosti - maxscore -  math.sqrt(math.pow(math.abs(posx - 50)) + math.pow(math.abs(posy -50))))
      const CountScore = (x: number, y:number) => {
         setPlayerScore(
-            maxScore - Math.round(Math.sqrt(
+            maxScore - Math.round(2*Math.sqrt(
                     Math.pow(
                         Math.abs(
                             x-50
@@ -47,45 +51,66 @@ const Darts = () => {
                         )
                 )
             )
-        )
+        ) 
 
      }
 
 
-//pocitani vzdalenosti - maxscore -  math.sqrt(math.pow(math.abs(posx - 50)) + math.pow(math.abs(posy -50))))
+     const decideGameResult = (s: number): void => {
+        if(s <= 0){
+            setResult("lose");
+        }else{
+            setResult("win");
+            setRewardMultiplier(playerScore / 50);
+        }
+     }
+
+
+    const handleAnimationEnd = (event: React.AnimationEvent) => {
+        if (event.animationName.includes("resultScreenFadeIn")) {
+            endGame();
+        }
+    }
 
 
 
 
     return (
-        <div className={styles.dartsGameContainer}>
-            <div className={styles.dartContainer}>
-                {!isStopped.stoppedX && (
-                    <>
-                        <DartsSlider isAxisY={false} dartsPosPercent={(x: number) => setPos({posX: x, posY: pos.posY})} isShot={isStopped.stoppedX}/>
-                        <button className={styles.dartButton} onClick={() => setIsStopped({stoppedX: true, stoppedY: isStopped.stoppedY})}>stoppedX</button>
-                    </>
-                )}
-                {(!isStopped.stoppedY && isStopped.stoppedX) && (
-                    <>
-                        <DartsSlider isAxisY={true} dartsPosPercent={(y: number) => setPos({posX: pos.posX, posY: y})} isShot={isStopped.stoppedY}/>
-                        <button className={styles.dartButton} onClick={() => setIsStopped({stoppedX: isStopped.stoppedX, stoppedY: true})}>stoppedY</button>
-                    </>
-                )}
-                <img 
-                style={{    
-                    left: `${pos.posX}%`,
-                    top: `${pos.posY}%`
-                }} 
-                className={styles.dart} 
-                src="/images/darts/dart.png" 
-                alt="" 
-                />
+        <div className={`${minigameStyles.container} ${minigameStyles.alignToBottom}`}>
+            <div className={styles.dartsGameContainer}>
+                <div className={styles.dartContainer}>
+                    {!isStopped.stoppedX && (
+                        <>
+                            <DartsSlider isAxisY={false} dartsPosPercent={(x: number) => setPos({posX: x, posY: pos.posY})} isShot={isStopped.stoppedX}/>
+                            <button className={styles.dartButton} onClick={() => setIsStopped({stoppedX: true, stoppedY: isStopped.stoppedY})}>stoppedX</button>
+                        </>
+                    )}
+                    {(!isStopped.stoppedY && isStopped.stoppedX) && (
+                        <>
+                            <DartsSlider isAxisY={true} dartsPosPercent={(y: number) => setPos({posX: pos.posX, posY: y})} isShot={isStopped.stoppedY}/>
+                            <button className={styles.dartButton} onClick={() => setIsStopped({stoppedX: isStopped.stoppedX, stoppedY: true})}>stoppedY</button>
+                        </>
+                    )}
+                    <img 
+                        style={{    
+                            left: `${pos.posX}%`,
+                            top: `${pos.posY}%`
+                        }} 
+                        className={styles.dart} 
+                        src="/images/darts/dart.png" 
+                        alt="dart" 
+                    />
 
 
+                </div>
             </div>
+            {result && (
+                <div onAnimationEnd={handleAnimationEnd} className={minigameStyles.resultScreen}>
+                    {result === "win" && <span className={minigameStyles.resultText}>You win!</span>}
+                    {result === "lose" && <span className={minigameStyles.resultText}>You lose!</span>}
+                </div>
+            )} 
         </div>
-
     )
 }
 

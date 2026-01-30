@@ -16,29 +16,29 @@ const DartsSlider:React.FC<DartsSliderProps> = ({dartsPosPercent, isShot, isAxis
     const [dir, setDir] = useState(1);
     
     useEffect(() => {
-      if(!isShot){
-        const interval = setInterval(() => {
-          setPos(prev => {
-            if (prev >= 100) {
-              setDir(-1);
-              return prev - 1;
-            }
-            if (prev <= 0) {
-              setDir(1);
-              return prev + 1;
-            }
-            dartsPosPercent(prev); 
-            return prev + dir;
-          });
-        }, 30); // rychlost
-        
-      return () => clearInterval(interval);
-      }
-
-
+        if(!isShot){
+          const interval = setInterval(() => {
+            setPos(prev => {
+              if (prev >= 100) {
+                setDir(-1);
+                return prev - 1;
+              }
+              if (prev <= 0) {
+                setDir(1);
+                return prev + 1;
+              }
+              return prev + dir;
+            });
+          }, 30); // rychlost
+          
+        return () => clearInterval(interval);
+        }
 
       }, [dir, isShot]);
 
+      useEffect(() => {
+        dartsPosPercent(pos);
+      }, [pos]);
 
 
  return (
