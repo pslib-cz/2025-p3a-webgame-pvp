@@ -62,7 +62,7 @@
 /* STARTPAGE */
 
 .startpage {
-    background-image: url('/images/Cutscene/Intropage.png');
+    background-image: url('/images/StartPage.png');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

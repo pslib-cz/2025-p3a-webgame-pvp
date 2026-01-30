@@ -1,13 +1,14 @@
-import type { Screen, Person, Consumable } from "./GameType"
+import type {  Person, Consumable, EndReason } from "./GameType"
 
 export type UserData = {
     ticketsAmount: number,
     relationshipStamina: number,
-    currentPage?: Screen,
+    //currentPage?: Screen,
     boughtFlower: boolean,
-    boughtBloon: boolean,
+    boughtBalloon: boolean,
     lastFood: Consumable | null,
     lastDrink: Consumable | null,
+    endReason: EndReason | null,
     player: Person,
     girlfriend: Person,
 }

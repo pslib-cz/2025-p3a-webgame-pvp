@@ -50,3 +50,5 @@ export type IntroScreen = {
 }
 
 export type Speaker = "Narrator" | "Boy" | "Girl"
+
+export type EndReason = "victory" | "drunk" | "hungry" | "thirsty" | "bankrupt" | "breakup";

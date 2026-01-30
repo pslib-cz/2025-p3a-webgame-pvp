@@ -3,19 +3,19 @@ import { Outlet } from "react-router-dom";
 import { type UserData } from "./Types/UserDataType";
 import { isDeepEqual } from "./Helpers/generalHelper";
 import { useNavigate } from 'react-router-dom';
-import type { Person } from './Types/GameType';
+import type { EndReason, Person } from './Types/GameType';
 import { useGameSounds } from "./Hooks/useGameSounds";
-import HUD from "./Components/HUD/HUD";
 
 
 const RootLayout = () => {
     const intitialData: UserData = {
         ticketsAmount: 5000,
         relationshipStamina: 85,
-        boughtBloon: false,
+        boughtBalloon: false,
         boughtFlower: false,
         lastDrink: null,
         lastFood: null,
+        endReason: null,
         player: {
             name: "John",
             hunger: 50,
@@ -30,28 +30,56 @@ const RootLayout = () => {
         },
     };
 
-  const navigate = useNavigate();
 
-  const [userData, setUserData] = useState<UserData>(() => {
+    const [userData, setUserData] = useState<UserData>(() => {
 
-      const stored = localStorage.getItem("UserData");
-      return stored ? JSON.parse(stored) : intitialData;  // Return saved data
-  });//taha data z local storage jinak hodi initial value
-
-
-  const [tickets, setTickets] = useState<number>(userData.ticketsAmount);
-  const [relationshipValue, setRelationshipValue] = useState<number>(userData.relationshipStamina);
-  const [player, setPlayer] = useState<Person>(userData.player);
-  const [girlfriend, setGirlfriend] = useState<Person>(userData.girlfriend);
-  //takhle se to pak pouziva
-  //setGirlfriend(prev => ({ ...prev, name: "Pavla" }));
+        const stored = localStorage.getItem("UserData");
+        return stored ? JSON.parse(stored) : intitialData;  // Return saved data
+    });//taha data z local storage jinak hodi initial value
 
 
+    const [tickets, setTickets] = useState<number>(userData.ticketsAmount);
+    const [relationshipValue, setRelationshipValue] = useState<number>(userData.relationshipStamina);
+    const [boughtBalloon, setBoughtBalloon] = useState<boolean>(userData.boughtBalloon);
+    const [boughtFlower, setBoughtFlower] = useState<boolean>(userData.boughtFlower);
+    const [lastFood, setLastFood] = useState(userData.lastFood);
+    const [lastDrink, setLastDrink] = useState(userData.lastDrink);
+    const [player, setPlayer] = useState<Person>(userData.player);
+    const [girlfriend, setGirlfriend] = useState<Person>(userData.girlfriend);
+    const [endReason, setEndReason] = useState<EndReason | null>(userData.endReason);
 
-   const [isOpen, setIsOpen] = useState(false);
-
-   
+    const [isPauseMenuOpen, setIsPauseMenuOpen] = useState(false);
     const { play, stop, isMusicMuted, setIsMusicMuted, isSfxMuted, setIsSfxMuted } = useGameSounds();
+    const navigate = useNavigate();
+
+
+    const checkIfEnd = (data: UserData) => {
+        if (data.relationshipStamina <= 0) {
+            setEndReason("breakup");
+        }
+        if (data.ticketsAmount <= 0) {
+            setEndReason("bankrupt");
+        }
+        if (data.player.hunger <= 0 || data.girlfriend.hunger <= 0) {
+            setEndReason("hungry");
+        }
+        if (data.player.thirst <= 0 || data.girlfriend.thirst <= 0) {
+            setEndReason("thirsty");
+        }
+        if (data.player.drunkenness >= 100 || data.girlfriend.drunkenness >= 100) {
+            setEndReason("drunk");
+        }
+
+        return;
+    }
+
+    useEffect(() => {
+        if (endReason !== null) {
+            navigate('/ending');
+        }
+    }, [endReason]);
+
+
 
 
     useEffect(() => {
@@ -59,7 +87,12 @@ const RootLayout = () => {
             ...userData,
             ticketsAmount: tickets,
             relationshipStamina: relationshipValue,
-            player,
+            boughtBalloon: boughtBalloon,
+            boughtFlower: boughtFlower,
+            lastFood: lastFood,
+            lastDrink: lastDrink,
+            endReason: endReason,
+            player: player,
             girlfriend: girlfriend,
         };
 
@@ -70,42 +103,12 @@ const RootLayout = () => {
         );
 
 
-        checkIfLost(updated);
+        checkIfEnd(updated);
 
-    }, [tickets, relationshipValue, player, girlfriend]);//ulozi do local storage kdyz se zmeni hodnota
-
-
-
-    const checkIfLost = (data: UserData) => {
-        console.log("Checking losing conditions", data);
-        if ( data.relationshipStamina <= 0 ){
-            return navigate("/ending/breakup");
-        }
-        if ( data.ticketsAmount <= 0 ){
-            return navigate("/ending/bankrupt");
-        }
-        if ( data.player.hunger <= 0 || data.girlfriend.hunger <= 0 ){
-            return navigate("/ending/hungry");
-        }
-        if ( data.player.thirst <= 0 || data.girlfriend.thirst <= 0 ){
-            return navigate("/ending/thirsty");
-        }
-        if ( data.player.drunkenness >= 100 || data.girlfriend.drunkenness >= 100 ){
-            return navigate("/ending/drunk");
-        }
-        return;
-    }
+    }, [tickets, relationshipValue, boughtBalloon, boughtFlower, lastFood, lastDrink, player, girlfriend, endReason]);//ulozi do local storage kdyz se zmeni hodnota
 
 
-
-        // console.log
-        // ("HUD DATA", {
-        // tickets,
-        // relationshipValue,
-        // player,
-        // girlfriend
-        // });
-
+    //protřídit
     return (
         <div className="game-root">
             <Outlet
@@ -114,12 +117,22 @@ const RootLayout = () => {
                     setTickets,
                     relationshipValue,
                     setRelationshipValue,
+                    boughtBalloon,
+                    setBoughtBalloon,
+                    boughtFlower,
+                    setBoughtFlower,
+                    lastFood,
+                    setLastFood,
+                    lastDrink,
+                    setLastDrink,
                     player,
                     setPlayer,
                     girlfriend,
                     setGirlfriend,
-                    isOpen,
-                    setIsOpen,
+                    endReason,
+                    setEndReason,
+                    isPauseMenuOpen,
+                    setIsPauseMenuOpen,
                     play,
                     stop,
                     isMusicMuted,
@@ -130,19 +143,6 @@ const RootLayout = () => {
             />
         </div>
 
-        /*
-  ---pro preklikavani page
-    <button className="building" onClick={() => navigate("/blackjack")}>
-      Blackjack
-    </button>
-
-
-    ---braní dat např. v mnihrách se dělá takto:
-    const { tickets } = useOwnOutlet();
-    ---pokud chci měnit data takto:
-    const { setTickets } = useOwnOutlet();
-    setTickets(prev => prev - 100);
-    */
     );
 };
 

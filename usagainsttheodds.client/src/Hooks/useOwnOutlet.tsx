@@ -31,8 +31,8 @@ export const useOwnOutlet = () => {
             drunkenness: number;
         }>>
 
-        isOpen: boolean;
-        setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+        isPauseMenuOpen: boolean;
+        setIsPauseMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 
         play: (soundName: SoundName) => void;
         stop: (soundName: SoundName) => void;
@@ -41,6 +41,6 @@ export const useOwnOutlet = () => {
         isSfxMuted: boolean;
         setIsSfxMuted: React.Dispatch<React.SetStateAction<boolean>>;
     }>()
-    
+
     return outlet;
 };
