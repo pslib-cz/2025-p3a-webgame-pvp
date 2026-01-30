@@ -12,7 +12,7 @@ namespace UsAgainstTheOdds.Server.Data
         public DbSet<Consumable> Consumables { get; set; }
         public DbSet<Item> Items { get; set; }
 
-        public DbSet<IntroScreen> IntroScreens { get; set; }
+        public DbSet<Cutscene> Cutscenes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -362,39 +362,43 @@ namespace UsAgainstTheOdds.Server.Data
             });
 
 
-            modelBuilder.Entity<IntroScreen>(ent =>
+            modelBuilder.Entity<Cutscene>(ent =>
             {
                 ent.HasData(
-                    new IntroScreen
+                    new Cutscene
                     {
-                        IntroScreenId = 1,
+                        CutsceneId = 1,
+                        Type = "Intro",
                         Text = "We’ve got nothing left but a few last coins and this city, ready to swallow us whole.",
                         Speaker = Enums.SpeakerType.Boy,
-                        ImageUrl = "/images/Cutscene/intro1.png",
+                        ImageUrl = "/images/Cutscene/Intro/Intro1.png",
                         ButtonText = "Continue"
                     },
-                    new IntroScreen
+                    new Cutscene
                     {
-                        IntroScreenId = 2,
+                        CutsceneId = 2,
+                        Type = "Intro",
                         Text = "But we can’t give up now. We have to take a chance, no matter the odds.",
                         Speaker = Enums.SpeakerType.Girl,
-                        ImageUrl = "/images/Cutscene/intro2.png",
+                        ImageUrl = "/images/Cutscene/Intro/Intro2.png",
                         ButtonText = "Continue"
                     },
-                    new IntroScreen
+                    new Cutscene
                     {
-                        IntroScreenId = 3,
+                        CutsceneId = 3,
+                        Type = "Intro",
                         Text = "This casino is our only shot—either we win big today, or we lose the little we have left.",
                         Speaker = Enums.SpeakerType.Boy,
-                        ImageUrl = "/images/Cutscene/intro3.png",
+                        ImageUrl = "/images/Cutscene/Intro/Intro3.png",
                         ButtonText = "Continue"
                     },
-                    new IntroScreen
+                    new Cutscene
                     {
-                        IntroScreenId = 4,
+                        CutsceneId = 4,
+                        Type = "Intro",
                         Text = "Take a breath, we're going in... today, it's the two of us against the odds.",
                         Speaker = Enums.SpeakerType.Girl,
-                        ImageUrl = "/images/Cutscene/intro4.png",
+                        ImageUrl = "/images/Cutscene/Intro/Intro4.png",
                         ButtonText = "Let's go!"
                     }
 

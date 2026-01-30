@@ -76,7 +76,7 @@
     <Content Remove="wwwroot\images\Cutscene\Intro2.png" />
     <Content Remove="wwwroot\images\Cutscene\Intro3.png" />
     <Content Remove="wwwroot\images\Cutscene\Intro4.png" />
-    <Content Remove="wwwroot\images\Cutscene\Intropage.png" />
+    <Content Remove="wwwroot\images\Cutscene\Startpage.png" />
     <Content Remove="wwwroot\images\Gun\Barrel.png" />
     <Content Remove="wwwroot\images\Gun\Gun-body.png" />
     <Content Remove="wwwroot\images\Homepage\Baloons.png" />
@@ -121,7 +121,6 @@
     <Content Remove="wwwroot\images\SlotMachine\spin.png" />
     <Content Remove="wwwroot\images\SlotMachine\spinButton.png" />
     <Content Remove="wwwroot\images\SlotMachine\stopButton.png" />
-    <Content Remove="wwwroot\images\ticket.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -203,11 +202,11 @@
     <None Include="wwwroot\images\Cards\cardSpadesK.png" />
     <None Include="wwwroot\images\Cards\cardSpadesQ.png" />
     <None Include="wwwroot\images\Cards\deckOfCards.png" />
-    <None Include="wwwroot\images\Cutscene\Intro1.png" />
-    <None Include="wwwroot\images\Cutscene\Intro2.png" />
-    <None Include="wwwroot\images\Cutscene\Intro3.png" />
-    <None Include="wwwroot\images\Cutscene\Intro4.png" />
-    <None Include="wwwroot\images\Cutscene\Intropage.png" />
+    <None Include="wwwroot\images\Cutscene\Intro\Intro1.png" />
+    <None Include="wwwroot\images\Cutscene\Intro\Intro2.png" />
+    <None Include="wwwroot\images\Cutscene\Intro\Intro3.png" />
+    <None Include="wwwroot\images\Cutscene\Intro\Intro4.png" />
+    <None Include="wwwroot\images\Startpage.png" />
     <None Include="wwwroot\images\Gun\Barrel.png" />
     <None Include="wwwroot\images\Gun\Gun-body.png" />
     <None Include="wwwroot\images\Homepage\Baloons.png" />
@@ -252,7 +251,6 @@
     <None Include="wwwroot\images\SlotMachine\spin.png" />
     <None Include="wwwroot\images\SlotMachine\spinButton.png" />
     <None Include="wwwroot\images\SlotMachine\stopButton.png" />
-    <None Include="wwwroot\images\ticket.png" />
   </ItemGroup>
 
 </Project>

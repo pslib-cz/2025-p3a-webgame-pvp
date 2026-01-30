@@ -3,10 +3,11 @@ using static UsAgainstTheOdds.Server.Models.Enums;
 
 namespace UsAgainstTheOdds.Server.Models
 {
-    public class IntroScreen
+    public class Cutscene
     {
         [Key]
-        public int IntroScreenId { get; set; }
+        public int CutsceneId { get; set; }
+        public required string Type { get; set; }
         public string Text { get; set; }
         public SpeakerType Speaker { get; set; }
         public required string ImageUrl { get; set; }
