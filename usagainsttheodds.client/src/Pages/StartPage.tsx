@@ -35,7 +35,6 @@ const StartPage = () => {
                         Continue
                     </button>
                     )}
-                    <button onClick={() => play("bgMusic")}>play</button>
                 </div>
             </div>
             {showComponent && <IntroRules />}

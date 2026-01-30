@@ -25,11 +25,11 @@ const HomePage2 = () => {
         </div>
 
         <div className={styles.games}>
-          <button className={`${styles.building} ${styles.food}`} onClick={() => navigate("/stall/foodbar")} />
-          <button className={`${styles.building} ${styles.slots}`} onClick={() => navigate("/stall/slots")} />
-          <button className={`${styles.building} ${styles.blackjack}`} onClick={() => navigate("/stall/blackjack")} />
-          <button className={`${styles.building} ${styles.whackamole}`} onClick={() => navigate("/stall/whackamole")} />
-          <button className={`${styles.building} ${styles.pexeso}`} onClick={() => navigate("/stall/memorymatch")} /> {/* nema routu udelanou*/}
+          <button className={`${styles.building} ${styles.food}`} onClick={() => navigate("/foodbar")} />
+          <button className={`${styles.building} ${styles.slots}`} onClick={() => navigate("/minigame/slots")} />
+          <button className={`${styles.building} ${styles.blackjack}`} onClick={() => navigate("/minigame/blackjack")} />
+          <button className={`${styles.building} ${styles.whackamole}`} onClick={() => navigate("/minigame/whackamole")} />
+          <button className={`${styles.building} ${styles.pexeso}`} onClick={() => navigate("/minigame/memorymatch")} /> {/* nema routu udelanou*/}
           {/* nema routu udelanou*/}
         </div>
 

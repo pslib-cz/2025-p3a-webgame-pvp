@@ -25,12 +25,12 @@ const HomePage1 = () => {
         <div className={styles.games}>
           
 
-          <button className={`${styles.building} ${styles.wheel}`} onClick={() => navigate("/stall/wheel")} />
-          <button className={`${styles.building} ${styles.shop}`} onClick={() => navigate("/stall/itemshop")} />
-          <button className={`${styles.building} ${styles.feelinglucky}`} onClick={() => navigate("/stall/feelinglucky")} /> {/* nema routu udelanou*/}
-          <button className={`${styles.building} ${styles.russianroulette}`} onClick={() => navigate("/stall/russianroulette")} />
-          <button className={`${styles.building} ${styles.baloons}`} onClick={() => navigate("/stall/baloons")} /> {/* nema routu udelanou*/}
-          <button className={`${styles.building} ${styles.darts}`} onClick={() => navigate("/stall/darts")} />
+          <button className={`${styles.building} ${styles.wheel}`} onClick={() => navigate("/wheel")} />
+          <button className={`${styles.building} ${styles.shop}`} onClick={() => navigate("/itemshop")} />
+          <button className={`${styles.building} ${styles.feelinglucky}`} onClick={() => navigate("/minigame/feelinglucky")} /> {/* nema routu udelanou*/}
+          <button className={`${styles.building} ${styles.russianroulette}`} onClick={() => navigate("/minigame/russianroulette")} />
+          <button className={`${styles.building} ${styles.baloons}`} onClick={() => navigate("/minigame/baloons")} /> {/* nema routu udelanou*/}
+          <button className={`${styles.building} ${styles.darts}`} onClick={() => navigate("/minigame/darts")} />
           {/* <Russianroulette/> */}
         </div>
 

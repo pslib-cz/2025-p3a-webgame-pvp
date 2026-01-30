@@ -42,21 +42,23 @@ createRoot(document.getElementById('root')!).render(
             <Route index element={<HomePage />} />
             <Route path="right" element={<HomePage2 />} />
           </Route>
-
-          {/* STÁNKY */}
-          <Route path='stall'>
+          
 
           <Route path="foodbar" element={<FoodBar />} />
           <Route path="itemshop" element={<ItemShop/> } />
 
-            <Route path="blackjack" element={<MinigameContainer id="blackjack" exitPage="/game/right" devVersion={false} />} />
+          {/* <Route path="wheel" element={<Wheel />} /> */}
+
+          {/* STÁNKY */}
+          <Route path='minigame'>
+
+            <Route path="blackjack" element={<MinigameContainer id="blackjack" exitPage="/game/right"/>} />
             <Route path="russianroulette" element={<MinigameContainer id="russianroulette"exitPage="/game" devVersion={true} />} />
-            <Route path="testminigame" element={<MinigameContainer id="test" exitPage="/game" devVersion={true} />} />
-            <Route path="whackamole" element={<MinigameContainer id="whackamole" exitPage="/game/right" devVersion={true} />} />
+            {/* <Route path="testminigame" element={<MinigameContainer id="test" exitPage="/game" devVersion={true} />} /> */}
+            <Route path="whackamole" element={<MinigameContainer id="whackamole" exitPage="/game/right" />} />
             <Route path="memorymatch" element={<MinigameContainer id="memorymatch" exitPage="/game/right" devVersion={true} />} />
             <Route path="slots" element={<MinigameContainer id="slots" exitPage="/game/right" devVersion={true}  />} />
             <Route path="darts" element={<MinigameContainer id="darts" exitPage='/game/right' devVersion={true}/>} />
-            {/* <Route path="wheel" element={<Wheel />} /> */}
 
           </Route>
 
