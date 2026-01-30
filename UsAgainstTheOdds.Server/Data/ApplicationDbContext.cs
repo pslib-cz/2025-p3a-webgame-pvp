@@ -369,6 +369,7 @@ namespace UsAgainstTheOdds.Server.Data
                     {
                         CutsceneId = 1,
                         Type = "Intro",
+                        Order = 1,
                         Text = "We’ve got nothing left but a few last coins and this city, ready to swallow us whole.",
                         Speaker = Enums.SpeakerType.Boy,
                         ImageUrl = "/images/Cutscene/Intro/Intro1.png",
@@ -378,6 +379,7 @@ namespace UsAgainstTheOdds.Server.Data
                     {
                         CutsceneId = 2,
                         Type = "Intro",
+                        Order = 2,
                         Text = "But we can’t give up now. We have to take a chance, no matter the odds.",
                         Speaker = Enums.SpeakerType.Girl,
                         ImageUrl = "/images/Cutscene/Intro/Intro2.png",
@@ -387,6 +389,7 @@ namespace UsAgainstTheOdds.Server.Data
                     {
                         CutsceneId = 3,
                         Type = "Intro",
+                        Order = 3,
                         Text = "This casino is our only shot—either we win big today, or we lose the little we have left.",
                         Speaker = Enums.SpeakerType.Boy,
                         ImageUrl = "/images/Cutscene/Intro/Intro3.png",
@@ -396,6 +399,7 @@ namespace UsAgainstTheOdds.Server.Data
                     {
                         CutsceneId = 4,
                         Type = "Intro",
+                        Order = 4,
                         Text = "Take a breath, we're going in... today, it's the two of us against the odds.",
                         Speaker = Enums.SpeakerType.Girl,
                         ImageUrl = "/images/Cutscene/Intro/Intro4.png",

@@ -17,7 +17,7 @@
 
 .textContainer {
     position: absolute;
-    bottom: 0%;
+    bottom: 2.5%;
     left: 50%;
     transform: translate(-50%);
 
@@ -25,17 +25,34 @@
     width: max-content;
     max-width: 40%;
     background-color: blanchedalmond;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.speaker{
-    width: 50px;
-    height: 50px;
+.speakerAvatar{
     display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    width: 85px;
+    height: 85px;
+    background-size: 100% 100%;
 }
 .Boy{
-    background-color: aqua;
+    background-image: url("/images/Avatars/boyfriendAvatar.png");
 }
 .Girl{
-    background-color: brown;
+    background-image: url("/images/Avatars/girlfriendAvatar.png");
+}
+.Narrator{
+    background-image: url("/images/Avatars/narratorAvatar.png");
+}
+.speakerName{
+    font-weight: bold;
+    font-size: 2em;
+}
+.text {
+    font-size: 1.5em;
 }
 
 
