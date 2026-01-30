@@ -2,11 +2,13 @@ import { useNavigate } from 'react-router-dom';
 import styles from "../assets/styles/Intro.module.css"
 import IntroRules from '../Components/IntroRules';
 import { useState } from 'react';
+import { useOwnOutlet } from '../Hooks/useOwnOutlet';
 
 const StartPage = () => {
     const navigate = useNavigate();
     const hasSave = localStorage.getItem("UserData");
     const [showComponent, setShowComponent] = useState(false);
+    const { play } = useOwnOutlet();
 
     const handleShow = () => {
         setShowComponent(true);
@@ -33,6 +35,7 @@ const StartPage = () => {
                         Continue
                     </button>
                     )}
+                    <button onClick={() => play("bgMusic")}>play</button>
                 </div>
             </div>
             {showComponent && <IntroRules />}

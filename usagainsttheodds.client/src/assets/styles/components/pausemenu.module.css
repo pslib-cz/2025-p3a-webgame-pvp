@@ -1,0 +1,64 @@
+.button {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    height: 32px;
+    background-color: transparent;
+    background-image: url("/images/Main/Menu-button.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 0;
+    cursor: pointer;
+}
+
+.returnButton {
+    padding: 0.3rem 1rem;
+}
+
+
+
+
+.modalBackdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 0.7%;
+    z-index: 200;
+    cursor: not-allowed;
+    background-color: rgba(0, 0, 0, 0.7);
+
+}
+
+.modalContent {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url("/images/Main/PauseMenu.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 2.6% 5%;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: center;
+    cursor: default;
+}
+
+.modalInteractive {
+    width: 100%;
+}
+
+.interactiveBtn {
+    display: flex;
+    justify-content: space-between;
+    padding: 2%;
+    flex-grow: 1;
+}

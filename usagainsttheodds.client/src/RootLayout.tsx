@@ -1,11 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import { Outlet } from "react-router-dom";
 import { type UserData } from "./Types/UserDataType";
 import { isDeepEqual } from "./Helpers/generalHelper";
 import { useNavigate } from 'react-router-dom';
 import type { EndReason, Person } from './Types/GameType';
 import { useGameSounds } from "./Hooks/useGameSounds";
+import PauseMenu from "./Components/Pausemenu/PauseMenu";
+import type { GameContextType } from "./Types/GameContextType";
 
+
+export const GameContext = createContext<GameContextType | null>(null);
 
 const RootLayout = () => {
     const intitialData: UserData = {
@@ -48,9 +52,10 @@ const RootLayout = () => {
     const [girlfriend, setGirlfriend] = useState<Person>(userData.girlfriend);
     const [endReason, setEndReason] = useState<EndReason | null>(userData.endReason);
 
-    const [isPauseMenuOpen, setIsPauseMenuOpen] = useState(false);
-    const { play, stop, isMusicMuted, setIsMusicMuted, isSfxMuted, setIsSfxMuted } = useGameSounds();
+    const [isPauseMenuOpen, setIsPauseMenuOpen] = useState<boolean>(false);
+    const { play, stop, isMusicMuted, setIsMusicMuted } = useGameSounds();
     const navigate = useNavigate();
+
 
 
     const checkIfEnd = (data: UserData) => {
@@ -108,40 +113,34 @@ const RootLayout = () => {
     }, [tickets, relationshipValue, boughtBalloon, boughtFlower, lastFood, lastDrink, player, girlfriend, endReason]);//ulozi do local storage kdyz se zmeni hodnota
 
 
+
+    const gameContextValue = {
+        tickets, setTickets,
+        relationshipValue, setRelationshipValue,
+        boughtBalloon, setBoughtBalloon,
+        boughtFlower, setBoughtFlower,
+        lastFood, setLastFood,
+        lastDrink, setLastDrink,
+        player, setPlayer,
+        girlfriend, setGirlfriend,
+        endReason, setEndReason,
+        isPauseMenuOpen, setIsPauseMenuOpen,
+        play,
+        stop,
+        isMusicMuted, setIsMusicMuted
+    }
+
+
     //protřídit
     return (
-        <div className="game-root">
-            <Outlet
-                context={{
-                    tickets,
-                    setTickets,
-                    relationshipValue,
-                    setRelationshipValue,
-                    boughtBalloon,
-                    setBoughtBalloon,
-                    boughtFlower,
-                    setBoughtFlower,
-                    lastFood,
-                    setLastFood,
-                    lastDrink,
-                    setLastDrink,
-                    player,
-                    setPlayer,
-                    girlfriend,
-                    setGirlfriend,
-                    endReason,
-                    setEndReason,
-                    isPauseMenuOpen,
-                    setIsPauseMenuOpen,
-                    play,
-                    stop,
-                    isMusicMuted,
-                    setIsMusicMuted,
-                    isSfxMuted,
-                    setIsSfxMuted,
-                }}
-            />
-        </div>
+        <GameContext.Provider value={gameContextValue}>
+            <div className="game-root">
+
+                <PauseMenu />
+
+                <Outlet />
+            </div>
+        </GameContext.Provider>
 
     );
 };

@@ -1,4 +1,4 @@
-import { useEffect, useState, use, Suspense, useCallback } from "react";
+import { useEffect, useState, use, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from '../../assets/styles/intro.module.css';
 import type { IntroScreen } from "../../Types/GameType";

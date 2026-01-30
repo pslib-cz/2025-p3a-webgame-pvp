@@ -1,11 +1,8 @@
 import styles from "../assets/styles/Homepage.module.css"
 import { useNavigate } from 'react-router-dom';
-import { useOwnOutlet } from '../Hooks/useOwnOutlet'
-import PauseMenu from '../Components/PauseMenu';
 
 const HomePage1 = () => {
 
-  const { isPauseMenuOpen, setIsPauseMenuOpen } = useOwnOutlet();
 
   const navigate = useNavigate();
 
@@ -26,8 +23,7 @@ const HomePage1 = () => {
         </div>
 
         <div className={styles.games}>
-          <button className="btn-menu" onClick={() => setIsPauseMenuOpen(true)} />
-          {isPauseMenuOpen && (<PauseMenu onClose={() => setIsPauseMenuOpen(false)} />)}
+          
 
           <button className={`${styles.building} ${styles.wheel}`} onClick={() => navigate("/stall/wheel")} />
           <button className={`${styles.building} ${styles.shop}`} onClick={() => navigate("/stall/itemshop")} />

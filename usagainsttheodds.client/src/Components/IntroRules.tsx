@@ -1,15 +1,13 @@
-import { useNavigate, useOutletContext } from 'react-router-dom';
-import { useState, useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
 import styles from "../assets/styles/Intro.module.css"
-import ResetButton from '../Components/ResetButton';
-import type { Person } from '../Types/GameType';
+import { useOwnOutlet } from '../Hooks/useOwnOutlet';
 
 const IntroRules = () => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState<string>("John");
   
-  const { setPlayer } = useOutletContext<{ setPlayer: React.Dispatch<React.SetStateAction<Person>> }>();
+  const { setPlayer } = useOwnOutlet();
 
   const handleSaveAndStart = () => {
     setPlayer(prev => ({
