@@ -4,14 +4,14 @@
     {
         public enum ConsumableType
         {
-            Food = 0,
-            Drink = 1,
+            food,
+            drink,
         }
         public enum SpeakerType
         {
-            Narrator,
-            Boy,
-            Girl,
+            narrator,
+            boy,
+            girl,
         }
     }
 }

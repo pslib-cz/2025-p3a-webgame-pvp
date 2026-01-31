@@ -20,6 +20,7 @@ const RootLayout = () => {
         lastDrink: null,
         lastFood: null,
         endReason: null,
+        endPerson: null,
         player: {
             name: "John",
             hunger: 50,
@@ -51,6 +52,7 @@ const RootLayout = () => {
     const [player, setPlayer] = useState<Person>(userData.player);
     const [girlfriend, setGirlfriend] = useState<Person>(userData.girlfriend);
     const [endReason, setEndReason] = useState<EndReason | null>(userData.endReason);
+    const [endPerson, setEndPerson] = useState<"boy" | "girl" | "both" | null>(userData.endPerson);
 
     const [isPauseMenuOpen, setIsPauseMenuOpen] = useState<boolean>(false);
     const { play, stop, isMusicMuted, setIsMusicMuted } = useGameSounds();
@@ -65,14 +67,29 @@ const RootLayout = () => {
         if (data.ticketsAmount <= 0) {
             setEndReason("bankrupt");
         }
-        if (data.player.hunger <= 0 || data.girlfriend.hunger <= 0) {
+        if (data.player.hunger <= 0) {
             setEndReason("hungry");
+            setEndPerson("boy");
         }
-        if (data.player.thirst <= 0 || data.girlfriend.thirst <= 0) {
+        if (data.girlfriend.hunger <= 0) {
+            setEndReason("hungry");
+            setEndPerson("girl");
+        }
+        if (data.player.thirst <= 0) {
             setEndReason("thirsty");
+            setEndPerson("boy");
         }
-        if (data.player.drunkenness >= 100 || data.girlfriend.drunkenness >= 100) {
+        if (data.girlfriend.thirst <= 0) {
+            setEndReason("thirsty");
+            setEndPerson("girl");
+        }
+        if (data.player.drunkenness >= 100) {
             setEndReason("drunk");
+            setEndPerson("boy");
+        }
+        if (data.girlfriend.drunkenness >= 100) {
+            setEndReason("drunk");
+            setEndPerson("girl");
         }
 
         return;
@@ -97,6 +114,7 @@ const RootLayout = () => {
             lastFood: lastFood,
             lastDrink: lastDrink,
             endReason: endReason,
+            endPerson: endPerson,
             player: player,
             girlfriend: girlfriend,
         };
@@ -110,7 +128,7 @@ const RootLayout = () => {
 
         checkIfEnd(updated);
 
-    }, [tickets, relationshipValue, boughtBalloon, boughtFlower, lastFood, lastDrink, player, girlfriend, endReason]);//ulozi do local storage kdyz se zmeni hodnota
+    }, [tickets, relationshipValue, boughtBalloon, boughtFlower, lastFood, lastDrink, player, girlfriend, endReason, endPerson]);//ulozi do local storage kdyz se zmeni hodnota
 
 
 
@@ -124,6 +142,7 @@ const RootLayout = () => {
         player, setPlayer,
         girlfriend, setGirlfriend,
         endReason, setEndReason,
+        endPerson, setEndPerson,
         isPauseMenuOpen, setIsPauseMenuOpen,
         play,
         stop,
@@ -131,13 +150,10 @@ const RootLayout = () => {
     }
 
 
-    //protřídit
     return (
         <GameContext.Provider value={gameContextValue}>
             <div className="game-root">
-
                 <PauseMenu />
-
                 <Outlet />
             </div>
         </GameContext.Provider>

@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Drawing;
 using UsAgainstTheOdds.Server.Models;
 
 namespace UsAgainstTheOdds.Server.Data
@@ -11,13 +10,10 @@ namespace UsAgainstTheOdds.Server.Data
         public DbSet<Minigame> Minigames { get; set; }
         public DbSet<Consumable> Consumables { get; set; }
         public DbSet<Item> Items { get; set; }
-
         public DbSet<Cutscene> Cutscenes { get; set; }
+        public DbSet<Ending> Endings { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite("Filename=UsAgainstTheOdds.sqlite");
-        }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Minigame>(ent =>
@@ -155,7 +151,7 @@ namespace UsAgainstTheOdds.Server.Data
                     new Consumable
                     {
                         ConsumableId = "hotdog",
-                        Type = Consumable.ConsumableType.Food,
+                        Type = Enums.ConsumableType.food,
                         Name = "Hot Dog",
                         Description = "A classic hot dog with mustard and ketchup.",
                         Price = 5,
@@ -167,7 +163,7 @@ namespace UsAgainstTheOdds.Server.Data
                     new Consumable
                     {
                         ConsumableId = "burger",
-                        Type = Consumable.ConsumableType.Food,
+                        Type = Enums.ConsumableType.food,
                         Name = "Burger",
                         Description = "A delicious beef burger with lettuce, tomato, and cheese.",
                         Price = 10,
@@ -179,7 +175,7 @@ namespace UsAgainstTheOdds.Server.Data
                     new Consumable
                     {
                         ConsumableId = "pizza",
-                        Type = Consumable.ConsumableType.Food,
+                        Type = Enums.ConsumableType.food,
                         Name = "Pizza",
                         Description = "A large pepperoni pizza with extra cheese.",
                         Price = 15,
@@ -191,7 +187,7 @@ namespace UsAgainstTheOdds.Server.Data
                     new Consumable
                     {
                         ConsumableId = "salad",
-                        Type = Consumable.ConsumableType.Food,
+                        Type = Enums.ConsumableType.food,
                         Name = "Salad",
                         Description = "A fresh garden salad with a variety of vegetables.",
                         Price = 8,
@@ -203,7 +199,7 @@ namespace UsAgainstTheOdds.Server.Data
                     new Consumable
                     {
                         ConsumableId = "langos",
-                        Type = Consumable.ConsumableType.Food,
+                        Type = Enums.ConsumableType.food,
                         Name = "Lángos",
                         Description = "A traditional Hungarian deep-fried flatbread topped with garlic, sour cream, and cheese.",
                         Price = 7,
@@ -215,7 +211,7 @@ namespace UsAgainstTheOdds.Server.Data
                     new Consumable
                     {
                         ConsumableId = "goulash",
-                        Type = Consumable.ConsumableType.Food,
+                        Type = Enums.ConsumableType.food,
                         Name = "Goulash",
                         Description = "A hearty Hungarian stew made with beef, vegetables, and paprika.",
                         Price = 12,
@@ -227,7 +223,7 @@ namespace UsAgainstTheOdds.Server.Data
                     new Consumable
                     {
                         ConsumableId = "cottoncandy",
-                        Type = Consumable.ConsumableType.Food,
+                        Type = Enums.ConsumableType.food,
                         Name = "Cotton Candy",
                         Description = "A fluffy and sweet treat made from spun sugar.",
                         Price = 4,
@@ -241,7 +237,7 @@ namespace UsAgainstTheOdds.Server.Data
                     new Consumable
                     {
                         ConsumableId = "water",
-                        Type = Consumable.ConsumableType.Drink,
+                        Type = Enums.ConsumableType.drink,
                         Name = "Water",
                         Description = "A refreshing glass of water.",
                         Price = 2,
@@ -253,7 +249,7 @@ namespace UsAgainstTheOdds.Server.Data
                     new Consumable
                     {
                         ConsumableId = "soda",
-                        Type = Consumable.ConsumableType.Drink,
+                        Type = Enums.ConsumableType.drink,
                         Name = "Soda",
                         Description = "A refreshing carbonated soft drink.",
                         Price = 3,
@@ -265,7 +261,7 @@ namespace UsAgainstTheOdds.Server.Data
                     new Consumable
                     {
                         ConsumableId = "beer",
-                        Type = Consumable.ConsumableType.Drink,
+                        Type = Enums.ConsumableType.drink,
                         Name = "Beer",
                         Description = "A cold glass of beer.",
                         Price = 6,
@@ -277,7 +273,7 @@ namespace UsAgainstTheOdds.Server.Data
                     new Consumable
                     {
                         ConsumableId = "wine",
-                        Type = Consumable.ConsumableType.Drink,
+                        Type = Enums.ConsumableType.drink,
                         Name = "Wine",
                         Description = "A glass of fine wine.",
                         Price = 8,
@@ -289,7 +285,7 @@ namespace UsAgainstTheOdds.Server.Data
                     new Consumable
                     {
                         ConsumableId = "palinka",
-                        Type = Consumable.ConsumableType.Drink,
+                        Type = Enums.ConsumableType.drink,
                         Name = "Pálinka",
                         Description = "A traditional Hungarian fruit brandy, known for its strong flavor and high alcohol content.",
                         Price = 10,
@@ -301,7 +297,7 @@ namespace UsAgainstTheOdds.Server.Data
                     new Consumable
                     {
                         ConsumableId = "fruitsmoothie",
-                        Type = Consumable.ConsumableType.Drink,
+                        Type = Enums.ConsumableType.drink,
                         Name = "Fruit Smoothie",
                         Description = "A healthy and refreshing blend of fresh fruits.",
                         Price = 5,
@@ -313,7 +309,7 @@ namespace UsAgainstTheOdds.Server.Data
                     new Consumable
                     {
                         ConsumableId = "gintonic",
-                        Type = Consumable.ConsumableType.Drink,
+                        Type = Enums.ConsumableType.drink,
                         Name = "Gin Tonic",
                         Description = "A classic cocktail made with gin and tonic water, garnished with a slice of lime.",
                         Price = 9,
@@ -325,7 +321,7 @@ namespace UsAgainstTheOdds.Server.Data
                     new Consumable
                     {
                         ConsumableId = "pepermintliqueur",
-                        Type = Consumable.ConsumableType.Drink,
+                        Type = Enums.ConsumableType.drink,
                         Name = "Peppermint Liqueur",
                         Description = "A sweet and minty liqueur made from peppermint leaves, perfect for a refreshing after-dinner drink.",
                         Price = 7,
@@ -337,7 +333,7 @@ namespace UsAgainstTheOdds.Server.Data
                     new Consumable
                     {
                         ConsumableId = "eggnog",
-                        Type = Consumable.ConsumableType.Drink,
+                        Type = Enums.ConsumableType.drink,
                         Name = "Eggnog",
                         Description = "A rich and creamy holiday drink made with milk, cream, sugar, whipped egg whites, and egg yolks, often spiked with rum or bourbon.",
                         Price = 6,
@@ -349,7 +345,7 @@ namespace UsAgainstTheOdds.Server.Data
                     new Consumable
                     {
                         ConsumableId = "slushy",
-                        Type = Consumable.ConsumableType.Drink,
+                        Type = Enums.ConsumableType.drink,
                         Name = "Slushy",
                         Description = "A cold and refreshing slushy drink made with crushed ice and flavored syrup, perfect for hot days.",
                         Price = 4,
@@ -364,48 +360,137 @@ namespace UsAgainstTheOdds.Server.Data
 
             modelBuilder.Entity<Cutscene>(ent =>
             {
+                ent.Property(e => e.CutsceneId).ValueGeneratedOnAdd();
+
                 ent.HasData(
                     new Cutscene
                     {
                         CutsceneId = 1,
-                        Type = "Intro",
+                        Type = "intro",
                         Order = 1,
                         Text = "We’ve got nothing left but a few last coins and this city, ready to swallow us whole.",
-                        Speaker = Enums.SpeakerType.Boy,
+                        Speaker = Enums.SpeakerType.boy,
                         ImageUrl = "/images/Cutscene/Intro/Intro1.png",
                         ButtonText = "Continue"
                     },
                     new Cutscene
                     {
                         CutsceneId = 2,
-                        Type = "Intro",
+                        Type = "intro",
                         Order = 2,
                         Text = "But we can’t give up now. We have to take a chance, no matter the odds.",
-                        Speaker = Enums.SpeakerType.Girl,
+                        Speaker = Enums.SpeakerType.girl,
                         ImageUrl = "/images/Cutscene/Intro/Intro2.png",
                         ButtonText = "Continue"
                     },
                     new Cutscene
                     {
                         CutsceneId = 3,
-                        Type = "Intro",
+                        Type = "intro",
                         Order = 3,
                         Text = "This casino is our only shot—either we win big today, or we lose the little we have left.",
-                        Speaker = Enums.SpeakerType.Boy,
+                        Speaker = Enums.SpeakerType.boy,
                         ImageUrl = "/images/Cutscene/Intro/Intro3.png",
                         ButtonText = "Continue"
                     },
                     new Cutscene
                     {
                         CutsceneId = 4,
-                        Type = "Intro",
+                        Type = "intro",
                         Order = 4,
                         Text = "Take a breath, we're going in... today, it's the two of us against the odds.",
-                        Speaker = Enums.SpeakerType.Girl,
+                        Speaker = Enums.SpeakerType.girl,
                         ImageUrl = "/images/Cutscene/Intro/Intro4.png",
                         ButtonText = "Let's go!"
                     }
 
+                );
+            });
+
+
+            modelBuilder.Entity<Ending>(ent =>
+            {
+                ent.Property(e => e.EndingId).ValueGeneratedOnAdd();
+
+                ent.HasData(
+                    new Ending
+                    {
+                        EndingId = 1,
+                        Reason = "victory",
+                        Title = "You Win!",
+                        Message = "You fullfilled your girlfriend's dream and won enough money to start a new life together!",
+                        ImageUrl = "/images/Endings/Victory.png"
+                    },
+                    new Ending
+                    {
+                        EndingId = 2,
+                        Reason = "breakup",
+                        Title = "You Broke Up",
+                        Message = "Your girlfriend broke up with you, because you didn't pay attention to her.",
+                        ImageUrl = "/images/Endings/Breakup.png"
+                    },
+                    new Ending
+                    {
+                        EndingId = 3,
+                        Reason = "bankrupt",
+                        Title = "You Went Bankrupt",
+                        Message = "You lost all your money at the casino. Your girlfriend is disappointed.",
+                        ImageUrl = "/images/Endings/Bankrupt.png"
+                    },
+                    new Ending
+                    {
+                        EndingId = 4,
+                        Reason = "hungry",
+                        Person = "boy",
+                        Title = "You Went Hungry",
+                        Message = "You didn't eat anything and collapsed from hunger. Your girlfriend is disappointed.",
+                        ImageUrl = "/images/Endings/HungryBoy.png"
+                    },
+                    new Ending
+                    {
+                        EndingId = 5,
+                        Reason = "hungry",
+                        Person = "girl",
+                        Title = "Your Girlfriend Went Hungry",
+                        Message = "She didn't eat anything and collapsed from hunger.",
+                        ImageUrl = "/images/Endings/HungryGirl.png"
+                    },
+                    new Ending
+                    {
+                        EndingId = 6,
+                        Reason = "thirsty",
+                        Person = "boy",
+                        Title = "You Got Thirsty",
+                        Message = "You didn't drink anything and collapsed from thirst.",
+                        ImageUrl = "/images/Endings/ThirstyBoy.png"
+                    },
+                    new Ending
+                    {
+                        EndingId = 7,
+                        Reason = "thirsty",
+                        Person = "girl",
+                        Title = "Your Girlfriend Got Thirsty",
+                        Message = "She didn't drink anything and collapsed from thirst.",
+                        ImageUrl = "/images/Endings/ThirstyGirl.png"
+                    },
+                    new Ending
+                    {
+                        EndingId = 8,
+                        Reason = "drunk",
+                        Person = "boy",
+                        Title = "You Got Drunk",
+                        Message = "You drank too much alcohol and passed out. Your girlfriend is disappointed.",
+                        ImageUrl = "/images/Endings/DrunkBoy.png"
+                    },
+                    new Ending
+                    {
+                        EndingId = 9,
+                        Reason = "drunk",
+                        Person = "girl",
+                        Title = "Your Girlfriend Got Drunk",
+                        Message = "She drank too much alcohol and passed out.",
+                        ImageUrl = "/images/Endings/DrunkGirl.png"
+                    }
                 );
             });
         }

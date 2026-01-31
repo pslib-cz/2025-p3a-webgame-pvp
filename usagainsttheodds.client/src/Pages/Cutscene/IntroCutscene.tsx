@@ -65,7 +65,7 @@ const IntroCutscene = () => {
     const [promise, setPromise] = useState<Promise<IntroScreen[]> | null>(null);
 
     useEffect(() => {
-        setPromise(apiGet<IntroScreen[]>('/api/cutscenes/Intro'));
+        setPromise(apiGet<IntroScreen[]>('/api/cutscenes/intro'));
     }, []);
 
     if (!promise) {
