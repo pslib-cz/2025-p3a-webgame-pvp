@@ -49,6 +49,15 @@ export type IntroScreen = {
     buttonText: string
 }
 
+export type EndingType = {
+    endingId: number,
+    reason: EndReason,
+    person: "boy" | "girl" | null,
+    title: string,
+    message: string,
+    imageUrl: string
+}
+
 export type Speaker = "Narrator" | "Boy" | "Girl"
 
-export type EndReason = "victory" | "drunk" | "hungry" | "thirsty" | "bankrupt" | "breakup";
+export type EndReason = "notEnded" | "victory" | "drunk" | "hungry" | "thirsty" | "bankrupt" | "breakup";

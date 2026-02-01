@@ -21,6 +21,7 @@ const RootLayout = () => {
         lastFood: null,
         endReason: null,
         endPerson: null,
+        isStarted: false,
         player: {
             name: "John",
             hunger: 50,
@@ -53,6 +54,7 @@ const RootLayout = () => {
     const [girlfriend, setGirlfriend] = useState<Person>(userData.girlfriend);
     const [endReason, setEndReason] = useState<EndReason | null>(userData.endReason);
     const [endPerson, setEndPerson] = useState<"boy" | "girl" | null>(userData.endPerson);
+    const [isStarted, setIsStarted] = useState<boolean>(userData.isStarted);
 
     const [isPauseMenuOpen, setIsPauseMenuOpen] = useState<boolean>(false);
     const { play, stop, isMusicMuted, setIsMusicMuted } = useGameSounds();
@@ -115,6 +117,7 @@ const RootLayout = () => {
             lastDrink: lastDrink,
             endReason: endReason,
             endPerson: endPerson,
+            isStarted: isStarted,
             player: player,
             girlfriend: girlfriend,
         };
@@ -128,7 +131,7 @@ const RootLayout = () => {
 
         checkIfEnd(updated);
 
-    }, [tickets, relationshipValue, boughtBalloon, boughtFlower, lastFood, lastDrink, player, girlfriend, endReason, endPerson]);//ulozi do local storage kdyz se zmeni hodnota
+    }, [tickets, relationshipValue, boughtBalloon, boughtFlower, lastFood, lastDrink, player, girlfriend, endReason, endPerson, isStarted]);//ulozi do local storage kdyz se zmeni hodnota
 
 
 
@@ -146,7 +149,8 @@ const RootLayout = () => {
         isPauseMenuOpen, setIsPauseMenuOpen,
         play,
         stop,
-        isMusicMuted, setIsMusicMuted
+        isMusicMuted, setIsMusicMuted,
+        isStarted, setIsStarted
     }
 
 

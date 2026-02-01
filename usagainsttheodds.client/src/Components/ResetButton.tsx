@@ -12,7 +12,7 @@ type ResetButtonProps={
 const ResetButton: React.FC<ResetButtonProps> = ({isIngame, text, className, navigateTo}) =>{
     const navigate = useNavigate();
     return(
-        <button className={className} onClick={() => {localStorage.clear(); isIngame && window.location.reload(); navigate(navigateTo); }}>
+        <button className={className} onClick={() => {localStorage.clear(); navigate(navigateTo); isIngame && window.location.reload();}}>
             {text}
         </button>
     )

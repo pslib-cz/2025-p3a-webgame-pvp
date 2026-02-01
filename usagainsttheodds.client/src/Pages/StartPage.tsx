@@ -6,9 +6,9 @@ import { useOwnOutlet } from '../Hooks/useOwnOutlet';
 
 const StartPage = () => {
     const navigate = useNavigate();
-    const hasSave = localStorage.getItem("UserData");
+    const hasSave = localStorage.getItem("UserData") !== null;
     const [showComponent, setShowComponent] = useState(false);
-    const { play } = useOwnOutlet();
+    const { isStarted } = useOwnOutlet();
 
     const handleShow = () => {
         setShowComponent(true);
@@ -24,13 +24,16 @@ const StartPage = () => {
         navigate("/game");
     };
 
+    console.log("Has save:", hasSave);
+    console.log("started:", isStarted);
+
     return (
         <div className={styles.startpage}>
             <div className={styles.text}>
                 <h1>Us against the odds</h1>
                 <div className={styles.buttons}>
                     <button className={styles.buttonIntro} onClick={handleShow}>New game</button>
-                    {hasSave && (
+                    {isStarted && (
                     <button className={styles.buttonIntro} onClick={Continue}>
                         Continue
                     </button>

@@ -24,9 +24,9 @@ namespace UsAgainstTheOdds.Server.Controllers
             return Ok(Endings);
         }
 
-        //https://localhost:7222/api/endings/{¨reason"}
-        [HttpGet("{reason}")]
-        public async Task<ActionResult<Ending>> GetEndingByReason(string reason)
+        //https://localhost:7222/api/endings/{reason}/all
+        [HttpGet("{reason}/all")]
+        public async Task<ActionResult<List<Ending>>> GetEndingByReasonAll(string reason)
         {
             var Endings = await _context.Endings
                 .Where(m => m.Reason.ToLower() == reason.ToLower())
@@ -37,6 +37,19 @@ namespace UsAgainstTheOdds.Server.Controllers
                 return NotFound();
             }
             return Ok(Endings);
+        }
+
+        //https://localhost:7222/api/endings/{reason}
+        [HttpGet("{reason}")]
+        public async Task<ActionResult<Ending>> GetEndingByReason(string reason)
+        {
+            var Ending = await _context.Endings
+                .FirstOrDefaultAsync(m => m.Reason.ToLower() == reason.ToLower());
+            if (Ending == null)
+            {
+                return NotFound();
+            }
+            return Ok(Ending);
         }
 
         //https://localhost:7222/api/endings/{reason}/{person}

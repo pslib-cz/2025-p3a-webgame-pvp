@@ -7,18 +7,16 @@ const IntroRules = () => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState<string>("John");
   
-  const { setPlayer } = useOwnOutlet();
+  const { setPlayer, setIsStarted } = useOwnOutlet();
 
   const handleSaveAndStart = () => {
     setPlayer(prev => ({
       ...prev,
       name: userName
     }));
-
+    setIsStarted(true);    
     navigate("/cutscene/intro");
   };
-
-  {/* LIKES */}
 
   return (
     <div className={styles.introRules}>
@@ -40,7 +38,7 @@ const IntroRules = () => {
         <p>Zeny.</p>
       </div>
 
-      <button onClick={handleSaveAndStart}> {/*asi by to mel byt resetutton ale to neni muj problem @likes*/}
+      <button onClick={handleSaveAndStart}>
         Start game
       </button>
     </div>

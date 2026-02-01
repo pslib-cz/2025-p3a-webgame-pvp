@@ -13,13 +13,7 @@ import StartPage from './Pages/StartPage.tsx'
 import IntroCutscene from './Pages/Cutscene/IntroCutscene.tsx'
 import ItemShop from './Pages/ItemShop.tsx';
 import HomePage2 from './Pages/HomePage2.tsx';
-import EndingGood from './Pages/Endings/EndingGood';
-import EndingDrunk from './Pages/Endings/EndingDrunk';
-import EndingHungry from './Pages/Endings/EndingHungry';
-import EndingThirsty from './Pages/Endings/EndingThirsty';
-import EndingBankrupt from './Pages/Endings/EndingBankrupt';
-import EndingBreakup from './Pages/Endings/EndingBreakup';
-import EndingNeutral from './Pages/Endings/EndingNeutral';
+import Ending from './Pages/Ending/Ending.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -61,18 +55,9 @@ createRoot(document.getElementById('root')!).render(
             <Route path="darts" element={<MinigameContainer id="darts" exitPage='/game/right' devVersion={true}/>} />
 
           </Route>
-
-          {/* Ending pages (individual routes) */}
-          <Route path="ending">
-            <Route index element={<EndingNeutral />} />
-            <Route path="good" element={<EndingGood />} />
-            <Route path="drunk" element={<EndingDrunk />} />
-            <Route path="hungry" element={<EndingHungry />} />
-            <Route path="thirsty" element={<EndingThirsty />} />
-            <Route path="bankrupt" element={<EndingBankrupt />} />
-            <Route path="breakup" element={<EndingBreakup />} />
-            <Route path="neutral" element={<EndingNeutral />} />
-          </Route>
+          
+          {/* ENDING */}
+          <Route path="ending" element={<Ending />} />
 
           {/* 404 */}
           <Route path="*" element={<NotFoundPage />} />

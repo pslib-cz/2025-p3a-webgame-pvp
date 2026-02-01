@@ -21,10 +21,14 @@ export type GameContextType = {
     setGirlfriend: React.Dispatch<React.SetStateAction<Person>>;
     endReason: EndReason | null;
     setEndReason: React.Dispatch<React.SetStateAction<EndReason | null>>;
+    endPerson: "boy" | "girl" | null;
+    setEndPerson: React.Dispatch<React.SetStateAction<"boy" | "girl" | null>>;
     isPauseMenuOpen: boolean;
     setIsPauseMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
     play: (soundName: SoundName) => void;
     stop: (soundName: SoundName) => void;
     isMusicMuted: boolean;
     setIsMusicMuted: React.Dispatch<React.SetStateAction<boolean>>;
+    isStarted: boolean;
+    setIsStarted: React.Dispatch<React.SetStateAction<boolean>>;
 }
