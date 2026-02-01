@@ -2,6 +2,9 @@ import { useState, useEffect } from "react"
 import MemoryBoard from "../../Components/MemoryMatch/Board"
 import type { CardType } from "../../Types/CardType";
 import style from "../../assets/styles/Minigames/Memorymatch.module.css"
+import type { GameResult } from "../../Types/GameType"
+import { useMinigame } from "../../Hooks/useMinigame";
+import minigameStyles from "../../assets/styles/Minigames/Minigame.module.css"
 
 
 type MemoryItem = { id: number; value: number };
@@ -29,6 +32,10 @@ const MemoryMatch = () => {
     const [cards, setCards] = useState<CardType[]>(createCards())
     const [selectedIds, setSelectedIds] = useState<number[]>([]) 
     const [isResolving, setIsResolving] = useState(false)
+    const { endGame, setResult, result } = useMinigame();
+    const [playerPoints, setPlayerPoints] = useState(0);
+    const [computerPoints, setComputerPoints] = useState(0);
+    const [playerPairs, setPlayerPairs] = useState(0);
     
     // pamet pocitace
     const [computerMemory, setComputerMemory] = useState<MemoryItem[]>([])
@@ -72,6 +79,13 @@ const MemoryMatch = () => {
         setIsResolving(true) // Zablokuje další klikání
 
         if (cardA.value === cardB.value) {
+
+            if (playingTurn === "human") {
+                setPlayerPoints(prev => prev + 1);
+                setPlayerPairs(prev => prev +1);
+            } else {
+                setComputerPoints(prev => prev + 1);
+            }
             // SHODA
             setComputerMemory(prev => prev.filter(m => m.value !== cardA.value));
 
@@ -98,7 +112,6 @@ const MemoryMatch = () => {
             }, 1200)
         }
     }, [selectedIds, cards])
-
 
     // POCITAC
     useEffect(() => {
@@ -144,7 +157,7 @@ const MemoryMatch = () => {
             }
 
             if (cardToPickId !== null) {
-                handleCardClick(cardToPickId, true); // true = hraje počítač
+                handleCardClick(cardToPickId, true);
                 console.log(`Computer picking: ${cardToPickId} (Memory size: ${computerMemory.length})`);
             }
         };
@@ -165,7 +178,7 @@ const MemoryMatch = () => {
         const counts: Record<number, number[]> = {};
         
         for (const item of memory) {
-            if (isCollected(item.id, currentCards)) continue; // Ignoruj již sebrané
+            if (isCollected(item.id, currentCards)) continue;
             if (!counts[item.value]) counts[item.value] = [];
             counts[item.value].push(item.id);
         }
@@ -178,16 +191,56 @@ const MemoryMatch = () => {
         return null;
     }
 
+
+
+    const handleAnimationEnd = (event: React.AnimationEvent) => {
+            if (event.animationName.includes("resultScreenFadeIn")) {
+                endGame();
+            }
+        }
+    
+        const decideGameResult = (): void => {
+            const result = (): GameResult => {
+                if (playerPoints > computerPoints) return "win";
+                else if (playerPoints < computerPoints) return "lose";
+                else return "draw"
+            }
+
+            const resultValue = result();
+            setResult(resultValue);
+            console.log("Game ended with result:", resultValue);
+        }
+
+        // KONEC HRY
+    useEffect(() => {
+        const allCollected = cards.every(c => c.collected)
+        if (allCollected) {
+            decideGameResult();
+        }
+    }, [cards])
+
+
     return (
-        <div>
-            <h1>Memory Match: {playingTurn === "human" ? "Hraje Hráč" : "Hraje Počítač"}</h1>
-            <div className={style.board}>
+        <div className={`${minigameStyles.container} ${style.memoryMatchContainer}`}>
+            <div className={style.boardContainer}>
                 <MemoryBoard cards={cards} onCardClick={(id) => handleCardClick(id, false)} />
             </div>
-            
-            <div>
-                PC Memory: {JSON.stringify(computerMemory)}
+
+            <div className={style.info}>
+                <div className={style.infoText}>
+                    <p>Turn: {playingTurn === "human" ? "PLAYER" : "COMPUTER"}</p>
+                    <p>Player pairs: {playerPoints}</p>
+                    <p>Computer pairs: {computerPoints}</p>
+                </div>
             </div>
+
+            {result && (
+                <div onAnimationEnd={handleAnimationEnd} className={minigameStyles.resultScreen}>
+                    {result === "win" && <span className={minigameStyles.resultText}>You win with {playerPairs} pairs!</span>}
+                    {result === "lose" && <span className={minigameStyles.resultText}>You lose!</span>}
+                    {result === "draw" && <span className={minigameStyles.resultText}>It's a draw!</span>}
+                </div>
+            )}
         </div>
     )
 }
