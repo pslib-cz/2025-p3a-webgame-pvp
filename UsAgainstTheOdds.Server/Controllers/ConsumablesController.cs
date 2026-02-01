@@ -44,9 +44,9 @@ namespace UsAgainstTheOdds.Server.Controllers
 
         //https://localhost:7222/api/consumables/type/{type}
         [HttpGet("type/{type}")]
-        public async Task<ActionResult<List<Consumable>>> GetConsumablesByType(Consumable.ConsumableType type)
+        public async Task<ActionResult<List<Consumable>>> GetConsumablesByType(Enums.ConsumableType type)
         {
-            if (!Enum.IsDefined(typeof(Consumable.ConsumableType), type))
+            if (!Enum.IsDefined(typeof(Enums.ConsumableType), type))
             {
                 return BadRequest("Invalid consumable type.");
             }

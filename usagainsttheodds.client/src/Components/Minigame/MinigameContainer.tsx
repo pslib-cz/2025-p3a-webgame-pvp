@@ -22,7 +22,7 @@ const MinigameContainer: React.FC<MinigameContainerProps> = ({ id, exitPage, dev
                     price: 100,
                     difficulty: 1
                 } as GameData)}>
-                    <Minigame id={id} devVersion={true} />
+                    <Minigame id={id.toLowerCase()} devVersion={true} />
                 </MinigameProvider>
             </Suspense>
         )
@@ -33,7 +33,7 @@ const MinigameContainer: React.FC<MinigameContainerProps> = ({ id, exitPage, dev
 
         const fetchData = (id: string) => {
             console.log("Fetching minigame data for id:", id);
-            return fetch(`/api/minigames/${id}`)
+            return fetch(`/api/minigames/${id.toLowerCase()}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
@@ -70,7 +70,7 @@ const MinigameContainer: React.FC<MinigameContainerProps> = ({ id, exitPage, dev
             >
                 <Suspense fallback={<div>Loading minigame data...</div>}>
                     <MinigameProvider exitPage={exitPage} promise={promise}>
-                        <Minigame id={id} />
+                        <Minigame id={id.toLowerCase()} />
                     </MinigameProvider>
                 </Suspense>
             </ErrorBoundary>

@@ -1,0 +1,218 @@
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace UsAgainstTheOdds.Server.Migrations
+{
+    /// <inheritdoc />
+    public partial class fix1 : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.AlterColumn<string>(
+                name: "Person",
+                table: "Endings",
+                type: "TEXT",
+                nullable: true,
+                oldClrType: typeof(string),
+                oldType: "TEXT");
+
+            migrationBuilder.UpdateData(
+                table: "Cutscenes",
+                keyColumn: "CutsceneId",
+                keyValue: 1,
+                column: "Type",
+                value: "intro");
+
+            migrationBuilder.UpdateData(
+                table: "Cutscenes",
+                keyColumn: "CutsceneId",
+                keyValue: 2,
+                column: "Type",
+                value: "intro");
+
+            migrationBuilder.UpdateData(
+                table: "Cutscenes",
+                keyColumn: "CutsceneId",
+                keyValue: 3,
+                column: "Type",
+                value: "intro");
+
+            migrationBuilder.UpdateData(
+                table: "Cutscenes",
+                keyColumn: "CutsceneId",
+                keyValue: 4,
+                column: "Type",
+                value: "intro");
+
+            migrationBuilder.UpdateData(
+                table: "Endings",
+                keyColumn: "EndingId",
+                keyValue: 1,
+                columns: new[] { "Person", "Reason" },
+                values: new object[] { "boy", "victory" });
+
+            migrationBuilder.UpdateData(
+                table: "Endings",
+                keyColumn: "EndingId",
+                keyValue: 2,
+                columns: new[] { "Person", "Reason" },
+                values: new object[] { "boy", "breakup" });
+
+            migrationBuilder.UpdateData(
+                table: "Endings",
+                keyColumn: "EndingId",
+                keyValue: 3,
+                columns: new[] { "Person", "Reason" },
+                values: new object[] { "boy", "bankrupt" });
+
+            migrationBuilder.UpdateData(
+                table: "Endings",
+                keyColumn: "EndingId",
+                keyValue: 4,
+                columns: new[] { "Person", "Reason" },
+                values: new object[] { "boy", "hungry" });
+
+            migrationBuilder.UpdateData(
+                table: "Endings",
+                keyColumn: "EndingId",
+                keyValue: 5,
+                columns: new[] { "Person", "Reason" },
+                values: new object[] { "girl", "hungry" });
+
+            migrationBuilder.UpdateData(
+                table: "Endings",
+                keyColumn: "EndingId",
+                keyValue: 6,
+                columns: new[] { "Person", "Reason" },
+                values: new object[] { "boy", "thirsty" });
+
+            migrationBuilder.UpdateData(
+                table: "Endings",
+                keyColumn: "EndingId",
+                keyValue: 7,
+                columns: new[] { "Person", "Reason" },
+                values: new object[] { "girl", "thirsty" });
+
+            migrationBuilder.UpdateData(
+                table: "Endings",
+                keyColumn: "EndingId",
+                keyValue: 8,
+                columns: new[] { "Person", "Reason" },
+                values: new object[] { "boy", "drunk" });
+
+            migrationBuilder.UpdateData(
+                table: "Endings",
+                keyColumn: "EndingId",
+                keyValue: 9,
+                columns: new[] { "Person", "Reason" },
+                values: new object[] { "girl", "drunk" });
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.AlterColumn<string>(
+                name: "Person",
+                table: "Endings",
+                type: "TEXT",
+                nullable: false,
+                defaultValue: "",
+                oldClrType: typeof(string),
+                oldType: "TEXT",
+                oldNullable: true);
+
+            migrationBuilder.UpdateData(
+                table: "Cutscenes",
+                keyColumn: "CutsceneId",
+                keyValue: 1,
+                column: "Type",
+                value: "Intro");
+
+            migrationBuilder.UpdateData(
+                table: "Cutscenes",
+                keyColumn: "CutsceneId",
+                keyValue: 2,
+                column: "Type",
+                value: "Intro");
+
+            migrationBuilder.UpdateData(
+                table: "Cutscenes",
+                keyColumn: "CutsceneId",
+                keyValue: 3,
+                column: "Type",
+                value: "Intro");
+
+            migrationBuilder.UpdateData(
+                table: "Cutscenes",
+                keyColumn: "CutsceneId",
+                keyValue: 4,
+                column: "Type",
+                value: "Intro");
+
+            migrationBuilder.UpdateData(
+                table: "Endings",
+                keyColumn: "EndingId",
+                keyValue: 1,
+                columns: new[] { "Person", "Reason" },
+                values: new object[] { "Both", "Victory" });
+
+            migrationBuilder.UpdateData(
+                table: "Endings",
+                keyColumn: "EndingId",
+                keyValue: 2,
+                columns: new[] { "Person", "Reason" },
+                values: new object[] { "Girl", "Breakup" });
+
+            migrationBuilder.UpdateData(
+                table: "Endings",
+                keyColumn: "EndingId",
+                keyValue: 3,
+                columns: new[] { "Person", "Reason" },
+                values: new object[] { "Boy", "Bankrupt" });
+
+            migrationBuilder.UpdateData(
+                table: "Endings",
+                keyColumn: "EndingId",
+                keyValue: 4,
+                columns: new[] { "Person", "Reason" },
+                values: new object[] { "Boy", "Hungry" });
+
+            migrationBuilder.UpdateData(
+                table: "Endings",
+                keyColumn: "EndingId",
+                keyValue: 5,
+                columns: new[] { "Person", "Reason" },
+                values: new object[] { "Girl", "Hungry" });
+
+            migrationBuilder.UpdateData(
+                table: "Endings",
+                keyColumn: "EndingId",
+                keyValue: 6,
+                columns: new[] { "Person", "Reason" },
+                values: new object[] { "Boy", "Thirsty" });
+
+            migrationBuilder.UpdateData(
+                table: "Endings",
+                keyColumn: "EndingId",
+                keyValue: 7,
+                columns: new[] { "Person", "Reason" },
+                values: new object[] { "Girl", "Thirsty" });
+
+            migrationBuilder.UpdateData(
+                table: "Endings",
+                keyColumn: "EndingId",
+                keyValue: 8,
+                columns: new[] { "Person", "Reason" },
+                values: new object[] { "Boy", "Drunk" });
+
+            migrationBuilder.UpdateData(
+                table: "Endings",
+                keyColumn: "EndingId",
+                keyValue: 9,
+                columns: new[] { "Person", "Reason" },
+                values: new object[] { "Girl", "Drunk" });
+        }
+    }
+}

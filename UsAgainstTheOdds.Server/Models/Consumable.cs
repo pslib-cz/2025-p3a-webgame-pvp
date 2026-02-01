@@ -6,7 +6,7 @@ namespace UsAgainstTheOdds.Server.Models
     {
         [Key]
         public string ConsumableId { get; set; }
-        public required ConsumableType Type { get; set; }
+        public required Enums.ConsumableType Type { get; set; }
         public required string Name { get; set; }
         public required string Description { get; set; }
         public required int Price { get; set; }
@@ -15,11 +15,7 @@ namespace UsAgainstTheOdds.Server.Models
         public required bool IsAlcoholic { get; set; }
         public int AlcoholContent { get; set; }
 
-        public enum ConsumableType
-        {
-            Food = 0,
-            Drink = 1,
-        }
+        
     }
     
 }

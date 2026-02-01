@@ -9,6 +9,7 @@ export type UserData = {
     lastFood: Consumable | null,
     lastDrink: Consumable | null,
     endReason: EndReason | null,
+    endPerson: "boy" | "girl" | null,
     player: Person,
     girlfriend: Person,
 }
