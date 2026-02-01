@@ -368,7 +368,7 @@ namespace UsAgainstTheOdds.Server.Data
                         CutsceneId = 1,
                         Type = "intro",
                         Order = 1,
-                        Text = "We’ve got nothing left but a few last coins and this city, ready to swallow us whole.",
+                        Text = "I hope you enjoy it here...",
                         Speaker = Enums.SpeakerType.boy,
                         ImageUrl = "/images/Cutscene/Intro/Intro1.png",
                         ButtonText = "Continue"
@@ -378,7 +378,7 @@ namespace UsAgainstTheOdds.Server.Data
                         CutsceneId = 2,
                         Type = "intro",
                         Order = 2,
-                        Text = "But we can’t give up now. We have to take a chance, no matter the odds.",
+                        Text = "I need that bear! It's so cute! Please, let's go get it!",
                         Speaker = Enums.SpeakerType.girl,
                         ImageUrl = "/images/Cutscene/Intro/Intro2.png",
                         ButtonText = "Continue"
@@ -388,7 +388,7 @@ namespace UsAgainstTheOdds.Server.Data
                         CutsceneId = 3,
                         Type = "intro",
                         Order = 3,
-                        Text = "This casino is our only shot—either we win big today, or we lose the little we have left.",
+                        Text = "It's expensive... And we don't have any tickets.",
                         Speaker = Enums.SpeakerType.boy,
                         ImageUrl = "/images/Cutscene/Intro/Intro3.png",
                         ButtonText = "Continue"
@@ -398,7 +398,7 @@ namespace UsAgainstTheOdds.Server.Data
                         CutsceneId = 4,
                         Type = "intro",
                         Order = 4,
-                        Text = "Take a breath, we're going in... today, it's the two of us against the odds.",
+                        Text = "Please, I really want it! You can win some tickets in the games!",
                         Speaker = Enums.SpeakerType.girl,
                         ImageUrl = "/images/Cutscene/Intro/Intro4.png",
                         ButtonText = "Let's go!"
