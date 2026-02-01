@@ -54,7 +54,7 @@ const IntroCutsceneContent = ({ promise }: { promise: Promise<IntroScreen[]> }) 
             </div>
 
             <button className={styles.button} onClick={nextPage}>
-                {isLastPage ? "Let's play!" : "Continue"}
+                {sceneData.buttonText}
             </button>
         </div>
     );

@@ -10,8 +10,8 @@ using UsAgainstTheOdds.Server.Data;
 namespace UsAgainstTheOdds.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260131220335_ToLowerCase")]
-    partial class ToLowerCase
+    [Migration("20260201010729_fix1")]
+    partial class fix1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -370,6 +370,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                             EndingId = 1,
                             ImageUrl = "/images/Endings/Victory.png",
                             Message = "You fullfilled your girlfriend's dream and won enough money to start a new life together!",
+                            Person = "boy",
                             Reason = "victory",
                             Title = "You Win!"
                         },
@@ -378,6 +379,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                             EndingId = 2,
                             ImageUrl = "/images/Endings/Breakup.png",
                             Message = "Your girlfriend broke up with you, because you didn't pay attention to her.",
+                            Person = "boy",
                             Reason = "breakup",
                             Title = "You Broke Up"
                         },
@@ -386,6 +388,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                             EndingId = 3,
                             ImageUrl = "/images/Endings/Bankrupt.png",
                             Message = "You lost all your money at the casino. Your girlfriend is disappointed.",
+                            Person = "boy",
                             Reason = "bankrupt",
                             Title = "You Went Bankrupt"
                         },

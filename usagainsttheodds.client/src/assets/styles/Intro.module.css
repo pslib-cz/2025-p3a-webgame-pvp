@@ -38,13 +38,13 @@
     height: 85px;
     background-size: 100% 100%;
 }
-.Boy{
+.boy{
     background-image: url("/images/Avatars/boyfriendAvatar.png");
 }
-.Girl{
+.girl{
     background-image: url("/images/Avatars/girlfriendAvatar.png");
 }
-.Narrator{
+.narrator{
     background-image: url("/images/Avatars/narratorAvatar.png");
 }
 .speakerName{

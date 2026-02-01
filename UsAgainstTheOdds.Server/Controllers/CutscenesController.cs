@@ -26,7 +26,7 @@ namespace UsAgainstTheOdds.Server.Controllers
         public async Task<ActionResult<Cutscene>> GetCutsceneByType(string type)
         {
             var cutscenes = await _context.Cutscenes
-                .Where(m => m.Type == type)
+                .Where(m => m.Type.ToLower() == type.ToLower())
                 .ToListAsync();
 
             if (cutscenes == null || cutscenes.Count == 0)

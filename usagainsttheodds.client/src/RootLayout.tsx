@@ -52,7 +52,7 @@ const RootLayout = () => {
     const [player, setPlayer] = useState<Person>(userData.player);
     const [girlfriend, setGirlfriend] = useState<Person>(userData.girlfriend);
     const [endReason, setEndReason] = useState<EndReason | null>(userData.endReason);
-    const [endPerson, setEndPerson] = useState<"boy" | "girl" | "both" | null>(userData.endPerson);
+    const [endPerson, setEndPerson] = useState<"boy" | "girl" | null>(userData.endPerson);
 
     const [isPauseMenuOpen, setIsPauseMenuOpen] = useState<boolean>(false);
     const { play, stop, isMusicMuted, setIsMusicMuted } = useGameSounds();

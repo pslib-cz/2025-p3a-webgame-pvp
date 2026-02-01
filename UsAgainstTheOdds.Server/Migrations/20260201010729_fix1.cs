@@ -5,7 +5,7 @@
 namespace UsAgainstTheOdds.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class EditEnding : Migration
+    public partial class fix1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,25 +19,53 @@ namespace UsAgainstTheOdds.Server.Migrations
                 oldType: "TEXT");
 
             migrationBuilder.UpdateData(
+                table: "Cutscenes",
+                keyColumn: "CutsceneId",
+                keyValue: 1,
+                column: "Type",
+                value: "intro");
+
+            migrationBuilder.UpdateData(
+                table: "Cutscenes",
+                keyColumn: "CutsceneId",
+                keyValue: 2,
+                column: "Type",
+                value: "intro");
+
+            migrationBuilder.UpdateData(
+                table: "Cutscenes",
+                keyColumn: "CutsceneId",
+                keyValue: 3,
+                column: "Type",
+                value: "intro");
+
+            migrationBuilder.UpdateData(
+                table: "Cutscenes",
+                keyColumn: "CutsceneId",
+                keyValue: 4,
+                column: "Type",
+                value: "intro");
+
+            migrationBuilder.UpdateData(
                 table: "Endings",
                 keyColumn: "EndingId",
                 keyValue: 1,
                 columns: new[] { "Person", "Reason" },
-                values: new object[] { null, "victory" });
+                values: new object[] { "boy", "victory" });
 
             migrationBuilder.UpdateData(
                 table: "Endings",
                 keyColumn: "EndingId",
                 keyValue: 2,
                 columns: new[] { "Person", "Reason" },
-                values: new object[] { null, "breakup" });
+                values: new object[] { "boy", "breakup" });
 
             migrationBuilder.UpdateData(
                 table: "Endings",
                 keyColumn: "EndingId",
                 keyValue: 3,
                 columns: new[] { "Person", "Reason" },
-                values: new object[] { null, "bankrupt" });
+                values: new object[] { "boy", "bankrupt" });
 
             migrationBuilder.UpdateData(
                 table: "Endings",
@@ -94,6 +122,34 @@ namespace UsAgainstTheOdds.Server.Migrations
                 oldClrType: typeof(string),
                 oldType: "TEXT",
                 oldNullable: true);
+
+            migrationBuilder.UpdateData(
+                table: "Cutscenes",
+                keyColumn: "CutsceneId",
+                keyValue: 1,
+                column: "Type",
+                value: "Intro");
+
+            migrationBuilder.UpdateData(
+                table: "Cutscenes",
+                keyColumn: "CutsceneId",
+                keyValue: 2,
+                column: "Type",
+                value: "Intro");
+
+            migrationBuilder.UpdateData(
+                table: "Cutscenes",
+                keyColumn: "CutsceneId",
+                keyValue: 3,
+                column: "Type",
+                value: "Intro");
+
+            migrationBuilder.UpdateData(
+                table: "Cutscenes",
+                keyColumn: "CutsceneId",
+                keyValue: 4,
+                column: "Type",
+                value: "Intro");
 
             migrationBuilder.UpdateData(
                 table: "Endings",

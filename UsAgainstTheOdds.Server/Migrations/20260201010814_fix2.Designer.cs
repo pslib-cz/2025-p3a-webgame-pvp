@@ -10,8 +10,8 @@ using UsAgainstTheOdds.Server.Data;
 namespace UsAgainstTheOdds.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260131211740_EditEnding")]
-    partial class EditEnding
+    [Migration("20260201010814_fix2")]
+    partial class fix2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -301,7 +301,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                             Order = 1,
                             Speaker = 1,
                             Text = "We’ve got nothing left but a few last coins and this city, ready to swallow us whole.",
-                            Type = "Intro"
+                            Type = "intro"
                         },
                         new
                         {
@@ -311,7 +311,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                             Order = 2,
                             Speaker = 2,
                             Text = "But we can’t give up now. We have to take a chance, no matter the odds.",
-                            Type = "Intro"
+                            Type = "intro"
                         },
                         new
                         {
@@ -321,7 +321,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                             Order = 3,
                             Speaker = 1,
                             Text = "This casino is our only shot—either we win big today, or we lose the little we have left.",
-                            Type = "Intro"
+                            Type = "intro"
                         },
                         new
                         {
@@ -331,7 +331,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                             Order = 4,
                             Speaker = 2,
                             Text = "Take a breath, we're going in... today, it's the two of us against the odds.",
-                            Type = "Intro"
+                            Type = "intro"
                         });
                 });
 
