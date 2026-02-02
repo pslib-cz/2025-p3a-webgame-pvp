@@ -57,11 +57,11 @@ const Darts = () => {
 
 
      const decideGameResult = (s: number): void => {
-        if(s <= 0){
+        if(s <= 50){
             setResult("lose");
         }else{
             setResult("win");
-            setRewardMultiplier(playerScore / 50);
+            setRewardMultiplier(s / 50);
         }
      }
 
