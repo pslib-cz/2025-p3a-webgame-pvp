@@ -29,7 +29,7 @@ const DartsSlider:React.FC<DartsSliderProps> = ({dartsPosPercent, isShot, isAxis
               }
               return prev + dir;
             });
-          }, 30); // rychlost
+          }, 10); // rychlost
           
         return () => clearInterval(interval);
         }
