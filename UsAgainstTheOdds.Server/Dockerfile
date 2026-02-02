@@ -2,6 +2,9 @@
 FROM node:22-alpine AS client-build
 WORKDIR /app/client
 
+# Nastavení environment promìnné pro Docker build
+ENV DOCKER_BUILD=true
+
 # Copy package files
 COPY usagainsttheodds.client/package*.json ./
 
