@@ -1,0 +1,9 @@
+.buttonContainer {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    bottom: 10cqh;
+    left: 50%;
+    transform: translateX(-50%);
+}
