@@ -13,7 +13,7 @@ namespace UsAgainstTheOdds.Server.Data
         public DbSet<Cutscene> Cutscenes { get; set; }
         public DbSet<Ending> Endings { get; set; }
 
-        
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Minigame>(ent =>
@@ -493,6 +493,10 @@ namespace UsAgainstTheOdds.Server.Data
                     }
                 );
             });
+
+
+
+            
         }
     }
 }
