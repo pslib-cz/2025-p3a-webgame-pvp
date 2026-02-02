@@ -5,7 +5,7 @@ import { useRef, useEffect } from "react";
 import CardHand from "../../Components/Cards/CardHand";
 import type { GameResult } from "../../Types/GameType";
 import { useMinigame } from "../../Hooks/useMinigame";
-import styles from "../../assets/styles/minigames/Blackjack.module.css";
+import styles from "../../assets/styles/Minigames/Blackjack.module.css";
 import minigameStyles from "../../assets/styles/Minigames/Minigame.module.css"
 
 
