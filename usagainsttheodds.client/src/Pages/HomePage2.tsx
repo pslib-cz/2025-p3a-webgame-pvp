@@ -33,6 +33,13 @@ const HomePage2 = () => {
           <span className={`${styles.npc_1} ${styles.girlindress}`}></span>
         </div>
 
+        <div className={styles.map}>
+          <span className={`${styles.lamp} ${styles.lamp3}`} />
+          <span className={`${styles.lamp} ${styles.lamp4}`} />
+          <span className={`${styles.trash} ${styles.trash3}`} />
+          <span className={`${styles.trash} ${styles.trash4}`} />
+        </div>
+
       </div>
 
     </div>

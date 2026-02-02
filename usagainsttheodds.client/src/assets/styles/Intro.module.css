@@ -55,9 +55,6 @@
 }
 
 
-
-
-
 /* STARTPAGE */
 
 .startpage {
@@ -104,6 +101,8 @@
     cursor: pointer;
 }
 
+/* INTRO POP UP*/
+
 .introRules {
     position: absolute;
     top: 50%;
@@ -112,3 +111,9 @@
     background-color: var(--light-color);
     padding: 3rem;
 }
+
+.introRules h1 {
+    color: var(--dark-color);
+    text-shadow: none;
+}
+

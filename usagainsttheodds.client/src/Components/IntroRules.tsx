@@ -20,7 +20,10 @@ const IntroRules = () => {
 
   return (
     <div className={styles.introRules}>
-      <h3>Let's play against the odds.</h3>
+      <h1>Let's play against the odds.</h1>
+      <p>You're playing as a boyfriend of your beautiful girlfriend Anastasia.
+        You decided to go on a fair in the center of town.
+        Try to enjoy the time you're spending together and retain your relationship.</p>
       
       <div className={styles.nameInput}>
         <label htmlFor="nameInput">Choose your name: </label>
@@ -34,12 +37,15 @@ const IntroRules = () => {
       </div>
 
       <div className={styles.rulesText}>
-        <h4>Game Rules:</h4>
-        <p>Zeny.</p>
+        <h2>Game Rules:</h2>
+        <span>Goal: Buy your girlfriend her dream plushie.</span>
+        <span>Movement: You can move freely on two gameboards.</span>
+        <span>Mechanics: You play games to earn tickets, but don't forget to keep eating.</span>
+        <p>Don't forget to keep your relationship healthy!</p>
       </div>
 
       <button onClick={handleSaveAndStart}>
-        Start game
+        Let's play against the odds.
       </button>
     </div>
   );
