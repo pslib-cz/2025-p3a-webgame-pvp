@@ -4,8 +4,6 @@
     align-items: center;
 }
 
-.boardContainer {}
-
 .board {
     margin: 2rem;
     display: grid;

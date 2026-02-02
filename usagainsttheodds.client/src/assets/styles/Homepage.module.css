@@ -3,6 +3,11 @@
     position: relative;
 }
 
+.games {
+    width: 100%;
+    height: 100%;
+}
+
 .background {
     position: absolute;
     z-index: -1;
@@ -53,31 +58,28 @@
 .goLEFT_btn,
 .goRIGHT_btn {
     position: absolute;
-    margin: 0 1rem;
-    padding: 1.5em 0.3em;
-    top: 50%;
-    transform: translateY(-50%);
-    opacity: 50%;
-    transition: padding 0.3s ease;
-    background-color: var(--light-color);
+    width: 4cqw;
+    top: 0;
+    bottom: 0;
+    transition: width 0.3s ease;
     border: 0;
 }
 
 .goLEFT_btn:hover,
 .goRIGHT_btn:hover {
-    padding: 1.7em 0.5em;
-    opacity: 100%;
+    width: 8cqw;
     cursor: pointer;
 }
 
 .goLEFT_btn {
     right: 0;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 70%, rgba(0, 0, 0, 0.6) 100%);
 }
 
-.goRIGHT_btn svg {
-    transform: rotate(180deg);
+.goRIGHT_btn {
+    left: 0;
+    background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0) 100%);
 }
-
 
 /* STÁNKY */
 
@@ -99,99 +101,91 @@
 
 .wheel {
     background-image: url("/images/Homepage/Wheel.png");
-    width: 38%;
+    width: 38vw;
     aspect-ratio: 167 / 86;
-    right: 36%;
-    top: -2%;
+    right: 36vw;
+    top: 0vh;
 }
 
 .shop {
     background-image: url("/images/Homepage/Shop.png");
-    width: 22%;
+    width: 20vw;
     aspect-ratio: 74 / 59;
-    left: 6%;
-    top: 13%;
+    right: 73vw;
+    top: 13vh;
 }
 
 .russianroulette {
     background-image: url("/images/Homepage/Russianroulette.png");
-    width: 12%;
+    width: 12vw;
     aspect-ratio: 43 / 61;
-    left: 1%;
+    right: 87vw;
     top: 40%;
-}
-
-.baloons {
-    background-image: url("/images/Homepage/Baloons.png");
-    width: 10%;
-    height: 18%;
-    right: 20%;
-    bottom: 35%;
 }
 
 .feelinglucky {
     background-image: url("/images/Homepage/Feelinglucky.png");
-    width: 10%;
+    width: 11vw;
     aspect-ratio: 180 / 256;
-    right: 15%;
-    top: 16%;
+    right: 15vw;
+    top: 16vh;
 }
 
 .darts {
     background-image: url("/images/Homepage/Darts.png");
-    width: 8%;
+    width: 9vw;
     aspect-ratio: 136 / 204;
-    right: 27%;
-    top: 17%;
+    right: 27vw;
+    top: 16vh;
 }
 
 
 .slots {
     background-image: url("/images/Homepage/Slots.png");
-    width: 11%;
+    width: 12vw;
     aspect-ratio: 48 / 64;
-    right: 37%;
-    top: 15%;
+    right: 39vw;
+    top: 15vh;
 }
 
 
 .blackjack {
     background-image: url("/images/Homepage/Blackjack.png");
-    width: 26%;
+    width: 28vw;
     aspect-ratio: 108 / 84;
-    right: 9%;
-    top: 18%;
+    right: 10vw;
+    top: 10vh;
 }
 
 .whackamole {
     background-image: url("/images/Homepage/Whackamole.png");
-    width: 12%;
+    width: 13vw;
     aspect-ratio: 23 / 29;
-    right: 1%;
-    top: 45%;
+    right: 1vw;
+    top: 40vh;
 }
 
 .food {
     background-image: url("/images/Homepage/Food.png");
-    width: 20%;
-    height: 30%;
-    left: 22%;
-    top: 10%;
+    width: 20vw;
+    aspect-ratio: 84 / 64;
+    right: 63vw;
+    top: 10vh;
 }
 
 .pexeso {
     background-image: url("/images/Homepage/Pexeso.png");
-    width: 11%;
+    width: 11vw;
     aspect-ratio: 38 / 62;
-    right: 48%;
-    top: 10%;
+    right: 52vw;
+    top: 8vh;
 }
 
 
 /* NPC + ANIMACE*/
 
 .npc_1,
-.npc_2 {
+.npc_2, .npc_3 {
     position: absolute;
     z-index: 2;
 
@@ -204,8 +198,16 @@
 }
 
 .npc_1 {
-    animation: long-walk 20s linear infinite;
+    animation: long-walk 50s linear infinite;
     transform-origin: center;
+}
+
+.baloons {
+    background-image: url("/images/Homepage/NPC/Baloons.png");
+    width: 10%;
+    height: 18%;
+    right: 20%;
+    bottom: 35%;
 }
 
 .girlindress {
@@ -226,19 +228,19 @@
     }
 
     25% {
-        transform: translateX(10vw) scaleX(1) translateY(-2px);
+        transform: translateX(15vw) scaleX(1) translateY(-2px);
     }
 
     50% {
-        transform: translateX(20vw) scaleX(1) translateY(0);
+        transform: translateX(30vw) scaleX(1) translateY(0);
     }
 
     50.1% {
-        transform: translateX(20vw) scaleX(-1) translateY(0);
+        transform: translateX(30vw) scaleX(-1) translateY(0);
     }
 
     75% {
-        transform: translateX(10vw) scaleX(-1) translateY(-2px);
+        transform: translateX(15vw) scaleX(-1) translateY(-2px);
     }
 
     100% {
@@ -247,7 +249,7 @@
 }
 
 .npc_2 {
-    animation: short-walk 15s linear infinite;
+    animation: short-walk 40s linear infinite;
     transform-origin: center;
 }
 
