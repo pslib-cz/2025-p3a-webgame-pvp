@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { GameResult } from "../../Types/GameType"
 import rH from "../../Helpers/randomGeneratorHelper";
 import { useMinigame } from "../../Hooks/useMinigame";
 import Gun from "../../Components/Gun/Gun";
 import minigameStyles from "../../assets/styles/Minigames/Minigame.module.css"
+import styles from "../../assets/styles/Minigames/RussianRoulette.module.css"
 
 const Russianroulette = () => {
 
@@ -23,7 +24,14 @@ const Russianroulette = () => {
     const [spinButtonsVisible, setSpinButtonsVisible] = useState(false);
 
 
-
+    useEffect(()=> {
+        setButtonsVisible(true);
+        setShootButtonsVisible(false);
+        setSpinButtonsVisible(false);
+        setBarrelPosition(null);
+        setBulletPosition(null);
+        setResult(null);
+    }, [])
 
 
 
@@ -70,38 +78,39 @@ const Russianroulette = () => {
 
 
     return (
-        <div className={minigameStyles.container}>
-            <div style={{ marginBottom: 12 }}>
-            </div>
+        <div className={`${minigameStyles.container} ${minigameStyles.alignToBottom}`}>
                     <Gun bulletPosition={setBulletPosition} barrelOpened={barrelOpened} />
-                    
-                    {buttonsVisible && (
-                        <div>
-                            <button className="button" 
+                    <div className={styles.buttonContainer}>
+                        {buttonsVisible && (
+                                <button className={`button`} 
+                                        onClick={() => {
+                                                    setBarrelOpened(true); 
+                                                    setShootButtonsVisible(false)
+                                                }}>
+                                    Open barrel
+                                </button>
+                        )}
+                        {buttonsVisible && (
+                                <button className={`button`} 
                                     onClick={() => {
-                                                setBarrelOpened(true); 
-                                                setShootButtonsVisible(false)
-                                            }}>
-                                Open barrel
-                            </button>
+                                        setBarrelOpened(false);
+                                        if(bulletPosition !== null) setSpinButtonsVisible(true)
+                                    }} 
+                                    style={{ marginLeft: 8 }}>
+                                        Close barrel
+                                </button>
+                        )}
 
-                            <button className="button" 
-                                onClick={() => {
-                                    setBarrelOpened(false);
-                                    if(bulletPosition !== null) setSpinButtonsVisible(true)
-                                }} 
-                                style={{ marginLeft: 8 }}>
-                                    Close barrel
-                            </button>
-                        </div>
-                    )}
-
-                    {spinButtonsVisible && (
-                        <button className={`button`} onClick={handleSpin}>Spin</button>
-                    )}
-                    {shootButtonsVisible && (
-                            <button className={`button`} onClick={handleShoot}>Shoot</button>
-                    )}
+                        {spinButtonsVisible && (
+                                <button className={`button`} onClick={handleSpin}>Spin</button>
+                            
+                        )}
+                        {shootButtonsVisible && (
+                                <button className={`button`} onClick={handleShoot}>Shoot</button>
+                            
+                        )}
+                    </div>
+                    
 
                     {result && (
                         <div onAnimationEnd={handleAnimationEnd} className={minigameStyles.resultScreen}>

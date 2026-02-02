@@ -12,6 +12,7 @@ namespace UsAgainstTheOdds.Server.Data
         public DbSet<Item> Items { get; set; }
         public DbSet<Cutscene> Cutscenes { get; set; }
         public DbSet<Ending> Endings { get; set; }
+        public DbSet<Joke> Jokes { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -74,7 +75,16 @@ namespace UsAgainstTheOdds.Server.Data
                         Description = "Player is matching pairs of cards.",
                         Price = 150,
                         Difficulty = 2
+                    },
+                    new Minigame
+                    {
+                        MinigameId = "darts",
+                        Name = "Darts",
+                        Description = "Player is trying to hit as close to the bullseye as possible.",
+                        Price = 100,
+                        Difficulty = 2
                     }
+
                 );
             });
             
@@ -493,6 +503,87 @@ namespace UsAgainstTheOdds.Server.Data
                     }
                 );
             });
+
+
+            modelBuilder.Entity<Joke>(ent =>
+            {
+                ent.Property(e => e.JokeId).ValueGeneratedOnAdd();
+                ent.HasData(
+                    new Joke
+                    {
+                        JokeId = 1,
+                        JokeText = "A Lego figure is like a bee;",
+                        Punchline = "When you step on it, it hurts!",
+                        IsFunny = false
+                    },
+                    new Joke
+                    {
+                        JokeId = 2,
+                        JokeText = "They could start putting different toys in those avocados;",
+                        Punchline = "I've already got a drawer full of those wooden beads.",
+                        IsFunny = true
+                    },
+                    new Joke
+                    {
+                        JokeId = 3,
+                        JokeText = "Do you know the difference between a horse and chopping onions?",
+                        Punchline = "None, you cry while doing it, but it just belongs in the goulash.",
+                        IsFunny = false
+                    },
+                    new Joke
+                    {
+                        JokeId = 4,
+                        JokeText = "Do you know what is black and white and will kill you if it falls on you from a tree?",
+                        Punchline = "A piano.",
+                        IsFunny = true
+                    },
+                    new Joke
+                    {
+                        JokeId = 5,
+                        JokeText = "Do you know what an owl is called when you leave it in the oven for a long time?",
+                        Punchline = "A burnt owl.",
+                        IsFunny = true
+                    },
+                    new Joke
+                    {
+                        JokeId = 6,
+                        JokeText = "Do you know what you get if you combine a hedgehog and a giraffe?",
+                        Punchline = "A four-meter toothbrush!",
+                        IsFunny = true
+                    },
+                    new Joke
+                    {
+                        JokeId = 7,
+                        JokeText = "Do you know how German pastry greets?",
+                        Punchline = "Gluten tag",
+                        IsFunny = true
+                    },
+                    new Joke
+                    {
+                        JokeId = 8,
+                        JokeText = "Why do they call your brother digital watch?",
+                        Punchline = "He has no arms?",
+                        IsFunny = false
+                    },
+                    new Joke
+                    {
+                        JokeId = 9,
+                        JokeText = "Do you know why God created Eve?",
+                        Punchline = "To have someone to sing with Vašek!!",
+                        IsFunny = false
+                    },
+                    new Joke
+                    {
+                        JokeId = 10,
+                        JokeText = "Do you know why the Grim Reaper has a scythe?",
+                        Punchline = "Because he can't afford a combine harvester.",
+                        IsFunny = false
+                    }
+
+
+                   );
+            });
+
 
 
 
