@@ -1,6 +1,6 @@
 import { useEffect, useState, use, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from '../../assets/styles/intro.module.css';
+import styles from '../../assets/styles/Intro.module.css';
 import type { IntroScreen } from "../../Types/GameType";
 import apiGet from "../../Helpers/apiHelper";
 import { useOwnOutlet } from "../../Hooks/useOwnOutlet";
