@@ -12,7 +12,7 @@ namespace UsAgainstTheOdds.Server.Data
         public DbSet<Item> Items { get; set; }
         public DbSet<Cutscene> Cutscenes { get; set; }
         public DbSet<Ending> Endings { get; set; }
-        public DbSet<Jokes> Jokes { get; set; }
+        public DbSet<Joke> Jokes { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
