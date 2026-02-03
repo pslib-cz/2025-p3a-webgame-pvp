@@ -5,6 +5,7 @@ import type { IntroScreen } from "../../Types/GameType";
 import apiGet from "../../Helpers/apiHelper";
 import { useOwnOutlet } from "../../Hooks/useOwnOutlet";
 import { ErrorBoundary } from "react-error-boundary";
+import { useSound } from "../../Providers/Soundprovider";
 
 //Pomocná komponenta pro samotný obsah cutscény
 const IntroCutsceneContent = ({ promise }: { promise: Promise<IntroScreen[]> }) => {
@@ -12,14 +13,20 @@ const IntroCutsceneContent = ({ promise }: { promise: Promise<IntroScreen[]> }) 
     const navigate = useNavigate();
     const [page, setPage] = useState<number>(0);
     const { player, girlfriend } = useOwnOutlet();
+    const { play, stop } = useSound();
 
     const sceneData = data[page];
 
     const isLastPage = page === data.length - 1;
 
     const nextPage = () => {
-        if (isLastPage) navigate("/game");
-        else setPage(prev => prev + 1)
+        if (isLastPage) {
+            navigate("/game");
+            play('bgMusic');
+            stop('crowd');
+        } else {
+            setPage(prev => prev + 1)
+        }
     }
 
     useEffect(() => {

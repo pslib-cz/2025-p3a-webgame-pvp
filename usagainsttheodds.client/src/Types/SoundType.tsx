@@ -4,4 +4,4 @@ export type SoundConfigType = {
     volume?: number;
     category: 'music' | 'sfx';
 }
-export type SoundName = 'bgMusic' | 'chop';
+export type SoundName = 'bgMusic' | 'bgIntro' | 'crowd';
