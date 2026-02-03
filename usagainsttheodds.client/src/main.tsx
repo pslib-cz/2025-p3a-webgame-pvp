@@ -14,12 +14,15 @@ import IntroCutscene from './Pages/Cutscene/IntroCutscene.tsx'
 import ItemShop from './Pages/ItemShop.tsx';
 import HomePage2 from './Pages/HomePage2.tsx';
 import Ending from './Pages/Ending/Ending.tsx';
+import NotificationList from './Components/Notifications/NotificationList.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<RootLayout />} errorElement={<ErrorPage />}>
+
+          <Route path='/notificationTest' element={<NotificationList />} />
 
 
           {/* START */}

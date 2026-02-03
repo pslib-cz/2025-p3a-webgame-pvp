@@ -12,7 +12,7 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
 
   const { setIsPauseMenuOpen, isMusicMuted, setIsMusicMuted } = useOwnOutlet();
 
-  const {setPlayer, setGirlfriend, setTickets, setRelationshipValue, setEndReason} = useOwnOutlet();
+  const {setPlayer, setGirlfriend, setTickets, setRelationshipValue, setEndReason, addNotification} = useOwnOutlet();
 
 
   return createPortal(
@@ -41,6 +41,7 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
                     <button onClick={() => setGirlfriend(prev => ({ ...prev, thirst: 0 }))}>Girlfriend thirst 0</button>
                     <button onClick={() => setGirlfriend(prev => ({ ...prev, drunkenness: 100 }))}>Girlfriend drunkenness 100</button>
                   </div>
+                  <button onClick={() => addNotification("New notification", "/images/Avatars/girlfriendAvatar.png")}>add notification</button>
 
         <button className={styles.returnButton} onClick={() => setIsPauseMenuOpen(false)}>Return to game</button>
         {children}

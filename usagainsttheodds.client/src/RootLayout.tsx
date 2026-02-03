@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { type UserData } from "./Types/UserDataType";
 import { isDeepEqual } from "./Helpers/generalHelper";
@@ -6,10 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import type { EndReason, Person } from './Types/GameType';
 import { useGameSounds } from "./Hooks/useGameSounds";
 import PauseMenu from "./Components/Pausemenu/PauseMenu";
-import type { GameContextType } from "./Types/GameContextType";
+import NotificationList from "./Components/Notifications/NotificationList";
+import { GameContext } from "./Context/GameContext";
+import type { NotificationData } from "./Types/NotificationType";
 
-
-export const GameContext = createContext<GameContextType | null>(null);
 
 const RootLayout = () => {
     const intitialData: UserData = {
@@ -56,6 +56,8 @@ const RootLayout = () => {
     const [endPerson, setEndPerson] = useState<"boy" | "girl" | null>(userData.endPerson);
     const [isStarted, setIsStarted] = useState<boolean>(userData.isStarted);
 
+
+    const [notifications, setNotifications] = useState<NotificationData[]>([]);
     const [isPauseMenuOpen, setIsPauseMenuOpen] = useState<boolean>(false);
     const { play, stop, isMusicMuted, setIsMusicMuted } = useGameSounds();
     const navigate = useNavigate();
@@ -135,6 +137,20 @@ const RootLayout = () => {
 
 
 
+    const addNotification = (text: string, imageSrc?: string) => {
+        const newNotif: NotificationData = {
+            id: Date.now(), // Unikátní ID pro každou notifikaci
+            text,
+            imageSrc
+        };
+        setNotifications((prev) => [...prev, newNotif]);
+    };
+
+    const closeNotification = (id: number) => {
+        setNotifications((prev) => prev.filter((n) => n.id !== id));
+    };
+
+
     const gameContextValue = {
         tickets, setTickets,
         relationshipValue, setRelationshipValue,
@@ -150,7 +166,9 @@ const RootLayout = () => {
         play,
         stop,
         isMusicMuted, setIsMusicMuted,
-        isStarted, setIsStarted
+        isStarted, setIsStarted,
+        addNotification, closeNotification,
+        notifications
     }
 
 
@@ -158,6 +176,7 @@ const RootLayout = () => {
         <GameContext.Provider value={gameContextValue}>
             <div className="game-root">
                 <PauseMenu />
+                <NotificationList />
                 <Outlet />
             </div>
         </GameContext.Provider>
