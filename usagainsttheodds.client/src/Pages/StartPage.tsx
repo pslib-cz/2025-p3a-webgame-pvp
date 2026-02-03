@@ -3,7 +3,7 @@ import styles from "../assets/styles/Intro.module.css"
 import IntroRules from '../Components/IntroRules';
 import { useState } from 'react';
 import { useOwnOutlet } from '../Hooks/useOwnOutlet';
-import { useSound } from '../Providers/Soundprovider';
+import { useSound } from '../Providers/SoundProvider';
 
 const StartPage = () => {
     const { play } = useSound();

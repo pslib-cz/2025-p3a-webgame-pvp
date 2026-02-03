@@ -8,8 +8,7 @@ import PauseMenu from "./Components/Pausemenu/PauseMenu";
 import NotificationList from "./Components/Notifications/NotificationList";
 import { GameContext } from "./Context/GameContext";
 import type { NotificationData } from "./Types/NotificationType";
-import type { GameContextType } from "./Types/GameContextType";
-import { useSound } from "./Providers/Soundprovider";
+import { useSound } from "./Providers/SoundProvider";
 
 
 const RootLayout = () => {
@@ -178,7 +177,7 @@ useEffect(() => {
         isPauseMenuOpen, setIsPauseMenuOpen,
         play,
         stop,
-        isMusicMuted, setIsMusicMuted,
+        isMusicMuted,
         isStarted, setIsStarted,
         addNotification, closeNotification,
         notifications

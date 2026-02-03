@@ -2,7 +2,7 @@ import { createPortal } from "react-dom";
 import ResetButton from "../ResetButton";
 import styles from "../../assets/styles/components/pausemenu.module.css";
 import { useOwnOutlet } from "../../Hooks/useOwnOutlet";
-import { useSound } from "../../Providers/Soundprovider";
+import { useSound } from "../../Providers/SoundProvider";
 
 
 type ModalProps = {

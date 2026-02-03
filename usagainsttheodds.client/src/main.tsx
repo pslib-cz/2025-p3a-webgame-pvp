@@ -15,7 +15,7 @@ import ItemShop from './Pages/ItemShop.tsx';
 import HomePage2 from './Pages/HomePage2.tsx';
 import Ending from './Pages/Ending/Ending.tsx';
 import Wheel from './Pages/Cutscene/Wheel.tsx';
-import { SoundProvider } from './Providers/Soundprovider.tsx';
+import { SoundProvider } from './Providers/SoundProvider.tsx';
 import NotificationList from './Components/Notifications/NotificationList.tsx';
 
 createRoot(document.getElementById('root')!).render(
