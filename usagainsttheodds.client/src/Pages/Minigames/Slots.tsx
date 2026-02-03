@@ -91,7 +91,7 @@ const Russianroulette = () => {
 
 
     return (
-        <div className={`${minigameStyles.container} ${minigameStyles.alignToBottom}`}>
+        <div className={`${minigameStyles.container} ${minigameStyles.alignToBottom} ${minigameStyles.street}`}>
             
                     <SlotMachine spin={Spin} stop={Stop} firstPosition={positions[0]} secondPosition={positions[1]} thirdPosition={positions[2]} isSpinning={isSpinning} />
                     {result && (

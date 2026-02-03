@@ -8,7 +8,6 @@ import { useSound } from '../Providers/SoundProvider';
 const StartPage = () => {
     const { play } = useSound();
     const navigate = useNavigate();
-    const hasSave = localStorage.getItem("UserData") !== null;
     const [showComponent, setShowComponent] = useState(false);
     const { isStarted } = useOwnOutlet();
 

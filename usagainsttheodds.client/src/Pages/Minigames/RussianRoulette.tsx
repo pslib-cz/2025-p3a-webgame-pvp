@@ -78,7 +78,7 @@ const Russianroulette = () => {
 
 
     return (
-        <div className={`${minigameStyles.container} ${minigameStyles.alignToBottom}`}>
+        <div className={`${minigameStyles.container} ${minigameStyles.alignToBottom} ${minigameStyles.shop}`}>
                     <Gun bulletPosition={setBulletPosition} barrelOpened={barrelOpened} />
                     <div className={styles.buttonContainer}>
                         {buttonsVisible && (

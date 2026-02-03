@@ -7,6 +7,34 @@
     background-color: #000;  /* Černé okraje, pokud okno nesedí do poměru */
 }
 
+.table {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background: 
+        linear-gradient(rgba(16, 7, 27, 0.3), rgba(0, 0, 0, 0.3)), 
+        url('/images/Main/Background-table.jpg');
+}
+
+.street {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background: 
+        linear-gradient(rgba(16, 7, 27, 0.3), rgba(0, 0, 0, 0.3)), 
+        url('/images/Main/Background-street.jpg');
+}
+
+.shop {
+    background: 
+        linear-gradient(rgba(16, 7, 27, 0.3), rgba(0, 0, 0, 0.3)), 
+        url('/images/Main/Background-shop.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
 .gameArea {
     position: relative;
     aspect-ratio: var(--aspect-ratio);

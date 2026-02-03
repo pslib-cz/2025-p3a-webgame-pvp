@@ -5,7 +5,7 @@ import type { IntroScreen } from "../../Types/GameType";
 import apiGet from "../../Helpers/apiHelper";
 import { useOwnOutlet } from "../../Hooks/useOwnOutlet";
 import { ErrorBoundary } from "react-error-boundary";
-import { useSound } from "../../Providers/Soundprovider";
+import { useSound } from "../../Providers/SoundProvider";
 
 //Pomocná komponenta pro samotný obsah cutscény
 const IntroCutsceneContent = ({ promise }: { promise: Promise<IntroScreen[]> }) => {

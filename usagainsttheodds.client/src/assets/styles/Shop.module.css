@@ -1,0 +1,73 @@
+.backButton {
+    position: absolute;
+    bottom: 5vw;
+    right: 5vw;
+}
+
+/* FOOD BAR */
+.menu {
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content: center;
+    width: 75vw;
+    aspect-ratio: 230/149;
+    background: 
+        linear-gradient(rgba(16, 7, 27, 0.3), rgba(0, 0, 0, 0.3)), 
+        url('/images/Main/Pausemenu.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.menu h1 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.menu h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.itemsContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 5%;
+
+    justify-content: center;
+    justify-items: center;
+
+    margin: 0 auto;
+
+    padding: 0 10vw;
+
+    width: 50vw;
+    height: 80vh;
+}
+
+.foodCard {
+    border-bottom: 1px solid #91846d;
+}
+
+
+.itemFood {
+    display: flex;
+    flex: 1 0 50px;
+    justify-content: space-between;
+    margin: 0.2rem 0;
+    border-radius: 8px;
+}
+
+.foodInfo{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.foodStats {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}

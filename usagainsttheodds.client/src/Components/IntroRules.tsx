@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import styles from "../assets/styles/Intro.module.css"
 import { useOwnOutlet } from '../Hooks/useOwnOutlet';
-import { useSound } from '../Providers/Soundprovider';
+import { useSound } from '../Providers/SoundProvider';
 
 const IntroRules = () => {
   const navigate = useNavigate();

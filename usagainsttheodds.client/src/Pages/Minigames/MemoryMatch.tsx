@@ -233,7 +233,7 @@ const MemoryMatch = () => {
 
 
     return (
-        <div className={`${minigameStyles.container} ${style.memoryMatchContainer}`}>
+        <div className={`${minigameStyles.container} ${style.memoryMatchContainer} ${minigameStyles.table}`}>
             <div className={style.boardContainer}>
                 <MemoryBoard cards={cards} onCardClick={(id) => handleCardClick(id, false)} />
             </div>

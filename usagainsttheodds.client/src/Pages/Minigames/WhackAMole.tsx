@@ -190,7 +190,7 @@ const WhackAMole = () => {
 
 
     return (
-        <div className={`${minigameStyles.container} ${minigameStyles.alignToBottom}`}>
+        <div className={`${minigameStyles.container} ${minigameStyles.alignToBottom} ${minigameStyles.street}`}>
             <div className={`${styles.machine} ${minigameStyles.gameArea}`}>
                 <div className={styles.interactiveArea}>
                 

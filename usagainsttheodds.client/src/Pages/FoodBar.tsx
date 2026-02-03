@@ -3,6 +3,8 @@ import { use, useEffect, useState } from "react";
 import type { Consumable } from "../Types/GameType";
 import { useOwnOutlet } from "../Hooks/useOwnOutlet";
 import apiGet from "../Helpers/apiHelper";
+import styles from "../assets/styles/Shop.module.css"
+import minigameStyles from '../assets/styles/Minigames/Minigame.module.css';
 
 
 
@@ -58,26 +60,34 @@ const FoodBar = () => {
     }
 
     return (
-        <div>
+        <div className={`${minigameStyles.table} ${minigameStyles.container}`}>
 
-            <h1>FoodBar</h1>
+        <div className={styles.menu}>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1em' }}>
+            <div className={styles.itemsContainer}>
+                <h1>MENU</h1>
                 {data.map((item) => (
-                    <div key={item.consumableId} style={{ border: '1px solid black', padding: '1em' }}>
-                        <h2>{item.name}</h2>
-                        <p>{item.description}</p>
-                        <p>Price: {item.price} tickets</p>
-                        <p>Hunger Restore: {item.hungerRestoreValue}</p>
-                        <p>Thirst Restore: {item.thirstRestoreValue}</p>
-                        {item.isAlcoholic && <p>Alcohol Content: {item.alcoholContent}</p>}
+                    <div key={item.consumableId} className={styles.itemFood}>
+                        <div className={styles.foodCard}>
+                            <div className={styles.foodInfo}>
+                                <h2>{item.name}</h2>
+                                <p>{item.description}</p>
+                            </div>
+                            <div className={styles.foodStats}>
+                                <p>Price: {item.price}</p>
+                                <p>Hunger: {item.hungerRestoreValue}</p>
+                                <p>Thirst: {item.thirstRestoreValue}</p>
+                            </div>
+                            {item.isAlcoholic && <p>Alcohol: {item.alcoholContent}</p>}
+                        </div>
                         <button onClick={() => handleBuy(item.consumableId)}>Buy</button>
                     </div>
                 ))}
 
             </div>
+        </div>
 
-            <ChangeScreenButton to="/game/right" text="Go Back" />
+            <span className={styles.backButton}><ChangeScreenButton to="/game/right" text="Go Back" /></span>
         </div>
     )
 }

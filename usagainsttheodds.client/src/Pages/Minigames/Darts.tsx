@@ -112,7 +112,7 @@ const Darts = () => {
 
 
     return (
-        <div className={`${minigameStyles.container} ${minigameStyles.alignToBottom}`}>
+        <div className={`${minigameStyles.container} ${minigameStyles.alignToBottom} ${minigameStyles.street}`}>
             <div className={styles.dartsGameContainer}>
             {!isStopped.stoppedX && (
                         <>
