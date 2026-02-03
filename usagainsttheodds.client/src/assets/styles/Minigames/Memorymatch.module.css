@@ -53,6 +53,3 @@
 .card[data-value="5"].up, .card[data-value="13"].up { background-image: url('/images/Match/card-yin.png'); }
 .card[data-value="6"].up, .card[data-value="14"].up { background-image: url('/images/Match/card-house.png'); }
 .card[data-value="7"].up, .card[data-value="15"].up { background-image: url('/images/Match/card-note.png'); }
-
-
-

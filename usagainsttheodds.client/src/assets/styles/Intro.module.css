@@ -105,15 +105,39 @@
 
 .introRules {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+    justify-content: center;
+    align-items: center;
+
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: var(--light-color);
-    padding: 3rem;
+
+    background-image: url("/images/Main/PauseMenu.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    aspect-ratio: 230 / 149;
+}
+
+.introText, .rulesText {
+    padding: 0 18%;
 }
 
 .introRules h1 {
     color: var(--dark-color);
     text-shadow: none;
+}
+
+.rulesText span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.rules {
+    padding: 1rem;
 }
 
