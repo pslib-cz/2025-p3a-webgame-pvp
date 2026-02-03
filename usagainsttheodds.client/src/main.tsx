@@ -14,6 +14,7 @@ import IntroCutscene from './Pages/Cutscene/IntroCutscene.tsx'
 import ItemShop from './Pages/ItemShop.tsx';
 import HomePage2 from './Pages/HomePage2.tsx';
 import Ending from './Pages/Ending/Ending.tsx';
+import Wheel from './Pages/Cutscene/Wheel.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -41,11 +42,10 @@ createRoot(document.getElementById('root')!).render(
           <Route path="foodbar" element={<FoodBar />} />
           <Route path="itemshop" element={<ItemShop/> } />
 
-          {/* <Route path="wheel" element={<Wheel />} /> */}
+          <Route path="wheel" element={<Wheel />} />
 
           {/* STÁNKY */}
           <Route path='minigame'>
-
             <Route path="blackjack" element={<MinigameContainer id="blackjack" exitPage="/game/right"/>} />
             <Route path="russianroulette" element={<MinigameContainer id="russianroulette"exitPage="/game" />} />
             {/* <Route path="testminigame" element={<MinigameContainer id="test" exitPage="/game" devVersion={true} />} /> */}
