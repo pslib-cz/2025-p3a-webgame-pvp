@@ -34,6 +34,28 @@ const Darts = () => {
      },[playerScore])
 
 
+
+
+     useEffect(() => {
+        const handleSpace = (event) => {
+          if (event.code === "Space" || event.key === " ") {
+            console.log("Space pressed globally!");
+          }
+        };
+    
+        window.addEventListener("keydown", handleSpace);
+        return () => window.removeEventListener("keydown", handleSpace);
+      }, []);
+
+
+
+
+
+
+
+
+
+
     //pocitani vzdalenosti - maxscore -  math.sqrt(math.pow(math.abs(posx - 50)) + math.pow(math.abs(posy -50))))
      const CountScore = (x: number, y:number) => {
         setPlayerScore(
@@ -71,8 +93,6 @@ const Darts = () => {
             endGame();
         }
     }
-
-
 
 
     return (
