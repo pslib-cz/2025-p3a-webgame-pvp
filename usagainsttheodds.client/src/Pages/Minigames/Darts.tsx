@@ -78,8 +78,7 @@ const Darts = () => {
     return (
         <div className={`${minigameStyles.container} ${minigameStyles.alignToBottom}`}>
             <div className={styles.dartsGameContainer}>
-                <div className={styles.dartContainer}>
-                    {!isStopped.stoppedX && (
+            {!isStopped.stoppedX && (
                         <>
                             <DartsSlider isAxisY={false} dartsPosPercent={(x: number) => setPos({posX: x, posY: pos.posY})} isShot={isStopped.stoppedX}/>
                             <button className={styles.dartButton} onClick={() => setIsStopped({stoppedX: true, stoppedY: isStopped.stoppedY})}>stoppedX</button>
@@ -91,15 +90,18 @@ const Darts = () => {
                             <button className={styles.dartButton} onClick={() => setIsStopped({stoppedX: isStopped.stoppedX, stoppedY: true})}>stoppedY</button>
                         </>
                     )}
-                    <img 
-                        style={{    
-                            left: `${pos.posX}%`,
-                            top: `${pos.posY}%`
-                        }} 
-                        className={styles.dart} 
-                        src="/images/darts/dart.png" 
-                        alt="dart" 
-                    />
+                <div className={`${styles.dartContainer} ${styles.target}`}>
+
+                        <img 
+                            style={{    
+                                left: `${pos.posX}%`,
+                                top: `${pos.posY}%`
+                            }} 
+                            className={styles.dart} 
+                            src="/images/darts/dart.png" 
+                            alt="dart" 
+                        />
+
 
 
                 </div>

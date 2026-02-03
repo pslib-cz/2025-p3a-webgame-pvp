@@ -26,11 +26,11 @@ export type Consumable = {
     alcoholContent: number;
 }
 export type Items = {
-    ItemId: string;
+    itemId: string;
     name: string;
     description: string;
     price: number;
-    RelationRestoreValue: number;
+    relationRestoreValue: number;
 }
 
 

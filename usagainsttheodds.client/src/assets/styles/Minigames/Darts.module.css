@@ -1,15 +1,14 @@
 .bar{
     height: 30px;
-    width: 100%;
+    width: 400px;
     background: linear-gradient(90deg,rgba(255, 0, 0, 1) 0%, rgba(251, 255, 0, 1) 25%, rgba(51, 255, 0, 1) 49%, rgba(181, 255, 181, 1) 50%, rgba(51, 255, 0, 1) 51%, rgba(230, 255, 0, 1) 75%, rgba(255, 0, 0, 1) 100%);
     position: absolute;
-    top: -50%;
-    left: 0;
+    bottom: 20%;
 }
 .barVertical{
+    top: 27.5%;
+    left: 20cqw;
     transform: rotate(90deg) translateX(50%);
-    top: -15px;
-    left: -100%;
 }
 
 .dartButton{
@@ -57,4 +56,9 @@
     position: absolute;
     transform: translateX(-50%) translateY(-50%);
     z-index: 100;
+}
+.target{
+    background-image: url(/images/Darts/terc.png);
+    background-repeat: no-repeat;
+    background-size: contain;
 }

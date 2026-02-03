@@ -99,7 +99,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Price = 10000,
                         RelationRestoreValue = 20,
                         Description = "A cuddly brown bear plush toy."
-                    },
+                    },    
                     new Item
                     {
                         ItemId = "whitebear",
