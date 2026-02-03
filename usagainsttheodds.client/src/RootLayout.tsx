@@ -64,40 +64,63 @@ const RootLayout = () => {
 
 
 
-    const checkIfEnd = (data: UserData) => {
+    const checkStats = (data: UserData) => {
+
         if (data.relationshipStamina <= 0) {
             setEndReason("breakup");
+            return;
         }
         if (data.ticketsAmount <= 0) {
             setEndReason("bankrupt");
-        }
-        if (data.player.hunger <= 0) {
-            setEndReason("hungry");
-            setEndPerson("boy");
-        }
-        if (data.girlfriend.hunger <= 0) {
-            setEndReason("hungry");
-            setEndPerson("girl");
-        }
-        if (data.player.thirst <= 0) {
-            setEndReason("thirsty");
-            setEndPerson("boy");
-        }
-        if (data.girlfriend.thirst <= 0) {
-            setEndReason("thirsty");
-            setEndPerson("girl");
-        }
-        if (data.player.drunkenness >= 100) {
-            setEndReason("drunk");
-            setEndPerson("boy");
-        }
-        if (data.girlfriend.drunkenness >= 100) {
-            setEndReason("drunk");
-            setEndPerson("girl");
+            return;
         }
 
-        return;
-    }
+        if (data.relationshipStamina <= 20) {
+            addNotification(`I'm worried about our relationship...`, `/images/Avatars/girlfriendAvatar.png`);
+        }
+
+        if (data.ticketsAmount <= 250) {
+            addNotification(`We're running low on tickets!`, `/images/Avatars/boyfriendAvatar.png`);
+        }
+
+        const characters = [
+            { key: "player" as const, type: "boy" as const },
+            { key: "girlfriend" as const, type: "girl" as const }
+        ]
+
+        for (const char of characters) {
+            const dataChar = data[char.key]
+
+            // Kontrola hladovění, žízně a opilosti
+            if (dataChar.hunger <= 0) {
+                setEndPerson(char.type);
+                setEndReason("hungry");
+                return;
+            }
+            if (dataChar.thirst <= 0) {
+                setEndPerson(char.type);
+                setEndReason("thirsty");
+                return;
+            }
+            if (dataChar.drunkenness >= 100) {
+                setEndPerson(char.type);
+                setEndReason("drunk");
+                return;
+            }
+
+            //Kontrola pro notifikace hladovění, žízně a opilosti
+            if (dataChar.hunger <= 20) {
+                addNotification(`I'm starving!`, `/images/Avatars/${char.type}friendAvatar.png`);
+            }
+            if (dataChar.thirst <= 20) {
+                addNotification(`I'm really thirsty!`, `/images/Avatars/${char.type}friendAvatar.png`);
+            }
+            if (dataChar.drunkenness >= 80) {
+                addNotification(`I feel so drunk...`, `/images/Avatars/${char.type}friendAvatar.png`);
+            }
+        }
+
+    };
 
     useEffect(() => {
         if (endReason !== null) {
@@ -105,7 +128,7 @@ const RootLayout = () => {
         }
     }, [endReason]);
 
-useEffect(() => {
+    useEffect(() => {
         const handleAutoPlay = () => {
             if (!isMusicMuted) {
                 play('bgMusic');
@@ -143,7 +166,7 @@ useEffect(() => {
         );
 
 
-        checkIfEnd(updated);
+        checkStats(updated);
 
     }, [tickets, relationshipValue, boughtBalloon, boughtFlower, lastFood, lastDrink, player, girlfriend, endReason, endPerson, isStarted]);//ulozi do local storage kdyz se zmeni hodnota
 
@@ -151,14 +174,14 @@ useEffect(() => {
 
     const addNotification = (text: string, imageSrc?: string) => {
         const newNotif: NotificationData = {
-            id: Date.now(), // Unikátní ID pro každou notifikaci
+            id: crypto.randomUUID(), // Unikátní ID pro každou notifikaci
             text,
             imageSrc
         };
         setNotifications((prev) => [...prev, newNotif]);
     };
 
-    const closeNotification = (id: number) => {
+    const closeNotification = (id: string) => {
         setNotifications((prev) => prev.filter((n) => n.id !== id));
     };
 

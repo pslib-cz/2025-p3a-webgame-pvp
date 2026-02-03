@@ -1,5 +1,5 @@
 export type NotificationData = {
-    id: number;
+    id: string;
     text: string;
     imageSrc?: string;
 }

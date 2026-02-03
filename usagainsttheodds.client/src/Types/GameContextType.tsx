@@ -32,5 +32,5 @@ export type GameContextType = {
     setIsStarted: React.Dispatch<React.SetStateAction<boolean>>;
     notifications: NotificationData[];
     addNotification: (text: string, imageSrc?: string) => void;
-    closeNotification: (id: number) => void;
+    closeNotification: (id: string) => void;
 }

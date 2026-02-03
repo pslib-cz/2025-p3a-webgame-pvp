@@ -28,19 +28,21 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
           <p>Once you're ready, you can continue</p>
         </div>
         <div className={styles.modalInteractive}>
-          <p className={styles.interactiveBtn}>Music
+          <div>
+            <p className={styles.interactiveBtn}>Music</p>
             <div className={styles.interactiveVolume}>
               <button onClick={() => setIsMusicMuted(!isMusicMuted)}>{isMusicMuted ? "Off" : "On"} </button>
               <input  type="range" min="0" max="1" step="0.01" value={musicVolume} onChange={(e) => setMusicVolume(parseFloat(e.target.value))}/>
             </div>
-          </p>
-          <p className={styles.interactiveBtn}>Sound Effects
-            
+          </div>
+          
+          <div>
+            <p className={styles.interactiveBtn}>Sound Effects</p>
             <div className={styles.interactiveVolume}>
               <button onClick={() => setIsSfxMuted(!isSfxMuted)}> {isSfxMuted ? "Off" : "On"} </button>
               <input  type="range" min="0" max="1" step="0.01" value={sfxVolume} onChange={(e) => setSfxVolume(parseFloat(e.target.value))}/>
             </div>
-          </p>
+          </div>
           <ResetButton isIngame={true} navigateTo="/" text="Reset Game" />
         </div>
 
