@@ -13,11 +13,7 @@ const Card: React.FC<CardProps> = ({ card, onClick }) => {
     return (
         <div className={`${styles.card} ${card.facingUp ? styles.up : styles.down} ${card.collected ? styles.collected : ""} `}
         onClick={() => onClick(card.id)}
-        data-value={card.value}>
-
-        {card.facingUp ? card.value : "?"}
-
-        </div>
+        data-value={card.value}/>
     )
 };
 export default Card;
