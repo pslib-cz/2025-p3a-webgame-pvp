@@ -99,7 +99,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Price = 10000,
                         RelationRestoreValue = 20,
                         Description = "A cuddly brown bear plush toy."
-                    },
+                    },    
                     new Item
                     {
                         ItemId = "whitebear",
@@ -380,7 +380,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Order = 1,
                         Text = "I hope you enjoy it here...",
                         Speaker = Enums.SpeakerType.boy,
-                        ImageUrl = "/images/Cutscene/Intro/Intro1.png",
+                        ImageUrl = "/images/Cutscene/Intro/Intro1.avif",
                         ButtonText = "Continue"
                     },
                     new Cutscene
@@ -390,7 +390,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Order = 2,
                         Text = "I need that bear! It's so cute! Please, let's go get it!",
                         Speaker = Enums.SpeakerType.girl,
-                        ImageUrl = "/images/Cutscene/Intro/Intro2.png",
+                        ImageUrl = "/images/Cutscene/Intro/Intro2.avif",
                         ButtonText = "Continue"
                     },
                     new Cutscene
@@ -400,7 +400,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Order = 3,
                         Text = "It's expensive... And we don't have any tickets.",
                         Speaker = Enums.SpeakerType.boy,
-                        ImageUrl = "/images/Cutscene/Intro/Intro3.png",
+                        ImageUrl = "/images/Cutscene/Intro/Intro3.avif",
                         ButtonText = "Continue"
                     },
                     new Cutscene
@@ -410,7 +410,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Order = 4,
                         Text = "Please, I really want it! You can win some tickets in the games!",
                         Speaker = Enums.SpeakerType.girl,
-                        ImageUrl = "/images/Cutscene/Intro/Intro4.png",
+                        ImageUrl = "/images/Cutscene/Intro/Intro4.avif",
                         ButtonText = "Let's go!"
                     }
 

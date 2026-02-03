@@ -2,6 +2,7 @@ import { createPortal } from "react-dom";
 import ResetButton from "../ResetButton";
 import styles from "../../assets/styles/components/pausemenu.module.css";
 import { useOwnOutlet } from "../../Hooks/useOwnOutlet";
+import { useSound } from "../../Providers/Soundprovider";
 
 
 type ModalProps = {
@@ -10,7 +11,8 @@ type ModalProps = {
 
 const Modal: React.FC<ModalProps> = ({ children }) => {
 
-  const { setIsPauseMenuOpen, isMusicMuted, setIsMusicMuted } = useOwnOutlet();
+  const { setIsPauseMenuOpen } = useOwnOutlet();
+  const { isMusicMuted, setIsMusicMuted, isSfxMuted, setIsSfxMuted, musicVolume, setMusicVolume, sfxVolume, setSfxVolume } = useSound();
 
   const {setPlayer, setGirlfriend, setTickets, setRelationshipValue, setEndReason, addNotification} = useOwnOutlet();
 
@@ -23,10 +25,22 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
       >
         <div className={styles.pauseMenu}>
           <h2>Game menu</h2>
-          <p>Once you´re ready, you can continue</p>
+          <p>Once you're ready, you can continue</p>
         </div>
         <div className={styles.modalInteractive}>
-          <p className={styles.interactiveBtn}>Music<button onClick={() => setIsMusicMuted(!isMusicMuted)}>{isMusicMuted ? "Off" : "On"}</button></p>
+          <p className={styles.interactiveBtn}>Music
+            <div className={styles.interactiveVolume}>
+              <button onClick={() => setIsMusicMuted(!isMusicMuted)}>{isMusicMuted ? "Off" : "On"} </button>
+              <input  type="range" min="0" max="1" step="0.01" value={musicVolume} onChange={(e) => setMusicVolume(parseFloat(e.target.value))}/>
+            </div>
+          </p>
+          <p className={styles.interactiveBtn}>Sound Effects
+            
+            <div className={styles.interactiveVolume}>
+              <button onClick={() => setIsSfxMuted(!isSfxMuted)}> {isSfxMuted ? "Off" : "On"} </button>
+              <input  type="range" min="0" max="1" step="0.01" value={sfxVolume} onChange={(e) => setSfxVolume(parseFloat(e.target.value))}/>
+            </div>
+          </p>
           <ResetButton isIngame={true} navigateTo="/" text="Reset Game" />
         </div>
 

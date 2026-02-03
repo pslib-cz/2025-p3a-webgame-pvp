@@ -54,6 +54,18 @@ const MemoryMatch = () => {
         });
     };
 
+    useEffect(() => {
+        setTurn ("human");
+        setCards(createCards());
+        setSelectedIds([]);
+        setIsResolving(false);
+        setPlayerPoints(0);
+        setComputerPoints(0);
+        setPlayerPairs(0);
+        setComputerMemory([]);
+        setResult(null);
+    }, []);
+
     function handleCardClick(id: number, isComputer = false) {
 
         if (playingTurn === "computer" && !isComputer) return 

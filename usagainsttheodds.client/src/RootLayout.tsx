@@ -4,11 +4,12 @@ import { type UserData } from "./Types/UserDataType";
 import { isDeepEqual } from "./Helpers/generalHelper";
 import { useNavigate } from 'react-router-dom';
 import type { EndReason, Person } from './Types/GameType';
-import { useGameSounds } from "./Hooks/useGameSounds";
 import PauseMenu from "./Components/Pausemenu/PauseMenu";
 import NotificationList from "./Components/Notifications/NotificationList";
 import { GameContext } from "./Context/GameContext";
 import type { NotificationData } from "./Types/NotificationType";
+import type { GameContextType } from "./Types/GameContextType";
+import { useSound } from "./Providers/Soundprovider";
 
 
 const RootLayout = () => {
@@ -59,7 +60,7 @@ const RootLayout = () => {
 
     const [notifications, setNotifications] = useState<NotificationData[]>([]);
     const [isPauseMenuOpen, setIsPauseMenuOpen] = useState<boolean>(false);
-    const { play, stop, isMusicMuted, setIsMusicMuted } = useGameSounds();
+    const { play, isMusicMuted } = useSound();
     const navigate = useNavigate();
 
 
@@ -104,6 +105,18 @@ const RootLayout = () => {
             navigate('/ending');
         }
     }, [endReason]);
+
+useEffect(() => {
+        const handleAutoPlay = () => {
+            if (!isMusicMuted) {
+                play('bgMusic');
+            }
+            window.removeEventListener('click', handleAutoPlay);
+        };
+
+        window.addEventListener('click', handleAutoPlay);
+        return () => window.removeEventListener('click', handleAutoPlay);
+    }, [play, isMusicMuted]);
 
 
 

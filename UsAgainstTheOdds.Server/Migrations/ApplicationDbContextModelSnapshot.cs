@@ -294,7 +294,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                         {
                             CutsceneId = 1,
                             ButtonText = "Continue",
-                            ImageUrl = "/images/Cutscene/Intro/Intro1.png",
+                            ImageUrl = "/images/Cutscene/Intro/Intro1.avif",
                             Order = 1,
                             Speaker = 1,
                             Text = "I hope you enjoy it here...",
@@ -304,7 +304,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                         {
                             CutsceneId = 2,
                             ButtonText = "Continue",
-                            ImageUrl = "/images/Cutscene/Intro/Intro2.png",
+                            ImageUrl = "/images/Cutscene/Intro/Intro2.avif",
                             Order = 2,
                             Speaker = 2,
                             Text = "I need that bear! It's so cute! Please, let's go get it!",
@@ -314,7 +314,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                         {
                             CutsceneId = 3,
                             ButtonText = "Continue",
-                            ImageUrl = "/images/Cutscene/Intro/Intro3.png",
+                            ImageUrl = "/images/Cutscene/Intro/Intro3.avif",
                             Order = 3,
                             Speaker = 1,
                             Text = "It's expensive... And we don't have any tickets.",
@@ -324,7 +324,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                         {
                             CutsceneId = 4,
                             ButtonText = "Let's go!",
-                            ImageUrl = "/images/Cutscene/Intro/Intro4.png",
+                            ImageUrl = "/images/Cutscene/Intro/Intro4.avif",
                             Order = 4,
                             Speaker = 2,
                             Text = "Please, I really want it! You can win some tickets in the games!",

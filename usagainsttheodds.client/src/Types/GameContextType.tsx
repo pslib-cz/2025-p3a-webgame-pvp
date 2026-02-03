@@ -28,8 +28,6 @@ export type GameContextType = {
     setIsPauseMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
     play: (soundName: SoundName) => void;
     stop: (soundName: SoundName) => void;
-    isMusicMuted: boolean;
-    setIsMusicMuted: React.Dispatch<React.SetStateAction<boolean>>;
     isStarted: boolean;
     setIsStarted: React.Dispatch<React.SetStateAction<boolean>>;
     notifications: NotificationData[];
