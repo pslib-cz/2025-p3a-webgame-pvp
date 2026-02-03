@@ -64,7 +64,6 @@ const Blackjack = () => {
         setDeck(dH.createShuffledDeck(deckCount));
         setButtonsVisible(false);
         setBlackjack(false);
-        setResult(null);
     }, []);
 
 

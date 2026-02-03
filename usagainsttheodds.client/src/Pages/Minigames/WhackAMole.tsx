@@ -53,7 +53,6 @@ const WhackAMole = () => {
         setSpawnInterval(500);
         setDespawnInterval(600);
         setPossibleMoles(2);
-        setResult(null);
     }, []);
 
     const holesRef = useRef(holes)

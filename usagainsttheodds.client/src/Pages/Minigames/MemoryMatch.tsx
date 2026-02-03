@@ -63,7 +63,6 @@ const MemoryMatch = () => {
         setComputerPoints(0);
         setPlayerPairs(0);
         setComputerMemory([]);
-        setResult(null);
     }, []);
 
     function handleCardClick(id: number, isComputer = false) {

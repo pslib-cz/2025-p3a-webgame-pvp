@@ -27,7 +27,6 @@ const Russianroulette = () => {
         setIsSpinning(false);
         setJackpot(false);
         setPositions([0,0,0]);
-        setResult(null);
     }, [])
 
 

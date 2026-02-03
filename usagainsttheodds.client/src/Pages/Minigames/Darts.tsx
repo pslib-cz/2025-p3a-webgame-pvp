@@ -18,7 +18,6 @@ const Darts = () => {
         setPos({posX: 50, posY: 50});
         setPlayerScore(0);
         setIsStopped({stoppedX: false, stoppedY: false});
-        setResult(null);
     }, []);
 
 

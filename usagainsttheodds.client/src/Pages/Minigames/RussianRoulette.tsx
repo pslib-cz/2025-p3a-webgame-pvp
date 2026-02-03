@@ -30,7 +30,6 @@ const Russianroulette = () => {
         setSpinButtonsVisible(false);
         setBarrelPosition(null);
         setBulletPosition(null);
-        setResult(null);
     }, [])
 
 

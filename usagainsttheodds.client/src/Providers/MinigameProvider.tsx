@@ -49,6 +49,8 @@ export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>
             alert("Not enough tickets to play this game.");
             return;
         } else {
+            setResult(null);
+            setRewardMultiplier(2);
             console.log("Starting minigame, price:", data!.price);
             setTickets(prev => prev - data!.price);
             setState("playing");
