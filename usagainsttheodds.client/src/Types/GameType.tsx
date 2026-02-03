@@ -32,6 +32,12 @@ export type Items = {
     price: number;
     relationRestoreValue: number;
 }
+export type Jokes = {
+    jokeId: string;
+    jokeText: string;
+    punchline: string;
+    isFunny: boolean;
+}
 
 
 export type Person = {
