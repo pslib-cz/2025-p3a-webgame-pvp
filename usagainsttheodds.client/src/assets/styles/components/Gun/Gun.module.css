@@ -18,6 +18,7 @@
     height: 50vh;
     position: relative; 
     z-index: 2;
+    
 }
 
 /* BARREL */
@@ -34,6 +35,6 @@
 
 /* OTEVŘENÍ */
 .gunbarrelOppened {
-    transform: translate(120%, 0) rotate(90deg);
+    transform: translate(131%, 0) rotate(90deg);
 
 }

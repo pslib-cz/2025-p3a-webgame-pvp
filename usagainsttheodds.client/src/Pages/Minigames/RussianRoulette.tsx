@@ -94,7 +94,7 @@ const Russianroulette = () => {
                                 <button className={`button`} 
                                     onClick={() => {
                                         setBarrelOpened(false);
-                                        if(bulletPosition !== null) setSpinButtonsVisible(true); setButtonsVisible(false)
+                                        if(bulletPosition !== null) {setSpinButtonsVisible(true); setButtonsVisible(false)}
 
                                     }} 
                                     style={{ marginLeft: 8 }}>
