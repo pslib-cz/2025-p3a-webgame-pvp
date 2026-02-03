@@ -16,7 +16,7 @@ const Wheel = () => {
 
     const fetchJokes = () => {
         console.log("Fetching jokes data");
-        return fetch(`/api/jokes/`)
+        return fetch(`/api/joke/`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
