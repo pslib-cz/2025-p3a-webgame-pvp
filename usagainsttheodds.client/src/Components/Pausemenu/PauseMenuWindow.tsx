@@ -2,7 +2,7 @@ import { createPortal } from "react-dom";
 import ResetButton from "../ResetButton";
 import styles from "../../assets/styles/components/pausemenu.module.css";
 import { useOwnOutlet } from "../../Hooks/useOwnOutlet";
-import { useSound } from "../../Providers/Soundprovider";
+import { useSound } from "../../Providers/SoundProvider";
 
 
 type ModalProps = {
@@ -14,7 +14,7 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
   const { setIsPauseMenuOpen } = useOwnOutlet();
   const { isMusicMuted, setIsMusicMuted, isSfxMuted, setIsSfxMuted, musicVolume, setMusicVolume, sfxVolume, setSfxVolume } = useSound();
 
-  const {setPlayer, setGirlfriend, setTickets, setRelationshipValue, setEndReason} = useOwnOutlet();
+  const {setPlayer, setGirlfriend, setTickets, setRelationshipValue, setEndReason, addNotification} = useOwnOutlet();
 
 
   return createPortal(
@@ -55,6 +55,7 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
                     <button onClick={() => setGirlfriend(prev => ({ ...prev, thirst: 0 }))}>Girlfriend thirst 0</button>
                     <button onClick={() => setGirlfriend(prev => ({ ...prev, drunkenness: 100 }))}>Girlfriend drunkenness 100</button>
                   </div>
+                  <button onClick={() => addNotification("New notification", "/images/Avatars/girlfriendAvatar.png")}>add notification</button>
 
         <button className={styles.returnButton} onClick={() => setIsPauseMenuOpen(false)}>Return to game</button>
         {children}

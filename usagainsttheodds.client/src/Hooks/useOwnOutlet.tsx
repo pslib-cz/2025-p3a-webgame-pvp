@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { GameContext } from "../RootLayout";
+import { GameContext } from "../Context/GameContext";
 import type { GameContextType } from "../Types/GameContextType";
 
 export const useOwnOutlet = () => {

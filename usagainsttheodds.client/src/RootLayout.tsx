@@ -1,15 +1,15 @@
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { type UserData } from "./Types/UserDataType";
 import { isDeepEqual } from "./Helpers/generalHelper";
 import { useNavigate } from 'react-router-dom';
 import type { EndReason, Person } from './Types/GameType';
 import PauseMenu from "./Components/Pausemenu/PauseMenu";
-import type { GameContextType } from "./Types/GameContextType";
-import { useSound } from "./Providers/Soundprovider";
+import NotificationList from "./Components/Notifications/NotificationList";
+import { GameContext } from "./Context/GameContext";
+import type { NotificationData } from "./Types/NotificationType";
+import { useSound } from "./Providers/SoundProvider";
 
-
-export const GameContext = createContext<GameContextType | null>(null);
 
 const RootLayout = () => {
     const intitialData: UserData = {
@@ -56,6 +56,8 @@ const RootLayout = () => {
     const [endPerson, setEndPerson] = useState<"boy" | "girl" | null>(userData.endPerson);
     const [isStarted, setIsStarted] = useState<boolean>(userData.isStarted);
 
+
+    const [notifications, setNotifications] = useState<NotificationData[]>([]);
     const [isPauseMenuOpen, setIsPauseMenuOpen] = useState<boolean>(false);
     const { play, isMusicMuted } = useSound();
     const navigate = useNavigate();
@@ -147,6 +149,20 @@ useEffect(() => {
 
 
 
+    const addNotification = (text: string, imageSrc?: string) => {
+        const newNotif: NotificationData = {
+            id: Date.now(), // Unikátní ID pro každou notifikaci
+            text,
+            imageSrc
+        };
+        setNotifications((prev) => [...prev, newNotif]);
+    };
+
+    const closeNotification = (id: number) => {
+        setNotifications((prev) => prev.filter((n) => n.id !== id));
+    };
+
+
     const gameContextValue = {
         tickets, setTickets,
         relationshipValue, setRelationshipValue,
@@ -161,7 +177,10 @@ useEffect(() => {
         isPauseMenuOpen, setIsPauseMenuOpen,
         play,
         stop,
-        isStarted, setIsStarted
+        isMusicMuted,
+        isStarted, setIsStarted,
+        addNotification, closeNotification,
+        notifications
     }
 
 
@@ -169,6 +188,7 @@ useEffect(() => {
         <GameContext.Provider value={gameContextValue}>
             <div className="game-root">
                 <PauseMenu />
+                <NotificationList />
                 <Outlet />
             </div>
         </GameContext.Provider>

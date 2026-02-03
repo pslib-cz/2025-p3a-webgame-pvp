@@ -1,4 +1,5 @@
 import type { EndReason, Person } from "./GameType";
+import type { NotificationData } from "./NotificationType";
 import type { SoundName } from "./SoundType";
 
 
@@ -29,4 +30,7 @@ export type GameContextType = {
     stop: (soundName: SoundName) => void;
     isStarted: boolean;
     setIsStarted: React.Dispatch<React.SetStateAction<boolean>>;
+    notifications: NotificationData[];
+    addNotification: (text: string, imageSrc?: string) => void;
+    closeNotification: (id: number) => void;
 }
