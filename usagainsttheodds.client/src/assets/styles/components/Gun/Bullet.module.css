@@ -1,7 +1,7 @@
 .bullet{
     position: absolute;
-    width: 32px;
-    height: 32px;
+    width: 4cqh;
+    height: 4cqh;
     background-color: #3D3D3D;
     border-radius: 50%;
     top: 36%;left: 43%;
@@ -9,22 +9,22 @@
 }
 
 .pos1{
-    transform: translate(0px, -60px);
+    transform: translate(0px, -160%);
 }
 .pos2{
-    transform: translate(50px, -30px);
+    transform: translate(120%, -80%);
 }
 .pos3{
-    transform: translate(50px, 30px);
+    transform: translate(120%, 80%);
 }
 .pos4{
-    transform: translate(0px, 60px);
+    transform: translate(0px, 160%);
 }
 .pos5{
-    transform: translate(-52px, 30px);
+    transform: translate(-130%, 80%);
 }
 .pos6{
-    transform: translate(-52px, -30px);
+    transform: translate(-130%, -80%);
 }
 
 .bulletIn{
