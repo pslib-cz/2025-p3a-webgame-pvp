@@ -8,7 +8,7 @@ import { useOwnOutlet } from "../Hooks/useOwnOutlet";
 
 const ItemShop = () => {
 
-    const { setRelationshipValue, tickets, setTickets } = useOwnOutlet();
+    const { setRelationshipValue, tickets, setTickets,setEndReason } = useOwnOutlet();
 
     const [promise, setPromise] = useState<Promise<Items[]> | null>(null);
 
@@ -36,24 +36,32 @@ const ItemShop = () => {
         return <div>Initializing request...</div>;
     }
 
+
+    
     const data = use(promise);
     
+    console.log(data)
     const handleBuy = (Id: string) => {
 
-        const item = data.find(i => i.ItemId === Id);
+        const item = data.find(i => i.itemId === Id);
         if (!item) {
             console.error("Item not found");
             return;
         }
 
+        console.log(item.itemId, item.relationRestoreValue, item.description, item.name, item.price)
+
         if (tickets < item.price) {
             alert("Not enough tickets!");
             return;
         }
+        if (item.itemId === "pinkbear"){
+            setEndReason("victory")
+        }
 
         setTickets(prev => prev - item.price);
         
-        setRelationshipValue(prev => Math.min(100, prev + item.RelationRestoreValue));
+        setRelationshipValue(prev => Math.min(100, prev + item.relationRestoreValue));
 
     }
 
@@ -64,12 +72,12 @@ const ItemShop = () => {
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1em' }}>
                 {data.map((item) => (
-                    <div key={item.ItemId} style={{ border: '1px solid black', padding: '1em' }}>
+                    <div key={item.itemId} style={{ border: '1px solid black', padding: '1em' }}>
                         <h2>{item.name}</h2>
                         <p>{item.description}</p>
                         <p>Price: {item.price} tickets</p>
-                        <p>Relation Restore: {item.RelationRestoreValue}</p>
-                        <button onClick={() => handleBuy(item.ItemId)}>Buy</button>
+                        <p>Relation Restore: {item.relationRestoreValue}</p>
+                        <button onClick={() => handleBuy(item.itemId)}>Buy</button>
                     </div>
                 ))}
 
