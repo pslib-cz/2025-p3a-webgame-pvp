@@ -3,8 +3,10 @@ import styles from "../assets/styles/Intro.module.css"
 import IntroRules from '../Components/IntroRules';
 import { useState } from 'react';
 import { useOwnOutlet } from '../Hooks/useOwnOutlet';
+import { useSound } from '../Providers/Soundprovider';
 
 const StartPage = () => {
+    const { play } = useSound();
     const navigate = useNavigate();
     const hasSave = localStorage.getItem("UserData") !== null;
     const [showComponent, setShowComponent] = useState(false);
@@ -29,9 +31,9 @@ const StartPage = () => {
             <div className={styles.text}>
                 <h1>Us against the odds</h1>
                 <div className={styles.buttons}>
-                    <button className={styles.buttonIntro} onClick={handleShow}>New game</button>
+                    <button className={styles.buttonIntro} onClick={() => { handleShow(); }}>New game</button>
                     {isStarted && (
-                    <button className={styles.buttonIntro} onClick={Continue}>
+                    <button className={styles.buttonIntro} onClick={() => { play('bgMusic'); Continue(); }}>
                         Continue
                     </button>
                     )}

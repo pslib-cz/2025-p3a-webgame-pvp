@@ -2,10 +2,13 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import styles from "../assets/styles/Intro.module.css"
 import { useOwnOutlet } from '../Hooks/useOwnOutlet';
+import { useSound } from '../Providers/Soundprovider';
 
 const IntroRules = () => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState<string>("John");
+
+  const { play } = useSound();  
   
   const { setPlayer, setIsStarted } = useOwnOutlet();
 
@@ -72,7 +75,7 @@ const IntroRules = () => {
         
       </div>
 
-      <button onClick={handleSaveAndStart}>
+      <button onClick={() => { play('crowd'); play('bgIntro'); handleSaveAndStart(); }}>
         Start new game
       </button>
     </div>
