@@ -37,12 +37,13 @@ const Darts = () => {
 
 
      useEffect(() => {
-        const handleSpace = (event) => {
+        const handleSpace = (event: KeyboardEvent) => {
           if (event.code === "Space" || event.key === " ") {
-            console.log("Space pressed globally!");
+            handleStop()
+            console.log("Space pressed");   
           }
         };
-    
+        
         window.addEventListener("keydown", handleSpace);
         return () => window.removeEventListener("keydown", handleSpace);
       }, []);
@@ -95,19 +96,34 @@ const Darts = () => {
     }
 
 
+    const handleStop = () => {
+        setIsStopped((prev) => {
+            if (!prev.stoppedX) {
+                console.log("stopping X");
+                return { ...prev, stoppedX: true };
+            } else if (!prev.stoppedY) {
+                console.log("stopping Y");
+                return { ...prev, stoppedY: true };
+            }
+            console.log("both stopped");
+            return prev;
+        });
+    }
+
+
     return (
         <div className={`${minigameStyles.container} ${minigameStyles.alignToBottom}`}>
             <div className={styles.dartsGameContainer}>
             {!isStopped.stoppedX && (
                         <>
                             <DartsSlider isAxisY={false} dartsPosPercent={(x: number) => setPos({posX: x, posY: pos.posY})} isShot={isStopped.stoppedX}/>
-                            <button className={styles.dartButton} onClick={() => setIsStopped({stoppedX: true, stoppedY: isStopped.stoppedY})}>stoppedX</button>
+                            <button className={styles.dartButton} onClick={() => handleStop()}>stoppedX</button>
                         </>
                     )}
                     {(!isStopped.stoppedY && isStopped.stoppedX) && (
                         <>
                             <DartsSlider isAxisY={true} dartsPosPercent={(y: number) => setPos({posX: pos.posX, posY: y})} isShot={isStopped.stoppedY}/>
-                            <button className={styles.dartButton} onClick={() => setIsStopped({stoppedX: isStopped.stoppedX, stoppedY: true})}>stoppedY</button>
+                            <button className={styles.dartButton} onClick={() => handleStop()}>stoppedY</button>
                         </>
                     )}
                 <div className={`${styles.dartContainer} ${styles.target}`}>
