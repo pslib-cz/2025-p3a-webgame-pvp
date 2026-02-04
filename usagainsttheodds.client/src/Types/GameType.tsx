@@ -32,7 +32,7 @@ export type Items = {
     price: number;
     relationRestoreValue: number;
 }
-export type Jokes = {
+export type JokeType = {
     jokeId: string;
     jokeText: string;
     punchline: string;

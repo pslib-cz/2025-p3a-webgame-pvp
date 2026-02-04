@@ -1,39 +1,23 @@
 import { Suspense, use, useEffect, useState } from "react";
 import { useOwnOutlet } from "../../Hooks/useOwnOutlet";
-import type { Jokes } from "../../Types/GameType";
+import type { JokeType } from "../../Types/GameType";
 import styles from "../../assets/styles/Wheel.module.css";
 import { ErrorBoundary } from "react-error-boundary";
 import ChangeScreenButton from "../../Components/ChangeScreenButton";
+import apiGet from "../../Helpers/apiHelper";
 
 
 
 
-const WheelContent = () => {
+const WheelContent = ({ promise }: { promise: Promise<JokeType[]> }) => {
 
     const { player } = useOwnOutlet();
-    const [promise, setPromise] = useState<Promise<Jokes[]> | null>(null);
-    const [joke, setJoke] = useState<Jokes | null>(null);
+    const [joke, setJoke] = useState<JokeType | null>(null);
     const [jokeStage, setJokeStage] = useState<"setup" | "punchline">("setup");
 
 
-    const fetchJokes = () => {
-        console.log("Fetching jokes data");
-        return fetch(`/api/joke/`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        });
-    }
 
-    useEffect(() => {
-        if (!promise) {
-            setPromise(fetchJokes());
-        }
-    }, []);
-
-    const data = promise ? use(promise) : [];
+    const data = use(promise);
 
     useEffect(() => {
         if (data.length > 0) {
@@ -48,10 +32,10 @@ const WheelContent = () => {
 
 
     
-    const getRandomJoke = (jokes: Jokes[]) => {
+    const getRandomJoke = (jokes: JokeType[]) => {
 
         setJoke(jokes[Math.floor(Math.random() * jokes.length)]);
-
+            //pridat do controlleru fetchrandom 
     }
 
     useEffect(() => {
@@ -87,10 +71,21 @@ const WheelContent = () => {
 
 
 const Wheel = () => {
+    const [promise, setPromise] = useState<Promise<JokeType[]> | null>(null);
+
+    useEffect(() => {
+        setPromise(apiGet<JokeType[]>('/api/jokes'));
+    }, []);
+
+    if (!promise) {
+        return <div className={styles.page}>Initializing request...</div>;
+    }
+
+
     return (
         <ErrorBoundary fallback={<div className={styles.page}>An error occurred while loading the cutscene. Please try again later.</div>}>
             <Suspense fallback={<div className={styles.page}>Loading scene...</div>}>
-                <WheelContent />
+                <WheelContent promise={promise}/>
             </Suspense>
         </ErrorBoundary>
     )

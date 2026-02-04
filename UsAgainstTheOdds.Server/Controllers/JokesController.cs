@@ -7,11 +7,11 @@ namespace UsAgainstTheOdds.Server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class JokeController : ControllerBase
+    public class JokesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public JokeController(ApplicationDbContext context)
+        public JokesController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -20,21 +20,22 @@ namespace UsAgainstTheOdds.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Joke>>> GetAllJokes()
         {
-            return await _context.Jokes.ToListAsync();
+            var Jokes = await _context.Jokes.ToListAsync();
+            return Ok(Jokes);
         }
 
         // GET: api/joke/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Joke>> GetJoke(int id)
         {
-            var joke = await _context.Jokes.FindAsync(id);
+            var Joke = await _context.Jokes.FindAsync(id).FirstOrDefaultAsync(m => m.ItemId == id);
 
-            if (joke == null)
+            if (Joke == null)
             {
                 return NotFound();
             }
 
-            return joke;
+            return Ok(Joke);
         }
     }
 }
