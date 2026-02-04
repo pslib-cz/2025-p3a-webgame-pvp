@@ -10,7 +10,7 @@ import ChangeScreenButton from "../../Components/ChangeScreenButton";
 
 const WheelContent = () => {
 
-    const { setRelationshipValue, player } = useOwnOutlet();
+    const { player } = useOwnOutlet();
     const [promise, setPromise] = useState<Promise<Jokes[]> | null>(null);
     const [joke, setJoke] = useState<Jokes | null>(null);
     const [jokeStage, setJokeStage] = useState<"setup" | "punchline">("setup");
