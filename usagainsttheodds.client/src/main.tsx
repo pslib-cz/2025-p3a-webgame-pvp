@@ -14,7 +14,7 @@ import IntroCutscene from './Pages/Cutscene/IntroCutscene.tsx'
 import ItemShop from './Pages/ItemShop.tsx';
 import HomePage2 from './Pages/HomePage2.tsx';
 import Ending from './Pages/Ending/Ending.tsx';
-import Wheel from './Pages/Cutscene/Wheel.tsx';
+/*import Wheel from './Pages/Cutscene/Wheel.tsx'; <Route path="wheel" element={<Wheel />} />*/
 import { SoundProvider } from './Providers/SoundProvider.tsx';
 import NotificationList from './Components/Notifications/NotificationList.tsx';
 
@@ -47,7 +47,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="foodbar" element={<FoodBar />} />
           <Route path="itemshop" element={<ItemShop/> } />
 
-          <Route path="wheel" element={<Wheel />} />
+          
 
           {/* STÁNKY */}
           <Route path='minigame'>

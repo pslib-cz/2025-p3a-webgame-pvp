@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿/*using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UsAgainstTheOdds.Server.Data;
 using UsAgainstTheOdds.Server.Models;
@@ -38,4 +38,4 @@ namespace UsAgainstTheOdds.Server.Controllers
             return Ok(Joke);
         }
     }
-}
+}*/

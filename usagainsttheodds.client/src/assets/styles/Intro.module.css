@@ -59,11 +59,11 @@
 /* STARTPAGE */
 
 .startpage {
-    background-image: url('/images/StartPage.png');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    position: relative;
+    width: 100vw;
     height: 100vh;
+    overflow: hidden;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -80,26 +80,78 @@
     font-size: 3rem;
 }
 
-.startpage h1 {
-    color: var(--light-color);
-    text-shadow: 2px 2px 4px #1c1c1c;
-}
-
 .startpage .buttons {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1rem;
     font-size: 2rem;
 }
 
-.buttonIntro {
-    font-size: 1.8rem;
-    padding: .25em .5em;
-    background-color: none;
-    margin: 0.25em;
-    cursor: pointer;
+
+
+.layer {
+  position: absolute;
+  left: 0;
+
+  z-index: -1;
+
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  transform: translateY(50px);
+  
+  animation: fadeInLayer 1.2s ease-out forwards;
+}
+
+@keyframes fadeInLayer {
+    to { transform: translateY(0); }
+}
+
+.layer1 {
+    bottom: 22vh;
+    background-image: url('/images/Cutscene/Start/Background.png');
+    animation-delay: 0.3s;
+}
+.layer2 {
+    bottom: -15vh;
+    background-image: url('/images/Cutscene/Start/Grass.png');
+    animation-delay: 0.5s;
+}
+.layer3, .layer4 {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('/images/Cutscene/Start/Text.png');
+
+    z-index: 0;
+
+    width: 40vw;
+    height: auto;
+    aspect-ratio: 110/13;
+
+    position: absolute;
+    bottom: 35vh;
+    left: 50%;
+
+    opacity: 0;
+    transform: translate(-50%, 50px);
+
+    animation: fadeText 1.2s ease-out forwards;
+    animation-delay: 2s;
+}
+
+.layer4 {
+    background-image: none;
+    bottom: 20vh;
+    animation-delay: 2.2s;
+}
+
+@keyframes fadeText {
+    to { transform: translate(-50%, 0); opacity: 1; }
 }
 
 /* INTRO POP UP*/
@@ -108,9 +160,10 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    gap: 5%;
+    gap: 1vh;
     justify-content: center;
     align-items: center;
+    z-index: 3;
 
     top: 50%;
     left: 50%;
@@ -118,7 +171,7 @@
 
     background-image: url("/images/Main/PauseMenu.png");
     background-position: center;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     aspect-ratio: 230 / 149;
 }
@@ -140,5 +193,47 @@
 
 .rules {
     padding: 1rem;
+}
+
+.rulesText p {
+    display: flex;
+}
+
+.rulesBold {
+    margin: 0 .2rem;
+    border-bottom: 1px dotted var(--dark-color);
+}
+
+.nameInputContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0.5rem 0;
+}
+
+.nameInputBox {
+    border-bottom: 1px solid var(--dark-color);
+        color: var(--dark-color);
+        display: flex;
+        align-items: center;
+}
+
+.nameInput {
+    border: none;
+    background-color: transparent;
+    padding: .2rem ;
+    margin: 0 1rem;
+    width: 10vw;
+}
+
+.nameInput:focus {
+    color: #B24B26;
+    border: none;
+    outline: none;
+}
+
+.nameInput::selection {
+    background-color: #B24B26;
+    color: var(--light-color);
 }
 

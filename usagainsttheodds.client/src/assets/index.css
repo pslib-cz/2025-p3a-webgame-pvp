@@ -34,7 +34,70 @@ button {
     cursor: pointer;
 }
 
+.buttonIntro {
+    font-size: 1.8rem;
+    padding: .25em .5em;
+    margin: 0.25em;
+    cursor: pointer;
+
+    background: none;
+    border: none;
+    color: var(--light-color);
+
+    position: relative;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.buttonIntro::before,
+.buttonIntro::after {
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    font-family: monospace;
+}
+
+.buttonIntro::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url('/images/Main/SVG/arrow-right.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translateY(-10px);
+}
+
+.buttonIntro::after {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url('/images/Main/SVG/arrow-left.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translateY(-10px);
+}
+
+.buttonIntro:hover::before,
+.buttonIntro:hover::after {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .button:hover {
     background-color: rgb(178, 219, 255);
 }
+
+.buttonRules {
+    margin: 0 auto;
+    color: #B24B26;
+    font-size: 1rem;
+}
+
+.buttonRules::before, .buttonRules::after {
+    filter: brightness(0.4) sepia(1) hue-rotate(-30deg) saturate(2.5) contrast(1.5);
+}
+
 

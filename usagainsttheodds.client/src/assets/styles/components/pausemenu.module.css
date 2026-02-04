@@ -32,7 +32,6 @@
     z-index: 200;
     cursor: not-allowed;
     background-color: rgba(0, 0, 0, 0.7);
-
 }
 
 .modalContent {
@@ -40,25 +39,65 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
     background-image: url("/images/Main/PauseMenu.png");
-    background-size: cover;
+    background-size: contain;
+    aspect-ratio: 230 / 149;
     background-repeat: no-repeat;
-    padding: 2.6% 5%;
-    width: max-content;
+
+    width: 40vw;
+    height: auto;
+
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
+    justify-content: center;
     align-items: center;
     cursor: default;
 }
 
 .modalInteractive {
-    width: 100%;
+    width: 50%;
 }
 
 .interactiveBtn {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 2%;
     flex-grow: 1;
+    cursor: pointer;
+}
+
+.interactiveBtn button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.interactiveBtn input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.interactiveBtn input[type="range"]::-webkit-slider-runnable-track {
+  background: #341B17;
+  height: 5px;
+  border-radius: 0px;
+}
+
+.interactiveBtn input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 8px;
+  width: 8px;
+  background: #E8D3D3;
+  border: 1px solid var(--dark-color);
+  margin-top: -3px;
+}
+
+.interactiveVolume {
+    display: flex;
+    align-items: center;
 }

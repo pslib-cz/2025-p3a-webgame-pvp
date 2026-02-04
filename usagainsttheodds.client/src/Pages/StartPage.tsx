@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import '../assets/index.css'
 import styles from "../assets/styles/Intro.module.css"
 import IntroRules from '../Components/IntroRules';
 import { useState } from 'react';
@@ -28,18 +29,24 @@ const StartPage = () => {
 
     return (
         <div className={styles.startpage}>
-            <div className={styles.text}>
-                <h1>Us against the odds</h1>
+
+            
+            {showComponent && <IntroRules />}
+
+            <div className={`${styles.layer} ${styles.layer1}`} />
+            <div className={`${styles.layer} ${styles.layer2}`} />
+            <div className={styles.layer3}/>
+            <div className={styles.layer4}>
                 <div className={styles.buttons}>
-                    <button className={styles.buttonIntro} onClick={() => { handleShow(); }}>New game</button>
+                    <button className="buttonIntro" onClick={() => { handleShow(); }}>New game</button>
                     {isStarted && (
-                    <button className={styles.buttonIntro} onClick={() => { play('bgMusic'); Continue(); }}>
+                    <button className="buttonIntro" onClick={() => { play('bgMusic'); Continue(); }}>
                         Continue
                     </button>
                     )}
                 </div>
             </div>
-            {showComponent && <IntroRules />}
+            
         </div>
     );
 };
