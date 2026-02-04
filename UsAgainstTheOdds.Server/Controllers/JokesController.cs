@@ -28,7 +28,7 @@ namespace UsAgainstTheOdds.Server.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Joke>> GetJoke(int id)
         {
-            var Joke = await _context.Jokes.FindAsync(id).FirstOrDefaultAsync(m => m.ItemId == id);
+            var Joke = await _context.Jokes.FirstOrDefaultAsync(m => m.JokeId == id);
 
             if (Joke == null)
             {
