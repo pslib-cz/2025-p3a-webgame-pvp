@@ -62,7 +62,7 @@ const Wheel = () => {
 
 
     return (
-        <ErrorBoundary fallback={<div className={styles.page}>An error occurred while loading the cutscene. Please try again later.</div>}>
+        <ErrorBoundary fallback={<div className={styles.page}>An error occurred while loading the Wheel. Please try again later.</div>}>
             <Suspense fallback={<div className={styles.page}>Loading scene...</div>}>
                 <WheelContent promise={promise}/>
             </Suspense>

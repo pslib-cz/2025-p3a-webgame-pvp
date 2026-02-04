@@ -1,46 +1,22 @@
 import ChangeScreenButton from "../Components/ChangeScreenButton"
-import { use, useEffect, useState } from "react";
+import { Suspense, use, useEffect, useState } from "react";
 import type { Items } from "../Types/GameType";
 import { useOwnOutlet } from "../Hooks/useOwnOutlet";
+import { ErrorBoundary } from "react-error-boundary";
+import apiGet from "../Helpers/apiHelper";
 
 
 
 
-const ItemShop = () => {
+const ItemShopContent = ({ promise }: { promise: Promise<Items[]> }) => {
 
     const { setRelationshipValue, tickets, setTickets,setEndReason } = useOwnOutlet();
 
-    const [promise, setPromise] = useState<Promise<Items[]> | null>(null);
-
-    
-    
-    
-    const fetchItems = () => {
-        console.log("Fetching items data");
-        return fetch(`/api/items/`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        });
-    }
-    
-    
-    //load data from api
-    useEffect(() => {
-        setPromise(fetchItems());
-    }, []);
-    
-    if (!promise) {
-        return <div>Initializing request...</div>;
-    }
-
-
-    
     const data = use(promise);
-    
-    console.log(data)
+
+
+
+
     const handleBuy = (Id: string) => {
 
         const item = data.find(i => i.itemId === Id);
@@ -88,6 +64,25 @@ const ItemShop = () => {
     )
 }
 
+const ItemShop = () => {
+    const [promise, setPromise] = useState<Promise<Items[]> | null>(null);
+
+    useEffect(() => {
+        setPromise(apiGet<Items[]>('/api/items'));
+    }, []);
+
+    if (!promise) {
+        return <div>Initializing request...</div>;
+    }
+
+    return (
+        <ErrorBoundary fallback={<div >An error occurred while loading the item shop. Please try again later.</div>}>
+            <Suspense fallback={<div >Loading item shop...</div>}>
+                <ItemShopContent promise={promise} />
+            </Suspense>
+        </ErrorBoundary>
+    );
+};
 
 
 
