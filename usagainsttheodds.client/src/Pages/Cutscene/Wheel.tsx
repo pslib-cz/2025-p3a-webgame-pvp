@@ -11,7 +11,7 @@ import apiGet from "../../Helpers/apiHelper";
 
 const WheelContent = ({ promise }: { promise: Promise<JokeType> }) => {
 
-    const { player } = useOwnOutlet();
+    const { player, setRelationshipValue, setTickets } = useOwnOutlet();
     const [jokeStage, setJokeStage] = useState<"setup" | "punchline">("setup");
 
 
@@ -21,6 +21,8 @@ const WheelContent = ({ promise }: { promise: Promise<JokeType> }) => {
     useEffect(() => {
             const timer = setTimeout(() => {
                 setJokeStage("punchline");
+                setTickets(prev => prev - 200);//poladit dyl
+                setRelationshipValue(prev => prev + 20);
             }, 5000);
 
             return () => clearTimeout(timer);
