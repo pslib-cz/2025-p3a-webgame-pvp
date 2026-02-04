@@ -10,45 +10,24 @@ import apiGet from "../../Helpers/apiHelper";
 
 AZ BUDES PREMYSLET PROC TO NEJDE, V MAIN MAS ZAKOMENTOVANY IMPORT A ROUTU
 
-const WheelContent = ({ promise }: { promise: Promise<JokeType[]> }) => {
+const WheelContent = ({ promise }: { promise: Promise<JokeType> }) => {
 
-    const { player } = useOwnOutlet();
-    const [joke, setJoke] = useState<JokeType | null>(null);
+    const { player, setRelationshipValue, setTickets } = useOwnOutlet();
     const [jokeStage, setJokeStage] = useState<"setup" | "punchline">("setup");
 
 
 
-    const data = use(promise);
+    const joke = use(promise);
 
     useEffect(() => {
-        if (data.length > 0) {
-            setJoke(data[Math.floor(Math.random() * data.length)]);
             const timer = setTimeout(() => {
                 setJokeStage("punchline");
+                setTickets(prev => prev - 200);//poladit dyl
+                setRelationshipValue(prev => prev + 20);
             }, 5000);
 
             return () => clearTimeout(timer);
-        }
-    }, [data]);
-
-
-    
-    const getRandomJoke = (jokes: JokeType[]) => {
-
-        setJoke(jokes[Math.floor(Math.random() * jokes.length)]);
-            //pridat do controlleru fetchrandom 
-    }
-
-    useEffect(() => {
-        getRandomJoke(data);
-        const timer = setTimeout(() => {
-            setJokeStage("punchline");
-        }, 5000);
-
-        return () => clearTimeout(timer);
-    }, [data]);
-
-
+    }, [joke]);
 
 
     return (
@@ -72,10 +51,10 @@ const WheelContent = ({ promise }: { promise: Promise<JokeType[]> }) => {
 
 
 const Wheel = () => {
-    const [promise, setPromise] = useState<Promise<JokeType[]> | null>(null);
+    const [promise, setPromise] = useState<Promise<JokeType> | null>(null);
 
     useEffect(() => {
-        setPromise(apiGet<JokeType[]>('/api/jokes'));
+        setPromise(apiGet<JokeType>('/api/jokes/random'));
     }, []);
 
     if (!promise) {
@@ -84,7 +63,7 @@ const Wheel = () => {
 
 
     return (
-        <ErrorBoundary fallback={<div className={styles.page}>An error occurred while loading the cutscene. Please try again later.</div>}>
+        <ErrorBoundary fallback={<div className={styles.page}>An error occurred while loading the Wheel. Please try again later.</div>}>
             <Suspense fallback={<div className={styles.page}>Loading scene...</div>}>
                 <WheelContent promise={promise}/>
             </Suspense>
