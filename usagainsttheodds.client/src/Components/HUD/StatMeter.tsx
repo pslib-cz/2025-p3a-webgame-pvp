@@ -4,12 +4,11 @@ import styles from "../../assets/styles/components/HUD/StatMeter.module.css"
 type StatMeterProps = {
     type: string;
     value: number;
-    person?: "player" | "girlfriend";
 }
 
 
 
-const StatMeter:React.FC<StatMeterProps> = ({type, value, person}) => {
+const StatMeter:React.FC<StatMeterProps> = ({type, value}) => {
 
     const clampedValue = Math.min(Math.max(value, 0), 100);
 
@@ -18,21 +17,18 @@ const StatMeter:React.FC<StatMeterProps> = ({type, value, person}) => {
     }
 
     const icons: Record<string, string> = {
-      relationship: styles["heart-icon"],
-      hunger: styles["food-icon"],
-      thirst: styles["drink-icon"],
+      relationship: styles["icon-heart"],
+      hunger: styles["icon-food"],
+      thirst: styles["icon-drink"],
     };
 
   return (
-    <div className={`${styles.container} ${person === "girlfriend" ? ` ${styles.girlfriend}` : ""}`}>
+    <div className={`${styles.container}`}>
       <div>
-        <span
-          className={`${styles.label} ${icons[type] ?? ""}`}
-        >
-        </span>
+        <span className={`${styles.label} ${styles.icon} ${icons[type] ?? ""}`} />
       </div>
       <div className={styles.bar}>
-        <span className={styles.fill} style={{ width: `${clampedValue}%`, backgroundColor: makeColor() }}></span>
+        <span className={styles.fill} style={{ width: `${clampedValue}%`, backgroundColor: makeColor() }}/>
       </div>
     </div>
   )
