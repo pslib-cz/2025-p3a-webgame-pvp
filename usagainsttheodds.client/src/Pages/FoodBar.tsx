@@ -1,28 +1,18 @@
 import ChangeScreenButton from "../Components/ChangeScreenButton"
-import { use, useEffect, useState } from "react";
+import { Suspense, use, useEffect, useState } from "react";
 import type { Consumable } from "../Types/GameType";
 import { useOwnOutlet } from "../Hooks/useOwnOutlet";
 import apiGet from "../Helpers/apiHelper";
 import styles from "../assets/styles/Shop.module.css"
 import minigameStyles from '../assets/styles/Minigames/Minigame.module.css';
+import { ErrorBoundary } from "react-error-boundary";
 
 
 
-const FoodBar = () => {
+const FoodBarContent = ({ promise }: { promise: Promise<Consumable[]> }) => {
 
     const { setPlayer, setGirlfriend, tickets, setTickets } = useOwnOutlet();
 
-    const [promise, setPromise] = useState<Promise<Consumable[]> | null>(null);
-
-    //load data from api
-    useEffect(() => {
-        setPromise(apiGet<Consumable[]>('/api/consumables/'));
-    }, []);
-    
-    
-    if (!promise) {
-        return <div>Initializing request...</div>;
-    }
 
     const data = use(promise);
     
@@ -91,5 +81,26 @@ const FoodBar = () => {
         </div>
     )
 }
+
+
+const FoodBar = () => {
+    const [promise, setPromise] = useState<Promise<Consumable[]> | null>(null);
+
+    useEffect(() => {
+        setPromise(apiGet<Consumable[]>('/api/consumables/'));
+    }, []);
+
+    if (!promise) {
+        return <div>Initializing request...</div>;
+    }
+
+    return (
+        <ErrorBoundary fallback={<div >An error occurred while loading the food bar. Please try again later.</div>}>
+            <Suspense fallback={<div >Loading food bar...</div>}>
+                <FoodBarContent promise={promise} />
+            </Suspense>
+        </ErrorBoundary>
+    );
+};
 
 export default FoodBar;
