@@ -1,7 +1,9 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { ErrorBoundary } from "react-error-boundary";
 import './assets/index.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import NotFoundPage from './Pages/NotFoundPage.tsx';
 import RootLayout from './RootLayout.tsx';
 import MainLayout from './MainLayout.tsx';
@@ -22,8 +24,9 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <SoundProvider>
     <BrowserRouter>
+    <ErrorBoundary FallbackComponent={ErrorPage}>
       <Routes>
-        <Route path="/" element={<RootLayout />} errorElement={<ErrorPage />}>
+        <Route path="/" element={<RootLayout />}>
 
           <Route path='/notificationTest' element={<NotificationList />} />
 
@@ -64,10 +67,11 @@ createRoot(document.getElementById('root')!).render(
           {/* ENDING */}
           <Route path="ending" element={<Ending />} />
 
-          {/* 404 */}
+          {/* errory */}
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
+      </ErrorBoundary>
     </BrowserRouter>
     </SoundProvider>
   </StrictMode>

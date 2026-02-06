@@ -5,6 +5,7 @@ import { useOwnOutlet } from "../Hooks/useOwnOutlet";
 import { ErrorBoundary } from "react-error-boundary";
 import apiGet from "../Helpers/apiHelper";
 import { Loading } from "../Components/Loading"
+import ErrorPage from "../Pages/ErrorPage"
 
 
 
@@ -77,7 +78,8 @@ const ItemShop = () => {
     }
 
     return (
-        <ErrorBoundary fallback={<div >An error occurred while loading the item shop. Please try again later.</div>}>
+
+        <ErrorBoundary FallbackComponent={ErrorPage}>
             <Suspense fallback={<Loading/>}>
                 <ItemShopContent promise={promise} />
             </Suspense>

@@ -3,6 +3,8 @@ import MinigameProvider from "../../Providers/MinigameProvider";
 import Minigame from "./Minigame";
 import { ErrorBoundary } from "react-error-boundary";
 import type { GameData } from "../../Types/GameType";
+import {Loading } from "../Loading"
+import ErrorPage from "../../Pages/ErrorPage"
 
 type MinigameContainerProps = {
     id: string;
@@ -48,27 +50,14 @@ const MinigameContainer: React.FC<MinigameContainerProps> = ({ id, exitPage, dev
         }, [id]);
 
         if (!promise) {
-            return <div>Initializing request...</div>;
+            return <Loading />;
         }
 
         return (
             <ErrorBoundary
-                FallbackComponent={({ error, resetErrorBoundary }) => {
-                    let message = "Unknown error";
-                    if (error instanceof Error) {
-                    message = error.message;
-                    } else if (typeof error === "string") {
-                    message = error;
-                    }
-                    return (
-                    <div>
-                        <pre style={{ color: 'red' }}>{message}</pre>
-                        <button onClick={resetErrorBoundary}>Try again</button>
-                    </div>
-                    );
-                }}
+                FallbackComponent={ErrorPage}
             >
-                <Suspense fallback={<div>Loading minigame data...</div>}>
+                <Suspense fallback={<Loading />}>
                     <MinigameProvider exitPage={exitPage} promise={promise}>
                         <Minigame id={id.toLowerCase()} />
                     </MinigameProvider>

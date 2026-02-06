@@ -7,6 +7,7 @@ import { useOwnOutlet } from "../../Hooks/useOwnOutlet";
 import { ErrorBoundary } from "react-error-boundary";
 import { useSound } from "../../Providers/SoundProvider";
 import { Loading } from "../../Components/Loading"
+import ErrorPage from "../ErrorPage"
 
 //Pomocná komponenta pro samotný obsah cutscény
 const IntroCutsceneContent = ({ promise }: { promise: Promise<IntroScreen[]> }) => {
@@ -81,7 +82,7 @@ const IntroCutscene = () => {
     }
 
     return (
-        <ErrorBoundary fallback={<Loading message="An error occurred while loading the cutscene. Please try again later."/>}>
+        <ErrorBoundary FallbackComponent={ErrorPage}>
             <Suspense fallback={<Loading message="Loading scene..."/>}>
                 <IntroCutsceneContent promise={promise} />
             </Suspense>

@@ -13,7 +13,7 @@
     background-size: cover;
 }
 
-.loading .seba {
+.seba {
     position: fixed;
     bottom: 0;
     left: 10vw;
@@ -26,6 +26,10 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+
+/*
+.friedrich - pridat fetaka na zem :)
+*/
 
 .spinner {
     width: 40px;
@@ -40,12 +44,16 @@
     to { transform: rotate(360deg); }
 }
 
-.loadingText {
+.text, .page h1, a {
     color: var(--light-color);
     font-size: 2rem;
     animation: textPulse 1.5s infinite;
 }
 
 @keyframes textPulse {
-    50% { opacity: 0.5; }
+    50% { opacity: 0.6; }
 }
+
+/*
+.notFound - přidat jiné img do pozadí :)
+*/

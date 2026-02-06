@@ -7,6 +7,7 @@ import styles from "../assets/styles/Shop.module.css"
 import minigameStyles from '../assets/styles/Minigames/Minigame.module.css';
 import { ErrorBoundary } from "react-error-boundary";
 import { Loading } from "../Components/Loading"
+import  ErrorPage from "../Pages/ErrorPage"
 
 
 
@@ -96,7 +97,7 @@ const FoodBar = () => {
     }
 
     return (
-        <ErrorBoundary fallback={<div >An error occurred while loading the food bar. Please try again later.</div>}>
+        <ErrorBoundary FallbackComponent={ErrorPage}>
             <Suspense fallback={<Loading/>}>
                 <FoodBarContent promise={promise} />
             </Suspense>

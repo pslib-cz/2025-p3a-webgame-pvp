@@ -7,6 +7,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import ChangeScreenButton from "../../Components/ChangeScreenButton";
 import apiGet from "../../Helpers/apiHelper";
 import { Loading } from "../../Components/Loading"
+import ErrorPage from "../ErrorPage"
 
 
 const WheelContent = ({ promise }: { promise: Promise<JokeType> }) => {
@@ -62,7 +63,7 @@ const Wheel = () => {
 
 
     return (
-        <ErrorBoundary fallback={<Loading message="An error occurred while loading the Wheel. Please try again later."/>}>
+        <ErrorBoundary FallbackComponent={ErrorPage}>
             <Suspense fallback={<Loading />}>
                 <WheelContent promise={promise}/>
             </Suspense>
