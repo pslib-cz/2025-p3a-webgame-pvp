@@ -1,4 +1,5 @@
 
+import { useEffect } from "react";
 import styles from "../assets/styles/Homepage.module.css"
 import { useNavigate } from 'react-router-dom';
 
@@ -6,6 +7,19 @@ const HomePage2 = () => {
 
 
   const navigate = useNavigate();
+
+
+  useEffect(() => {
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "ArrowLeft") {
+          navigate("/game");
+        }
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    }, []);
 
 
   return (
