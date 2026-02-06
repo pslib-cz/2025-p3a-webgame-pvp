@@ -59,7 +59,7 @@ const RootLayout = () => {
 
     const [notifications, setNotifications] = useState<NotificationData[]>([]);
     const [isPauseMenuOpen, setIsPauseMenuOpen] = useState<boolean>(false);
-    const { play, isMusicMuted } = useSound();
+    const { play, stop, isMusicMuted } = useSound();
     const navigate = useNavigate();
 
 
@@ -158,17 +158,15 @@ const RootLayout = () => {
             player: player,
             girlfriend: girlfriend,
         };
-
         localStorage.setItem("UserData", JSON.stringify(updated));
-
         setUserData((prev) =>
             isDeepEqual(prev, updated) ? prev : updated
         );
-
-
         checkStats(updated);
-
     }, [tickets, relationshipValue, boughtBalloon, boughtFlower, lastFood, lastDrink, player, girlfriend, endReason, endPerson, isStarted]);//ulozi do local storage kdyz se zmeni hodnota
+
+
+
 
 
 

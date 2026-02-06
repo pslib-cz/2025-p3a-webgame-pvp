@@ -21,15 +21,24 @@ const SOUNDS_CONFIG: Record<string, SoundConfigType> = {
 
 export const useGameSounds = () => {
     const soundsRefs = useRef<Partial<Record<string, Howl>>>({});
-    
-    const [isMusicMuted, setIsMusicMuted] = useState<boolean>(() => localStorage.getItem('musicMuted') === 'true');
-    const [isSfxMuted, setIsSfxMuted] = useState<boolean>(() => localStorage.getItem('sfxMuted') === 'true');
-    const [musicVolume, setMusicVolume] = useState<number>(() => Number(localStorage.getItem('musicVolume')) || 0.3);
-    const [sfxVolume, setSfxVolume] = useState<number>(() => Number(localStorage.getItem('sfxVolume')) || 0.3);
+
+    // Load all sound settings from a single localStorage key (SoundSettings)
+    const storedSettings = (() => {
+        try {
+            const item = localStorage.getItem('SoundSettings');
+            return item ? JSON.parse(item) : null;
+        } catch {
+            return null;
+        }
+    })();
+
+    const [isMusicMuted, setIsMusicMuted] = useState<boolean>(() => storedSettings?.isMusicMuted === true);
+    const [isSfxMuted, setIsSfxMuted] = useState<boolean>(() => storedSettings?.isSfxMuted === true);
+    const [musicVolume, setMusicVolume] = useState<number>(() => Number(storedSettings?.musicVolume) || 0.3);
+    const [sfxVolume, setSfxVolume] = useState<number>(() => Number(storedSettings?.sfxVolume) || 0.3);
 
     // Synchronizace Hudby
     useEffect(() => {
-        localStorage.setItem('musicMuted', isMusicMuted.toString());
         Object.keys(soundsRefs.current).forEach(key => {
             const sound = soundsRefs.current[key];
             if (sound && SOUNDS_CONFIG[key].category === 'music') {
@@ -40,7 +49,6 @@ export const useGameSounds = () => {
 
     // Synchronizace SFX (efektů)
     useEffect(() => {
-        localStorage.setItem('sfxMuted', isSfxMuted.toString());
         Object.keys(soundsRefs.current).forEach(key => {
             const sound = soundsRefs.current[key];
             // Mute aplikujeme JEN na sfx kategorii
@@ -60,7 +68,6 @@ export const useGameSounds = () => {
 
     // Synchronizace hlasitosti hudby
     useEffect(() => {
-        localStorage.setItem('musicVolume', musicVolume.toString());
         Object.keys(soundsRefs.current).forEach(key => {
             const sound = soundsRefs.current[key];
             if (sound && SOUNDS_CONFIG[key].category === 'music') {
@@ -71,7 +78,6 @@ export const useGameSounds = () => {
 
     // Synchronizace hlasitosti SFX
     useEffect(() => {
-        localStorage.setItem('sfxVolume', sfxVolume.toString());
         Object.keys(soundsRefs.current).forEach(key => {
             const sound = soundsRefs.current[key];
             if (sound && SOUNDS_CONFIG[key].category === 'sfx') {
@@ -79,6 +85,18 @@ export const useGameSounds = () => {
             }
         });
     }, [sfxVolume]);
+
+    // Save all sound settings together to localStorage (similar to RootLayout's single-key storage)
+    useEffect(() => {
+        const updated = {
+            isMusicMuted,
+            isSfxMuted,
+            musicVolume,
+            sfxVolume,
+        };
+        localStorage.setItem('SoundSettings', JSON.stringify(updated));
+
+    }, [isMusicMuted, isSfxMuted, musicVolume, sfxVolume]);
 
     const getSound = useCallback((name: SoundName): Howl | null => {
         if (soundsRefs.current[name]) return soundsRefs.current[name]!;
@@ -130,6 +148,15 @@ export const useGameSounds = () => {
         const sound = soundsRefs.current[soundName];
         if (sound) sound.stop();
     }, []);
+
+
+
+    
+
+
+
+
+
 
     return {
         play,
