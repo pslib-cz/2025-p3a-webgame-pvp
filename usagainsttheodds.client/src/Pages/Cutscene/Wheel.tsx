@@ -1,4 +1,4 @@
-/*
+
 import { Suspense, use, useEffect, useState } from "react";
 import { useOwnOutlet } from "../../Hooks/useOwnOutlet";
 import type { JokeType } from "../../Types/GameType";
@@ -7,8 +7,6 @@ import { ErrorBoundary } from "react-error-boundary";
 import ChangeScreenButton from "../../Components/ChangeScreenButton";
 import apiGet from "../../Helpers/apiHelper";
 
-
-AZ BUDES PREMYSLET PROC TO NEJDE, V MAIN MAS ZAKOMENTOVANY IMPORT A ROUTU
 
 const WheelContent = ({ promise }: { promise: Promise<JokeType> }) => {
 
@@ -71,4 +69,4 @@ const Wheel = () => {
     )
 }
 
-export default Wheel;*/
+export default Wheel;

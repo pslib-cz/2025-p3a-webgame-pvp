@@ -14,7 +14,7 @@ import IntroCutscene from './Pages/Cutscene/IntroCutscene.tsx'
 import ItemShop from './Pages/ItemShop.tsx';
 import HomePage2 from './Pages/HomePage2.tsx';
 import Ending from './Pages/Ending/Ending.tsx';
-/*import Wheel from './Pages/Cutscene/Wheel.tsx'; <Route path="wheel" element={<Wheel />} />*/
+import Wheel from './Pages/Cutscene/Wheel.tsx'; 
 import { SoundProvider } from './Providers/SoundProvider.tsx';
 import NotificationList from './Components/Notifications/NotificationList.tsx';
 
@@ -46,14 +46,14 @@ createRoot(document.getElementById('root')!).render(
 
           <Route path="foodbar" element={<FoodBar />} />
           <Route path="itemshop" element={<ItemShop/> } />
-
+          <Route path="wheel" element={<Wheel />} />
           
 
           {/* STÁNKY */}
           <Route path='minigame'>
             <Route path="blackjack" element={<MinigameContainer id="blackjack" exitPage="/game/right"/>} />
             <Route path="russianroulette" element={<MinigameContainer id="russianroulette"exitPage="/game" />} />
-            {/* <Route path="testminigame" element={<MinigameContainer id="test" exitPage="/game" devVersion={true} />} /> */}
+            {/*<Route path="testminigame" element={<MinigameContainer id="test" exitPage="/game" devVersion={true} />} /> */}
             <Route path="whackamole" element={<MinigameContainer id="whackamole" exitPage="/game/right" />} />
             <Route path="memorymatch" element={<MinigameContainer id="memorymatch" exitPage="/game/right"  />} />
             <Route path="slots" element={<MinigameContainer id="slots" exitPage="/game/right"   />} />
