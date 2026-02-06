@@ -4,13 +4,11 @@
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 220px;
-    height: 32px;
+    width: 13vw;
+    aspect-ratio: 1208/192;
     background-color: transparent;
     background-image: url("/images/Main/Menu-button.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    background-size: 100% 100%;
     border: 0;
     cursor: pointer;
 }
