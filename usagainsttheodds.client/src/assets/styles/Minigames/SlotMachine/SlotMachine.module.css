@@ -4,11 +4,8 @@
 }
 
 .frame {
-  position: absolute;
-  bottom: 0;
-  width: 80%;
-  aspect-ratio: 1278/960;
-  background-size: cover;
+  --aspect-ratio: 1278/960;
+  background-size: 100% 100%;
   z-index: 10;
   background-image: url(/images/SlotMachine/slot-pozadi.png);
   perspective: 800px;
@@ -17,19 +14,18 @@
 .slotsContainer {
   position: absolute;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  left: 13.6cqw;
-  width: 49cqw;
+  left: 17.5cqw;
+  width: 60.3cqw;
 
-  top: 28.5cqw;
-  gap: 1.1cqw;
+  top: 35.7cqw;
   z-index: 5;
 }
 
 .slot {
-  height: 19.7cqw;
-  width: 31.3%;
+  height: 24.7cqw;
+  width: 32%;
 }
 
 
@@ -50,9 +46,9 @@
 .spinButton {
   background-image: url(/images/SlotMachine/spinButton.png);
   aspect-ratio: 40/435;
-  width: 2.5cqw;
-  bottom: 6.5cqw;
-  right: 5cqw;
+  height: 40cqh;
+  bottom: 8.3cqw;
+  right: 7cqw;
   transform-origin: center bottom;
   transform-style: preserve-3d;
 }
@@ -80,6 +76,6 @@
   background-image: url(/images/SlotMachine/stopButton.png);
   aspect-ratio: 160/44;
   width: 10cqw;
-  bottom: 7.5cqw;
-  right: 14.5cqw;
+  bottom: 12.5cqh;
+  right: 20.5cqw;
 }

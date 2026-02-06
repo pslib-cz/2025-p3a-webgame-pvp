@@ -16,9 +16,9 @@ const Blackjack = () => {
     const resolveCardAnimation = useRef<(() => void) | null>(null); // resolveCardAnimation - ref na funkci pro vyřešení promise po dokončení animace karty
     
     //pozice balíčku a ruk pro animace
-    const deckPosition: [number, number] = [85, 45]; // deckPosition - pozice balíčku pro animace
-    const playerHandPosition: [number, number] = [50, 75]; // playerHandPosition - pozice ruky hráče pro animace
-    const dealerHandPosition: [number, number] = [50, 45]; // dealerHandPosition - pozice ruky dealera pro animace
+    const deckPosition: [number, number] = [85, 20]; // deckPosition - pozice balíčku pro animace
+    const playerHandPosition: [number, number] = [60, 60]; // playerHandPosition - pozice ruky hráče pro animace
+    const dealerHandPosition: [number, number] = [40, 20]; // dealerHandPosition - pozice ruky dealera pro animace
     const playerDeckOffset: [number, number] = [deckPosition[0]-playerHandPosition[0], deckPosition[1]-playerHandPosition[1]]; // playerDeckPosition - pozice balíčku pro animace hráče
     const dealerDeckOffset: [number, number] = [deckPosition[0]-dealerHandPosition[0], deckPosition[1]-dealerHandPosition[1]]; // dealerDeckPosition - pozice balíčku pro animace dealera
 
@@ -264,44 +264,46 @@ const Blackjack = () => {
     
 
     return (
-        <div className={`${styles.blackjackContainer} ${minigameStyles.container}`}>
-            <span className={styles.deck} style={{left: `${deckPosition[0]}%`, top: `${deckPosition[1]}%`}}/>
-            {!started && (
-                <button className={`button ${styles.startButton}`} onClick={handleStart}>Deal cards</button>
-            )}
-            {started && (
-                <>
-                    <div
-                        className={`${styles.handContainer} ${styles.dealerHandContainer}`}
-                        style={{left: `${dealerHandPosition[0]}%`, top: `${dealerHandPosition[1]}%`}}
-                    >
-                        <p className={styles.handScore}>{dealerHandValue}</p>
-                        <CardHand hand={dealerHandRef.current} hiddenCards={dealerHiddenCards} deckPosition={dealerDeckOffset} onAnimationEnd={handleCardAnimationEnd} />
-                    </div>
-                    <div
-                        className={`${styles.handContainer} ${styles.playerHandContainer}`}
-                        style={{left: `${playerHandPosition[0]}%`, top: `${playerHandPosition[1]}%`}}
-                    >
-                        <p className={styles.handScore}>{playerHandValue}</p>
-                        <CardHand hand={playerHandRef.current} deckPosition={playerDeckOffset} onAnimationEnd={handleCardAnimationEnd} />
-                    </div>
-                    
-                    {buttonsVisible && (
-                        <div className={styles.buttonsContainer}>
-                            <button className={`button`} onClick={handleHit}>Hit</button>
-                            <button className={`button`} onClick={handleStand}>Stand</button>
+        <div className={`${minigameStyles.container} ${minigameStyles.alignToTop} ${minigameStyles.table}`}>
+            <div className={`${styles.blackjackContainer} ${minigameStyles.gameArea}`}>
+                <span className={styles.deck} style={{left: `${deckPosition[0]}%`, top: `${deckPosition[1]}%`}}/>
+                {!started && (
+                    <button className={`button ${styles.startButton}`} onClick={handleStart}>Deal cards</button>
+                )}
+                {started && (
+                    <>
+                        <div
+                            className={`${styles.handContainer} ${styles.dealerHandContainer}`}
+                            style={{left: `${dealerHandPosition[0]}%`, top: `${dealerHandPosition[1]}%`}}
+                        >
+                            <p className={styles.handScore}>{dealerHandValue}</p>
+                            <CardHand hand={dealerHandRef.current} hiddenCards={dealerHiddenCards} deckPosition={dealerDeckOffset} onAnimationEnd={handleCardAnimationEnd} />
                         </div>
-                    )}
-                    {result && (
-                        <div onAnimationEnd={handleAnimationEnd} className={`${minigameStyles.resultScreen}`}>
-                            {blackjack && <span className={`${minigameStyles.resultText}`}>Blackjack!</span>}
-                            {result === "win" && <span className={`${minigameStyles.resultText}`}>You win!</span>}
-                            {result === "lose" && <span className={`${minigameStyles.resultText}`}>You lose!</span>}
-                            {result === "draw" && <span className={`${minigameStyles.resultText}`}>It's a draw!</span>}
+                        <div
+                            className={`${styles.handContainer} ${styles.playerHandContainer}`}
+                            style={{left: `${playerHandPosition[0]}%`, top: `${playerHandPosition[1]}%`}}
+                        >
+                            <p className={styles.handScore}>{playerHandValue}</p>
+                            <CardHand hand={playerHandRef.current} deckPosition={playerDeckOffset} onAnimationEnd={handleCardAnimationEnd} />
                         </div>
-                    )}
-                </>
-            )}
+                        
+                        {buttonsVisible && (
+                            <div className={styles.buttonsContainer}>
+                                <button className={`button`} onClick={handleHit}>Hit</button>
+                                <button className={`button`} onClick={handleStand}>Stand</button>
+                            </div>
+                        )}
+                        {result && (
+                            <div onAnimationEnd={handleAnimationEnd} className={`${minigameStyles.resultScreen}`}>
+                                {blackjack && <span className={`${minigameStyles.resultText}`}>Blackjack!</span>}
+                                {result === "win" && <span className={`${minigameStyles.resultText}`}>You win!</span>}
+                                {result === "lose" && <span className={`${minigameStyles.resultText}`}>You lose!</span>}
+                                {result === "draw" && <span className={`${minigameStyles.resultText}`}>It's a draw!</span>}
+                            </div>
+                        )}
+                    </>
+                )}
+            </div>
             
         </div>
     );

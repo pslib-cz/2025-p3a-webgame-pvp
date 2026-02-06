@@ -8,30 +8,24 @@
 }
 
 .table {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     background: 
         linear-gradient(rgba(16, 7, 27, 0.3), rgba(0, 0, 0, 0.3)), 
         url('/images/Main/Background-table.jpg');
+    background-size: 100% 100%;
 }
 
 .street {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     background: 
-        linear-gradient(rgba(16, 7, 27, 0.3), rgba(0, 0, 0, 0.3)), 
-        url('/images/Main/Background-street.jpg');
+    linear-gradient(rgba(16, 7, 27, 0.3), rgba(0, 0, 0, 0.3)), 
+    url('/images/Main/Background-street.jpg');
+    background-size: 100% 100%;
 }
 
 .shop {
     background: 
         linear-gradient(rgba(16, 7, 27, 0.3), rgba(0, 0, 0, 0.3)), 
         url('/images/Main/Background-shop.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 
 
@@ -76,7 +70,7 @@
 
 
 .resultText {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;

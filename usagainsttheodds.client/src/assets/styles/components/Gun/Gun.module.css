@@ -31,6 +31,8 @@
     transform-origin: left center;
     top: 13%;
     transition: transform 1s ease;
+
+    container-type: size;
 }
 
 /* OTEVŘENÍ */
