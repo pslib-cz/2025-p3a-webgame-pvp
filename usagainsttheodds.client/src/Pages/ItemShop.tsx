@@ -4,6 +4,7 @@ import type { Items } from "../Types/GameType";
 import { useOwnOutlet } from "../Hooks/useOwnOutlet";
 import { ErrorBoundary } from "react-error-boundary";
 import apiGet from "../Helpers/apiHelper";
+import { Loading } from "../Components/Loading"
 
 
 
@@ -72,19 +73,16 @@ const ItemShop = () => {
     }, []);
 
     if (!promise) {
-        return <div>Initializing request...</div>;
+        return <Loading />;
     }
 
     return (
         <ErrorBoundary fallback={<div >An error occurred while loading the item shop. Please try again later.</div>}>
-            <Suspense fallback={<div >Loading item shop...</div>}>
+            <Suspense fallback={<Loading/>}>
                 <ItemShopContent promise={promise} />
             </Suspense>
         </ErrorBoundary>
     );
 };
-
-
-
 
 export default ItemShop;

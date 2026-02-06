@@ -6,6 +6,7 @@ import apiGet from "../../Helpers/apiHelper";
 import { useOwnOutlet } from "../../Hooks/useOwnOutlet";
 import { ErrorBoundary } from "react-error-boundary";
 import { useSound } from "../../Providers/SoundProvider";
+import { Loading } from "../../Components/Loading"
 
 //Pomocná komponenta pro samotný obsah cutscény
 const IntroCutsceneContent = ({ promise }: { promise: Promise<IntroScreen[]> }) => {
@@ -76,12 +77,12 @@ const IntroCutscene = () => {
     }, []);
 
     if (!promise) {
-        return <div className={styles.page}>Initializing request...</div>;
+        return <Loading />;
     }
 
     return (
-        <ErrorBoundary fallback={<div className={styles.page}>An error occurred while loading the cutscene. Please try again later.</div>}>
-            <Suspense fallback={<div className={styles.page}>Loading scene...</div>}>
+        <ErrorBoundary fallback={<Loading message="An error occurred while loading the cutscene. Please try again later."/>}>
+            <Suspense fallback={<Loading message="Loading scene..."/>}>
                 <IntroCutsceneContent promise={promise} />
             </Suspense>
         </ErrorBoundary>

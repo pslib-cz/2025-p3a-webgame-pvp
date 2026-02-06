@@ -6,6 +6,7 @@ import apiGet from "../Helpers/apiHelper";
 import styles from "../assets/styles/Shop.module.css"
 import minigameStyles from '../assets/styles/Minigames/Minigame.module.css';
 import { ErrorBoundary } from "react-error-boundary";
+import { Loading } from "../Components/Loading"
 
 
 
@@ -91,12 +92,12 @@ const FoodBar = () => {
     }, []);
 
     if (!promise) {
-        return <div>Initializing request...</div>;
+        return <Loading />;
     }
 
     return (
         <ErrorBoundary fallback={<div >An error occurred while loading the food bar. Please try again later.</div>}>
-            <Suspense fallback={<div >Loading food bar...</div>}>
+            <Suspense fallback={<Loading/>}>
                 <FoodBarContent promise={promise} />
             </Suspense>
         </ErrorBoundary>

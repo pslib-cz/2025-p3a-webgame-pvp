@@ -1,14 +1,19 @@
+import { Link, useRouteError } from "react-router-dom";
+import style from "../assets/styles/components/other.module.css"
 
-import { Link } from "react-router-dom";
+const ErrorPage = () => {
+  const error = useRouteError() as any;
 
-const ErrorPage = () => (
-  <div>
-    <h1>Error</h1>
-    <p>Někdy to opravíme, opravdu. :)</p>
-    <Link to="/game">Zpět na hrací plochu.</Link>
-  </div>
-  /*asi by bylo lepší tady udělat něco komplexnějšího,
-  co bere a vypisuje konkrétní eroror, ale to není moje starost aktuální*/
-);
+  return (
+    <div className={style.error}>
+      <h1>Oops. We will fix it, someday.</h1>
+      
+      <p>
+        Detail chyby: {error.statusText || error.message}
+      </p>
 
+      <Link to="/game">Go back</Link>
+    </div>
+  );
+};
 export default ErrorPage;

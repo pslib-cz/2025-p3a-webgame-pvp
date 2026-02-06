@@ -15,7 +15,7 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
   const { setIsPauseMenuOpen } = useOwnOutlet();
   const { isMusicMuted, setIsMusicMuted, isSfxMuted, setIsSfxMuted, musicVolume, setMusicVolume, sfxVolume, setSfxVolume } = useSound();
 
-  const {setPlayer, setGirlfriend, setTickets, setRelationshipValue, setEndReason, addNotification} = useOwnOutlet();
+  const {setPlayer, setGirlfriend, setTickets, setRelationshipValue, addNotification} = useOwnOutlet();
 
 
   return createPortal(

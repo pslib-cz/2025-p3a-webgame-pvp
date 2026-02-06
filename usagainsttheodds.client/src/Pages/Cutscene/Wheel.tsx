@@ -6,6 +6,7 @@ import styles from "../../assets/styles/Wheel.module.css";
 import { ErrorBoundary } from "react-error-boundary";
 import ChangeScreenButton from "../../Components/ChangeScreenButton";
 import apiGet from "../../Helpers/apiHelper";
+import { Loading } from "../../Components/Loading"
 
 
 const WheelContent = ({ promise }: { promise: Promise<JokeType> }) => {
@@ -56,13 +57,13 @@ const Wheel = () => {
     }, []);
 
     if (!promise) {
-        return <div className={styles.page}>Initializing request...</div>;
+        return <Loading/>;
     }
 
 
     return (
-        <ErrorBoundary fallback={<div className={styles.page}>An error occurred while loading the Wheel. Please try again later.</div>}>
-            <Suspense fallback={<div className={styles.page}>Loading scene...</div>}>
+        <ErrorBoundary fallback={<Loading message="An error occurred while loading the Wheel. Please try again later."/>}>
+            <Suspense fallback={<Loading />}>
                 <WheelContent promise={promise}/>
             </Suspense>
         </ErrorBoundary>
