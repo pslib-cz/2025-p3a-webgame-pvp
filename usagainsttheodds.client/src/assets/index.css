@@ -42,7 +42,6 @@ input {
     font-size: 2.5vh;
     background-color: var(--light-color);
     border: .2rem solid var(--dark-color);
-    border-radius: 1rem;
     margin: 0.25em;
     cursor: pointer;
     user-select: none;
@@ -119,16 +118,16 @@ input {
     right: 5vw;
     background-color: #E8D3D3;
     font-size: 1.5rem;
-    color: #824c69;
-    border: 4px solid #824c69;
+    color: #683d54;
+    border: 4px solid #683d54;
     padding: .7rem 1rem;
     transition: all 0.2s ease-in-out;
 }
 
 .buttonNext:hover {
-    background-color: #824c69;
+    background-color: #683d54;
     font-size: 1.5rem;
     color: #E8D3D3;
-    border: 4px solid #824c69;
+    border: 4px solid #683d54;
     padding: .7rem 1rem;
 }

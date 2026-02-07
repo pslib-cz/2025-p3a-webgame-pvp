@@ -6,6 +6,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import apiGet from "../Helpers/apiHelper";
 import { Loading } from "../Components/Loading"
 import ErrorPage from "../Pages/ErrorPage"
+import styles from "../assets/styles/Shop.module.css"
 
 
 
@@ -45,20 +46,26 @@ const ItemShopContent = ({ promise }: { promise: Promise<Items[]> }) => {
     }
 
     return (
-        <div>
+        <div className={styles.page}>
 
             <h1>ItemShop</h1>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1em' }}>
                 {data.map((item) => (
-                    <div key={item.itemId} style={{ border: '1px solid black', padding: '1em' }}>
-                        <h2>{item.name}</h2>
-                        <p>{item.description}</p>
-                        <p>Price: {item.price} tickets</p>
-                        <p>Relation Restore: {item.relationRestoreValue}</p>
-                        <button onClick={() => handleBuy(item.itemId)}>Buy</button>
-                    </div>
-                ))}
+            <div 
+                key={item.itemId} 
+                className={styles.item} 
+                data-id={item.itemId}>
+            
+            <div className={styles.itemCard}>
+                <h2>{item.name}</h2>
+                <p>{item.description}</p>
+                <p>Price: {item.price} tickets</p>
+                <p>Relation: {item.relationRestoreValue}</p>
+                <button onClick={() => handleBuy(item.itemId)}>Buy</button>
+            </div>
+        </div>
+    ))}
 
             </div>
 

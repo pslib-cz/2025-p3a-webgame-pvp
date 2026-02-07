@@ -71,3 +71,67 @@
     align-items: center;
     gap: 2em;
 }
+
+/* ITEMSHOP */
+.page {
+    height: 100vh;
+    width: 100vw;
+    background-image: url("/images/Main/ShopBackground.png");
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    position: relative; /* Důležité pro absolutní pozicování dětí */
+    overflow: hidden;
+}
+
+.item {
+    position: absolute;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.itemCard {
+    position: absolute;
+    left: 115%;
+    top: 0;
+    width: 12vw;
+    background-color: var(--light-color);
+    padding: 1em;
+    border: 2px solid var(--dark-color);
+    border-radius: 8px;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+    
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease-in-out;
+    z-index: 20;
+}
+
+.item:hover .itemCard {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(5px);
+}
+
+
+/* konkretni itemy */
+
+.item[data-id="rose"] {
+    background-color: red;
+    width: 3vw;
+    aspect-ratio: 1/1;
+    top: 75vh;
+    right: 25vw;
+}
+
+.item[data-id="brownbear"] {
+    width: 5vw;
+    aspect-ratio: 1/1;
+    top: 60vh;
+    left: 40vw;
+}
+
+.item[data-id="rose"] .itemCard {
+    left: auto;
+    right: 110%;
+}

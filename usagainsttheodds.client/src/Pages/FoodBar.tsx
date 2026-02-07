@@ -79,7 +79,7 @@ const FoodBarContent = ({ promise }: { promise: Promise<Consumable[]> }) => {
             </div>
         </div>
 
-            <span className={styles.backButton}><ChangeScreenButton to="/game/right" text="Go Back" /></span>
+            <ChangeScreenButton className="buttonNext" to="/game/right" text="Go Back" />
         </div>
     )
 }
