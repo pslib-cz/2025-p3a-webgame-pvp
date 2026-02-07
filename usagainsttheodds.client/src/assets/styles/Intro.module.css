@@ -231,7 +231,6 @@
 }
 
 .nameInput {
-    border: none;
     background-color: transparent;
     padding: .2rem ;
     margin: 0 1rem;
@@ -240,7 +239,6 @@
 
 .nameInput:focus {
     color: #B24B26;
-    border: none;
     outline: none;
 }
 

@@ -38,8 +38,8 @@ const HomePage1 = () => {
 
         </div>
         <div className={styles.NPC}>
-          <span className={`${styles.npc_3} ${styles.baloons}`}></span>
-          <span className={`${styles.npc_1} ${styles.family}`}></span>
+          <span className={`${styles.npc} ${styles.baloons}`}></span>
+          <span className={`${styles.npc} ${styles.longwalk} ${styles.family}`}></span>
         </div>
 
         <div className={styles.map}>

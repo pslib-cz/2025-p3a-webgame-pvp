@@ -15,10 +15,12 @@ h2,
 h3,
 p,
 a,
-button {
+button,
+input {
     font-family: "Jersey 15", sans-serif;
     margin: 0;
     color: var(--dark-color);
+    border: none;
 }
 
 .pergamenBackground {
@@ -53,7 +55,6 @@ button {
     cursor: pointer;
 
     background: none;
-    border: none;
     color: var(--light-color);
 
     position: relative;
