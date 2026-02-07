@@ -36,7 +36,7 @@
   z-index: -1;
 
   width: 100vw;
-  height: 100vh;
+  height: 110vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -47,7 +47,7 @@
 }
 
 @keyframes fadeInLayer {
-    to { transform: translateY(0); }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 .layer1 {
@@ -56,8 +56,11 @@
 }
 
 .layer2 {
-    bottom: -15vh;
-    animation-delay: 0.5s;
+    height: 60vh;
+    background-size: contain;
+    bottom: -5vh;
+    animation-delay: 1s;
+    opacity: 0;
 }
     
 .layer3, .layer4 {

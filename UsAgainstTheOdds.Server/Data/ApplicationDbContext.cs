@@ -388,7 +388,7 @@ namespace UsAgainstTheOdds.Server.Data
                         CutsceneId = 2,
                         Type = "intro",
                         Order = 2,
-                        Text = "I need that bear! It's so cute! Please, let's go get it!",
+                        Text = "I need that one bear! It's so cute! Please, let's go get it!",
                         Speaker = Enums.SpeakerType.girl,
                         ImageUrl = "/images/Cutscene/Intro/Intro2.avif",
                         ButtonText = "Continue"
@@ -398,7 +398,7 @@ namespace UsAgainstTheOdds.Server.Data
                         CutsceneId = 3,
                         Type = "intro",
                         Order = 3,
-                        Text = "It's expensive... And we don't have any tickets.",
+                        Text = "It's expensive... And we don't have much tickets.",
                         Speaker = Enums.SpeakerType.boy,
                         ImageUrl = "/images/Cutscene/Intro/Intro3.avif",
                         ButtonText = "Continue"
@@ -438,7 +438,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Reason = "breakup",
                         Title = "You Broke Up",
                         Message = "Your girlfriend broke up with you, because you didn't pay attention to her.",
-                        BackgroundUrl = "/images/Endings/BreakupBg.png",
+                        BackgroundUrl = "/images/Endings/Background.png",
                         ImageUrl = "/images/Endings/Breakup.png"
                     },
                     new Ending
@@ -457,7 +457,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Person = "boy",
                         Title = "You Went Hungry",
                         Message = "You didn't eat anything and collapsed from hunger. Your girlfriend is disappointed.",
-                        BackgroundUrl = "/images/Endings/HungryBoyBg.png",
+                        BackgroundUrl = "/images/Endings/Background.png",
                         ImageUrl = "/images/Endings/HungryBoy.png"
                     },
                     new Ending
@@ -467,7 +467,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Person = "girl",
                         Title = "Your Girlfriend Went Hungry",
                         Message = "She didn't eat anything and collapsed from hunger.",
-                        BackgroundUrl = "/images/Endings/HungryGirlBg.png",
+                        BackgroundUrl = "/images/Endings/Background.png",
                         ImageUrl = "/images/Endings/HungryGirl.png"
                     },
                     new Ending
@@ -477,7 +477,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Person = "boy",
                         Title = "You Got Thirsty",
                         Message = "You didn't drink anything and collapsed from thirst.",
-                        BackgroundUrl = "/images/Endings/ThirstyBoyBg.png",
+                        BackgroundUrl = "/images/Endings/Background.png",
                         ImageUrl = "/images/Endings/ThirstyBoy.png"
                     },
                     new Ending
@@ -487,7 +487,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Person = "girl",
                         Title = "Your Girlfriend Got Thirsty",
                         Message = "She didn't drink anything and collapsed from thirst.",
-                        BackgroundUrl = "/images/Endings/ThirstyGirlBg.png",
+                        BackgroundUrl = "/images/Endings/Background.png",
                         ImageUrl = "/images/Endings/ThirstyGirl.png"
                     },
                     new Ending
@@ -497,7 +497,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Person = "boy",
                         Title = "You Got Drunk",
                         Message = "You drank too much alcohol and passed out. Your girlfriend is disappointed.",
-                        BackgroundUrl = "/images/Endings/DrunkBoyBg.png",
+                        BackgroundUrl = "/images/Endings/Background.png",
                         ImageUrl = "/images/Endings/DrunkBoy.png"
                     },
                     new Ending
@@ -507,7 +507,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Person = "girl",
                         Title = "Your Girlfriend Got Drunk",
                         Message = "She drank too much alcohol and passed out.",
-                        BackgroundUrl = "/images/Endings/DrunkGirlBg.png",
+                        BackgroundUrl = "/images/Endings/Background.png",
                         ImageUrl = "/images/Endings/DrunkGirl.png"
                     }
                 );

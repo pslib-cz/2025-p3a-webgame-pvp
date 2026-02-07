@@ -1,5 +1,4 @@
 import { useEffect, useState, Suspense } from "react";
-import styles from '../../assets/styles/Intro.module.css';
 import apiGet from "../../Helpers/apiHelper";
 import { ErrorBoundary } from "react-error-boundary";
 import EndingContent from "./EndingContent";

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Jersey+15&display=swap');
 
 :root {
-    --light-color: #dcb7cb;
+    --light-color: #edd0e0;
     --dark-color: #341B17;
     --purple: #1E0E32;
     --brown: #69362E;
@@ -99,4 +99,24 @@ button {
 
 .buttonRules::before, .buttonRules::after {
     filter: brightness(0.4) sepia(1) hue-rotate(-30deg) saturate(2.5) contrast(1.5);
+}
+
+.buttonNext {
+    position: absolute;
+    bottom: 5vh;
+    right: 5vw;
+    background-color: #E8D3D3;
+    font-size: 1.5rem;
+    color: #824c69;
+    border: 4px solid #824c69;
+    padding: .7rem 1rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.buttonNext:hover {
+    background-color: #824c69;
+    font-size: 1.5rem;
+    color: #E8D3D3;
+    border: 4px solid #824c69;
+    padding: .7rem 1rem;
 }

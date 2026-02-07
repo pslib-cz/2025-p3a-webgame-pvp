@@ -8,6 +8,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import { useSound } from "../../Providers/SoundProvider";
 import { Loading } from "../../Components/Loading"
 import ErrorPage from "../ErrorPage"
+import "../../assets/index.css"
 
 //Pomocná komponenta pro samotný obsah cutscény
 const IntroCutsceneContent = ({ promise }: { promise: Promise<IntroScreen[]> }) => {
@@ -62,7 +63,7 @@ const IntroCutsceneContent = ({ promise }: { promise: Promise<IntroScreen[]> }) 
                 <p className={styles.text}>{sceneData.text}</p>
             </div>
 
-            <button className={styles.button} onClick={nextPage}>
+            <button className="buttonNext" onClick={nextPage}>
                 {sceneData.buttonText}
             </button>
         </div>
