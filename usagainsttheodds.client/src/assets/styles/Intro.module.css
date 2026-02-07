@@ -70,6 +70,10 @@
     align-items: center;
 }
 
+.startpageContainer {
+    user-select: none;
+}
+
 .startpage .text {
     margin-top: 10%;
     display: flex;
@@ -156,28 +160,40 @@
 
 /* INTRO POP UP*/
 
-.introRules {
+.introRulesContainer {
     position: absolute;
-    display: flex;
-    flex-direction: column;
-    gap: 1vh;
-    justify-content: center;
-    align-items: center;
-    z-index: 3;
 
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    
+    z-index: 3;
 
-    background-image: url("/images/Main/PauseMenu.png");
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    aspect-ratio: 230 / 149;
+    border: 1px solid green;
+
+    display: flex;
+    flex-direction: column;
+
 }
 
+.introRules {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    justify-content: flex-start;
+    align-items: center;
+
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+
+    border: 1px solid red;
+    
+}
+
+
 .introText, .rulesText {
-    padding: 0 18%;
+    padding: 0 5%;
 }
 
 .introRules h1 {
@@ -237,3 +253,8 @@
     color: var(--light-color);
 }
 
+.rulesButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

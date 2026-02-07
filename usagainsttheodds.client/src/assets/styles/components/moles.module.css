@@ -23,6 +23,7 @@
 
 
     box-sizing: border-box;
+    user-select: none;
 }
 
 /* Levý sloupec s dírami */
@@ -154,7 +155,6 @@
 .startButtonText {
     font-size: 1.45em;
     font-weight: bold;
-    user-select: none;
     letter-spacing: .1em;
     text-indent: .1em;
     text-align: center;

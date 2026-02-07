@@ -21,6 +21,16 @@ button {
     color: var(--dark-color);
 }
 
+.pergamenBackground {
+    background-image: url("/images/Main/PauseMenu.png");
+    background-size: 100% 100%;
+
+    padding: 5vh 6vw 8vh 6vw;
+    max-height: 80vh;
+    max-width: 75vw;
+
+}
+
 .main {
     margin-top: 18em;
 }
@@ -33,6 +43,7 @@ button {
     border-radius: 1rem;
     margin: 0.25em;
     cursor: pointer;
+    user-select: none;
 }
 
 .buttonIntro {

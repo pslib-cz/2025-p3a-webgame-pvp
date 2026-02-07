@@ -16,11 +16,7 @@ const StartPage = () => {
         setShowComponent(true);
     };
 
-    // const NewGame = () => {
-    //     localStorage.removeItem("UserData");
-    //     navigate("/cutscene/intro");
-
-    // };
+    
 
     const Continue = () => {
         navigate("/game");
@@ -31,19 +27,21 @@ const StartPage = () => {
         <div className={styles.startpage}>
 
             
-            {showComponent && <IntroRules />}
+            {showComponent && <IntroRules onCloseCallback={() => setShowComponent(false)} />}
 
-            <div className={`${styles.layer} ${styles.layer1}`} />
-            <div className={`${styles.layer} ${styles.layer2}`} />
-            <div className={styles.layer3}/>
-            <div className={styles.layer4}>
-                <div className={styles.buttons}>
-                    <button className="buttonIntro" onClick={() => { handleShow(); }}>New game</button>
-                    {isStarted && (
-                    <button className="buttonIntro" onClick={() => { play('bgMusic'); Continue(); }}>
-                        Continue
-                    </button>
-                    )}
+            <div className={styles.startpageContainer}>
+                <div className={`${styles.layer} ${styles.layer1}`} />
+                <div className={`${styles.layer} ${styles.layer2}`} />
+                <div className={styles.layer3}/>
+                <div className={styles.layer4}>
+                    {!showComponent && <div className={styles.buttons}>
+                        <button className="buttonIntro" onClick={() => { handleShow(); }}>New game</button>
+                        {isStarted && (
+                        <button className="buttonIntro" onClick={() => { play('bgMusic'); Continue(); }}>
+                            Continue
+                        </button>
+                        )}
+                    </div>}
                 </div>
             </div>
             
