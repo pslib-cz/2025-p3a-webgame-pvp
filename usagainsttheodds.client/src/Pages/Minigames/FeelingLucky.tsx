@@ -3,7 +3,6 @@ import styles from '../../assets/styles/Minigames/FeelingLucky.module.css';
 import minigameStyles from '../../assets/styles/Minigames/Minigame.module.css';
 import { useMinigame } from '../../Hooks/useMinigame'
 import Shell from "../../Components/FeelingLucky/Shell"
-import type { GameResult } from "../../Types/GameType";
 import rS from "../../Helpers/randomGeneratorHelper";
 
 
@@ -73,7 +72,8 @@ const FeelingLucky = () => {
 
             {result && (
                 <div onAnimationEnd={handleAnimationEnd} className={styles.resultScreen}>
-                    {result === "win" ? <span>You Win!</span> : <span>You Lose!</span>}
+                            {result === "win" && <span className={minigameStyles.resultText}>You win!</span>}
+                            {result === "lose" && <span className={minigameStyles.resultText}>You lost!</span>}
                 </div>
             )}
         </div>
