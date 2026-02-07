@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Jersey+15&display=swap');
 
 :root {
-    --light-color: #E8D3D3;
+    --light-color: #dcb7cb;
     --dark-color: #341B17;
     --purple: #1E0E32;
     --brown: #69362E;
@@ -100,5 +100,3 @@ button {
 .buttonRules::before, .buttonRules::after {
     filter: brightness(0.4) sepia(1) hue-rotate(-30deg) saturate(2.5) contrast(1.5);
 }
-
-

@@ -13,7 +13,7 @@ const Notification: React.FC<NotificationProps> = ({ text, imageSrc, closeCallba
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsDeleted(true);
-        }, 2500);
+        }, 4000);
 
         return () => clearTimeout(timer);
     }, []);
