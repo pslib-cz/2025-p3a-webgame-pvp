@@ -36,9 +36,7 @@ const RootLayout = () => {
             drunkenness: 10,
         },
     };
-
-    const isVertical = window.innerHeight > window.innerWidth;
-
+    
 
     const [userData, setUserData] = useState<UserData>(() => {
 
