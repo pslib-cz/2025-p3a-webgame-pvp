@@ -6,6 +6,7 @@ const NotFoundPage = () => (
     <h1>404: Lunch break</h1>
     <p className={style.text}>Give them a rest, go try other minigames.</p>
     <Link to="/game">Back to main screen.</Link>
+    <div className={style.friedrich}/>
   </div>
 );
 

@@ -22,14 +22,20 @@
     aspect-ratio: 347/719;
 
     background-image: url('/images/Homepage/NPC/Seba.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    background-size: 100% 100%;
 }
 
-/*
-.friedrich - pridat fetaka na zem :)
-*/
+.friedrich{
+    position: fixed;
+    bottom: 1vh;
+    right: 1vw;
+
+    width: 12vw;
+    aspect-ratio: 293/650;
+
+    background-image: url('/images/Homepage/NPC/Friedrich.png');
+    background-size: 100% 100%;
+}
 
 .spinner {
     width: 40px;

@@ -15,7 +15,7 @@ const MinigameInfo = ({ }) => {
                 {data ? data.description : "No minigame description available"}
             </p>
             <ChangeScreenButton to={exitPagePath} text="Exit" />
-            <button onClick={playGame}>Play</button>
+            <button className="button" onClick={playGame}>Play</button>
         </div>
     )
 }

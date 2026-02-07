@@ -39,7 +39,7 @@ export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>
     const [reward, setReward] = useState<number>(data!.price);
 
     useEffect(() => {
-        if (result === "win") setReward(data!.price * rewardMultiplier);
+        if (result === "win") setReward(Math.round(data!.price * rewardMultiplier));
         else if (result === "lose") setReward(0);
     }, [rewardMultiplier, data, result]);
     

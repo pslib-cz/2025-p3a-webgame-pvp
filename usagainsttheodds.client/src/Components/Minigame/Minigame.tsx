@@ -1,6 +1,5 @@
 import { useMinigame } from "../../Hooks/useMinigame";
 import Blackjack from "../../Pages/Minigames/Blackjack";
-import TestMinigame from "../../Pages/Minigames/TestMinigame";
 import Russianroulette from "../../Pages/Minigames/RussianRoulette";
 import MinigameEnd from "./MinigameEnd";
 import MinigameInfo from "./MinigameInfo";
@@ -9,6 +8,7 @@ import SlotsGame from "../../Pages/Minigames/Slots";
 import MemoryMatch from "../../Pages/Minigames/MemoryMatch";
 import Darts from "../../Pages/Minigames/Darts";
 import WhackAMole from "../../Pages/Minigames/WhackAMole";
+import NotFoundPage from "../../Pages/NotFoundPage";
 
 type MinigameProps = {
     id: string;
@@ -37,8 +37,6 @@ const Minigame: React.FC<MinigameProps> = ({ id, devVersion = false }) => {
                 return <MemoryMatch />;
             case "russianroulette":
                 return <Russianroulette />;
-            case "test":
-                return <TestMinigame />;
             case "whackamole":
                 return <WhackAMole />;
             case "slots":
@@ -46,7 +44,7 @@ const Minigame: React.FC<MinigameProps> = ({ id, devVersion = false }) => {
             case "darts":
                 return <Darts />
             default:
-                return <div>Unknown Minigame</div>;
+                return <NotFoundPage />;
         }
     }
     if (state === "ended") {
