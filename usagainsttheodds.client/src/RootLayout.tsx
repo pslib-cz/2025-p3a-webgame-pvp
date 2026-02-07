@@ -23,6 +23,7 @@ const RootLayout = () => {
         endReason: null,
         endPerson: null,
         isStarted: false,
+        hasWon: false,
         player: {
             name: "John",
             hunger: 50,
@@ -36,9 +37,7 @@ const RootLayout = () => {
             drunkenness: 10,
         },
     };
-
-    const isVertical = window.innerHeight > window.innerWidth;
-
+    
 
     const [userData, setUserData] = useState<UserData>(() => {
 
@@ -58,6 +57,8 @@ const RootLayout = () => {
     const [endReason, setEndReason] = useState<EndReason | null>(userData.endReason);
     const [endPerson, setEndPerson] = useState<"boy" | "girl" | null>(userData.endPerson);
     const [isStarted, setIsStarted] = useState<boolean>(userData.isStarted);
+    const [isMinigamePlaying, setIsMinigamePlaying] = useState<boolean>(false);
+    const [hasWon, setHasWon] = useState<boolean>(false);
 
 
     const [notifications, setNotifications] = useState<NotificationData[]>([]);
@@ -69,11 +70,13 @@ const RootLayout = () => {
 
     const checkStats = (data: UserData) => {
 
+        if (hasWon) return;
+
         if (data.relationshipStamina <= 0) {
             setEndReason("breakup");
             return;
         }
-        if (data.ticketsAmount <= 0) {
+        if (data.ticketsAmount <= 0 && !isMinigamePlaying) {
             setEndReason("bankrupt");
             return;
         }
@@ -82,7 +85,7 @@ const RootLayout = () => {
             addNotification(`I'm worried about our relationship...`, `/images/Avatars/girlfriendAvatar.png`);
         }
 
-        if (data.ticketsAmount <= 250) {
+        if (data.ticketsAmount <= 200) {
             addNotification(`We're running low on tickets!`, `/images/Avatars/boyfriendAvatar.png`);
         }
 
@@ -160,13 +163,14 @@ const RootLayout = () => {
             isStarted: isStarted,
             player: player,
             girlfriend: girlfriend,
+            hasWon: hasWon,
         };
         localStorage.setItem("UserData", JSON.stringify(updated));
         setUserData((prev) =>
             isDeepEqual(prev, updated) ? prev : updated
         );
         checkStats(updated);
-    }, [tickets, relationshipValue, boughtBalloon, boughtFlower, lastFood, lastDrink, player, girlfriend, endReason, endPerson, isStarted]);//ulozi do local storage kdyz se zmeni hodnota
+    }, [tickets, relationshipValue, boughtBalloon, boughtFlower, lastFood, lastDrink, player, girlfriend, endReason, endPerson, isStarted, isMinigamePlaying, hasWon]);//ulozi do local storage kdyz se zmeni hodnota
 
 
 
@@ -174,6 +178,7 @@ const RootLayout = () => {
 
 
     const addNotification = (text: string, imageSrc?: string) => {
+        if (hasWon) return;
         const newNotif: NotificationData = {
             id: crypto.randomUUID(), // Unikátní ID pro každou notifikaci
             text,
@@ -204,8 +209,10 @@ const RootLayout = () => {
         isMusicMuted,
         isStarted, setIsStarted,
         addNotification, closeNotification,
-        notifications
-    }
+        notifications,
+        isMinigamePlaying, setIsMinigamePlaying,
+        hasWon, setHasWon,
+    };
 
 
     return (

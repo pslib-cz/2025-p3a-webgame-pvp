@@ -33,4 +33,9 @@ export type GameContextType = {
     notifications: NotificationData[];
     addNotification: (text: string, imageSrc?: string) => void;
     closeNotification: (id: string) => void;
+
+    isMinigamePlaying: boolean;
+    setIsMinigamePlaying: React.Dispatch<React.SetStateAction<boolean>>;
+    hasWon: boolean;
+    setHasWon: React.Dispatch<React.SetStateAction<boolean>>;
 }

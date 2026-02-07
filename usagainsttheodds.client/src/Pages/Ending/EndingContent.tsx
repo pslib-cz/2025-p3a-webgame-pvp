@@ -20,7 +20,7 @@ const EndingContent = ({ promise }: { promise: Promise<EndingType> }) => {
             <div className={`${styles.layer4} ${styles.text}`}>
                 <h1>{data.title}</h1>
                 <p>{data.message}</p>
-                <ResetButton className="buttonIntro" isIngame={true} text={"Try Again"} navigateTo={"/"} />                       
+                <ResetButton className="buttonIntro" isIngame={true} text={"Play Again"} navigateTo={"/"} />                       
             </div>
         </div>
     );

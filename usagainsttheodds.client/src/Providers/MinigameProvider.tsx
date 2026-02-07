@@ -8,6 +8,7 @@ type MinigameContextType = {
     state: GameState;
     setState: (state: GameState) => void;
     data: GameData | null;
+    playAgain: () => void;
     playGame: () => void;
     exitPagePath: string;
     result: GameResult;
@@ -16,6 +17,8 @@ type MinigameContextType = {
     setReward: (reward: number) => void;
     rewardMultiplier: number;
     setRewardMultiplier: (multiplier: number) => void;
+    bet: number;
+    setBet: (bet: number) => void;
 }
 
 // Vytvoření kontextu
@@ -28,7 +31,7 @@ type MinigameProviderProps = {
 
 export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>> = ({ children, exitPage, promise }) => {
 
-    const { tickets, setTickets, setPlayer, setGirlfriend, setRelationshipValue,  } = useOwnOutlet();
+    const { tickets, setTickets, setPlayer, setGirlfriend, setRelationshipValue, setIsMinigamePlaying } = useOwnOutlet();
 
 
     const exitPagePath = exitPage;
@@ -36,23 +39,29 @@ export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>
     const [state, setState] = useState<GameState>("intro");
     const [result, setResult] = useState<GameResult>(null);
     const [rewardMultiplier, setRewardMultiplier] = useState<number>(2);
-    const [reward, setReward] = useState<number>(data!.price);
+    const [bet, setBet] = useState<number>(data!.price > tickets ? tickets : data!.price);
+    const [reward, setReward] = useState<number>(bet * rewardMultiplier);
 
     useEffect(() => {
-        if (result === "win") setReward(Math.round(data!.price * rewardMultiplier));
+        if (result === "win") setReward(Math.round(bet * rewardMultiplier));
         else if (result === "lose") setReward(0);
-    }, [rewardMultiplier, data, result]);
+    }, [rewardMultiplier, bet, result]);
+
+    const playAgain = () => {
+        setState("intro");
+    }
     
     const playGame = () => {
 
-        if (data!.price > tickets) {
-            alert("Not enough tickets to play this game.");
+        if (bet > tickets) {
+            alert(`Not enough tickets to play this game.\nYou have ${tickets} tickets, but the bet is ${bet} tickets.`);
             return;
         } else {
             setResult(null);
             setRewardMultiplier(2);
-            console.log("Starting minigame, price:", data!.price);
-            setTickets(prev => prev - data!.price);
+            console.log("Starting minigame, bet:", bet);
+            setIsMinigamePlaying(true);
+            setTickets(prev => prev - bet);
             setState("playing");
         }
     }
@@ -82,6 +91,7 @@ export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>
             drunkenness: ((prev.drunkenness - (data!.difficulty*gDrunkennessMultiplier)) >= 0 ? (prev.drunkenness - (data!.difficulty*gDrunkennessMultiplier)) : 0),
         }))
 
+        setIsMinigamePlaying(false);
     }
 
     return (
@@ -90,6 +100,7 @@ export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>
             state,
             setState,
             data,
+            playAgain,
             playGame,
             exitPagePath,
             result,
@@ -98,6 +109,8 @@ export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>
             setReward,
             rewardMultiplier,
             setRewardMultiplier,
+            bet,
+            setBet
         }}>
             {children}
         </MinigameContext.Provider>
