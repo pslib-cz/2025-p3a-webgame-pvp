@@ -3,7 +3,6 @@ import Blackjack from "../../Pages/Minigames/Blackjack";
 import Russianroulette from "../../Pages/Minigames/RussianRoulette";
 import MinigameEnd from "./MinigameEnd";
 import MinigameInfo from "./MinigameInfo";
-import { useEffect } from "react";
 import SlotsGame from "../../Pages/Minigames/Slots";
 import MemoryMatch from "../../Pages/Minigames/MemoryMatch";
 import Darts from "../../Pages/Minigames/Darts";
@@ -12,19 +11,13 @@ import NotFoundPage from "../../Pages/NotFoundPage";
 
 type MinigameProps = {
     id: string;
-    devVersion?: boolean;
 }
 
 
-const Minigame: React.FC<MinigameProps> = ({ id, devVersion = false }) => {
-    const { state, setState } = useMinigame();
+const Minigame: React.FC<MinigameProps> = ({ id }) => {
+    const { state } = useMinigame();
 
 
-    useEffect(() => {
-        if (devVersion && state === "intro") {
-            setState("playing");
-        }
-    }, [])
 
     if (state === "intro") {
         return <MinigameInfo />;

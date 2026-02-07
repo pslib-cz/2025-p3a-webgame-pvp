@@ -12,7 +12,7 @@ import ErrorPage from "../Pages/ErrorPage"
 
 const ItemShopContent = ({ promise }: { promise: Promise<Items[]> }) => {
 
-    const { setRelationshipValue, tickets, setTickets,setEndReason } = useOwnOutlet();
+    const { setRelationshipValue, tickets, setTickets,setEndReason, setHasWon } = useOwnOutlet();
 
     const data = use(promise);
 
@@ -34,6 +34,7 @@ const ItemShopContent = ({ promise }: { promise: Promise<Items[]> }) => {
             return;
         }
         if (item.itemId === "pinkbear"){
+            setHasWon(true);
             setEndReason("victory")
         }
 

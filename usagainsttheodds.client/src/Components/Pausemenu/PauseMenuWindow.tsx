@@ -61,6 +61,7 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
                     <button onClick={() => setGirlfriend(prev => ({ ...prev, thirst: 0 }))}>Girlfriend thirst 0</button>
                     <button onClick={() => setGirlfriend(prev => ({ ...prev, drunkenness: 100 }))}>Girlfriend drunkenness 100</button>
                   <button onClick={() => addNotification("New notification", "/images/Avatars/girlfriendAvatar.png")}>add notification</button>
+                  <button onClick={() => setTickets(12000)}>ss</button>
         </div>
         <div className={styles.modalButtons}>
           <ResetButton className="buttonIntro buttonRules" isIngame={true} navigateTo="/" text="Reset Game" />
