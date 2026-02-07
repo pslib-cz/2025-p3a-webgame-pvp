@@ -115,8 +115,7 @@ const Russianroulette = () => {
                     {result && (
                         <div onAnimationEnd={handleAnimationEnd} className={minigameStyles.resultScreen}>
                             {result === "win" && <span className={minigameStyles.resultText}>You win!</span>}
-                            {result === "lose" && <span className={minigameStyles.resultText}>You lose!</span>}
-                            {result === "draw" && <span className={minigameStyles.resultText}>It's a draw!</span>}
+                            {result === "lose" && <span className={minigameStyles.resultText}>You missed!</span>}
                         </div>
                     )}
         </div>
