@@ -7,6 +7,7 @@ import { useOwnOutlet } from "../../Hooks/useOwnOutlet";
 import type { EndingType } from "../../Types/GameType";
 import { useNavigate } from "react-router-dom";
 import { Loading } from "../../Components/Loading"
+import ErrorPage from "../ErrorPage"
 
 
 
@@ -29,7 +30,7 @@ const Ending = () => {
     }
 
     return (
-        <ErrorBoundary fallback={<Loading message="An error occurred while loading the ending. Please try again later."/>}>
+        <ErrorBoundary FallbackComponent={ErrorPage}>
             <Suspense fallback={<Loading message="Loading ending..."/>}>
                 <EndingContent promise={promise} />
             </Suspense>

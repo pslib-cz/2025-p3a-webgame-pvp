@@ -61,6 +61,7 @@ export type EndingType = {
     person: "boy" | "girl" | null,
     title: string,
     message: string,
+    backgroundUrl: string,
     imageUrl: string
 }
 

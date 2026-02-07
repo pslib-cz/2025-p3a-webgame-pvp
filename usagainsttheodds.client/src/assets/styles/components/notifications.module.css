@@ -2,9 +2,13 @@
     display: flex;
     align-items: center;
     gap: .75vw;
-    background-color: var(--dark-color);
-    padding: .5vh .5vw;
-    border-radius: 1em;
+    background-image: url("/images/Main/Background-notification.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+    padding: .7rem 1.2rem;
+    border-radius: .7em;
     animation: SlideIn 0.5s ease-in-out forwards;
     user-select: none;
     cursor: pointer;
@@ -26,14 +30,14 @@
     flex-direction: column;
     justify-content: center;
     
-    padding: 1vh 2vw;
-    background-color: var(--light-color);
-    border: 2px solid var(--dark-color);
-    border-radius: 1em;
+    padding: .7rem 1rem;
+    border: 1.5px solid var(--light-color);
+    border-radius: .7em;
 }
 
 .text {
     white-space: nowrap;
+    color: var(--light-color);
 }
 
 .greeting {

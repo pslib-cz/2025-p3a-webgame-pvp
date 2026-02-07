@@ -428,7 +428,8 @@ namespace UsAgainstTheOdds.Server.Data
                         EndingId = 1,
                         Reason = "victory",
                         Title = "You Win!",
-                        Message = "You fullfilled your girlfriend's dream and won enough money to start a new life together!",
+                        Message = "You fulfilled your girlfriend's dream and won enough money to start a new life together!",
+                        BackgroundUrl = "/images/Endings/VictoryBg.png",
                         ImageUrl = "/images/Endings/Victory.png"
                     },
                     new Ending
@@ -437,6 +438,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Reason = "breakup",
                         Title = "You Broke Up",
                         Message = "Your girlfriend broke up with you, because you didn't pay attention to her.",
+                        BackgroundUrl = "/images/Endings/BreakupBg.png",
                         ImageUrl = "/images/Endings/Breakup.png"
                     },
                     new Ending
@@ -445,6 +447,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Reason = "bankrupt",
                         Title = "You Went Bankrupt",
                         Message = "You lost all your money at the casino. Your girlfriend is disappointed.",
+                        BackgroundUrl = "/images/Endings/BankruptBg.png",
                         ImageUrl = "/images/Endings/Bankrupt.png"
                     },
                     new Ending
@@ -454,6 +457,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Person = "boy",
                         Title = "You Went Hungry",
                         Message = "You didn't eat anything and collapsed from hunger. Your girlfriend is disappointed.",
+                        BackgroundUrl = "/images/Endings/HungryBoyBg.png",
                         ImageUrl = "/images/Endings/HungryBoy.png"
                     },
                     new Ending
@@ -463,6 +467,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Person = "girl",
                         Title = "Your Girlfriend Went Hungry",
                         Message = "She didn't eat anything and collapsed from hunger.",
+                        BackgroundUrl = "/images/Endings/HungryGirlBg.png",
                         ImageUrl = "/images/Endings/HungryGirl.png"
                     },
                     new Ending
@@ -472,6 +477,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Person = "boy",
                         Title = "You Got Thirsty",
                         Message = "You didn't drink anything and collapsed from thirst.",
+                        BackgroundUrl = "/images/Endings/ThirstyBoyBg.png",
                         ImageUrl = "/images/Endings/ThirstyBoy.png"
                     },
                     new Ending
@@ -481,6 +487,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Person = "girl",
                         Title = "Your Girlfriend Got Thirsty",
                         Message = "She didn't drink anything and collapsed from thirst.",
+                        BackgroundUrl = "/images/Endings/ThirstyGirlBg.png",
                         ImageUrl = "/images/Endings/ThirstyGirl.png"
                     },
                     new Ending
@@ -490,6 +497,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Person = "boy",
                         Title = "You Got Drunk",
                         Message = "You drank too much alcohol and passed out. Your girlfriend is disappointed.",
+                        BackgroundUrl = "/images/Endings/DrunkBoyBg.png",
                         ImageUrl = "/images/Endings/DrunkBoy.png"
                     },
                     new Ending
@@ -499,6 +507,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Person = "girl",
                         Title = "Your Girlfriend Got Drunk",
                         Message = "She drank too much alcohol and passed out.",
+                        BackgroundUrl = "/images/Endings/DrunkGirlBg.png",
                         ImageUrl = "/images/Endings/DrunkGirl.png"
                     }
                 );
