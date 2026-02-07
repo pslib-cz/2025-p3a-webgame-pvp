@@ -9,6 +9,7 @@ import MemoryMatch from "../../Pages/Minigames/MemoryMatch";
 import Darts from "../../Pages/Minigames/Darts";
 import WhackAMole from "../../Pages/Minigames/WhackAMole";
 import NotFoundPage from "../../Pages/NotFoundPage";
+import FeelingLucky from "../../Pages/Minigames/FeelingLucky"
 
 type MinigameProps = {
     id: string;
@@ -43,6 +44,8 @@ const Minigame: React.FC<MinigameProps> = ({ id, devVersion = false }) => {
                 return <SlotsGame />;
             case "darts":
                 return <Darts />
+            case "feelinglucky":
+                return <FeelingLucky />;
             default:
                 return <NotFoundPage />;
         }

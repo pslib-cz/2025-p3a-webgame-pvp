@@ -32,7 +32,7 @@ const HomePage1 = () => {
 
           <button className={`${styles.building} ${styles.wheel}`} onClick={() => navigate("/wheel")} />
           <button className={`${styles.building} ${styles.shop}`} onClick={() => navigate("/itemshop")} />
-          <button className={`${styles.building} ${styles.feelinglucky}`} onClick={() => navigate("/minigame/feelinglucky")} /> {/* nema routu udelanou*/}
+          <button className={`${styles.building} ${styles.feelinglucky}`} onClick={() => navigate("/minigame/feelinglucky")} />
           <button className={`${styles.building} ${styles.russianroulette}`} onClick={() => navigate("/minigame/russianroulette")} />
           <button className={`${styles.building} ${styles.darts}`} onClick={() => navigate("/minigame/darts")} />
 

@@ -1,0 +1,113 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.gameArea {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    position: relative;
+}
+.cupContainer {
+    position: relative;
+    width: 15vw;
+    aspect-ratio: 96/103;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Plynulý pohyb */
+    cursor: pointer;
+    z-index: 10;
+}
+
+.cup {
+    width: 16vw;
+    aspect-ratio: 96/103;
+    background-image: url("/images/FeelingLucky/Cup.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 10;
+    position: relative;
+}
+
+.ball {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 7vw;
+    aspect-ratio: 1/1;
+    background-image: url("/images/FeelingLucky/Ball.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+
+    z-index: 2;
+}
+
+.lifted .ball {
+    opacity: 1;
+}
+
+.lifted {
+    transform: translateY(-50px);
+}
+.lifted .ball {
+    transform: translateX(-50%) translateY(60px);
+}
+
+.moveRight {
+    animation: swapRight 3s ease-in-out forwards;
+}
+
+.moveLeft {
+    animation: swapLeft 3s ease-in-out forwards;
+}
+
+.shake {
+    animation: shakeMiddle 3s ease-in-out forwards;
+}
+
+@keyframes swapRight {
+    0% { transform: translateX(0); z-index: 10; }
+    50% { transform: translateX(20vw); z-index: 20; } /* Jde dopředu */
+    100% { transform: translateX(0); z-index: 10; }
+}
+
+@keyframes swapLeft {
+    0% { transform: translateX(0); z-index: 10; }
+    50% { transform: translateX(-20vw); z-index: 5; } /* Jde dozadu */
+    100% { transform: translateX(0); z-index: 10; }
+}
+
+@keyframes shakeMiddle {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+}
+
+/* VÝSLEDEK */
+.resultScreen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    animation: resultScreenFadeIn 0.5s ease-out forwards;
+    z-index: 100;
+    pointer-events: none;
+}
+
+@keyframes resultScreenFadeIn {
+    from { opacity: 0; transform: translate(-50%, -40%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+}

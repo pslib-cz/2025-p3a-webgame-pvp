@@ -46,8 +46,8 @@ namespace UsAgainstTheOdds.Server.Data
                     },
                     new Minigame
                     {
-                        MinigameId = "cupsandcoins",
-                        Name = "Cups & Coins",
+                        MinigameId = "feelinglucky",
+                        Name = "Feeling Lucky",
                         Description = "Players guess under which cup the hidden object is located, based on luck and intuition. Based on the shell game.",
                         Price = 200,
                         Difficulty = 1
