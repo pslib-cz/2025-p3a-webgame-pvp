@@ -9,6 +9,7 @@ import NotificationList from "./Components/Notifications/NotificationList";
 import { GameContext } from "./Context/GameContext";
 import type { NotificationData } from "./Types/NotificationType";
 import { useSound } from "./Providers/SoundProvider";
+import VerticalWarning from "./Components/VerticalWarning";
 
 
 const RootLayout = () => {
@@ -35,6 +36,8 @@ const RootLayout = () => {
             drunkenness: 10,
         },
     };
+
+    const isVertical = window.innerHeight > window.innerWidth;
 
 
     const [userData, setUserData] = useState<UserData>(() => {
@@ -208,6 +211,7 @@ const RootLayout = () => {
     return (
         <GameContext.Provider value={gameContextValue}>
             <div className="game-root">
+                <VerticalWarning />
                 <PauseMenu />
                 <NotificationList />
                 <Outlet />

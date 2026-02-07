@@ -15,10 +15,22 @@ h2,
 h3,
 p,
 a,
-button {
+button,
+input {
     font-family: "Jersey 15", sans-serif;
     margin: 0;
     color: var(--dark-color);
+    border: none;
+}
+
+.pergamenBackground {
+    background-image: url("/images/Main/PauseMenu.png");
+    background-size: 100% 100%;
+
+    padding: 5vh 6vw 8vh 6vw;
+    max-height: 80vh;
+    max-width: 75vw;
+
 }
 
 .main {
@@ -33,6 +45,7 @@ button {
     border-radius: 1rem;
     margin: 0.25em;
     cursor: pointer;
+    user-select: none;
 }
 
 .buttonIntro {
@@ -42,7 +55,6 @@ button {
     cursor: pointer;
 
     background: none;
-    border: none;
     color: var(--light-color);
 
     position: relative;

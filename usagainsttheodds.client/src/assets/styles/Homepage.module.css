@@ -40,18 +40,14 @@
 .main_right {
     background-image: url("/images/Main/Background-first.png");
     height: 100vh;
-    background-size: cover;
-    background-position: left top;
-    background-repeat: no-repeat;
+    background-size: 100% 100%;
     position: relative;
 }
 
 .main_left {
     background-image: url("/images/Main/Background-second.png");
     height: 100vh;
-    background-size: cover;
-    background-position: left top;
-    background-repeat: no-repeat;
+    background-size: 100% 100%;
     position: relative;
 }
 
@@ -62,7 +58,6 @@
     top: 0;
     bottom: 0;
     transition: width 0.3s ease;
-    border: 0;
 }
 
 .goLEFT_btn:hover,
@@ -86,10 +81,7 @@
 .building {
     position: absolute;
     z-index: 1;
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    border: none;
+    background-size: 100% 100%;
     background-color: transparent;
     transition: transform 0.3s ease;
 }
@@ -102,7 +94,7 @@
 .wheel {
     background-image: url("/images/Homepage/Wheel.png");
     width: 38vw;
-    aspect-ratio: 167 / 86;
+    height: 37vh;
     right: 36vw;
     top: 0vh;
 }
@@ -110,7 +102,7 @@
 .shop {
     background-image: url("/images/Homepage/Shop.png");
     width: 20vw;
-    aspect-ratio: 74 / 59;
+    height: 30vh;
     right: 73vw;
     top: 13vh;
 }
@@ -118,7 +110,7 @@
 .russianroulette {
     background-image: url("/images/Homepage/Russianroulette.png");
     width: 12vw;
-    aspect-ratio: 43 / 61;
+    height: 34vh;
     right: 87vw;
     top: 40vh;
 }
@@ -126,7 +118,7 @@
 .feelinglucky {
     background-image: url("/images/Homepage/Feelinglucky.png");
     width: 11vw;
-    aspect-ratio: 180 / 256;
+    height: 34vh;
     right: 15vw;
     top: 16vh;
 }
@@ -134,7 +126,7 @@
 .darts {
     background-image: url("/images/Homepage/Darts.png");
     width: 9vw;
-    aspect-ratio: 136 / 204;
+    height: 29vh;
     right: 27vw;
     top: 16vh;
 }
@@ -143,7 +135,7 @@
 .slots {
     background-image: url("/images/Homepage/Slots.png");
     width: 12vw;
-    aspect-ratio: 48 / 64;
+    height: 32vh;
     right: 39vw;
     top: 15vh;
 }
@@ -152,7 +144,7 @@
 .blackjack {
     background-image: url("/images/Homepage/Blackjack.png");
     width: 28vw;
-    aspect-ratio: 108 / 84;
+    height: 46vh;
     right: 10vw;
     top: 10vh;
 }
@@ -160,7 +152,7 @@
 .whackamole {
     background-image: url("/images/Homepage/Whackamole.png");
     width: 13vw;
-    aspect-ratio: 23 / 29;
+    height: 32vh;
     right: 1vw;
     top: 40vh;
 }
@@ -168,7 +160,7 @@
 .food {
     background-image: url("/images/Homepage/Food.png");
     width: 20vw;
-    aspect-ratio: 84 / 64;
+    height: 31vh;
     right: 63vw;
     top: 10vh;
 }
@@ -176,30 +168,29 @@
 .pexeso {
     background-image: url("/images/Homepage/Pexeso.png");
     width: 11vw;
-    aspect-ratio: 38 / 62;
+    height: 35vh;
     right: 52vw;
-    top: 8vh;
+    top: 10vh;
 }
 
 
 /* NPC + ANIMACE*/
 
-.npc_1,
-.npc_2, .npc_3 {
+.npc {
     position: absolute;
     z-index: 2;
 
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-
-    width: 6vw;
-    height: 16vh;
+    background-size: 100% 100%;
 }
 
-.npc_1 {
-    animation: long-walk 50s linear infinite;
+.longwalk {
     transform-origin: center;
+    animation: long-walk 50s linear infinite;
+}
+
+.shortwalk {
+    transform-origin: center;
+    animation: short-walk 40s linear infinite;
 }
 
 .baloons {
@@ -211,13 +202,17 @@
 }
 
 .girlindress {
-    background-image: url(/images/Homepage/NPC/Girlindress.png);
+    background-image: url("/images/Homepage/NPC/Girlindress.png");
+    width: 5vw;
+    height: 13vh;
     top: 62vh;
     left: 40vw;
 }
 
 .family {
-    background-image: url(/images/Homepage/NPC/Family.png);
+    background-image: url("/images/Homepage/NPC/Family.png");
+    width: 7vw;
+    height: 13vh;
     top: 62vh;
     left: 15vw;
 }
@@ -225,38 +220,34 @@
 .lamp {
     position: absolute;
     z-index: 5;
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url(/images/Homepage/Map/Lamp.png);
+    background-size: 100% 100%;
+    background-image: url("/images/Homepage/Map/Lamp.png");
     height: 40vh;
-    aspect-ratio: 128/97;
+    width: 30vw;
 }
 
 .trash {
     position: absolute;
     z-index: 5;
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url(/images/Homepage/Map/Trashcan.png);
-    height: 12vh;
-    aspect-ratio: 10/16;
+    background-size: 100% 100%;
+    background-image: url("/images/Homepage/Map/Trashcan.png");
+    height: 9vh;
+    width: 5vw;
 }
 
 .lamp1 {
-    top: 54vh;
-    right: 60vw;
+    top: 50vh;
+    right: 55vw;
 }
 
 .lamp2 {
-    top: 54vh;
+    top: 45vh;
     right: 20vw;
 }
 
 .lamp3 {
-    top: 54vh;
-    right: 70vw;
+    top: 40vh;
+    right: 67vw;
 }
 .lamp4 {
     top: 54vh;
@@ -265,14 +256,14 @@
 
 .trash1 {
     top: 42vh;
-    right: 5vw;
+    right: 7vw;
 }
 .trash2 {
-    top: 40vh;
-    right: 70vw;
+    top: 42vh;
+    right: 69vw;
 }
 .trash3 {
-    top: 40vh;
+    top: 38vh;
     right: 90vw;
 }
 .trash4 {
@@ -306,10 +297,6 @@
     }
 }
 
-.npc_2 {
-    animation: short-walk 40s linear infinite;
-    transform-origin: center;
-}
 
 @keyframes short-walk {
     0% {

@@ -55,7 +55,7 @@
     align-items: flex-end;
     width: max-content;
     gap: 10px;
-    z-index: 10000;
+    z-index: 600;
 
     position: absolute;
     top: 10vh;
