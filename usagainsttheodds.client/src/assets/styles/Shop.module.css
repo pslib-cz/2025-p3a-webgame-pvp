@@ -38,7 +38,7 @@
     grid-template-columns: repeat(2, auto);
     grid-auto-rows: 80px;
     grid-auto-flow: row;
-    gap: 8px;
+    grid-gap: 8px 10vh;
     padding: 0 2vw;
     overflow: hidden;
 }
@@ -63,7 +63,7 @@
 
 .itemFood {
     display: flex;
-    flex: 1 0 50px;
+    flex: 1 0;
     justify-content: space-between;
     margin: 0.2rem 0;
     border-radius: 8px;

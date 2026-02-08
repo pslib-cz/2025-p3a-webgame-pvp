@@ -64,7 +64,7 @@ const FoodBarContent = ({ promise }: { promise: Promise<Consumable[]> }) => {
         <div className={styles.menu}>
 
             <div className={styles.itemsContainer}>
-                <h1>MENU</h1>
+                <h1>FOOD MENU</h1>
                     {data.slice(0, maxItems).map((item) => (
                         <div key={item.consumableId} className={styles.itemFood}>
                             <div className={styles.foodCard}>
