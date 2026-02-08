@@ -26,7 +26,7 @@
 
 .text h1 {
     font-weight: 400;
-    font-size: 2rem;;
+    font-size: 4rem;;
 }
 
 .layer {
@@ -94,4 +94,14 @@
 
 @keyframes fadeText {
     to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+.text h1, .text p, .text button {
+    font-size: larger;
+    background-color: var(--purple);
+    padding: 0.5rem 1rem;
+}
+
+.text button {
+    background-color: var(--orange);
 }

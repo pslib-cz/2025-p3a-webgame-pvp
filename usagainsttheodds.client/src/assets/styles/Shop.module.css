@@ -133,6 +133,7 @@
     box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
     opacity: 0;
     pointer-events: none;
+    cursor:default;
     transition: all 0.2s ease-in-out;
     z-index: 20;
 }
@@ -142,6 +143,7 @@
     background-color: transparent;
     border: 1px solid var(--dark-color);
     padding: .5rem 1rem;
+    cursor: pointer;
 }
 
 .item:hover {
@@ -209,7 +211,7 @@
 
 .item[data-id="brownbear"] .itemCard, .item[data-id="sunflower"] .itemCard, .item[data-id="gingerbreadheart"] .itemCard {
     left: auto;
-    right: 105%;
+    right: 90%;
     transform: none;
 }
 
