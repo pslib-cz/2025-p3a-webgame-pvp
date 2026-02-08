@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import styles from "../../assets/styles/components/notifications.module.css";
+import { useSound } from "../../Providers/SoundProvider";
 
 type NotificationProps = {
     text: string;
@@ -9,8 +10,10 @@ type NotificationProps = {
 
 const Notification: React.FC<NotificationProps> = ({ text, imageSrc, closeCallback }) => {
     const [isDeleted, setIsDeleted] = useState(false);
+    const { play } = useSound();
 
     useEffect(() => {
+        play('notification');
         const timer = setTimeout(() => {
             setIsDeleted(true);
         }, 4000);
