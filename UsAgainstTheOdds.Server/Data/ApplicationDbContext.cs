@@ -33,6 +33,7 @@ namespace UsAgainstTheOdds.Server.Data
                         MinigameId = "russianroulette",
                         Name = "Risky Turn",
                         Description = "Thrilling game of chance where players risk it all for reward, testing their luck and courage. Inspired by Russian roulette.",
+                        Rules = "There’s a prize on the shelf, but your cylinder is mostly empty. Load one bullet, give it a spin, and pray you aren't firing a blank. One shot. One chance.",
                         Price = 500,
                         Difficulty = 1
                     },
@@ -41,6 +42,7 @@ namespace UsAgainstTheOdds.Server.Data
                         MinigameId = "blackjack",
                         Name = "Lucky 21",
                         Description = "Fast-paced card game where players aim for a hand value as close to 21 as possible. Rules based on the well-known Black Jack.",
+                        Rules = "Your goal is to reach 21. Go over even by one, and you lose everything. Stand or hit another, the choice is yours. But remember, the Dealer plays to win, and he won't show you any mercy.",
                         Price = 300,
                         Difficulty = 1
                     },
@@ -49,6 +51,7 @@ namespace UsAgainstTheOdds.Server.Data
                         MinigameId = "feelinglucky",
                         Name = "Feeling Lucky",
                         Description = "Players guess under which cup the hidden object is located, based on luck and intuition. Based on the shell game.",
+                        Rules = "Test your intuition in this simple game of luck! The ball is hiding under one of thee cups, which one is it? You choose.",
                         Price = 200,
                         Difficulty = 1
                     },
@@ -57,6 +60,7 @@ namespace UsAgainstTheOdds.Server.Data
                         MinigameId = "slots",
                         Name = "Spiny spin",
                         Description = "Player spins Slot machine and hopes for all three symbols to be same",
+                        Rules = "Pull the lever, wait for your moment, and hit Stop. Line up the symbols to win. Will you strike gold, or is your luck running dry?",
                         Price = 100,
                         Difficulty = 1
                     },
@@ -65,6 +69,7 @@ namespace UsAgainstTheOdds.Server.Data
                         MinigameId = "whackamole",
                         Name = "Whack a Mole",
                         Description = "Player is whacking moles.",
+                        Rules = "No time to be slow. Try to whack as many moles as you see! Show no mercy.",
                         Price = 100,
                         Difficulty = 3
                     },
@@ -73,6 +78,7 @@ namespace UsAgainstTheOdds.Server.Data
                         MinigameId = "memorymatch",
                         Name = "Memory Match",
                         Description = "Player is matching pairs of cards.",
+                        Rules = "In this game you take turns with your opponent. Start by choosing two cards and remember them. Try to match as many pairs as you can!",
                         Price = 150,
                         Difficulty = 2
                     },
@@ -81,6 +87,7 @@ namespace UsAgainstTheOdds.Server.Data
                         MinigameId = "darts",
                         Name = "Darts",
                         Description = "Player is trying to hit as close to the bullseye as possible.",
+                        Rules = "Get to the center as close as possible. It wont be easy, hold steady and take your time.",
                         Price = 100,
                         Difficulty = 2
                     }
@@ -211,7 +218,7 @@ namespace UsAgainstTheOdds.Server.Data
                         ConsumableId = "langos",
                         Type = Enums.ConsumableType.food,
                         Name = "Lángos",
-                        Description = "A traditional Hungarian deep-fried flatbread topped with garlic, sour cream, and cheese.",
+                        Description = "A traditional deep-fried flatbread topped with garlic, sour cream, and cheese.",
                         Price = 7,
                         HungerRestoreValue = 12,
                         ThirstRestoreValue = 0,
@@ -297,7 +304,7 @@ namespace UsAgainstTheOdds.Server.Data
                         ConsumableId = "palinka",
                         Type = Enums.ConsumableType.drink,
                         Name = "Pálinka",
-                        Description = "A traditional Hungarian fruit brandy, known for its strong flavor and high alcohol content.",
+                        Description = "A fruit brandy, known for its flavor and high alcohol content.",
                         Price = 10,
                         HungerRestoreValue = 0,
                         ThirstRestoreValue = 15,
@@ -345,7 +352,7 @@ namespace UsAgainstTheOdds.Server.Data
                         ConsumableId = "eggnog",
                         Type = Enums.ConsumableType.drink,
                         Name = "Eggnog",
-                        Description = "A rich and creamy holiday drink made with milk, cream, sugar, whipped egg whites, and egg yolks, often spiked with rum or bourbon.",
+                        Description = "A rich and creamy holiday drink, often spiked with rum or bourbon.",
                         Price = 6,
                         HungerRestoreValue = 0,
                         ThirstRestoreValue = 9,
