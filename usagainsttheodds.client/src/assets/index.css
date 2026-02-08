@@ -30,6 +30,7 @@ input {
     padding: 5vh 6vw 8vh 6vw;
     max-height: 80vh;
     max-width: 75vw;
+    overflow: hidden;
 
 }
 

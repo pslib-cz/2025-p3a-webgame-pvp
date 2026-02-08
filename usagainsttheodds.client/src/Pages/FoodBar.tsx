@@ -3,12 +3,11 @@ import { Suspense, use, useEffect, useState } from "react";
 import type { Consumable } from "../Types/GameType";
 import { useOwnOutlet } from "../Hooks/useOwnOutlet";
 import apiGet from "../Helpers/apiHelper";
-import styles from "../assets/styles/Shop.module.css"
+import styles from "../assets/styles/foodBar.module.css"
 import minigameStyles from '../assets/styles/Minigames/Minigame.module.css';
 import { ErrorBoundary } from "react-error-boundary";
 import { Loading } from "../Components/Loading"
 import  ErrorPage from "../Pages/ErrorPage"
-import useViewportHeight from "../Hooks/useViewportHeight";
 
 
 
@@ -17,13 +16,17 @@ const FoodBarContent = ({ promise }: { promise: Promise<Consumable[]> }) => {
     const { setPlayer, setGirlfriend, tickets, setTickets, addNotification } = useOwnOutlet();
 
 
-    const vh = useViewportHeight();
+    // const vh = useViewportHeight();
 
 
-    const maxItems = Math.floor((vh - vh/4)/88)*2;// 80 je výška jedné položky + mezera 8px, *2 protože máme 2 sloupce
-    console.log("max items:", maxItems);
+    // const maxItems = Math.floor((vh - vh/4)/88)*2;// 80 je výška jedné položky + mezera 8px, *2 protože máme 2 sloupce
+    // console.log("max items:", maxItems);
 
     const data = use(promise);
+
+    const maxItems = 7
+    const foodData = data.filter(i => i.type === "food").slice(0, maxItems);
+    const drinkData = data.filter(i => i.type === "drink").slice(0, maxItems);
     
     const handleBuy = (itemId: string) => {
 
@@ -63,35 +66,76 @@ const FoodBarContent = ({ promise }: { promise: Promise<Consumable[]> }) => {
     return (
         <div className={`${minigameStyles.table} ${minigameStyles.container}`}>
 
-        <div className={styles.menu}>
+            <div className={`${styles.menuFrame} pergamenBackground`}>
 
-            <div className={styles.itemsContainer}>
-                <h1>FOOD MENU</h1>
-                    {data.slice(0, maxItems).map((item) => (
-                        <div key={item.consumableId} className={styles.itemFood}>
-                            <div className={styles.foodCard}>
-                                <div className={styles.foodInfo}>
-                                    <h2>{item.name}</h2>
-                                    <p>{item.description}</p>
-                                </div>
-                                <div className={styles.foodStats}>
-                                    <p>Price: {item.price}</p>
-                                    <p>Hunger: {item.hungerRestoreValue}</p>
-                                    <p>Thirst: {item.thirstRestoreValue}</p>
-                                </div>
-                                {item.isAlcoholic && <p>Alcohol: {item.alcoholContent}</p>}
+                <h1 className={styles.title}>FOOD MENU</h1>
+
+                <div className={styles.scrollContainer}>
+
+                    <div className={styles.columnsLayout}>
+                        {/* FOOD */}
+                        <div className={styles.menuColumn}>
+                            <h2 className={styles.categoryTitle}>Food</h2>
+                            <div className={styles.itemsContainer}>
+                                {foodData.map(item => (
+                                    <div key={item.consumableId} className={styles.itemContainer}>
+    
+                                        <div className={styles.itemCard}>
+                                            <div className={styles.itemInfo}>
+                                                <h3 className={styles.itemTitle}>{item.name}</h3>
+                                                <p>{item.description}</p>
+                                            </div>
+                                            <div className={styles.itemStats}>
+                                                <p>Price: {item.price}</p>
+                                                <p>Hunger: {item.hungerRestoreValue}</p>
+                                                <p>Thirst: {item.thirstRestoreValue}</p>
+                                            </div>
+                                            {item.isAlcoholic && <p>Alcohol: {item.alcoholContent}</p>}
+                                        </div>
+    
+                                        <button
+                                            className={styles.buyButton}
+                                            onClick={() => handleBuy(item.consumableId)}
+                                        >
+                                            Buy
+                                        </button>
+                                    </div>
+                                ))}
                             </div>
-                            <button
-                                className={styles.buyButton}
-                                onClick={() => handleBuy(item.consumableId)}
-                            >
-                                Buy
-                            </button>
                         </div>
-                    ))}
-
+    
+    
+                        {/* DRINKS */}
+                        <div className={styles.menuColumn}>
+                            <h2 className={styles.categoryTitle}>Drinks</h2>
+                            <div className={styles.itemsContainer}>
+                                {drinkData.map(item => (
+                                    <div key={item.consumableId} className={styles.itemContainer}>
+                                    <div className={styles.itemCard}>
+                                        <div className={styles.itemInfo}>
+                                            <h3 className={styles.itemTitle}>{item.name}</h3>
+                                            <p>{item.description}</p>
+                                        </div>
+                                        <div className={styles.itemStats}>
+                                            <p>Price: {item.price}</p>
+                                            <p>Hunger: {item.hungerRestoreValue}</p>
+                                            <p>Thirst: {item.thirstRestoreValue}</p>
+                                        </div>
+                                        {item.isAlcoholic && <p>Alcohol: {item.alcoholContent}</p>}
+                                    </div>
+                                    <button
+                                        className={styles.buyButton}
+                                        onClick={() => handleBuy(item.consumableId)}
+                                    >
+                                        Buy
+                                    </button>
+                                </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
 
             <ChangeScreenButton className="buttonNext" to="/game/right" text="Go Back" />
         </div>
