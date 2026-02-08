@@ -99,7 +99,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Price = 10000,
                         RelationRestoreValue = 20,
                         Description = "A cuddly brown bear plush toy."
-                    },
+                    },    
                     new Item
                     {
                         ItemId = "whitebear",
@@ -157,93 +157,6 @@ namespace UsAgainstTheOdds.Server.Data
             modelBuilder.Entity<Consumable>(ent =>
             {
                 ent.HasData(
-                    // Food items
-                    new Consumable
-                    {
-                        ConsumableId = "hotdog",
-                        Type = Enums.ConsumableType.food,
-                        Name = "Hot Dog",
-                        Description = "A classic hot dog with mustard and ketchup.",
-                        Price = 5,
-                        HungerRestoreValue = 10,
-                        ThirstRestoreValue = 0,
-                        IsAlcoholic = false,
-                        AlcoholContent = 0
-                    },
-                    new Consumable
-                    {
-                        ConsumableId = "burger",
-                        Type = Enums.ConsumableType.food,
-                        Name = "Burger",
-                        Description = "A delicious beef burger with lettuce, tomato, and cheese.",
-                        Price = 10,
-                        HungerRestoreValue = 20,
-                        ThirstRestoreValue = 0,
-                        IsAlcoholic = false,
-                        AlcoholContent = 0
-                    },
-                    new Consumable
-                    {
-                        ConsumableId = "pizza",
-                        Type = Enums.ConsumableType.food,
-                        Name = "Pizza",
-                        Description = "A large pepperoni pizza with extra cheese.",
-                        Price = 15,
-                        HungerRestoreValue = 30,
-                        ThirstRestoreValue = 0,
-                        IsAlcoholic = false,
-                        AlcoholContent = 0
-                    },
-                    new Consumable
-                    {
-                        ConsumableId = "salad",
-                        Type = Enums.ConsumableType.food,
-                        Name = "Salad",
-                        Description = "A fresh garden salad with a variety of vegetables.",
-                        Price = 8,
-                        HungerRestoreValue = 15,
-                        ThirstRestoreValue = 0,
-                        IsAlcoholic = false,
-                        AlcoholContent = 0
-                    },
-                    new Consumable
-                    {
-                        ConsumableId = "langos",
-                        Type = Enums.ConsumableType.food,
-                        Name = "Lángos",
-                        Description = "A traditional Hungarian deep-fried flatbread topped with garlic, sour cream, and cheese.",
-                        Price = 7,
-                        HungerRestoreValue = 12,
-                        ThirstRestoreValue = 0,
-                        IsAlcoholic = false,
-                        AlcoholContent = 0
-                    },
-                    new Consumable
-                    {
-                        ConsumableId = "goulash",
-                        Type = Enums.ConsumableType.food,
-                        Name = "Goulash",
-                        Description = "A hearty Hungarian stew made with beef, vegetables, and paprika.",
-                        Price = 12,
-                        HungerRestoreValue = 25,
-                        ThirstRestoreValue = 0,
-                        IsAlcoholic = false,
-                        AlcoholContent = 0
-                    },
-                    new Consumable
-                    {
-                        ConsumableId = "cottoncandy",
-                        Type = Enums.ConsumableType.food,
-                        Name = "Cotton Candy",
-                        Description = "A fluffy and sweet treat made from spun sugar.",
-                        Price = 4,
-                        HungerRestoreValue = 8,
-                        ThirstRestoreValue = 0,
-                        IsAlcoholic = false,
-                        AlcoholContent = 0
-                    },
-
-                    // Drink items
                     new Consumable
                     {
                         ConsumableId = "water",
@@ -297,7 +210,7 @@ namespace UsAgainstTheOdds.Server.Data
                         ConsumableId = "palinka",
                         Type = Enums.ConsumableType.drink,
                         Name = "Pálinka",
-                        Description = "A traditional Hungarian fruit brandy, known for its strong flavor and high alcohol content.",
+                        Description = "A fruit brandy, known for its flavor and high alcohol content.",
                         Price = 10,
                         HungerRestoreValue = 0,
                         ThirstRestoreValue = 15,
@@ -345,7 +258,7 @@ namespace UsAgainstTheOdds.Server.Data
                         ConsumableId = "eggnog",
                         Type = Enums.ConsumableType.drink,
                         Name = "Eggnog",
-                        Description = "A rich and creamy holiday drink made with milk, cream, sugar, whipped egg whites, and egg yolks, often spiked with rum or bourbon.",
+                        Description = "A rich and creamy holiday drink, often spiked with rum or bourbon.",
                         Price = 6,
                         HungerRestoreValue = 0,
                         ThirstRestoreValue = 9,
@@ -380,7 +293,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Order = 1,
                         Text = "I hope you enjoy it here...",
                         Speaker = Enums.SpeakerType.boy,
-                        ImageUrl = "/images/Cutscene/Intro/Intro1.png",
+                        ImageUrl = "/images/Cutscene/Intro/Intro1.avif",
                         ButtonText = "Continue"
                     },
                     new Cutscene
@@ -390,7 +303,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Order = 2,
                         Text = "I need that bear! It's so cute! Please, let's go get it!",
                         Speaker = Enums.SpeakerType.girl,
-                        ImageUrl = "/images/Cutscene/Intro/Intro2.png",
+                        ImageUrl = "/images/Cutscene/Intro/Intro2.avif",
                         ButtonText = "Continue"
                     },
                     new Cutscene
@@ -400,7 +313,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Order = 3,
                         Text = "It's expensive... And we don't have any tickets.",
                         Speaker = Enums.SpeakerType.boy,
-                        ImageUrl = "/images/Cutscene/Intro/Intro3.png",
+                        ImageUrl = "/images/Cutscene/Intro/Intro3.avif",
                         ButtonText = "Continue"
                     },
                     new Cutscene
@@ -410,7 +323,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Order = 4,
                         Text = "Please, I really want it! You can win some tickets in the games!",
                         Speaker = Enums.SpeakerType.girl,
-                        ImageUrl = "/images/Cutscene/Intro/Intro4.png",
+                        ImageUrl = "/images/Cutscene/Intro/Intro4.avif",
                         ButtonText = "Let's go!"
                     }
 

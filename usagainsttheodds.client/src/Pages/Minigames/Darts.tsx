@@ -29,8 +29,29 @@ const Darts = () => {
      },[playerScore])
 
 
-    //pocitani vzdalenosti:
-    // maxscore -  math.sqrt(math.pow(math.abs(posx - 50)) + math.pow(math.abs(posy -50))))
+
+
+     useEffect(() => {
+        const handleSpace = (event) => {
+          if (event.code === "Space" || event.key === " ") {
+            console.log("Space pressed globally!");
+          }
+        };
+    
+        window.addEventListener("keydown", handleSpace);
+        return () => window.removeEventListener("keydown", handleSpace);
+      }, []);
+
+
+
+
+
+
+
+
+
+
+    //pocitani vzdalenosti - maxscore -  math.sqrt(math.pow(math.abs(posx - 50)) + math.pow(math.abs(posy -50))))
      const CountScore = (x: number, y:number) => {
         const score = maxScore - Math.round(2*Math.sqrt(Math.pow(Math.abs(x-50),2)+Math.pow(Math.abs(y-50),2)))
         setPlayerScore(score) 
@@ -54,13 +75,10 @@ const Darts = () => {
     }
 
 
-
-
     return (
         <div className={`${minigameStyles.container} ${minigameStyles.alignToBottom}`}>
             <div className={styles.dartsGameContainer}>
-                <div className={styles.dartContainer}>
-                    {!isStopped.stoppedX && (
+            {!isStopped.stoppedX && (
                         <>
                             <DartsSlider isAxisY={false} dartsPosPercent={(x: number) => setPos({posX: x, posY: pos.posY})} isShot={isStopped.stoppedX}/>
                             <button className={styles.dartButton} onClick={() => setIsStopped({stoppedX: true, stoppedY: isStopped.stoppedY})}>stoppedX</button>
@@ -72,13 +90,18 @@ const Darts = () => {
                             <button className={styles.dartButton} onClick={() => setIsStopped({stoppedX: isStopped.stoppedX, stoppedY: true})}>stoppedY</button>
                         </>
                     )}
-                    <img style={{    
-                            left: `${pos.posX}%`,
-                            top: `${pos.posY}%`
-                        }} 
-                        className={styles.dart} 
-                        src="/images/darts/dart.png" 
-                        alt="dart" />
+                <div className={`${styles.dartContainer} ${styles.target}`}>
+
+                        <img 
+                            style={{    
+                                left: `${pos.posX}%`,
+                                top: `${pos.posY}%`
+                            }} 
+                            className={styles.dart} 
+                            src="/images/darts/dart.png" 
+                            alt="dart" 
+                        />
+
 
 
                 </div>

@@ -24,9 +24,6 @@ const StartPage = () => {
         navigate("/game");
     };
 
-    console.log("Has save:", hasSave);
-    console.log("started:", isStarted);
-
     return (
         <div className={styles.startpage}>
             <div className={styles.text}>
