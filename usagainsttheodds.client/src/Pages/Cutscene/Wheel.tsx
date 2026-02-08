@@ -1,4 +1,3 @@
-
 import { Suspense, use, useEffect, useState } from "react";
 import { useOwnOutlet } from "../../Hooks/useOwnOutlet";
 import type { JokeType } from "../../Types/GameType";
@@ -25,7 +24,7 @@ const WheelContent = ({ promise }: { promise: Promise<JokeType> }) => {
                 setJokeStage("punchline");
                 setTickets(prev => prev - 200);//poladit dyl
                 setRelationshipValue(prev => prev + 20);
-            }, 5000);
+            }, 7500);
 
             return () => clearTimeout(timer);
     }, [joke]);
@@ -38,7 +37,7 @@ const WheelContent = ({ promise }: { promise: Promise<JokeType> }) => {
                 <p className={`${style.speakerName} `}>
                     {player.name}:
                 </p>
-                <p className={styles.text}>{jokeStage === "setup" ? joke?.jokeText : joke?.punchline}</p>
+                <p className={style.text}>{jokeStage === "setup" ? joke?.jokeText : joke?.punchline}</p>
             </div>
             {jokeStage === "punchline" && (
                 <ChangeScreenButton className="buttonNext" text="Get off the wheel" to="/game" />

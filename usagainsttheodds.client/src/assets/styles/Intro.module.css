@@ -13,6 +13,7 @@
     bottom: 5%;
     right: 5%;
     padding: 0.5em 1em;
+    font-size: 3vh;
 }
 
 .textContainer {
@@ -21,7 +22,7 @@
     left: 50%;
     transform: translate(-50%);
 
-    padding: 2em;
+    padding: 3vh 3vw;
     width: max-content;
     max-width: 40%;
     border: 4px solid #793026;
@@ -35,8 +36,8 @@
     top: 0;
     left: 0;
     transform: translate(-50%, -50%);
-    width: 85px;
-    height: 85px;
+    width: 6vw;
+    height: 10vh;
     background-size: 100% 100%;
 }
 .boy{
@@ -50,10 +51,10 @@
 }
 .speakerName{
     font-weight: bold;
-    font-size: 2em;
+    font-size: 5vh;
 }
 .text {
-    font-size: 1.5em;
+    font-size: 4vh;
 }
 
 

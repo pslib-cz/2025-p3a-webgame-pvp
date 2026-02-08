@@ -2,8 +2,7 @@
     height: 100vh;
 
     background-image: url("/images/Cutscene/Wheel.png");
-    background-size: 110%;
-    background-repeat: no-repeat;
+    background-size: 110% 100%;
 
     animation: moveBackground 20s linear infinite;
 }
@@ -18,8 +17,4 @@
     100% {
         background-position: 30% 100%;
     }
-}
-
-.text {
-    font-size: 1.7rem;
 }

@@ -118,20 +118,18 @@ input {
     bottom: 5vh;
     right: 5vw;
     background-color: #E8D3D3;
-    font-size: 1.5rem;
+    font-size: 3vh;
     color: #683d54;
     border: 4px solid #683d54;
-    padding: .7rem 1rem;
+    padding: 1.5vh 1.5vw;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
 }
 
 .buttonNext:hover {
     background-color: #683d54;
-    font-size: 1.5rem;
     color: #E8D3D3;
     border: 4px solid #683d54;
-    padding: .7rem 1rem;
 }
 
 @keyframes pulseBlur {   
