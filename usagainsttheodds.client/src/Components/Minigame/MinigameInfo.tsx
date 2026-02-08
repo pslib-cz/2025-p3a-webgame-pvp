@@ -31,40 +31,39 @@ const MinigameInfo = ({ }) => {
             setBet(Math.abs(Math.round(value)));
         }
     }
-    /*
-                
-    */
 
     return (
         <div className={`${minigameStyles.container} ${minigameStyles.table}`}>
-            <div className={ `${styles.minigameContainer} ${styles.start} `}>
-                <div className={styles.text}>
-                    <h2>{data ? data.name : "No minigame name available"}</h2>
-                    <p>
-                        {data ? data.description : "No minigame description available"}
-                    </p>
-                </div>
-
-                <div className={styles.rules}>
-                    <h2>How to play?</h2>
-                    <p>
-                        {data ? data.rules : "No minigame rules available"}
-                    </p>
-                </div>
-
-                <div className={styles.bet}>
-                    <div className={introstyles.nameInputContainer}>
-                        <label>Place your bet: </label>
-                        <div className={introstyles.nameInputBox}>
-                            <input className={introstyles.nameInput} type="number" min={1} max={1000} onChange={(e) => handleBetChange(e.currentTarget.value)} value={bet === 0 ? "" : bet} placeholder="0" />
-                        </div>
-                        <button className={styles.buttonAll} onClick={() => handleBetChange("1000")}>Max bet</button>
+            <div className={ `${styles.infoContainer} ${styles.start} `}>
+                <div className={styles.info}>
+                    <div className={styles.text}>
+                        <h2>{data ? data.name : "No minigame name available"}</h2>
+                        <p>
+                            {data ? data.description : "No minigame description available"}
+                        </p>
                     </div>
-                    <p>*You can place a bet between 1 and 1000. Your reward will depend on it.</p>
-                </div>
-                <div className={styles.buttons}>
-                    <ChangeScreenButton className="buttonIntro buttonRules" to={exitPagePath} text="Exit" />
-                    <button className="buttonIntro buttonRules" onClick={playGame}>Play {data ? data.name : "minigame"}</button>
+    
+                    <div className={styles.rules}>
+                        <h2>How to play?</h2>
+                        <p>
+                            {data ? data.rules : "No minigame rules available"}
+                        </p>
+                    </div>
+    
+                    <div className={styles.bet}>
+                        <div className={introstyles.nameInputContainer}>
+                            <label>Place your bet: </label>
+                            <div className={introstyles.nameInputBox}>
+                                <input className={introstyles.nameInput} type="number" min={1} max={1000} onChange={(e) => handleBetChange(e.currentTarget.value)} value={bet === 0 ? "" : bet} placeholder="0" />
+                            </div>
+                            <button className={styles.buttonAll} onClick={() => handleBetChange("1000")}>Max bet</button>
+                        </div>
+                        <p>*You can place a bet between 1 and 1000. Your reward will depend on it.</p>
+                    </div>
+                    <div className={styles.buttons}>
+                        <ChangeScreenButton className="buttonIntro buttonRules" to={exitPagePath} text="Exit" />
+                        <button className="buttonIntro buttonRules" onClick={playGame}>Play {data ? data.name : "minigame"}</button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -50,8 +50,8 @@ input {
 
 .buttonIntro {
     font-size: 1.8rem;
-    padding: .25em .5em;
-    margin: 0.25em;
+    padding: .75vh .75vw;
+    margin: 0.5vw;
     cursor: pointer;
 
     background: none;
@@ -61,7 +61,7 @@ input {
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 2vw;
 }
 
 .buttonIntro::before,
