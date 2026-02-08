@@ -6,7 +6,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import apiGet from "../Helpers/apiHelper";
 import { Loading } from "../Components/Loading"
 import ErrorPage from "../Pages/ErrorPage"
-import styles from "../assets/styles/Shop.module.css"
+import styles from "../assets/styles/itemShop.module.css"
 import "../assets/index.css"
 
 
