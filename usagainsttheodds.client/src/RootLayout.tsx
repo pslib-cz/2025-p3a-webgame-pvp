@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { Outlet } from "react-router-dom";
 import { type UserData } from "./Types/UserDataType";
 import { isDeepEqual } from "./Helpers/generalHelper";
@@ -28,13 +28,13 @@ const RootLayout = () => {
             name: "John",
             hunger: 50,
             thirst: 50,
-            drunkenness: 10,
+            drunkenness: 0,
         },
         girlfriend: {
             name: "Anastasia",
             hunger: 50,
             thirst: 50,
-            drunkenness: 10,
+            drunkenness: 0,
         },
     };
     
@@ -59,6 +59,11 @@ const RootLayout = () => {
     const [isStarted, setIsStarted] = useState<boolean>(userData.isStarted);
     const [isMinigamePlaying, setIsMinigamePlaying] = useState<boolean>(false);
     const [hasWon, setHasWon] = useState<boolean>(false);
+
+    // React-controlled blur values (used by pulseBlur animation via CSS variables)
+    const [blurMin, setBlurMin] = useState<number>(0);
+    const [blurMax, setBlurMax] = useState<number>(0);
+    const [pulseDuration, setPulseDuration] = useState<string>("3s");
 
 
     const [notifications, setNotifications] = useState<NotificationData[]>([]);
@@ -215,13 +220,31 @@ const RootLayout = () => {
     };
 
 
+    useEffect(() => {
+        return () => {
+            setBlurMin(player.drunkenness/20);
+            setBlurMax(player.drunkenness/10);
+        };
+    }, [player.drunkenness]);
+
+
     return (
         <GameContext.Provider value={gameContextValue}>
             <div className="game-root">
                 <VerticalWarning />
                 <PauseMenu />
                 <NotificationList />
-                <Outlet />
+                <div
+                    className="pulseBlur"
+                    style={{
+                        ["--blur-min"]: `${blurMin}px`,
+                        ["--blur-max"]: `${blurMax}px`,
+                        ["--pulse-duration"]: pulseDuration,
+                    } as React.CSSProperties}
+                >
+                    <Outlet />
+                    
+                </div>
             </div>
         </GameContext.Provider>
 
