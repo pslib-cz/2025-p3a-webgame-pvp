@@ -10,9 +10,9 @@ const MinigameInfo = ({ }) => {
     const { exitPagePath, playGame, data, bet, setBet } = useMinigame();
     const { tickets } = useOwnOutlet();
 
-    const handleBetChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleBetChange = (x: string) => {
 
-        const inputValue = e.currentTarget.value;
+        const inputValue = x;
 
         // Pokud je input prázdný (uživatel vše smazal), nastavíme 0 a skončíme
         if (inputValue === "") {
@@ -23,9 +23,11 @@ const MinigameInfo = ({ }) => {
         // Jinak převedeme na číslo
         const value = Number(inputValue);
 
-        if (value > 1000) {
+        if (value > tickets) {
+            setBet(tickets);
+        } else if (value > 1000) {
             setBet(1000);
-        } else {
+        }else {
             setBet(Math.abs(Math.round(value)));
         }
     }
@@ -52,9 +54,9 @@ const MinigameInfo = ({ }) => {
                     <div className={introstyles.nameInputContainer}>
                         <label>Place your bet: </label>
                         <div className={introstyles.nameInputBox}>
-                            <input className={introstyles.nameInput} type="number" min={1} max={1000} onChange={(e) => handleBetChange(e)} value={bet === 0 ? "" : bet} placeholder="0" />
+                            <input className={introstyles.nameInput} type="number" min={1} max={1000} onChange={(e) => handleBetChange(e.currentTarget.value)} value={bet === 0 ? "" : bet} placeholder="0" />
                         </div>
-                        <button className={styles.buttonAll} onClick={() => setBet(1000)}>Max bet</button>
+                        <button className={styles.buttonAll} onClick={() => handleBetChange("1000")}>Max bet</button>
                     </div>
                     <p>*You can place a bet between 1 and 1000. Your reward will depend on it.</p>
                 </div>
