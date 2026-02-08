@@ -87,12 +87,15 @@
 .item {
     position: absolute;
     cursor: pointer;
-    z-index: 10;
+    z-index: 5;
 }
 
 .itemCard {
+    display: flex;
+    flex-direction: column;
+
     position: absolute;
-    left: 115%;
+    left: 95%;
     top: 0;
     width: 12vw;
     background-color: var(--light-color);
@@ -102,36 +105,108 @@
     box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
     
     opacity: 0;
-    pointer-events: none;
+    pointer-events: auto;
     transition: all 0.2s ease-in-out;
     z-index: 20;
+}
+
+.itemCard button {
+    margin-left: auto;
+    background-color: transparent;
+    border: 1px solid var(--dark-color);
+    padding: .5rem 1rem;
+}
+
+.item:hover {
+    z-index: 100;
 }
 
 .item:hover .itemCard {
     opacity: 1;
     pointer-events: auto;
-    transform: translateX(5px);
+    transform: translateX(0px);
+    z-index: 20;
 }
 
-
-/* konkretni itemy */
-
 .item[data-id="rose"] {
-    background-color: red;
-    width: 3vw;
-    aspect-ratio: 1/1;
+    background-image: url("/images/ItemShop/rose.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    aspect-ratio: 108/95;
+    width: 10vw;
     top: 75vh;
     right: 25vw;
 }
-
-.item[data-id="brownbear"] {
-    width: 5vw;
-    aspect-ratio: 1/1;
-    top: 60vh;
-    left: 40vw;
+.item[data-id="tulip"] {
+    background-image: url("/images/ItemShop/tulip.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    aspect-ratio: 108/95;
+    width: 10vw;
+    top: 72vh;
+    right: 45vw;
+}
+.item[data-id="sunflower"] {
+    background-image: url("/images/ItemShop/sunflower.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    aspect-ratio: 108/95;
+    width: 12vw;
+    top: 70vh;
+    right: 65vw;
+}
+.item[data-id="gingerbreadheart"] {
+    background-image: url("/images/ItemShop/gingerbread.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    aspect-ratio: 108/95;
+    width: 12vw;
+    top: 40vh;
+    right: 40vw;
 }
 
-.item[data-id="rose"] .itemCard {
+.item[data-id="brownbear"] {
+    background-image: url("/images/ItemShop/brownbear.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 15vw;
+    aspect-ratio: 23/30;
+    top: 20vh;
+    left: 20vw;
+}
+.item[data-id="pinkbear"] {
+    background-image: url("/images/ItemShop/pinkbear.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 15vw;
+    aspect-ratio: 23/30;
+    top: 18vh;
+    left: 30vw;
+}
+.item[data-id="whitebear"] {
+    background-image: url("/images/ItemShop/whitebear.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 15vw;
+    aspect-ratio: 23/30;
+    top: 18vh;
+    left: 60vw;
+}
+
+.item[data-id="brownbear"] .itemCard, .item[data-id="sunflower"] .itemCard, .item[data-id="gingerbreadheart"] .itemCard {
     left: auto;
-    right: 110%;
+    right: 105%;
+    transform: none;
+}
+
+.item[data-id="brownbear"] .itemCard::before, .item[data-id="sunflower"] .itemCard::before, .item[data-id="gingerbreadheart"] .itemCard::before {
+    left: auto;
+    right: -10%;
 }
