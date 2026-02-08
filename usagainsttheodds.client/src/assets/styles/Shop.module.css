@@ -39,7 +39,7 @@
     grid-auto-rows: 80px;
     grid-auto-flow: row;
     grid-gap: 8px 10vh;
-    padding: 0 2vw;
+    padding: 0 6vw;
     overflow: hidden;
 }
 
