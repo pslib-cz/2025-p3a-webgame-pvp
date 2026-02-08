@@ -12,6 +12,7 @@ const SOUNDS_CONFIG: Record<string, SoundConfigType> = {
         src: "/audio/intro.mp3",
         loop: true,
         category: "music",
+
     },
     crowd: {
         src: "/audio/sfx/crowd.ogg",
@@ -112,10 +113,13 @@ export const useGameSounds = () => {
         const config = SOUNDS_CONFIG[name];
         if (!config) return null;
 
+        const currentGlobalVolume = config.category === 'music' ? musicVolume : sfxVolume;
+        const finalVolume = currentGlobalVolume * (config.volume || 1.0);
+
         const newSound = new Howl({
             src: [config.src],
             loop: config.loop || false,
-            volume: config.volume || 1.0,
+            volume: finalVolume,
             html5: config.category === 'music',
             preload: true,
             mute: config.category === 'music' ? isMusicMuted : isSfxMuted 
@@ -123,7 +127,7 @@ export const useGameSounds = () => {
 
         soundsRefs.current[name] = newSound;
         return newSound;
-    }, [isMusicMuted, isSfxMuted]);
+    }, [isMusicMuted, isSfxMuted, musicVolume, sfxVolume]);
 
 
     const play = useCallback((soundName: SoundName) => {

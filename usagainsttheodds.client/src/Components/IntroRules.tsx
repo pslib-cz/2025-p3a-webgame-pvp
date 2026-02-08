@@ -27,6 +27,7 @@ const IntroRules: React.FC<IntroRulesProps> = ({ onCloseCallback }) => {
       }));
       setIsStarted(true);    
       navigate("/cutscene/intro");
+      play('crowd'); play('bgIntro');
     }
   };
 
@@ -94,7 +95,7 @@ const IntroRules: React.FC<IntroRulesProps> = ({ onCloseCallback }) => {
             <button className="buttonIntro buttonRules" onClick={onCloseCallback} >
               Go back
             </button>
-            <button className="buttonIntro buttonRules" onClick={() => { play('crowd'); play('bgIntro'); handleSaveAndStart(); }}>
+            <button className="buttonIntro buttonRules" onClick={ handleSaveAndStart }>
               Start new game
             </button>
           </div>

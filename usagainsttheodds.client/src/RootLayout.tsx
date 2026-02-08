@@ -1,4 +1,4 @@
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { type UserData } from "./Types/UserDataType";
 import { isDeepEqual } from "./Helpers/generalHelper";
@@ -63,7 +63,7 @@ const RootLayout = () => {
     // React-controlled blur values (used by pulseBlur animation via CSS variables)
     const [blurMin, setBlurMin] = useState<number>(0);
     const [blurMax, setBlurMax] = useState<number>(0);
-    const [pulseDuration, setPulseDuration] = useState<string>("3s");
+    const [pulseDuration] = useState<string>("3s");
 
 
     const [notifications, setNotifications] = useState<NotificationData[]>([]);
