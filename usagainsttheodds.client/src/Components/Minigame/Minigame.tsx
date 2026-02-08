@@ -1,30 +1,24 @@
 import { useMinigame } from "../../Hooks/useMinigame";
 import Blackjack from "../../Pages/Minigames/Blackjack";
-import TestMinigame from "../../Pages/Minigames/TestMinigame";
 import Russianroulette from "../../Pages/Minigames/RussianRoulette";
 import MinigameEnd from "./MinigameEnd";
 import MinigameInfo from "./MinigameInfo";
-import { useEffect } from "react";
 import SlotsGame from "../../Pages/Minigames/Slots";
 import MemoryMatch from "../../Pages/Minigames/MemoryMatch";
 import Darts from "../../Pages/Minigames/Darts";
 import WhackAMole from "../../Pages/Minigames/WhackAMole";
+import NotFoundPage from "../../Pages/NotFoundPage";
+import FeelingLucky from "../../Pages/Minigames/FeelingLucky"
 
 type MinigameProps = {
     id: string;
-    devVersion?: boolean;
 }
 
 
-const Minigame: React.FC<MinigameProps> = ({ id, devVersion = false }) => {
-    const { state, setState } = useMinigame();
+const Minigame: React.FC<MinigameProps> = ({ id }) => {
+    const { state } = useMinigame();
 
 
-    useEffect(() => {
-        if (devVersion && state === "intro") {
-            setState("playing");
-        }
-    }, [])
 
     if (state === "intro") {
         return <MinigameInfo />;
@@ -37,16 +31,16 @@ const Minigame: React.FC<MinigameProps> = ({ id, devVersion = false }) => {
                 return <MemoryMatch />;
             case "russianroulette":
                 return <Russianroulette />;
-            case "test":
-                return <TestMinigame />;
             case "whackamole":
                 return <WhackAMole />;
             case "slots":
                 return <SlotsGame />;
             case "darts":
                 return <Darts />
+            case "feelinglucky":
+                return <FeelingLucky />;
             default:
-                return <div>Unknown Minigame</div>;
+                return <NotFoundPage />;
         }
     }
     if (state === "ended") {

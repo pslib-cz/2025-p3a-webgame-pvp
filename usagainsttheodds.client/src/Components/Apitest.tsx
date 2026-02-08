@@ -1,6 +1,7 @@
 import { Suspense, use, useEffect, useState } from "react";
 import { ErrorBoundary, type FallbackProps } from "react-error-boundary";
 import apiGet from "../Helpers/apiHelper";
+import { Loading } from "../Components/Loading"
 
 const Apitest = () => {
   const [promise, setPromise] = useState<Promise<any> | null>(null);
@@ -34,9 +35,9 @@ const Apitest = () => {
     );
   };
 
-  if (!promise) {
-    return <div>Initializing API request...</div>;
-  }
+if (!promise) {
+    return <Loading />;
+}
 
 
 

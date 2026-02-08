@@ -1,28 +1,32 @@
 import ChangeScreenButton from "../Components/ChangeScreenButton"
-import { use, useEffect, useState } from "react";
+import { Suspense, use, useEffect, useState } from "react";
 import type { Consumable } from "../Types/GameType";
 import { useOwnOutlet } from "../Hooks/useOwnOutlet";
 import apiGet from "../Helpers/apiHelper";
+import styles from "../assets/styles/foodBar.module.css"
+import minigameStyles from '../assets/styles/Minigames/Minigame.module.css';
+import { ErrorBoundary } from "react-error-boundary";
+import { Loading } from "../Components/Loading"
+import  ErrorPage from "../Pages/ErrorPage"
 
 
 
-const FoodBar = () => {
+const FoodBarContent = ({ promise }: { promise: Promise<Consumable[]> }) => {
 
-    const { setPlayer, setGirlfriend, tickets, setTickets } = useOwnOutlet();
+    const { setPlayer, setGirlfriend, tickets, setTickets, addNotification } = useOwnOutlet();
 
-    const [promise, setPromise] = useState<Promise<Consumable[]> | null>(null);
 
-    //load data from api
-    useEffect(() => {
-        setPromise(apiGet<Consumable[]>('/api/consumables/'));
-    }, []);
-    
-    
-    if (!promise) {
-        return <div>Initializing request...</div>;
-    }
+    // const vh = useViewportHeight();
+
+
+    // const maxItems = Math.floor((vh - vh/4)/88)*2;// 80 je výška jedné položky + mezera 8px, *2 protože máme 2 sloupce
+    // console.log("max items:", maxItems);
 
     const data = use(promise);
+
+    const maxItems = 7
+    const foodData = data.filter(i => i.type === "food").slice(0, maxItems);
+    const drinkData = data.filter(i => i.type === "drink").slice(0, maxItems);
     
     const handleBuy = (itemId: string) => {
 
@@ -55,31 +59,108 @@ const FoodBar = () => {
                 drunkenness: item.isAlcoholic ? Math.min(100, prev.drunkenness + item.alcoholContent) : prev.drunkenness
             };
         });
+
+        addNotification(`You bought ${item.name}!`);
     }
 
     return (
-        <div>
+        <div className={`${minigameStyles.table} ${minigameStyles.container}`}>
 
-            <h1>FoodBar</h1>
+            <div className={`${styles.menuFrame} pergamenBackground`}>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1em' }}>
-                {data.map((item) => (
-                    <div key={item.consumableId} style={{ border: '1px solid black', padding: '1em' }}>
-                        <h2>{item.name}</h2>
-                        <p>{item.description}</p>
-                        <p>Price: {item.price} tickets</p>
-                        <p>Hunger Restore: {item.hungerRestoreValue}</p>
-                        <p>Thirst Restore: {item.thirstRestoreValue}</p>
-                        {item.isAlcoholic && <p>Alcohol Content: {item.alcoholContent}</p>}
-                        <button onClick={() => handleBuy(item.consumableId)}>Buy</button>
+                <h1 className={styles.title}>FOOD MENU</h1>
+
+                <div className={styles.scrollContainer}>
+
+                    <div className={styles.columnsLayout}>
+                        {/* FOOD */}
+                        <div className={styles.menuColumn}>
+                            <h2 className={styles.categoryTitle}>Food</h2>
+                            <div className={styles.itemsContainer}>
+                                {foodData.map(item => (
+                                    <div key={item.consumableId} className={styles.itemContainer}>
+    
+                                        <div className={styles.itemCard}>
+                                            <div className={styles.itemInfo}>
+                                                <h3 className={styles.itemTitle}>{item.name}</h3>
+                                                <p>{item.description}</p>
+                                            </div>
+                                            <div className={styles.itemStats}>
+                                                <p>Price: {item.price}</p>
+                                                <p>Hunger: {item.hungerRestoreValue}</p>
+                                                <p>Thirst: {item.thirstRestoreValue}</p>
+                                            </div>
+                                            {item.isAlcoholic && <p>Alcohol: {item.alcoholContent}</p>}
+                                        </div>
+    
+                                        <button
+                                            className={styles.buyButton}
+                                            onClick={() => handleBuy(item.consumableId)}
+                                        >
+                                            Buy
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+    
+    
+                        {/* DRINKS */}
+                        <div className={styles.menuColumn}>
+                            <h2 className={styles.categoryTitle}>Drinks</h2>
+                            <div className={styles.itemsContainer}>
+                                {drinkData.map(item => (
+                                    <div key={item.consumableId} className={styles.itemContainer}>
+                                    <div className={styles.itemCard}>
+                                        <div className={styles.itemInfo}>
+                                            <h3 className={styles.itemTitle}>{item.name}</h3>
+                                            <p>{item.description}</p>
+                                        </div>
+                                        <div className={styles.itemStats}>
+                                            <p>Price: {item.price}</p>
+                                            <p>Hunger: {item.hungerRestoreValue}</p>
+                                            <p>Thirst: {item.thirstRestoreValue}</p>
+                                        </div>
+                                        {item.isAlcoholic && <p>Alcohol: {item.alcoholContent}</p>}
+                                    </div>
+                                    <button
+                                        className={styles.buyButton}
+                                        onClick={() => handleBuy(item.consumableId)}
+                                    >
+                                        Buy
+                                    </button>
+                                </div>
+                                ))}
+                            </div>
+                        </div>
                     </div>
-                ))}
-
+                </div>
             </div>
 
-            <ChangeScreenButton to="/game/right" text="Go Back" />
+            <ChangeScreenButton className="buttonNext" to="/game/right" text="Go Back" />
         </div>
     )
 }
+
+
+const FoodBar = () => {
+    const [promise, setPromise] = useState<Promise<Consumable[]> | null>(null);
+
+    useEffect(() => {
+        setPromise(apiGet<Consumable[]>('/api/consumables/'));
+    }, []);
+
+    if (!promise) {
+        return <Loading />;
+    }
+
+    return (
+        <ErrorBoundary FallbackComponent={ErrorPage}>
+            <Suspense fallback={<Loading/>}>
+                <FoodBarContent promise={promise} />
+            </Suspense>
+        </ErrorBoundary>
+    );
+};
 
 export default FoodBar;

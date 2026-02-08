@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import styles from "../assets/styles/Homepage.module.css"
 import { useNavigate } from 'react-router-dom';
 
@@ -5,6 +6,18 @@ const HomePage1 = () => {
 
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        navigate("/game/right");
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
 
@@ -19,14 +32,14 @@ const HomePage1 = () => {
 
           <button className={`${styles.building} ${styles.wheel}`} onClick={() => navigate("/wheel")} />
           <button className={`${styles.building} ${styles.shop}`} onClick={() => navigate("/itemshop")} />
-          <button className={`${styles.building} ${styles.feelinglucky}`} onClick={() => navigate("/minigame/feelinglucky")} /> {/* nema routu udelanou*/}
+          <button className={`${styles.building} ${styles.feelinglucky}`} onClick={() => navigate("/minigame/feelinglucky")} />
           <button className={`${styles.building} ${styles.russianroulette}`} onClick={() => navigate("/minigame/russianroulette")} />
           <button className={`${styles.building} ${styles.darts}`} onClick={() => navigate("/minigame/darts")} />
 
         </div>
         <div className={styles.NPC}>
-          <span className={`${styles.npc_3} ${styles.baloons}`}></span>
-          <span className={`${styles.npc_1} ${styles.family}`}></span>
+          <span className={`${styles.npc} ${styles.baloons}`}></span>
+          <span className={`${styles.npc} ${styles.longwalk} ${styles.family}`}></span>
         </div>
 
         <div className={styles.map}>
@@ -34,6 +47,7 @@ const HomePage1 = () => {
           <span className={`${styles.lamp} ${styles.lamp2}`} />
           <span className={`${styles.trash} ${styles.trash1}`} />
           <span className={`${styles.trash} ${styles.trash2}`} />
+          <button className={`${styles.arrow} ${styles.arrowRight}`} onClick={() => navigate("/game/right")}/>
         </div>
 
       </div>

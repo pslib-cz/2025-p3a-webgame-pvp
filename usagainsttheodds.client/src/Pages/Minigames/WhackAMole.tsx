@@ -53,7 +53,6 @@ const WhackAMole = () => {
         setSpawnInterval(500);
         setDespawnInterval(600);
         setPossibleMoles(2);
-        setResult(null);
     }, []);
 
     const holesRef = useRef(holes)
@@ -190,7 +189,7 @@ const WhackAMole = () => {
 
 
     return (
-        <div className={`${minigameStyles.container} ${minigameStyles.alignToBottom}`}>
+        <div className={`${minigameStyles.container} ${minigameStyles.alignToBottom} ${minigameStyles.street}`}>
             <div className={`${styles.machine} ${minigameStyles.gameArea}`}>
                 <div className={styles.interactiveArea}>
                 

@@ -1,0 +1,32 @@
+.wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 1000;
+}
+
+.container{
+    background-color: rgb(160, 36, 36);
+    padding: 3vh 3vw;
+    margin: 3vh 3vw;
+    border: 1vh solid black;
+    border-radius: 1em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.title {
+    font-size: 5vh;
+    font-weight: bold;
+    margin-bottom: 1vh;
+}
+
+.text {
+    font-size: 3vh;
+}

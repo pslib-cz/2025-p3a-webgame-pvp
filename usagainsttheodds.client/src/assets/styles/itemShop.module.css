@@ -1,0 +1,134 @@
+/* ITEMSHOP */
+.page {
+    width: 100vw;
+    height: 100vh;
+
+    background-image: url("/images/Main/ShopBackground.png");
+    background-size: cover;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+.stage {
+    position: relative;
+
+    aspect-ratio: 1174 / 530;
+    height: 100vh;
+    max-width: 100vw;
+
+    overflow: hidden;
+}
+
+.item {
+    position: absolute;
+    cursor: pointer;
+    z-index: 5;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.itemCard {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 95%;
+    top: 0;
+    width: 12vw;
+    background-color: var(--light-color);
+    padding: 1em;
+    border: 2px solid var(--dark-color);
+    border-radius: 8px;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease-in-out;
+    z-index: 20;
+}
+
+.itemCard button {
+    margin-left: auto;
+    background-color: transparent;
+    border: 1px solid var(--dark-color);
+    padding: .5rem 1rem;
+}
+
+.item:hover {
+    z-index: 100;
+}
+
+.item:hover .itemCard {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0px);
+    z-index: 20;
+
+}
+
+
+
+.item[data-id="rose"], .item[data-id="tulip"], .item[data-id="sunflower"]{
+    aspect-ratio: 108/95;
+    width: 15vw;
+    bottom: 12%;
+}
+
+.item[data-id="gingerbreadheart"], .item[data-id="brownbear"], .item[data-id="pinkbear"], .item[data-id="whitebear"] {
+    bottom: 38%;
+}
+
+.item[data-id="brownbear"], .item[data-id="pinkbear"], .item[data-id="whitebear"] {
+    aspect-ratio: 23/30;
+    width: 15vw;
+}
+
+.item[data-id="rose"] {
+    background-image: url("/images/ItemShop/rose.png");
+    right: 19%;
+}
+.item[data-id="tulip"] {
+    background-image: url("/images/ItemShop/tulip.png");
+    right: 50%;
+    transform: translateX(50%);
+}
+.item[data-id="sunflower"] {
+    background-image: url("/images/ItemShop/sunflower.png");
+    left: 19%;
+}
+
+.item[data-id="gingerbreadheart"] {
+    background-image: url("/images/ItemShop/gingerbread.png");
+    aspect-ratio: 108/95;
+    width: 12vw;
+    right: 40vw;
+}
+
+.item[data-id="brownbear"] {
+    background-image: url("/images/ItemShop/brownbear.png");
+    left: 20vw;
+}
+.item[data-id="pinkbear"] {
+    background-image: url("/images/ItemShop/pinkbear.png");
+    left: 30vw;
+}
+.item[data-id="whitebear"] {
+    background-image: url("/images/ItemShop/whitebear.png");
+    left: 60vw;
+}
+
+.item[data-id="brownbear"] .itemCard, .item[data-id="sunflower"] .itemCard, .item[data-id="gingerbreadheart"] .itemCard {
+    left: auto;
+    right: 105%;
+    transform: none;
+}
+
+.item[data-id="brownbear"] .itemCard::before, .item[data-id="sunflower"] .itemCard::before, .item[data-id="gingerbreadheart"] .itemCard::before {
+    left: auto;
+    right: -10%;
+}

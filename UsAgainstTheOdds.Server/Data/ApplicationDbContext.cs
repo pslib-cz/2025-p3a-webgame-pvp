@@ -33,6 +33,7 @@ namespace UsAgainstTheOdds.Server.Data
                         MinigameId = "russianroulette",
                         Name = "Risky Turn",
                         Description = "Thrilling game of chance where players risk it all for reward, testing their luck and courage. Inspired by Russian roulette.",
+                        Rules = "There’s a prize on the shelf, but your cylinder is mostly empty. Load one bullet, give it a spin, and pray you aren't firing a blank. One shot. One chance.",
                         Price = 500,
                         Difficulty = 1
                     },
@@ -41,14 +42,16 @@ namespace UsAgainstTheOdds.Server.Data
                         MinigameId = "blackjack",
                         Name = "Lucky 21",
                         Description = "Fast-paced card game where players aim for a hand value as close to 21 as possible. Rules based on the well-known Black Jack.",
+                        Rules = "Your goal is to reach 21. Go over even by one, and you lose everything. Stand or hit another, the choice is yours. But remember, the Dealer plays to win, and he won't show you any mercy.",
                         Price = 300,
                         Difficulty = 1
                     },
                     new Minigame
                     {
-                        MinigameId = "cupsandcoins",
-                        Name = "Cups & Coins",
+                        MinigameId = "feelinglucky",
+                        Name = "Feeling Lucky",
                         Description = "Players guess under which cup the hidden object is located, based on luck and intuition. Based on the shell game.",
+                        Rules = "Test your intuition in this simple game of luck! The ball is hiding under one of thee cups, which one is it? You choose.",
                         Price = 200,
                         Difficulty = 1
                     },
@@ -57,6 +60,7 @@ namespace UsAgainstTheOdds.Server.Data
                         MinigameId = "slots",
                         Name = "Spiny spin",
                         Description = "Player spins Slot machine and hopes for all three symbols to be same",
+                        Rules = "Pull the lever, wait for your moment, and hit Stop. Line up the symbols to win. Will you strike gold, or is your luck running dry?",
                         Price = 100,
                         Difficulty = 1
                     },
@@ -65,6 +69,7 @@ namespace UsAgainstTheOdds.Server.Data
                         MinigameId = "whackamole",
                         Name = "Whack a Mole",
                         Description = "Player is whacking moles.",
+                        Rules = "No time to be slow. Try to whack as many moles as you see! Show no mercy.",
                         Price = 100,
                         Difficulty = 3
                     },
@@ -73,6 +78,7 @@ namespace UsAgainstTheOdds.Server.Data
                         MinigameId = "memorymatch",
                         Name = "Memory Match",
                         Description = "Player is matching pairs of cards.",
+                        Rules = "In this game you take turns with your opponent. Start by choosing two cards and remember them. Try to match as many pairs as you can!",
                         Price = 150,
                         Difficulty = 2
                     },
@@ -81,6 +87,7 @@ namespace UsAgainstTheOdds.Server.Data
                         MinigameId = "darts",
                         Name = "Darts",
                         Description = "Player is trying to hit as close to the bullseye as possible.",
+                        Rules = "Get to the center as close as possible. It wont be easy, hold steady and take your time.",
                         Price = 100,
                         Difficulty = 2
                     }
@@ -157,6 +164,68 @@ namespace UsAgainstTheOdds.Server.Data
             modelBuilder.Entity<Consumable>(ent =>
             {
                 ent.HasData(
+                    new Consumable
+                    {
+                        ConsumableId = "pizza",
+                        Type = Enums.ConsumableType.food,
+                        Name = "Pizza",
+                        Description = "A large pepperoni pizza with extra cheese.",
+                        Price = 15,
+                        HungerRestoreValue = 30,
+                        ThirstRestoreValue = 0,
+                        IsAlcoholic = false,
+                        AlcoholContent = 0
+                    },
+                    new Consumable
+                    {
+                        ConsumableId = "salad",
+                        Type = Enums.ConsumableType.food,
+                        Name = "Salad",
+                        Description = "A fresh garden salad with a variety of vegetables.",
+                        Price = 8,
+                        HungerRestoreValue = 15,
+                        ThirstRestoreValue = 0,
+                        IsAlcoholic = false,
+                        AlcoholContent = 0
+                    },
+                    new Consumable
+                    {
+                        ConsumableId = "langos",
+                        Type = Enums.ConsumableType.food,
+                        Name = "Lángos",
+                        Description = "A traditional deep-fried flatbread topped with garlic, sour cream, and cheese.",
+                        Price = 7,
+                        HungerRestoreValue = 12,
+                        ThirstRestoreValue = 0,
+                        IsAlcoholic = false,
+                        AlcoholContent = 0
+                    },
+                    new Consumable
+                    {
+                        ConsumableId = "goulash",
+                        Type = Enums.ConsumableType.food,
+                        Name = "Goulash",
+                        Description = "A hearty Hungarian stew made with beef, vegetables, and paprika.",
+                        Price = 12,
+                        HungerRestoreValue = 25,
+                        ThirstRestoreValue = 0,
+                        IsAlcoholic = false,
+                        AlcoholContent = 0
+                    },
+                    new Consumable
+                    {
+                        ConsumableId = "cottoncandy",
+                        Type = Enums.ConsumableType.food,
+                        Name = "Cotton Candy",
+                        Description = "A fluffy and sweet treat made from spun sugar.",
+                        Price = 4,
+                        HungerRestoreValue = 8,
+                        ThirstRestoreValue = 0,
+                        IsAlcoholic = false,
+                        AlcoholContent = 0
+                    },
+
+                    // Drink items
                     new Consumable
                     {
                         ConsumableId = "water",
@@ -301,7 +370,7 @@ namespace UsAgainstTheOdds.Server.Data
                         CutsceneId = 2,
                         Type = "intro",
                         Order = 2,
-                        Text = "I need that bear! It's so cute! Please, let's go get it!",
+                        Text = "I need that one bear! It's so cute! Please, let's go get it!",
                         Speaker = Enums.SpeakerType.girl,
                         ImageUrl = "/images/Cutscene/Intro/Intro2.avif",
                         ButtonText = "Continue"
@@ -311,7 +380,7 @@ namespace UsAgainstTheOdds.Server.Data
                         CutsceneId = 3,
                         Type = "intro",
                         Order = 3,
-                        Text = "It's expensive... And we don't have any tickets.",
+                        Text = "It's expensive... And we don't have much tickets.",
                         Speaker = Enums.SpeakerType.boy,
                         ImageUrl = "/images/Cutscene/Intro/Intro3.avif",
                         ButtonText = "Continue"
@@ -341,7 +410,8 @@ namespace UsAgainstTheOdds.Server.Data
                         EndingId = 1,
                         Reason = "victory",
                         Title = "You Win!",
-                        Message = "You fullfilled your girlfriend's dream and won enough money to start a new life together!",
+                        Message = "You fulfilled your girlfriend's dream and won enough money to start a new life together!",
+                        BackgroundUrl = "/images/Endings/VictoryBg.png",
                         ImageUrl = "/images/Endings/Victory.png"
                     },
                     new Ending
@@ -350,6 +420,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Reason = "breakup",
                         Title = "You Broke Up",
                         Message = "Your girlfriend broke up with you, because you didn't pay attention to her.",
+                        BackgroundUrl = "/images/Endings/Background.png",
                         ImageUrl = "/images/Endings/Breakup.png"
                     },
                     new Ending
@@ -358,6 +429,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Reason = "bankrupt",
                         Title = "You Went Bankrupt",
                         Message = "You lost all your money at the casino. Your girlfriend is disappointed.",
+                        BackgroundUrl = "/images/Endings/BankruptBg.png",
                         ImageUrl = "/images/Endings/Bankrupt.png"
                     },
                     new Ending
@@ -367,6 +439,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Person = "boy",
                         Title = "You Went Hungry",
                         Message = "You didn't eat anything and collapsed from hunger. Your girlfriend is disappointed.",
+                        BackgroundUrl = "/images/Endings/Background.png",
                         ImageUrl = "/images/Endings/HungryBoy.png"
                     },
                     new Ending
@@ -376,6 +449,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Person = "girl",
                         Title = "Your Girlfriend Went Hungry",
                         Message = "She didn't eat anything and collapsed from hunger.",
+                        BackgroundUrl = "/images/Endings/Background.png",
                         ImageUrl = "/images/Endings/HungryGirl.png"
                     },
                     new Ending
@@ -385,6 +459,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Person = "boy",
                         Title = "You Got Thirsty",
                         Message = "You didn't drink anything and collapsed from thirst.",
+                        BackgroundUrl = "/images/Endings/Background.png",
                         ImageUrl = "/images/Endings/ThirstyBoy.png"
                     },
                     new Ending
@@ -394,6 +469,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Person = "girl",
                         Title = "Your Girlfriend Got Thirsty",
                         Message = "She didn't drink anything and collapsed from thirst.",
+                        BackgroundUrl = "/images/Endings/Background.png",
                         ImageUrl = "/images/Endings/ThirstyGirl.png"
                     },
                     new Ending
@@ -403,6 +479,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Person = "boy",
                         Title = "You Got Drunk",
                         Message = "You drank too much alcohol and passed out. Your girlfriend is disappointed.",
+                        BackgroundUrl = "/images/Endings/Background.png",
                         ImageUrl = "/images/Endings/DrunkBoy.png"
                     },
                     new Ending
@@ -412,6 +489,7 @@ namespace UsAgainstTheOdds.Server.Data
                         Person = "girl",
                         Title = "Your Girlfriend Got Drunk",
                         Message = "She drank too much alcohol and passed out.",
+                        BackgroundUrl = "/images/Endings/Background.png",
                         ImageUrl = "/images/Endings/DrunkGirl.png"
                     }
                 );

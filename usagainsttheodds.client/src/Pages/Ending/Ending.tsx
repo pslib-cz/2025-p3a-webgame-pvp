@@ -1,11 +1,12 @@
 import { useEffect, useState, Suspense } from "react";
-import styles from '../../assets/styles/Intro.module.css';
 import apiGet from "../../Helpers/apiHelper";
 import { ErrorBoundary } from "react-error-boundary";
 import EndingContent from "./EndingContent";
 import { useOwnOutlet } from "../../Hooks/useOwnOutlet";
 import type { EndingType } from "../../Types/GameType";
 import { useNavigate } from "react-router-dom";
+import { Loading } from "../../Components/Loading"
+import ErrorPage from "../ErrorPage"
 
 
 
@@ -24,12 +25,12 @@ const Ending = () => {
     }, [endReason, endPerson]);
 
     if (!promise) {
-        return <div className={styles.page}>Initializing request...</div>;
+        return <Loading />;
     }
 
     return (
-        <ErrorBoundary fallback={<div className={styles.page}>An error occurred while loading the ending. Please try again later.</div>}>
-            <Suspense fallback={<div className={styles.page}>Loading ending...</div>}>
+        <ErrorBoundary FallbackComponent={ErrorPage}>
+            <Suspense fallback={<Loading message="Loading ending..."/>}>
                 <EndingContent promise={promise} />
             </Suspense>
         </ErrorBoundary>

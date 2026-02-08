@@ -307,7 +307,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                             ImageUrl = "/images/Cutscene/Intro/Intro2.avif",
                             Order = 2,
                             Speaker = 2,
-                            Text = "I need that bear! It's so cute! Please, let's go get it!",
+                            Text = "I need that one bear! It's so cute! Please, let's go get it!",
                             Type = "intro"
                         },
                         new
@@ -317,7 +317,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                             ImageUrl = "/images/Cutscene/Intro/Intro3.avif",
                             Order = 3,
                             Speaker = 1,
-                            Text = "It's expensive... And we don't have any tickets.",
+                            Text = "It's expensive... And we don't have much tickets.",
                             Type = "intro"
                         },
                         new
@@ -337,6 +337,10 @@ namespace UsAgainstTheOdds.Server.Migrations
                     b.Property<int>("EndingId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("BackgroundUrl")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
@@ -365,14 +369,16 @@ namespace UsAgainstTheOdds.Server.Migrations
                         new
                         {
                             EndingId = 1,
+                            BackgroundUrl = "/images/Endings/VictoryBg.png",
                             ImageUrl = "/images/Endings/Victory.png",
-                            Message = "You fullfilled your girlfriend's dream and won enough money to start a new life together!",
+                            Message = "You fulfilled your girlfriend's dream and won enough money to start a new life together!",
                             Reason = "victory",
                             Title = "You Win!"
                         },
                         new
                         {
                             EndingId = 2,
+                            BackgroundUrl = "/images/Endings/Background.png",
                             ImageUrl = "/images/Endings/Breakup.png",
                             Message = "Your girlfriend broke up with you, because you didn't pay attention to her.",
                             Reason = "breakup",
@@ -381,6 +387,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                         new
                         {
                             EndingId = 3,
+                            BackgroundUrl = "/images/Endings/BankruptBg.png",
                             ImageUrl = "/images/Endings/Bankrupt.png",
                             Message = "You lost all your money at the casino. Your girlfriend is disappointed.",
                             Reason = "bankrupt",
@@ -389,6 +396,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                         new
                         {
                             EndingId = 4,
+                            BackgroundUrl = "/images/Endings/Background.png",
                             ImageUrl = "/images/Endings/HungryBoy.png",
                             Message = "You didn't eat anything and collapsed from hunger. Your girlfriend is disappointed.",
                             Person = "boy",
@@ -398,6 +406,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                         new
                         {
                             EndingId = 5,
+                            BackgroundUrl = "/images/Endings/Background.png",
                             ImageUrl = "/images/Endings/HungryGirl.png",
                             Message = "She didn't eat anything and collapsed from hunger.",
                             Person = "girl",
@@ -407,6 +416,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                         new
                         {
                             EndingId = 6,
+                            BackgroundUrl = "/images/Endings/Background.png",
                             ImageUrl = "/images/Endings/ThirstyBoy.png",
                             Message = "You didn't drink anything and collapsed from thirst.",
                             Person = "boy",
@@ -416,6 +426,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                         new
                         {
                             EndingId = 7,
+                            BackgroundUrl = "/images/Endings/Background.png",
                             ImageUrl = "/images/Endings/ThirstyGirl.png",
                             Message = "She didn't drink anything and collapsed from thirst.",
                             Person = "girl",
@@ -425,6 +436,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                         new
                         {
                             EndingId = 8,
+                            BackgroundUrl = "/images/Endings/Background.png",
                             ImageUrl = "/images/Endings/DrunkBoy.png",
                             Message = "You drank too much alcohol and passed out. Your girlfriend is disappointed.",
                             Person = "boy",
@@ -434,6 +446,7 @@ namespace UsAgainstTheOdds.Server.Migrations
                         new
                         {
                             EndingId = 9,
+                            BackgroundUrl = "/images/Endings/Background.png",
                             ImageUrl = "/images/Endings/DrunkGirl.png",
                             Message = "She drank too much alcohol and passed out.",
                             Person = "girl",
@@ -637,6 +650,9 @@ namespace UsAgainstTheOdds.Server.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Rules")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("MinigameId");
 
                     b.ToTable("Minigames");
@@ -656,7 +672,8 @@ namespace UsAgainstTheOdds.Server.Migrations
                             Description = "Thrilling game of chance where players risk it all for reward, testing their luck and courage. Inspired by Russian roulette.",
                             Difficulty = 1,
                             Name = "Risky Turn",
-                            Price = 500
+                            Price = 500,
+                            Rules = "There’s a prize on the shelf, but your cylinder is mostly empty. Load one bullet, give it a spin, and pray you aren't firing a blank. One shot. One chance."
                         },
                         new
                         {
@@ -664,15 +681,17 @@ namespace UsAgainstTheOdds.Server.Migrations
                             Description = "Fast-paced card game where players aim for a hand value as close to 21 as possible. Rules based on the well-known Black Jack.",
                             Difficulty = 1,
                             Name = "Lucky 21",
-                            Price = 300
+                            Price = 300,
+                            Rules = "Your goal is to reach 21. Go over even by one, and you lose everything. Stand or hit another, the choice is yours. But remember, the Dealer plays to win, and he won't show you any mercy."
                         },
                         new
                         {
-                            MinigameId = "cupsandcoins",
+                            MinigameId = "feelinglucky",
                             Description = "Players guess under which cup the hidden object is located, based on luck and intuition. Based on the shell game.",
                             Difficulty = 1,
-                            Name = "Cups & Coins",
-                            Price = 200
+                            Name = "Feeling Lucky",
+                            Price = 200,
+                            Rules = "Test your intuition in this simple game of luck! The ball is hiding under one of thee cups, which one is it? You choose."
                         },
                         new
                         {
@@ -680,7 +699,8 @@ namespace UsAgainstTheOdds.Server.Migrations
                             Description = "Player spins Slot machine and hopes for all three symbols to be same",
                             Difficulty = 1,
                             Name = "Spiny spin",
-                            Price = 100
+                            Price = 100,
+                            Rules = "Pull the lever, wait for your moment, and hit Stop. Line up the symbols to win. Will you strike gold, or is your luck running dry?"
                         },
                         new
                         {
@@ -688,7 +708,8 @@ namespace UsAgainstTheOdds.Server.Migrations
                             Description = "Player is whacking moles.",
                             Difficulty = 3,
                             Name = "Whack a Mole",
-                            Price = 100
+                            Price = 100,
+                            Rules = "No time to be slow. Try to whack as many moles as you see! Show no mercy."
                         },
                         new
                         {
@@ -696,7 +717,8 @@ namespace UsAgainstTheOdds.Server.Migrations
                             Description = "Player is matching pairs of cards.",
                             Difficulty = 2,
                             Name = "Memory Match",
-                            Price = 150
+                            Price = 150,
+                            Rules = "In this game you take turns with your opponent. Start by choosing two cards and remember them. Try to match as many pairs as you can!"
                         },
                         new
                         {
@@ -704,7 +726,8 @@ namespace UsAgainstTheOdds.Server.Migrations
                             Description = "Player is trying to hit as close to the bullseye as possible.",
                             Difficulty = 2,
                             Name = "Darts",
-                            Price = 100
+                            Price = 100,
+                            Rules = "Get to the center as close as possible. It wont be easy, hold steady and take your time."
                         });
                 });
 #pragma warning restore 612, 618

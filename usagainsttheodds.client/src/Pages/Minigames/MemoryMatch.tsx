@@ -63,7 +63,6 @@ const MemoryMatch = () => {
         setComputerPoints(0);
         setPlayerPairs(0);
         setComputerMemory([]);
-        setResult(null);
     }, []);
 
     function handleCardClick(id: number, isComputer = false) {
@@ -233,27 +232,29 @@ const MemoryMatch = () => {
 
 
     return (
-        <div className={`${minigameStyles.container} ${style.memoryMatchContainer}`}>
-            <div className={style.boardContainer}>
-                <MemoryBoard cards={cards} onCardClick={(id) => handleCardClick(id, false)} />
-            </div>
-
-            <div className={style.info}>
-                <div className={style.infoText}>
-                    <p>Turn: {playingTurn === "human" ? "PLAYER" : "COMPUTER"}</p>
-                    <p>Player pairs: {playerPoints}</p>
-                    <p>Computer pairs: {computerPoints}</p>
+        <div className={`${minigameStyles.container} ${minigameStyles.centered} ${minigameStyles.table}`}>
+            <div className={`${style.memoryMatchContainer} ${minigameStyles.gameArea}`}>
+                {/* <div className={style.boardContainer}> */}
+                    <MemoryBoard cards={cards} onCardClick={(id) => handleCardClick(id, false)} />
+                {/* </div> */}
+    
+                <div className={style.info}>
+                    <div className={style.infoText}>
+                        <p>Turn: {playingTurn === "human" ? "PLAYER" : "COMPUTER"}</p>
+                        <p>Player pairs: {playerPoints}</p>
+                        <p>Computer pairs: {computerPoints}</p>
+                    </div>
                 </div>
+    
+                {result && (
+                    <div onAnimationEnd={handleAnimationEnd} className={minigameStyles.resultScreen}>
+                        {result === "win" && <span className={minigameStyles.resultText}>You win with {playerPairs} pairs!</span>}
+                        {result === "lose" && <span className={minigameStyles.resultText}>You lose!</span>}
+                        {result === "draw" && <span className={minigameStyles.resultText}>It's a draw!</span>}
+                    </div>
+                )}
             </div>
-
-            {result && (
-                <div onAnimationEnd={handleAnimationEnd} className={minigameStyles.resultScreen}>
-                    {result === "win" && <span className={minigameStyles.resultText}>You win with {playerPairs} pairs!</span>}
-                    {result === "lose" && <span className={minigameStyles.resultText}>You lose!</span>}
-                    {result === "draw" && <span className={minigameStyles.resultText}>It's a draw!</span>}
-                </div>
-            )}
-        </div>
+            </div>
     )
 }
 

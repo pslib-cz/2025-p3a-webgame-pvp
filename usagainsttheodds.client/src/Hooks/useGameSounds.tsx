@@ -1,110 +1,171 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Howl } from 'howler';
 import type { SoundConfigType, SoundName } from '../Types/SoundType';
 
-
-
-
 const SOUNDS_CONFIG: Record<string, SoundConfigType> = {
-    //hudba
     bgMusic: {
-        src: "/audio/Circus-Theme-Entry-of-the-Gladiators.mp3",
+        src: "/audio/music.mp3",
         loop: true,
-        volume: 0.3,
         category: "music",
     },
-
-    //sfxx
-    chop: {
-        src: "/audio/chop.ogg",
+    bgIntro: {
+        src: "/audio/intro.mp3",
+        loop: true,
+        category: "music",
+    },
+    crowd: {
+        src: "/audio/sfx/crowd.ogg",
+        category: "sfx",
+    },
+    win: {
+        src: "/audio/sfx/win.ogg",
+        category: "sfx",
+    },
+    notification: {
+        src: "/audio/sfx/notification.ogg",
         category: "sfx",
     }
 };
 
-
 export const useGameSounds = () => {
-    const soundsRefs = useRef<Partial<Record<string, Howl>>>({})
+    const soundsRefs = useRef<Partial<Record<string, Howl>>>({});
 
-    const [isMusicMuted, setIsMusicMuted] = useState<boolean>(false);
-    const [isSfxMuted, setIsSfxMuted] = useState<boolean>(false);
+    // Load all sound settings from a single localStorage key (SoundSettings)
+    const storedSettings = (() => {
+        try {
+            const item = localStorage.getItem('SoundSettings');
+            return item ? JSON.parse(item) : null;
+        } catch {
+            return null;
+        }
+    })();
 
+    const [isMusicMuted, setIsMusicMuted] = useState<boolean>(() => storedSettings?.isMusicMuted === true);
+    const [isSfxMuted, setIsSfxMuted] = useState<boolean>(() => storedSettings?.isSfxMuted === true);
+    const [musicVolume, setMusicVolume] = useState<number>(() => Number(storedSettings?.musicVolume) || 0.3);
+    const [sfxVolume, setSfxVolume] = useState<number>(() => Number(storedSettings?.sfxVolume) || 0.3);
 
-    //inicializace zvuku
+    // Synchronizace Hudby
     useEffect(() => {
+        Object.keys(soundsRefs.current).forEach(key => {
+            const sound = soundsRefs.current[key];
+            if (sound && SOUNDS_CONFIG[key].category === 'music') {
+                sound.mute(isMusicMuted);
+            }
+        });
+    }, [isMusicMuted]);
 
-        Object.keys(SOUNDS_CONFIG).forEach((key) => {
-            const config = SOUNDS_CONFIG[key];
-            soundsRefs.current[key] = new Howl({
-                src: [config.src],
-                loop: config.loop || false,
-                volume: config.volume || 1.0,
-            });
+    // Synchronizace SFX (efektů)
+    useEffect(() => {
+        Object.keys(soundsRefs.current).forEach(key => {
+            const sound = soundsRefs.current[key];
+            // Mute aplikujeme JEN na sfx kategorii
+            if (sound && SOUNDS_CONFIG[key].category === 'sfx') {
+                sound.mute(isSfxMuted);
+            }
+        });
+    }, [isSfxMuted]);
+
+    // Cleanup při zavření aplikace (volitelné, ale doporučené)
+    useEffect(() => {
+        return () => {
+            Object.values(soundsRefs.current).forEach(s => s?.unload());
+            soundsRefs.current = {};
+        };
+    }, []);
+
+    // Synchronizace hlasitosti hudby
+    useEffect(() => {
+        Object.keys(soundsRefs.current).forEach(key => {
+            const sound = soundsRefs.current[key];
+            if (sound && SOUNDS_CONFIG[key].category === 'music') {
+                sound.volume(musicVolume);
+            }
+        });
+    }, [musicVolume]);
+
+    // Synchronizace hlasitosti SFX
+    useEffect(() => {
+        Object.keys(soundsRefs.current).forEach(key => {
+            const sound = soundsRefs.current[key];
+            if (sound && SOUNDS_CONFIG[key].category === 'sfx') {
+                sound.volume(sfxVolume);
+            }
+        });
+    }, [sfxVolume]);
+
+    // Save all sound settings together to localStorage (similar to RootLayout's single-key storage)
+    useEffect(() => {
+        const updated = {
+            isMusicMuted,
+            isSfxMuted,
+            musicVolume,
+            sfxVolume,
+        };
+        localStorage.setItem('SoundSettings', JSON.stringify(updated));
+
+    }, [isMusicMuted, isSfxMuted, musicVolume, sfxVolume]);
+
+    const getSound = useCallback((name: SoundName): Howl | null => {
+        if (soundsRefs.current[name]) return soundsRefs.current[name]!;
+
+        const config = SOUNDS_CONFIG[name];
+        if (!config) return null;
+
+        const newSound = new Howl({
+            src: [config.src],
+            loop: config.loop || false,
+            volume: config.volume || 1.0,
+            html5: config.category === 'music',
+            preload: true,
+            mute: config.category === 'music' ? isMusicMuted : isSfxMuted 
         });
 
-        return () => {
-            Object.values(soundsRefs.current).forEach((sound) => {
-                if (sound) sound.unload();
+        soundsRefs.current[name] = newSound;
+        return newSound;
+    }, [isMusicMuted, isSfxMuted]);
+
+
+    const play = useCallback((soundName: SoundName) => {
+        const sound = getSound(soundName);
+        if (!sound) return;
+
+        const config = SOUNDS_CONFIG[soundName];
+
+        if (config.category === 'music') {
+            Object.keys(soundsRefs.current).forEach((key) => {
+                const currentSoundName = key as SoundName;
+                if (SOUNDS_CONFIG[currentSoundName].category === 'music' && currentSoundName !== soundName) {
+                    const otherSound = soundsRefs.current[currentSoundName];
+                    if (otherSound) {
+                        otherSound.stop();
+                    }
+                }
             });
+
+            if (!sound.playing()) {
+                sound.play();
+            }
+        } else {
+            sound.play();
+            console.log("Playing SFX:", soundName);
         }
+    }, [getSound]);
+
+    const stop = useCallback((soundName: SoundName) => {
+        const sound = soundsRefs.current[soundName];
+        if (sound) sound.stop();
     }, []);
 
 
-    //všechny music zvuky mute/unmute
-    useEffect(() => {
-        Object.keys(soundsRefs.current).forEach((key) => {
-            const config = SOUNDS_CONFIG[key];
-            if (config.category === 'music') {
-                const sound = soundsRefs.current[key];
-                if (sound) sound.mute(isMusicMuted);
-            }
-    });
-    }, [isMusicMuted]);
+
+    
 
 
-    //všechny sfx zvuky mute/unmute
-    useEffect(() => {
-        Object.keys(soundsRefs.current).forEach((key) => {
-            const config = SOUNDS_CONFIG[key];
-            if (config.category === 'sfx') {
-                const sound = soundsRefs.current[key];
-                if (sound) sound.mute(isSfxMuted);
-            }
-    });
-    }, [isSfxMuted]);
 
 
-    //funkce pro přehrání zvuku
-    const play = (soundName: SoundName) => {
-        const sound = soundsRefs.current[soundName];
-        const config = SOUNDS_CONFIG[soundName];
 
 
-        //jessti existuje
-        if (!sound || !config)  return;
-
-
-        //zkontrola mute stavu podle kategorie
-        const shouldBeMuted = (config.category === 'music' && isMusicMuted) ||
-                                (config.category === 'sfx' && isSfxMuted);
-
-        sound.mute(shouldBeMuted);
-
-
-        //sfx se přehraje vždy, music jen pokud ještě nehraje aby se nepřekrývala
-        if (config.category === 'music' && !sound.playing()) {
-            sound.play();
-        } else if (config.category === 'sfx') {
-            sound.play();
-        }
-    };
-
-    const stop = (soundName: SoundName) => {
-        const sound = soundsRefs.current[soundName];
-        if (sound) sound.stop();
-    };
-
-
-    //vrácení funkcí  pro použití
     return {
         play,
         stop,
@@ -112,5 +173,9 @@ export const useGameSounds = () => {
         setIsMusicMuted,
         isSfxMuted,
         setIsSfxMuted,
+        musicVolume,
+        setMusicVolume,
+        sfxVolume,
+        setSfxVolume,
     };
 };

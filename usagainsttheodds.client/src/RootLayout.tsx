@@ -1,15 +1,16 @@
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { type UserData } from "./Types/UserDataType";
 import { isDeepEqual } from "./Helpers/generalHelper";
 import { useNavigate } from 'react-router-dom';
 import type { EndReason, Person } from './Types/GameType';
-import { useGameSounds } from "./Hooks/useGameSounds";
 import PauseMenu from "./Components/Pausemenu/PauseMenu";
-import type { GameContextType } from "./Types/GameContextType";
+import NotificationList from "./Components/Notifications/NotificationList";
+import { GameContext } from "./Context/GameContext";
+import type { NotificationData } from "./Types/NotificationType";
+import { useSound } from "./Providers/SoundProvider";
+import VerticalWarning from "./Components/VerticalWarning";
 
-
-export const GameContext = createContext<GameContextType | null>(null);
 
 const RootLayout = () => {
     const intitialData: UserData = {
@@ -22,6 +23,7 @@ const RootLayout = () => {
         endReason: null,
         endPerson: null,
         isStarted: false,
+        hasWon: false,
         player: {
             name: "John",
             hunger: 50,
@@ -35,7 +37,7 @@ const RootLayout = () => {
             drunkenness: 10,
         },
     };
-
+    
 
     const [userData, setUserData] = useState<UserData>(() => {
 
@@ -55,53 +57,94 @@ const RootLayout = () => {
     const [endReason, setEndReason] = useState<EndReason | null>(userData.endReason);
     const [endPerson, setEndPerson] = useState<"boy" | "girl" | null>(userData.endPerson);
     const [isStarted, setIsStarted] = useState<boolean>(userData.isStarted);
+    const [isMinigamePlaying, setIsMinigamePlaying] = useState<boolean>(false);
+    const [hasWon, setHasWon] = useState<boolean>(false);
 
+
+    const [notifications, setNotifications] = useState<NotificationData[]>([]);
     const [isPauseMenuOpen, setIsPauseMenuOpen] = useState<boolean>(false);
-    const { play, stop, isMusicMuted, setIsMusicMuted } = useGameSounds();
+    const { play, stop, isMusicMuted } = useSound();
     const navigate = useNavigate();
 
 
 
-    const checkIfEnd = (data: UserData) => {
+    const checkStats = (data: UserData) => {
+
+        if (hasWon) return;
+
         if (data.relationshipStamina <= 0) {
             setEndReason("breakup");
+            return;
         }
-        if (data.ticketsAmount <= 0) {
+        if (data.ticketsAmount <= 0 && !isMinigamePlaying) {
             setEndReason("bankrupt");
-        }
-        if (data.player.hunger <= 0) {
-            setEndReason("hungry");
-            setEndPerson("boy");
-        }
-        if (data.girlfriend.hunger <= 0) {
-            setEndReason("hungry");
-            setEndPerson("girl");
-        }
-        if (data.player.thirst <= 0) {
-            setEndReason("thirsty");
-            setEndPerson("boy");
-        }
-        if (data.girlfriend.thirst <= 0) {
-            setEndReason("thirsty");
-            setEndPerson("girl");
-        }
-        if (data.player.drunkenness >= 100) {
-            setEndReason("drunk");
-            setEndPerson("boy");
-        }
-        if (data.girlfriend.drunkenness >= 100) {
-            setEndReason("drunk");
-            setEndPerson("girl");
+            return;
         }
 
-        return;
-    }
+        if (data.relationshipStamina <= 20) {
+            addNotification(`I'm worried about our relationship...`, `/images/Avatars/girlfriendAvatar.png`);
+        }
+
+        if (data.ticketsAmount <= 200) {
+            addNotification(`We're running low on tickets!`, `/images/Avatars/boyfriendAvatar.png`);
+        }
+
+        const characters = [
+            { key: "player" as const, type: "boy" as const },
+            { key: "girlfriend" as const, type: "girl" as const }
+        ]
+
+        for (const char of characters) {
+            const dataChar = data[char.key]
+
+            // Kontrola hladovění, žízně a opilosti
+            if (dataChar.hunger <= 0) {
+                setEndPerson(char.type);
+                setEndReason("hungry");
+                return;
+            }
+            if (dataChar.thirst <= 0) {
+                setEndPerson(char.type);
+                setEndReason("thirsty");
+                return;
+            }
+            if (dataChar.drunkenness >= 100) {
+                setEndPerson(char.type);
+                setEndReason("drunk");
+                return;
+            }
+
+            //Kontrola pro notifikace hladovění, žízně a opilosti
+            if (dataChar.hunger <= 20) {
+                addNotification(`I'm starving!`, `/images/Avatars/${char.type}friendAvatar.png`);
+            }
+            if (dataChar.thirst <= 20) {
+                addNotification(`I'm really thirsty!`, `/images/Avatars/${char.type}friendAvatar.png`);
+            }
+            if (dataChar.drunkenness >= 80) {
+                addNotification(`I feel so drunk...`, `/images/Avatars/${char.type}friendAvatar.png`);
+            }
+        }
+
+    };
 
     useEffect(() => {
         if (endReason !== null) {
             navigate('/ending');
         }
     }, [endReason]);
+
+    useEffect(() => {
+        const handleAutoPlay = () => {
+            if (!isMusicMuted) {
+                play('bgMusic');
+            }
+            window.removeEventListener('click', handleAutoPlay);
+        };
+
+        window.addEventListener('click', handleAutoPlay);
+        return () => window.removeEventListener('click', handleAutoPlay);
+    }, [play, isMusicMuted]);
 
 
 
@@ -120,19 +163,33 @@ const RootLayout = () => {
             isStarted: isStarted,
             player: player,
             girlfriend: girlfriend,
+            hasWon: hasWon,
         };
-
         localStorage.setItem("UserData", JSON.stringify(updated));
-
         setUserData((prev) =>
             isDeepEqual(prev, updated) ? prev : updated
         );
+        checkStats(updated);
+    }, [tickets, relationshipValue, boughtBalloon, boughtFlower, lastFood, lastDrink, player, girlfriend, endReason, endPerson, isStarted, isMinigamePlaying, hasWon]);//ulozi do local storage kdyz se zmeni hodnota
 
 
-        checkIfEnd(updated);
 
-    }, [tickets, relationshipValue, boughtBalloon, boughtFlower, lastFood, lastDrink, player, girlfriend, endReason, endPerson, isStarted]);//ulozi do local storage kdyz se zmeni hodnota
 
+
+
+    const addNotification = (text: string, imageSrc?: string) => {
+        if (hasWon) return;
+        const newNotif: NotificationData = {
+            id: crypto.randomUUID(), // Unikátní ID pro každou notifikaci
+            text,
+            imageSrc
+        };
+        setNotifications((prev) => [...prev, newNotif]);
+    };
+
+    const closeNotification = (id: string) => {
+        setNotifications((prev) => prev.filter((n) => n.id !== id));
+    };
 
 
     const gameContextValue = {
@@ -149,15 +206,21 @@ const RootLayout = () => {
         isPauseMenuOpen, setIsPauseMenuOpen,
         play,
         stop,
-        isMusicMuted, setIsMusicMuted,
-        isStarted, setIsStarted
-    }
+        isMusicMuted,
+        isStarted, setIsStarted,
+        addNotification, closeNotification,
+        notifications,
+        isMinigamePlaying, setIsMinigamePlaying,
+        hasWon, setHasWon,
+    };
 
 
     return (
         <GameContext.Provider value={gameContextValue}>
             <div className="game-root">
+                <VerticalWarning />
                 <PauseMenu />
+                <NotificationList />
                 <Outlet />
             </div>
         </GameContext.Provider>

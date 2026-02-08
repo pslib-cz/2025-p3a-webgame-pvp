@@ -13,5 +13,6 @@ export type UserData = {
     isStarted: boolean,
     player: Person,
     girlfriend: Person,
+    hasWon: boolean,
 }
 

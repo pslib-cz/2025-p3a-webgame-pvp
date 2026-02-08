@@ -10,6 +10,7 @@ export type GameData = {
     minigameId: string;
     name: string;
     description: string;
+    rules: string;
     price: number;
     difficulty: number;
 }
@@ -31,6 +32,12 @@ export type Items = {
     description: string;
     price: number;
     relationRestoreValue: number;
+}
+export type JokeType = {
+    jokeId: string;
+    jokeText: string;
+    punchline: string;
+    isFunny: boolean;
 }
 
 
@@ -55,6 +62,7 @@ export type EndingType = {
     person: "boy" | "girl" | null,
     title: string,
     message: string,
+    backgroundUrl: string,
     imageUrl: string
 }
 

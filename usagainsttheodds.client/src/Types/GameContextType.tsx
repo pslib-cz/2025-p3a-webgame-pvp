@@ -1,4 +1,5 @@
 import type { EndReason, Person } from "./GameType";
+import type { NotificationData } from "./NotificationType";
 import type { SoundName } from "./SoundType";
 
 
@@ -27,8 +28,14 @@ export type GameContextType = {
     setIsPauseMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
     play: (soundName: SoundName) => void;
     stop: (soundName: SoundName) => void;
-    isMusicMuted: boolean;
-    setIsMusicMuted: React.Dispatch<React.SetStateAction<boolean>>;
     isStarted: boolean;
     setIsStarted: React.Dispatch<React.SetStateAction<boolean>>;
+    notifications: NotificationData[];
+    addNotification: (text: string, imageSrc?: string) => void;
+    closeNotification: (id: string) => void;
+
+    isMinigamePlaying: boolean;
+    setIsMinigamePlaying: React.Dispatch<React.SetStateAction<boolean>>;
+    hasWon: boolean;
+    setHasWon: React.Dispatch<React.SetStateAction<boolean>>;
 }

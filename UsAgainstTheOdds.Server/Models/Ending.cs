@@ -10,6 +10,7 @@ namespace UsAgainstTheOdds.Server.Models
         public string? Person { get; set; }
         public required string Title { get; set; }
         public required string Message { get; set; }
+        public required string BackgroundUrl { get; set; }
         public required string ImageUrl { get; set; }
     }
 }

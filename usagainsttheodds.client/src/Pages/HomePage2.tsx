@@ -1,4 +1,5 @@
 
+import { useEffect } from "react";
 import styles from "../assets/styles/Homepage.module.css"
 import { useNavigate } from 'react-router-dom';
 
@@ -6,6 +7,19 @@ const HomePage2 = () => {
 
 
   const navigate = useNavigate();
+
+
+  useEffect(() => {
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "ArrowLeft") {
+          navigate("/game");
+        }
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    }, []);
 
 
   return (
@@ -30,7 +44,7 @@ const HomePage2 = () => {
         </div>
 
         <div className={styles.NPC}>
-          <span className={`${styles.npc_1} ${styles.girlindress}`}></span>
+          <span className={`${styles.npc} ${styles.shortwalk} ${styles.girlindress}`}></span>
         </div>
 
         <div className={styles.map}>
@@ -38,6 +52,7 @@ const HomePage2 = () => {
           <span className={`${styles.lamp} ${styles.lamp4}`} />
           <span className={`${styles.trash} ${styles.trash3}`} />
           <span className={`${styles.trash} ${styles.trash4}`} />
+          <button className={`${styles.arrow} ${styles.arrowLeft}`} onClick={() => navigate("/game")}/>
         </div>
 
       </div>
