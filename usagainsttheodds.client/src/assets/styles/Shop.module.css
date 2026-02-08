@@ -1,8 +1,3 @@
-.backButton {
-    position: absolute;
-    bottom: 5vw;
-    right: 5vw;
-}
 
 /* FOOD BAR */
 .menu {
@@ -10,6 +5,8 @@
     margin: 0 auto;
     flex-direction: column;
     justify-content: center;
+    align-items: stretch;
+
     width: 75vw;
     aspect-ratio: 230/149;
     background: 
@@ -18,11 +15,17 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    overflow: hidden;
+
 }
 
 .menu h1 {
     font-size: 2rem;
     font-weight: 600;
+    position: absolute;
+    top: 10vh;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .menu h2 {
@@ -31,20 +34,26 @@
 }
 
 .itemsContainer {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    gap: 5%;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-auto-rows: 80px;
+    grid-auto-flow: row;
+    gap: 8px;
+    padding: 0 2vw;
+    overflow: hidden;
+}
 
-    justify-content: center;
-    justify-items: center;
-
-    margin: 0 auto;
-
-    padding: 0 10vw;
-
-    width: 50vw;
-    height: 80vh;
+.buyButton {
+    background-color: transparent;
+    border: 1px solid var(--dark-color);
+    cursor: pointer;
+    
+    transition: all 0.2s ease-in-out;
+}
+.buyButton:hover {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    
 }
 
 .foodCard {
@@ -58,6 +67,8 @@
     justify-content: space-between;
     margin: 0.2rem 0;
     border-radius: 8px;
+    
+    
 }
 
 .foodInfo{
