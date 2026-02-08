@@ -50,25 +50,25 @@ const ItemShopContent = ({ promise }: { promise: Promise<Items[]> }) => {
 
     return (
         <div className={styles.page}>
-        <div className={styles.stage}>
-            {data.map(item => (
-            <div
-                key={item.itemId}
-                className={styles.item}
-                data-id={item.itemId}
-            >
-                <div className={styles.itemCard}>
-                <h2>{item.name}</h2>
-                <p>{item.description}</p>
-                <p>Price: {item.price} tickets</p>
-                <p>Relation: {item.relationRestoreValue}</p>
-                <button onClick={() => handleBuy(item.itemId)}>Buy</button>
+            <div className={styles.stage}>
+                {data.map(item => (
+                <div
+                    key={item.itemId}
+                    className={styles.item}
+                    data-id={item.itemId}
+                >
+                    <div className={styles.itemCard}>
+                    <h2>{item.name}</h2>
+                    <p>{item.description}</p>
+                    <p>Price: {item.price} tickets</p>
+                    <p>Relation: {item.relationRestoreValue}</p>
+                    <button onClick={() => handleBuy(item.itemId)}>Buy</button>
+                    </div>
                 </div>
+                ))}
             </div>
-            ))}
-        </div>
 
-        <ChangeScreenButton className="buttonNext" to="/game" text="Go Back" />
+            <ChangeScreenButton className="buttonNext" to="/game" text="Go Back" />
         </div>
     )
 }
