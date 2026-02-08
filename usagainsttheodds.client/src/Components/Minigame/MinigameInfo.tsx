@@ -24,8 +24,8 @@ const MinigameInfo = ({ }) => {
         // Jinak převedeme na číslo
         const value = Number(inputValue);
 
-        if (value > tickets) {
-            setBet(tickets);
+        if (value > 1000) {
+            setBet(1000);
         } else {
             setBet(Math.abs(Math.round(value)));
         }
@@ -43,9 +43,9 @@ const MinigameInfo = ({ }) => {
                 <div className={introstyles.nameInputContainer}>
                     <label>Place your bet: </label>
                     <div className={introstyles.nameInputBox}>
-                        <input className={introstyles.nameInput} type="number" min={1} max={tickets} onChange={(e) => handleBetChange(e)} value={bet === 0 ? "" : bet} placeholder="0" />
+                        <input className={introstyles.nameInput} type="number" min={1} max={1000} onChange={(e) => handleBetChange(e)} value={bet === 0 ? "" : bet} placeholder="0" />
                     </div>
-                    <button onClick={() => setBet(tickets)}>All in</button>
+                    <button onClick={() => setBet(1000)}>Max bet</button>
                 </div>
             </div>
             <div>

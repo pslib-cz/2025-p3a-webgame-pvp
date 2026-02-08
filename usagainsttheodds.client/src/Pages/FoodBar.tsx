@@ -13,7 +13,7 @@ import  ErrorPage from "../Pages/ErrorPage"
 
 const FoodBarContent = ({ promise }: { promise: Promise<Consumable[]> }) => {
 
-    const { setPlayer, setGirlfriend, tickets, setTickets } = useOwnOutlet();
+    const { setPlayer, setGirlfriend, tickets, setTickets, addNotification } = useOwnOutlet();
 
 
     const data = use(promise);
@@ -49,6 +49,8 @@ const FoodBarContent = ({ promise }: { promise: Promise<Consumable[]> }) => {
                 drunkenness: item.isAlcoholic ? Math.min(100, prev.drunkenness + item.alcoholContent) : prev.drunkenness
             };
         });
+
+        addNotification(`You bought ${item.name}!`);
     }
 
     return (

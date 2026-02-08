@@ -1,3 +1,32 @@
+.listContainer {
+    position: absolute;
+    top: 10vh;
+    right: 1vw;
+    z-index: 600;
+    width: max-content;
+
+    max-height: 75vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.scrollContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    padding: 10px;
+    overflow: hidden;
+    
+    scrollbar-width: none;
+}
+
+.masked {
+    mask-image: linear-gradient(to top, transparent, black 60px);
+}
+
+
 .notification{
     display: flex;
     align-items: center;
@@ -49,22 +78,6 @@
     opacity: 0.9;
 }
 
-.listContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    width: max-content;
-    gap: 10px;
-    z-index: 600;
-
-    position: absolute;
-    top: 10vh;
-    right: 1vw;
-    overflow: hidden;
-
-
-    /* cq na celou obrazovku pro hud a notifikace */
-}
 
 @keyframes SlideIn {
     from {
