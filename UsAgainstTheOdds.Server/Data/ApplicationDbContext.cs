@@ -190,6 +190,18 @@ namespace UsAgainstTheOdds.Server.Data
                     },
                     new Consumable
                     {
+                        ConsumableId = "hotdog",
+                        Type = Enums.ConsumableType.food,
+                        Name = "Hot Dog",
+                        Description = "A classic hot dog with ketchup and mustard.",
+                        Price = 5,
+                        HungerRestoreValue = 10,
+                        ThirstRestoreValue = 0,
+                        IsAlcoholic = false,
+                        AlcoholContent = 0
+                    },
+                    new Consumable
+                    {
                         ConsumableId = "langos",
                         Type = Enums.ConsumableType.food,
                         Name = "Lángos",

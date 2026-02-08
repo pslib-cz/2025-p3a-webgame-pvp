@@ -15,7 +15,7 @@ const certificateName = "UsAgainstTheOdds.client";
 const certFilePath = path.join(baseFolder, `${certificateName}.pem`);
 const keyFilePath = path.join(baseFolder, `${certificateName}.key`);
 
-// Vytvoøení certifikátù pouze pokud NEJSME v Docker buildu
+// Vytvoï¿½enï¿½ certifikï¿½tï¿½ pouze pokud NEJSME v Docker buildu
 const isDockerBuild = env.DOCKER_BUILD === 'true' || env.CI === 'true' || !env.HOME;
 
 if (!isDockerBuild) {
@@ -41,7 +41,7 @@ if (!isDockerBuild) {
 const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_HTTPS_PORT}` :
     env.ASPNETCORE_URLS ? env.ASPNETCORE_URLS.split(';')[0] : 'https://localhost:7222';
 
-// Konfigurace HTTPS - pouze pokud existují certifikáty
+// Konfigurace HTTPS - pouze pokud existujï¿½ certifikï¿½ty
 const httpsConfig = (!isDockerBuild && fs.existsSync(keyFilePath) && fs.existsSync(certFilePath))
     ? {
         key: fs.readFileSync(keyFilePath),
@@ -64,6 +64,10 @@ export default defineConfig({
                 secure: false
             },
             '^/images': {
+                target,
+                secure: false
+            },
+            '^/audio': {
                 target,
                 secure: false
             }
