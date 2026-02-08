@@ -271,6 +271,33 @@
     right: 15vw;
 }
 
+.arrow {
+    position: absolute;
+    top: 25vh;
+
+    z-index: 15;
+
+    background-size: contain;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    height: 10vh;
+    width: 5vw;
+
+    cursor: pointer;
+}
+
+.arrowRight {
+    background-image: url("/images/Homepage/Map/ArrowR.png");
+    right: 10vw;
+}
+
+.arrowLeft {
+    background-image: url("/images/Homepage/Map/ArrowL.png");
+    left: 11vw;
+}
+
 @keyframes long-walk {
     0% {
         transform: translateX(0) scaleX(1) translateY(0);
