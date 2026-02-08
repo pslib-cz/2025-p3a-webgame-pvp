@@ -15,8 +15,6 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
   const { setIsPauseMenuOpen } = useOwnOutlet();
   const { isMusicMuted, setIsMusicMuted, isSfxMuted, setIsSfxMuted, musicVolume, setMusicVolume, sfxVolume, setSfxVolume } = useSound();
 
-  const {setPlayer, setGirlfriend, setTickets, setRelationshipValue, addNotification} = useOwnOutlet();
-
 
   return createPortal(
     <div className={styles.modalBackdrop} onClick={() => setIsPauseMenuOpen(false)}>
@@ -51,18 +49,7 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
           
           
         </div>
-        <div className={styles.modalStats}>
-                    <button onClick={() => setTickets(0)}>Tickets 0</button>
-                    <button onClick={() => setRelationshipValue(0)}>Relationship 0</button>
-                    <button onClick={() => setPlayer(prev => ({ ...prev, hunger: 0 }))}>Player hunger 0</button>
-                    <button onClick={() => setPlayer(prev => ({ ...prev, thirst: 0 }))}>Player thirst 0</button>
-                    <button onClick={() => setPlayer(prev => ({ ...prev, drunkenness: 100 }))}>Player drunkenness 100</button>
-                    <button onClick={() => setGirlfriend(prev => ({ ...prev, hunger: 0 }))}>Girlfriend hunger 0</button>
-                    <button onClick={() => setGirlfriend(prev => ({ ...prev, thirst: 0 }))}>Girlfriend thirst 0</button>
-                    <button onClick={() => setGirlfriend(prev => ({ ...prev, drunkenness: 100 }))}>Girlfriend drunkenness 100</button>
-                  <button onClick={() => addNotification("New notification", "/images/Avatars/girlfriendAvatar.png")}>add notification</button>
-                  <button onClick={() => setTickets(12000)}>ss</button>
-        </div>
+      
         <div className={styles.modalButtons}>
           <ResetButton className="buttonIntro buttonRules" isIngame={true} navigateTo="/" text="Reset Game" />
           <button className="buttonIntro buttonRules" onClick={() => setIsPauseMenuOpen(false)}>Return to game</button>

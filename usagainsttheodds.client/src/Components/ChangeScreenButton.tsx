@@ -5,9 +5,10 @@ type ChangeScreenButtonProps = {
   to?: string;  // cesta na route?
   text?: string;
   onClick?: () => void;
+  className?: string;
 }
 
-const ChangeScreenButton: FC<ChangeScreenButtonProps> = ({ to, text, onClick }) => {
+const ChangeScreenButton: FC<ChangeScreenButtonProps> = ({ to, text, onClick, className }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -20,7 +21,7 @@ const ChangeScreenButton: FC<ChangeScreenButtonProps> = ({ to, text, onClick }) 
   };
 
   return (
-    <button className="button" onClick={handleClick}>
+    <button className={className} onClick={handleClick}>
       {text}
     </button>
   );

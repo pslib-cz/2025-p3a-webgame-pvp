@@ -8,6 +8,7 @@ import minigameStyles from '../assets/styles/Minigames/Minigame.module.css';
 import { ErrorBoundary } from "react-error-boundary";
 import { Loading } from "../Components/Loading"
 import  ErrorPage from "../Pages/ErrorPage"
+import useViewportHeight from "../Hooks/useViewportHeight";
 
 
 
@@ -15,6 +16,12 @@ const FoodBarContent = ({ promise }: { promise: Promise<Consumable[]> }) => {
 
     const { setPlayer, setGirlfriend, tickets, setTickets, addNotification } = useOwnOutlet();
 
+
+    const vh = useViewportHeight();
+
+
+    const maxItems = Math.floor((vh - vh/4)/88)*2;// 80 je výška jedné položky + mezera 8px, *2 protože máme 2 sloupce
+    console.log("max items:", maxItems);
 
     const data = use(promise);
     
@@ -59,29 +66,34 @@ const FoodBarContent = ({ promise }: { promise: Promise<Consumable[]> }) => {
         <div className={styles.menu}>
 
             <div className={styles.itemsContainer}>
-                <h1>MENU</h1>
-                {data.map((item) => (
-                    <div key={item.consumableId} className={styles.itemFood}>
-                        <div className={styles.foodCard}>
-                            <div className={styles.foodInfo}>
-                                <h2>{item.name}</h2>
-                                <p>{item.description}</p>
+                <h1>FOOD MENU</h1>
+                    {data.slice(0, maxItems).map((item) => (
+                        <div key={item.consumableId} className={styles.itemFood}>
+                            <div className={styles.foodCard}>
+                                <div className={styles.foodInfo}>
+                                    <h2>{item.name}</h2>
+                                    <p>{item.description}</p>
+                                </div>
+                                <div className={styles.foodStats}>
+                                    <p>Price: {item.price}</p>
+                                    <p>Hunger: {item.hungerRestoreValue}</p>
+                                    <p>Thirst: {item.thirstRestoreValue}</p>
+                                </div>
+                                {item.isAlcoholic && <p>Alcohol: {item.alcoholContent}</p>}
                             </div>
-                            <div className={styles.foodStats}>
-                                <p>Price: {item.price}</p>
-                                <p>Hunger: {item.hungerRestoreValue}</p>
-                                <p>Thirst: {item.thirstRestoreValue}</p>
-                            </div>
-                            {item.isAlcoholic && <p>Alcohol: {item.alcoholContent}</p>}
+                            <button
+                                className={styles.buyButton}
+                                onClick={() => handleBuy(item.consumableId)}
+                            >
+                                Buy
+                            </button>
                         </div>
-                        <button onClick={() => handleBuy(item.consumableId)}>Buy</button>
-                    </div>
-                ))}
+                    ))}
 
             </div>
         </div>
 
-            <span className={styles.backButton}><ChangeScreenButton to="/game/right" text="Go Back" /></span>
+            <ChangeScreenButton className="buttonNext" to="/game/right" text="Go Back" />
         </div>
     )
 }
