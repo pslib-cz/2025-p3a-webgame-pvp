@@ -67,11 +67,11 @@ export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>
     }
 
     const endGame = () => {
-        const pHungerMultiplier = 5;
-        const pThirstMultiplier = 7;
-        const pDrunkennessMultiplier = 2;
-        const gHungerMultiplier = 4;
-        const gThirstMultiplier = 5;
+        const pHungerMultiplier = 3.5;
+        const pThirstMultiplier = 5;
+        const pDrunkennessMultiplier = 5;
+        const gHungerMultiplier = 2;
+        const gThirstMultiplier = 3;
         const gDrunkennessMultiplier = 1;
         const staminaMultiplier = 3;
         

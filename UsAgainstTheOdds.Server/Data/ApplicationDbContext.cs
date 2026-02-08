@@ -164,31 +164,6 @@ namespace UsAgainstTheOdds.Server.Data
             modelBuilder.Entity<Consumable>(ent =>
             {
                 ent.HasData(
-                    // Food items
-                    new Consumable
-                    {
-                        ConsumableId = "hotdog",
-                        Type = Enums.ConsumableType.food,
-                        Name = "Hot Dog",
-                        Description = "A classic hot dog with mustard and ketchup.",
-                        Price = 5,
-                        HungerRestoreValue = 10,
-                        ThirstRestoreValue = 0,
-                        IsAlcoholic = false,
-                        AlcoholContent = 0
-                    },
-                    new Consumable
-                    {
-                        ConsumableId = "burger",
-                        Type = Enums.ConsumableType.food,
-                        Name = "Burger",
-                        Description = "A delicious beef burger with lettuce, tomato, and cheese.",
-                        Price = 10,
-                        HungerRestoreValue = 20,
-                        ThirstRestoreValue = 0,
-                        IsAlcoholic = false,
-                        AlcoholContent = 0
-                    },
                     new Consumable
                     {
                         ConsumableId = "pizza",

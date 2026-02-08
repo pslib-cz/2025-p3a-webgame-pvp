@@ -13,16 +13,11 @@ const Darts = () => {
     const [playerScore, setPlayerScore] = useState<number>(0);
     const { endGame, setResult, result, setRewardMultiplier } = useMinigame();
 
-
     useEffect(() => {
         setPos({posX: 50, posY: 50});
         setPlayerScore(0);
         setIsStopped({stoppedX: false, stoppedY: false});
     }, []);
-
-
-
-
 
      useEffect(()=> {
          if(isStopped.stoppedX && isStopped.stoppedY) CountScore(pos.posX, pos.posY)
@@ -58,23 +53,8 @@ const Darts = () => {
 
     //pocitani vzdalenosti - maxscore -  math.sqrt(math.pow(math.abs(posx - 50)) + math.pow(math.abs(posy -50))))
      const CountScore = (x: number, y:number) => {
-        setPlayerScore(
-            maxScore - Math.round(2*Math.sqrt(
-                    Math.pow(
-                        Math.abs(
-                            x-50
-                        ),2
-                    )
-                    +
-                        Math.pow(
-                            Math.abs(
-                                y-50
-                            ),2
-                        )
-                )
-            )
-        ) 
-
+        const score = maxScore - Math.round(2*Math.sqrt(Math.pow(Math.abs(x-50),2)+Math.pow(Math.abs(y-50),2)))
+        setPlayerScore(score) 
      }
 
 

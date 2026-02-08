@@ -47,7 +47,6 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
             </div>
           </div>
           
-          
         </div>
       
         <div className={styles.modalButtons}>

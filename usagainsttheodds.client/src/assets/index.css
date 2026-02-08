@@ -133,3 +133,14 @@ input {
     border: 4px solid #683d54;
     padding: .7rem 1rem;
 }
+
+@keyframes pulseBlur {   
+    0% {     filter: blur(var(--blur-min, 5px));   }  
+    50% {     filter: blur(var(--blur-max, 10px));   }  
+    100% {     filter: blur(var(--blur-min, 5px)); } 
+}
+
+.pulseBlur {
+    background: rgba(1, 129, 25, 0.5);
+    animation: pulseBlur var(--pulse-duration, 3s) ease-in-out infinite;
+}
