@@ -10,6 +10,7 @@ export type GameData = {
     minigameId: string;
     name: string;
     description: string;
+    rules: string;
     price: number;
     difficulty: number;
 }

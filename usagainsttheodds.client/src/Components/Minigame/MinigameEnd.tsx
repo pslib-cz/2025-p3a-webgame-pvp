@@ -2,13 +2,18 @@ import ChangeScreenButton from "../ChangeScreenButton"
 import { useMinigame } from "../../Hooks/useMinigame"
 import styles from "../../assets/styles/components/MinigameP.module.css"
 import minigameStyles from "../../assets/styles/Minigames/Minigame.module.css"
-
-
+import { useSound } from "../../Providers/SoundProvider"
+import { useEffect } from "react"
+import type { SoundName } from "../../Types/SoundType"
 
 const MinigameEnd = ({ }) => {
     const { reward, exitPagePath, result, playAgain } = useMinigame();
+    const {play} = useSound();
 
-
+    useEffect(() => {
+        if (result === "win") {
+            play('win' as SoundName);
+        }}, [result, play]);
 
     return (
         <div className={`${minigameStyles.container} ${minigameStyles.table}`}>

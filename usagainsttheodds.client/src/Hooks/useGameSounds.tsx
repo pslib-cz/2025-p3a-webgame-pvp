@@ -16,6 +16,14 @@ const SOUNDS_CONFIG: Record<string, SoundConfigType> = {
     crowd: {
         src: "/audio/sfx/crowd.ogg",
         category: "sfx",
+    },
+    win: {
+        src: "/audio/sfx/win.ogg",
+        category: "sfx",
+    },
+    notification: {
+        src: "/audio/sfx/notification.ogg",
+        category: "sfx",
     }
 };
 

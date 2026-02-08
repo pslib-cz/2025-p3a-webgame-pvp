@@ -32,12 +32,7 @@ const MinigameInfo = ({ }) => {
         }
     }
     /*
-                <div className={styles.rules}>
-                <h2>How to play?</h2>
-                <p>
-                    {data ? data.rules : "No minigame rules available"}
-                </p>
-            </div>
+                
     */
 
     return (
@@ -47,6 +42,13 @@ const MinigameInfo = ({ }) => {
                     <h2>{data ? data.name : "No minigame name available"}</h2>
                     <p>
                         {data ? data.description : "No minigame description available"}
+                    </p>
+                </div>
+
+                <div className={styles.rules}>
+                    <h2>How to play?</h2>
+                    <p>
+                        {data ? data.rules : "No minigame rules available"}
                     </p>
                 </div>
 
