@@ -47,7 +47,7 @@ const FeelingLucky = () => {
 
     const handleAnimationEnd = (event: React.AnimationEvent) => {
         if (event.animationName.includes("resultScreenFadeIn")) {
-             setTimeout(() => endGame(), 1000);
+            endGame();
         }
     }
 
@@ -71,7 +71,7 @@ const FeelingLucky = () => {
             </div>
 
             {result && (
-                <div onAnimationEnd={handleAnimationEnd} className={styles.resultScreen}>
+                <div onAnimationEnd={handleAnimationEnd} className={minigameStyles.resultScreen}>
                             {result === "win" && <span className={minigameStyles.resultText}>You win!</span>}
                             {result === "lose" && <span className={minigameStyles.resultText}>You lost!</span>}
                 </div>
