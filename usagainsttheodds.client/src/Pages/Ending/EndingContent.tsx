@@ -9,7 +9,6 @@
         const data = use(promise);
 
 
-
         return (
             <div className={styles.endpage}>
                 <div 

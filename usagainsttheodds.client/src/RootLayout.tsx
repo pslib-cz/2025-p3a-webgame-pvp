@@ -134,7 +134,9 @@ const RootLayout = () => {
     };
 
     useEffect(() => {
+
         if (endReason !== null) {
+
             navigate('/ending');
         }
     }, [endReason]);
@@ -221,10 +223,12 @@ const RootLayout = () => {
 
 
     useEffect(() => {
+        console.log(player.drunkenness)
         return () => {
             setBlurMin(player.drunkenness/20);
             setBlurMax(player.drunkenness/10);
         };
+        
     }, [player.drunkenness]);
 
 

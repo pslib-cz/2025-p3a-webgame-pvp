@@ -16,14 +16,7 @@ const Ending = () => {
     const {endReason, endPerson} = useOwnOutlet();
     const navigate = useNavigate();
 
-    const {setPlayer} =useOwnOutlet();
 
-    useEffect(() => {
-        setPlayer(prev => ({
-            ...prev,
-            drunkenness: 0
-        }));
-    }, []);
 
 
     useEffect(() => {

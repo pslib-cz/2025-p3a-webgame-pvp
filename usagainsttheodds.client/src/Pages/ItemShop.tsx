@@ -47,7 +47,6 @@ const ItemShopContent = ({ promise }: { promise: Promise<Items[]> }) => {
         addNotification(`You bought ${item.name}!`);
 
     }
-
     return (
         <div className={styles.page}>
             <div className={styles.stage}>
