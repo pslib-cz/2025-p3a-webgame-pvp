@@ -17,7 +17,7 @@
                 <div 
                 className={`${styles.layer} ${styles.layer2}`} 
                 style={{ backgroundImage: `url(${data.imageUrl})` }}/>
-                <div className={styles.layer3}/>
+                <div className={styles.layer3} style={{ backgroundImage: `url(${data.reason === "victory" ? "/images/Cutscene/End/TextVictory.png" : "/images/Cutscene/End/Text.png"})`}}/>
                 <div className={`${styles.layer4} ${styles.text}`}>
                     <h1>{data.title}</h1>
                     <p>{data.message}</p>
