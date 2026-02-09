@@ -59,7 +59,6 @@ export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>
         } else {
             setResult(null);
             setRewardMultiplier(2);
-            console.log("Starting minigame, bet:", bet);
             setIsMinigamePlaying(true);
             setTickets(prev => prev - bet);
             setState("playing");

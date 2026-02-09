@@ -45,7 +45,6 @@ const Russianroulette = () => {
 
         setShootButtonsVisible(true);
         setBarrelPosition(rH.generate(1, 6));  // dá random číslo 1–6
-        console.log(barrelPosition);          // POZOR: ukazuje starou hodnotu — React stav se updateuje async
 
     }
 
@@ -71,7 +70,6 @@ const Russianroulette = () => {
         }
         const resultValue = result();
         setResult(resultValue);
-        console.log("Game ended with result:", resultValue);
     }
 
 

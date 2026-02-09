@@ -54,9 +54,6 @@ const Russianroulette = () => {
         const result = (): GameResult => {
             if (positions[0] === positions[1] && positions[1] === positions[2])
             {
-                console.log(positions[0]);
-                console.log(positions[1]);
-                console.log(positions[2]);
                 setRewardMultiplier(positions[0]*2+2);//jackpot
                 setJackpot(true);
                 return "win";
@@ -69,7 +66,6 @@ const Russianroulette = () => {
         }
         const resultValue = result();
         setResult(resultValue);
-        console.log("Game ended with result:", resultValue);
     }
 
     const Spin = (): void => {

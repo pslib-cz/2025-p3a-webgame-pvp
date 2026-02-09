@@ -152,7 +152,6 @@ export const useGameSounds = () => {
             }
         } else {
             sound.play();
-            console.log("Playing SFX:", soundName);
         }
     }, [getSound]);
 

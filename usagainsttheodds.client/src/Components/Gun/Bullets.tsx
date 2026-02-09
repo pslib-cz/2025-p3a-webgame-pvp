@@ -22,7 +22,6 @@ const Bullets: React.FC<BulletsProps> = ({ bulletPosition }) => {
             <button
                 key={i}
                 onClick={() => {
-                    console.log("Clicked bullet position:", i + 1);
                     setBulletPos(i); 
                     bulletPosition?.(i);
                 }} 

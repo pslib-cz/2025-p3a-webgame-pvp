@@ -169,7 +169,6 @@ const MemoryMatch = () => {
 
             if (cardToPickId !== null) {
                 handleCardClick(cardToPickId, true);
-                console.log(`Computer picking: ${cardToPickId} (Memory size: ${computerMemory.length})`);
             }
         };
 
@@ -219,7 +218,6 @@ const MemoryMatch = () => {
 
             const resultValue = result();
             setResult(resultValue);
-            console.log("Game ended with result:", resultValue);
         }
 
         // KONEC HRY
