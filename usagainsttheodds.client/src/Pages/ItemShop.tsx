@@ -80,6 +80,7 @@ const ItemShop = () => {
     if (!promise) {
         return <Loading />;
     }
+    
 
     return (
 

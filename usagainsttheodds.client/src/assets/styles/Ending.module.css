@@ -62,12 +62,15 @@
     animation-delay: 1s;
     opacity: 0;
 }
-    
-.layer3, .layer4 {
+
+.layer3 {
+
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url('/images/Cutscene/End/Text.png');
+}
+    
+.layer3, .layer4 {
 
     z-index: 0;
 
@@ -87,7 +90,6 @@
 }
 
 .layer4 {
-    background-image: none;
     top: 35vh;
     animation-delay: 2.5s;
 }
