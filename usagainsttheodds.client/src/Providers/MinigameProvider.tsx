@@ -43,8 +43,9 @@ export const MinigameProvider: React.FC<PropsWithChildren<MinigameProviderProps>
     const [reward, setReward] = useState<number>(bet * rewardMultiplier);
 
     useEffect(() => {
-        if (result === "win") setReward(Math.round(bet * rewardMultiplier));
-        else if (result === "lose") setReward(0);
+    if (result === "win") setReward(Math.round(bet * rewardMultiplier));
+    else if (result === "draw") setReward(bet); // Vrátí původní sázku
+    else if (result === "lose") setReward(0);
     }, [rewardMultiplier, bet, result]);
 
     const playAgain = () => {
