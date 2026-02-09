@@ -3,10 +3,19 @@ import type { EndingType } from "../../Types/GameType";
 import ResetButton from "../../Components/ResetButton";
 import styles from "../../assets/styles/Ending.module.css"
 import "../../assets/index.css"
+import { useOwnOutlet } from "../../Hooks/useOwnOutlet";
 
 //Pomocná komponenta pro samotný obsah cutscény
 const EndingContent = ({ promise }: { promise: Promise<EndingType> }) => {
     const data = use(promise);
+
+    const {setPlayer} =useOwnOutlet();
+
+
+    setPlayer(prev => ({
+        ...prev,
+        drunkenness: 0
+    }))
 
     return (
         <div className={styles.endpage}>
