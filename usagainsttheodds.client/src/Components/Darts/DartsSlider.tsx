@@ -1,4 +1,3 @@
-import styles from "../../assets/styles/Minigames/Darts.module.css"
 
 import { useState, useEffect } from "react";
 
