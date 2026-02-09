@@ -34,7 +34,6 @@ const Darts = () => {
         const handleSpace = (event: KeyboardEvent) => {
           if (event.code === "Space" || event.key === " ") {
             handleStop()
-            console.log("Space pressed");   
           }
         };
         
@@ -78,13 +77,10 @@ const Darts = () => {
     const handleStop = () => {
         setIsStopped((prev) => {
             if (!prev.stoppedX) {
-                console.log("stopping X");
                 return { ...prev, stoppedX: true };
             } else if (!prev.stoppedY) {
-                console.log("stopping Y");
                 return { ...prev, stoppedY: true };
             }
-            console.log("both stopped");
             return prev;
         });
     }

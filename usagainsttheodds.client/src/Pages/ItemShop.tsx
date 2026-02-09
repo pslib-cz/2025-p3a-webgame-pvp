@@ -25,11 +25,9 @@ const ItemShopContent = ({ promise }: { promise: Promise<Items[]> }) => {
 
         const item = data.find(i => i.itemId === Id);
         if (!item) {
-            console.error("Item not found");
             return;
         }
 
-        console.log(item.itemId, item.relationRestoreValue, item.description, item.name, item.price)
 
         if (tickets < item.price) {
             alert("Not enough tickets!");

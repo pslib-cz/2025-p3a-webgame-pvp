@@ -20,7 +20,6 @@ const FoodBarContent = ({ promise }: { promise: Promise<Consumable[]> }) => {
 
 
     // const maxItems = Math.floor((vh - vh/4)/88)*2;// 80 je výška jedné položky + mezera 8px, *2 protože máme 2 sloupce
-    // console.log("max items:", maxItems);
 
     const data = use(promise);
 
@@ -32,7 +31,6 @@ const FoodBarContent = ({ promise }: { promise: Promise<Consumable[]> }) => {
 
         const item = data.find(i => i.consumableId === itemId);
         if (!item) {
-            console.error("Item not found");
             return;
         }
 
