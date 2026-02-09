@@ -3,8 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
-    gap: 1rem;
+    gap: 2vh;
     height: 100vh;
 
     background-image: url('/images/Main/Background-table.jpg');
@@ -27,8 +26,8 @@
 
 .friedrich{
     position: fixed;
-    bottom: 1vh;
-    right: 1vw;
+    bottom: 3vh;
+    right: 3vw;
 
     width: 12vw;
     aspect-ratio: 293/650;
@@ -52,14 +51,10 @@
 
 .text, .page h1, a {
     color: var(--light-color);
-    font-size: 2rem;
+    font-size: 6vh;
     animation: textPulse 1.5s infinite;
 }
 
 @keyframes textPulse {
     50% { opacity: 0.6; }
 }
-
-/*
-.notFound - přidat jiné img do pozadí :)
-*/
