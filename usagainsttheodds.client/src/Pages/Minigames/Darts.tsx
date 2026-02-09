@@ -91,14 +91,14 @@ const Darts = () => {
             <div className={styles.dartsGameContainer}>
             {!isStopped.stoppedX && (
                         <>
-                            <DartsSlider isAxisY={false} dartsPosPercent={(x: number) => setPos({posX: x, posY: pos.posY})} isShot={isStopped.stoppedX}/>
-                            <button className={styles.dartButton} onClick={() => handleStop()}>stoppedX</button>
+                            <DartsSlider dartsPosPercent={(x: number) => setPos({posX: x, posY: pos.posY})} isShot={isStopped.stoppedX}/>
+                            <button  className={`${styles.dartButton} button`} onClick={() => handleStop()}>Stop</button>
                         </>
                     )}
                     {(!isStopped.stoppedY && isStopped.stoppedX) && (
                         <>
-                            <DartsSlider isAxisY={true} dartsPosPercent={(y: number) => setPos({posX: pos.posX, posY: y})} isShot={isStopped.stoppedY}/>
-                            <button className={styles.dartButton} onClick={() => handleStop()}>stoppedY</button>
+                            <DartsSlider dartsPosPercent={(y: number) => setPos({posX: pos.posX, posY: y})} isShot={isStopped.stoppedY}/>
+                            <button className={`${styles.dartButton} button`} onClick={() => handleStop()}>Stop</button>
                         </>
                     )}
                 <div className={`${styles.dartContainer} ${styles.target}`}>
