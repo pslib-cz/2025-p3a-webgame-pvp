@@ -15,7 +15,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 2vh;
     font-size: 1.5rem;
     text-align: center;
 }
@@ -97,9 +97,9 @@
 }
 
 .text h1, .text p, .text button {
-    font-size: larger;
+    font-size: 5vh;
     background-color: var(--purple);
-    padding: 0.5rem 1rem;
+    padding: 1vh 2vw;
 }
 
 .text button {
