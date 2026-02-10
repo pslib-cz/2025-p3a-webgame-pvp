@@ -16,14 +16,14 @@ const MinigameInfo = ({ }) => {
 
         // Pokud je input prázdný (uživatel vše smazal), nastavíme 0 a skončíme
         if (inputValue === "") {
-            setBet(0);
+            setBet(1);
             return;
         }
 
         // Jinak převedeme na číslo
-        const value = Number(inputValue);
+        const value = Number(inputValue);   
 
-        if (value > tickets) {
+        if (value > tickets && tickets < 1000) {
             setBet(tickets);
         } else if (value > 1000) {
             setBet(1000);
