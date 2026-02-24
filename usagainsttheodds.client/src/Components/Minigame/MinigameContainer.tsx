@@ -6,23 +6,32 @@ import type { GameData } from "../../Types/GameType";
 import {Loading } from "../Loading"
 import ErrorPage from "../../Pages/ErrorPage"
 import apiGet from "../../Helpers/apiHelper";
+import { useParams } from "react-router-dom";
 
-type MinigameContainerProps = {
-    id: string;
-    exitPage: string;
-}
+const MinigameContainer: React.FC = () => {
 
-const MinigameContainer: React.FC<MinigameContainerProps> = ({ id, exitPage}) => {
+    const { id } = useParams<{ id: string }>();
+
+    const exitPageMap: Record<string, string> = {
+        blackjack: "/game/right",
+        whackamole: "/game/right",
+        memorymatch: "/game/right",
+        slots: "/game/right",
+    };
 
     
 
+
+    const currentId = id?.toLowerCase() || "";
+    const exitPage = exitPageMap[currentId] || "/game";
+
     const [promise, setPromise] = useState<Promise<GameData> | null>(null);
 
-
-    //load data from api
     useEffect(() => {
-        setPromise(apiGet(`/api/minigames/${id.toLowerCase()}`));
-    }, [id]);
+        if (currentId) {
+            setPromise(apiGet(`/api/minigames/${currentId}`));
+        }
+    }, [currentId]);
 
     if (!promise) {
         return <Loading />;
@@ -34,7 +43,7 @@ const MinigameContainer: React.FC<MinigameContainerProps> = ({ id, exitPage}) =>
         >
             <Suspense fallback={<Loading />}>
                 <MinigameProvider exitPage={exitPage} promise={promise}>
-                    <Minigame id={id.toLowerCase()} />
+                    <Minigame id={currentId} />
                 </MinigameProvider>
             </Suspense>
         </ErrorBoundary>

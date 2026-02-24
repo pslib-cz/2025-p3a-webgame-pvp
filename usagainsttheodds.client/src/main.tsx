@@ -52,22 +52,12 @@ createRoot(document.getElementById('root')!).render(
           <Route path="wheel" element={<Wheel />} />
           
 
-          {/* STÁNKY */}
-          <Route path='minigame'>
-            <Route path="blackjack" element={<MinigameContainer id="blackjack" exitPage="/game/right"/>} />
-            <Route path="russianroulette" element={<MinigameContainer id="russianroulette"exitPage="/game" />} />
-            <Route path="feelinglucky" element={<MinigameContainer id="feelinglucky"exitPage="/game" />} />
-            <Route path="whackamole" element={<MinigameContainer id="whackamole" exitPage="/game/right" />} />
-            <Route path="memorymatch" element={<MinigameContainer id="memorymatch" exitPage="/game/right"  />} />
-            <Route path="slots" element={<MinigameContainer id="slots" exitPage="/game/right"   />} />
-            <Route path="darts" element={<MinigameContainer id="darts" exitPage='/game'/>} />
-
+          <Route path="minigame">
+              <Route path=":id" element={<MinigameContainer />} />
           </Route>
           
-          {/* ENDING */}
           <Route path="ending" element={<Ending />} />
 
-          {/* errory */}
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

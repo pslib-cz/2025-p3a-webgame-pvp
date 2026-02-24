@@ -36,20 +36,39 @@
     }
 }
 
-
+/*
 .main_right {
     background-image: url("/images/Main/Background-first.png");
     height: 100vh;
-    background-size: 100% 100%;
+    background-size: 100% 80%;
+    background-position: center bottom;
+    background-repeat: no-repeat;
     position: relative;
+}
+*/
+
+
+.main_right, .main_left {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
 }
 
-.main_left {
-    background-image: url("/images/Main/Background-second.png");
-    height: 100vh;
-    background-size: 100% 100%;
-    position: relative;
+.main_right::before, .main_left::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 91%;
+    
+    background-image: url("/images/Main/Background-first.png");
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    z-index: -1;
 }
+.main_left::before { background-image: url("/images/Main/Background-second.png"); }
 
 .goLEFT_btn,
 .goRIGHT_btn {
@@ -93,9 +112,9 @@
 
 .wheel {
     background-image: url("/images/Homepage/Wheel.png");
-    width: 38vw;
-    height: 37vh;
-    right: 36vw;
+    width: 45vw;
+    height: 45vh;
+    right: 27vw;
     top: 0vh;
 }
 
@@ -103,8 +122,8 @@
     background-image: url("/images/Homepage/Shop.png");
     width: 20vw;
     height: 30vh;
-    right: 73vw;
-    top: 13vh;
+    right: 70vw;
+    top: 27vh;
 }
 
 .russianroulette {
@@ -112,7 +131,7 @@
     width: 12vw;
     height: 34vh;
     right: 87vw;
-    top: 40vh;
+    top: 42vh;
 }
 
 .feelinglucky {
@@ -120,7 +139,7 @@
     width: 11vw;
     height: 34vh;
     right: 15vw;
-    top: 16vh;
+    top: 30vh;
 }
 
 .darts {
@@ -128,7 +147,7 @@
     width: 9vw;
     height: 29vh;
     right: 27vw;
-    top: 16vh;
+    top: 29vh;
 }
 
 
@@ -137,7 +156,7 @@
     width: 12vw;
     height: 32vh;
     right: 39vw;
-    top: 15vh;
+    top: 20vh;
 }
 
 
@@ -146,7 +165,7 @@
     width: 28vw;
     height: 46vh;
     right: 10vw;
-    top: 10vh;
+    top: 15vh;
 }
 
 .whackamole {
@@ -154,7 +173,7 @@
     width: 13vw;
     height: 32vh;
     right: 1vw;
-    top: 40vh;
+    top: 45vh;
 }
 
 .food {
@@ -162,7 +181,7 @@
     width: 20vw;
     height: 31vh;
     right: 63vw;
-    top: 10vh;
+    top: 18vh;
 }
 
 .pexeso {
@@ -170,7 +189,7 @@
     width: 11vw;
     height: 35vh;
     right: 52vw;
-    top: 10vh;
+    top: 22vh;
 }
 
 
@@ -197,8 +216,8 @@
     background-image: url("/images/Homepage/NPC/Baloons.png");
     width: 10vw;
     height: 18vh;
-    right: 20vw;
-    bottom: 35vh;
+    right: 27vw;
+    bottom: 23vh;
 }
 
 .girlindress {
@@ -236,44 +255,44 @@
 }
 
 .lamp1 {
-    top: 50vh;
+    top: 60vh;
     right: 55vw;
 }
 
 .lamp2 {
-    top: 45vh;
-    right: 20vw;
+    top: 50vh;
+    right: 30vw;
 }
 
 .lamp3 {
     top: 40vh;
-    right: 67vw;
+    right: 70vw;
 }
 .lamp4 {
     top: 54vh;
-    right: 15vw;
+    right: 25vw;
 }
 
 .trash1 {
-    top: 42vh;
+    top: 50vh;
     right: 7vw;
 }
 .trash2 {
-    top: 42vh;
-    right: 69vw;
+    top: 45vh;
+    right: 64vw;
 }
 .trash3 {
-    top: 38vh;
+    top: 50vh;
     right: 90vw;
 }
 .trash4 {
-    top: 50vh;
+    top: 60vh;
     right: 15vw;
 }
 
 .arrow {
     position: absolute;
-    top: 25vh;
+    top: 33vh;
 
     z-index: 15;
 
@@ -290,12 +309,12 @@
 
 .arrowRight {
     background-image: url("/images/Homepage/Map/ArrowR.png");
-    right: 10vw;
+    right: 9vw;
 }
 
 .arrowLeft {
     background-image: url("/images/Homepage/Map/ArrowL.png");
-    left: 11vw;
+    left: 10vw;
 }
 
 @keyframes long-walk {
